@@ -15,10 +15,5 @@
       LC_TIME = "de_CH.UTF-8";
     };
   };
-
-  console.keyMap = "sg";
-  services.xserver = {
-    layout = "ch";
-    xkbVariant = "de_nodeadkeys";
-  };
+  
 }
