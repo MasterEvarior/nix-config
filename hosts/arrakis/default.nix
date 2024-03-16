@@ -65,7 +65,6 @@
       kate
       _1password
       _1password-gui
-      jetbrains.idea-ultimate
     ];
   };
 
