@@ -11,6 +11,7 @@
     ../../common/boot.nix
     ../../common/locale.nix
     ../../common/printing.nix
+    ../../common/bluetooth.nix
   ];
 
   networking = {
