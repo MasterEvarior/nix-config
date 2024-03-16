@@ -1,7 +1,11 @@
 {
   boot.loader = {
-    systemd-boot.enable = true;
-    systemd-boot.configurationLimit = 60;
+    grub = {
+      enable = true;
+      configurationLimit = 60;
+      efiSupport = true;
+    };
+
     efi.canTouchEfiVariables = true;
   };
 }
