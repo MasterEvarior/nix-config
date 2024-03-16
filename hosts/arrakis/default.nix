@@ -65,6 +65,7 @@
       kate
       _1password
       _1password-gui
+      spotify
     ];
   };
 
