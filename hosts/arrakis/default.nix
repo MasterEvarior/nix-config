@@ -3,14 +3,14 @@
 {
   imports = 
   [
-    "./hardware.nix"
+    ./hardware.nix
 
-    "../../common/modules/school.nix"
-    "../../common/modules/dev.nix"
+    ../../common/modules/school.nix
+    ../../common/modules/dev.nix
 
-    "../../common/boot.nix"
-    "../../common/locale.nix"
-    "../../common/printing.nix"
+    ../../common/boot.nix
+    ../../common/locale.nix
+    ../../common/printing.nix
   ];
 
   networking = {
