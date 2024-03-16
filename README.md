@@ -7,4 +7,4 @@ This is my NixOS configuration, which is highly inspired by [Imatpot](https://gi
 2. Place the `configuration.template.nix` file into your `/etc/nixos` directory and rename it to `configuration.nix`. This may delete you exisiting `configuration.nix` file, so be sure to create a backup beforehand.
 3. Replace `{hostname}` with one of the hosts in the `/hosts` directory.
 4. Rebuild
-5. Bathe in the glory of NixOS 
+5. ❄️❄️❄️ Bathe in the glory of NixOS ❄️❄️❄️
