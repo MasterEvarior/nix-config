@@ -5,6 +5,7 @@
     ./hardware.nix
 
     ../../common/modules/school/school.nix
+    
     ../../common/modules/dev/general.nix
     ../../common/modules/dev/js.nix
     ../../common/modules/dev/java.nix
