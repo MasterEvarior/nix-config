@@ -1,12 +1,14 @@
-{config, pkgs, ... }: 
+{ config, pkgs, ... }:
 
 {
-  imports = 
-  [
+  imports = [
     ./hardware.nix
 
-    ../../common/modules/school.nix
-    ../../common/modules/dev.nix
+    ../../common/modules/school/school.nix
+    ../../common/modules/dev/general.nix
+    ../../common/modules/dev/js.nix
+    ../../common/modules/dev/java.nix
+    ../../common/modules/dev/containers.nix
 
     ../../common/boot.nix
     ../../common/locale.nix
@@ -15,7 +17,7 @@
   ];
 
   networking = {
-    hostName = "Arrakis"; 
+    hostName = "Arrakis";
     networkmanager.enable = true;
   };
 
@@ -60,13 +62,7 @@
     isNormalUser = true;
     description = "Giannin";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-      kate
-      _1password
-      _1password-gui
-      spotify
-    ];
+    packages = with pkgs; [ firefox kate _1password _1password-gui spotify ];
   };
 
   # Allow unfree packages
@@ -74,12 +70,12 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      #  wget
+    ];
 
-  
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

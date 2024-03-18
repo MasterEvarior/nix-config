@@ -2,8 +2,7 @@
 
 {
    environment.systemPackages = with pkgs; [
-      pkgs.vscode
-      pkgs.git
       pkgs.jetbrains.idea-ultimate
+      pkgs.zulu17
    ];
 }
