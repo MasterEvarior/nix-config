@@ -1,10 +1,10 @@
-{pkgs, ... }:
+{ pkgs, ... }:
 
 {
   virtualisation.docker = {
     enable = true;
     autoPrune.enable = true;
-    autoPrune.dates = "daily"
+    autoPrune.dates = "daily";
   };
-  
+
 }

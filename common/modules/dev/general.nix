@@ -1,8 +1,5 @@
-{pkgs, ... }:
+{ pkgs, ... }:
 
 {
-   environment.systemPackages = with pkgs; [
-      pkgs.vscode
-      pkgs.git
-   ];
+  environment.systemPackages = with pkgs; [ pkgs.vscode pkgs.git ];
 }

@@ -1,7 +1,5 @@
-{pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-      pkgs.node_js21
-   ];
+  environment.systemPackages = with pkgs; [ pkgs.node_js21 ];
 }
