@@ -9,6 +9,7 @@
     ../../common/modules/dev/general.nix
     ../../common/modules/dev/js.nix
     ../../common/modules/dev/java.nix
+    ../../common/modules/dev/c.nix
     ../../common/modules/dev/containers.nix
 
     ../../common/boot.nix
