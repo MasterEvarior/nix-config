@@ -23,6 +23,9 @@
     networkmanager.enable = true;
   };
 
+  # Enable flakes https://nixos.wiki/wiki/Flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
