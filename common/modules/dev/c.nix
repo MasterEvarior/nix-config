@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     pkgs.jetbrains.clion
-    pkgs.libgcc
+    pkgs.gcc
     pkgs.gnumake
   ];
 }
