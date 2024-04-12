@@ -7,4 +7,8 @@
     autoPrune.dates = "daily";
   };
 
+  environment.shellAliases = {
+    dcu = "docker compose up";
+    dcd = "docker compose down";
+  };
 }
