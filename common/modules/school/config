@@ -7,7 +7,7 @@
 
 
 sync_dir = "~/Documents/OneDrive"
-disable_notifications = "false"
+disable_notifications = "true"
 # skip_file = "~*|.~*|*.tmp"
 # monitor_interval = "300"
 # skip_dir = ""
