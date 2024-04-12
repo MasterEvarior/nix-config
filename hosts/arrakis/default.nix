@@ -67,7 +67,7 @@
     isNormalUser = true;
     description = "Giannin";
     extraGroups = [ "networkmanager" "wheel" "docker"];
-    packages = with pkgs; [ firefox kate _1password _1password-gui spotify ];
+    packages = with pkgs; [ firefox kate _1password _1password-gui spotify comma ];
   };
 
   # Allow unfree packages
