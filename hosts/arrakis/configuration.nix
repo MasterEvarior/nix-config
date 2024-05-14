@@ -69,15 +69,17 @@
     giannin = {
       isNormalUser = true;
       name = "giannin";
-      description = "My personal account";
+      description = "Personal account";
+      useDefaultShell = true;
       extraGroups = [ "networkmanager" "wheel" "docker"];
-      packages = with pkgs; [ firefox kate comma nil ];
+      packages = with pkgs; [ firefox comma nil ];
     };
 
     work = {
       isNormalUser = true;
       name = "work";
-      description = "A seperate work account";
+      description = "Work account";
+      useDefaultShell = true;
       extraGroups = [ "networkmanager" "wheel" "docker"];
     };
   };
