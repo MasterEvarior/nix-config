@@ -28,8 +28,11 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
-          home-manager.users.giannin = import ../../users/giannin/home.nix;
-          home-manager.users.work = import ../../users/work/home.nix;
+          home-manager.users = {
+            giannin = import ../../users/giannin/home.nix;
+            work = import ../../users/work/home.nix;
+          };
+        
         }
       ];
     };

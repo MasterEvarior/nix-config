@@ -12,6 +12,8 @@
     ../../common/modules/dev/c.nix
     ../../common/modules/dev/containers.nix
 
+    ../../common/modules/terminal.nix
+
     ../../common/boot.nix
     ../../common/locale.nix
     ../../common/printing.nix
@@ -63,11 +65,21 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.giannin = {
-    isNormalUser = true;
-    description = "Giannin";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
-    packages = with pkgs; [ firefox kate comma nil ];
+  users.users = {
+    giannin = {
+      isNormalUser = true;
+      name = "giannin";
+      description = "My personal account";
+      extraGroups = [ "networkmanager" "wheel" "docker"];
+      packages = with pkgs; [ firefox kate comma nil ];
+    };
+
+    work = {
+      isNormalUser = true;
+      name = "work";
+      description = "A seperate work account";
+      extraGroups = [ "networkmanager" "wheel" "docker"];
+    };
   };
 
   # Allow unfree packages

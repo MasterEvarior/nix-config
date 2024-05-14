@@ -1,6 +1,7 @@
 {pkgs, ...}:
 
 {
+
   home.username = "work";
   home.homeDirectory = "/home/work";
 
