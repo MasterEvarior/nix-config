@@ -11,6 +11,27 @@
   };
 
 
+  programs.zsh = {
+    enable = true;
+    initExtra = ''
+      # initExtra
+  
+      # enables autocompletion and the key-based interface
+      autoload -Uz compinit
+      compinit
+      zstyle ':completion:*' menu select
+
+      autoload -U colors && colors
+
+      autoload -Uz add-zsh-hook vcs_info
+      setopt prompt_subst
+      add-zsh-hook precmd vcs_info
+      zstyle ':vcs_info:git:*' formats '%b'
+
+      PROMPT='%F{green}%T %F{blue}%~ %F{yellow} ''${vcs_info_msg_0_}%f%F{white}> '
+      '';
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
