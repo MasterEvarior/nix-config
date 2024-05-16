@@ -14,6 +14,9 @@
 
     ../../common/modules/terminal.nix
 
+    ../../users/giannin/giannin.nix
+    ../../users/work/work.nix
+
     ../../common/boot.nix
     ../../common/locale.nix
     ../../common/printing.nix
@@ -64,25 +67,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users = {
-    giannin = {
-      isNormalUser = true;
-      name = "giannin";
-      description = "Personal account";
-      useDefaultShell = true;
-      extraGroups = [ "networkmanager" "wheel" "docker"];
-      packages = with pkgs; [ firefox comma nil ];
-    };
-
-    work = {
-      isNormalUser = true;
-      name = "work";
-      description = "Work account";
-      useDefaultShell = true;
-      extraGroups = [ "networkmanager" "wheel" "docker"];
-    };
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

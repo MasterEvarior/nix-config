@@ -22,6 +22,7 @@
       system = "${system}";
       modules = [
         ./configuration.nix
+        
 
         home-manager.nixosModules.home-manager
         {
@@ -29,7 +30,6 @@
           home-manager.useUserPackages = true;
 
           home-manager.users = {
-            giannin = import ../../users/giannin/home.nix;
             work = import ../../users/work/home.nix;
           };
         

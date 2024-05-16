@@ -20,8 +20,8 @@
           columns = 150;
         };
         # decorations = "None";
-        opacity = 0.9;
-        blur = true; #this will only work on macOs and KDE Wayland
+        opacity = 0.95;
+        blur = true; #this will only work on macOS and KDE Wayland
       };
 
       # the theme is inspired by this
