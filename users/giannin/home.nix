@@ -53,9 +53,10 @@
 
   home.packages = with pkgs; [
 
-      # Entertainment
+      # Entertainment & Media
       spotify
       plex-media-player
+      vlc
 
       # Secret Management
       _1password 
