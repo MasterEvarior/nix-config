@@ -24,7 +24,7 @@
   ];
 
   networking = {
-    hostName = "Arrakis";
+    hostName = "arrakis";
     networkmanager.enable = true;
   };
 
