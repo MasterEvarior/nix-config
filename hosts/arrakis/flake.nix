@@ -18,7 +18,7 @@
     in
   {
 
-    nixosConfigurations.Arrakis = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.arrakis = nixpkgs.lib.nixosSystem {
       system = "${system}";
       modules = [
         ./configuration.nix
