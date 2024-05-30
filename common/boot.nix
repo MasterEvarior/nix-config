@@ -18,7 +18,7 @@
       enable = true;
       theme = "stylish";
       footer = true;
-      resolution = "4k";
+      screen = "4k";
     };
   };
   # Updating the kernel to make it (hopefully) compatible with the Lenovo docking stations
