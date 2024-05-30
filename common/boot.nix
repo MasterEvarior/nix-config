@@ -6,6 +6,11 @@
     grub.configurationLimit = 20;
     grub.efiSupport = true;
 
+    boot.grub2-theme = {
+      enable = true;
+      theme = "stylish";
+      footer = true;
+    };
     # this will tell Grub that it does not need to install itself
     # because it is a UEFI boot
     # https://discourse.nixos.org/t/question-about-grub-and-nodev/37867/2

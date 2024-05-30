@@ -10,9 +10,11 @@
       # the current flake. It works like inheritance in OOP 
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    grub2-themes.url = "github:vinceliuice/grub2-themes";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: 
+  outputs = inputs@{ self, nixpkgs, home-manager, grub2-themes, ... }: 
     let 
       system = "x86_64-linux";
     in
@@ -34,6 +36,8 @@
           };
         
         }
+
+        grub2-themes.nixosModules.default
       ];
     };
   };
