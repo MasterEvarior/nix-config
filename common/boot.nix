@@ -4,7 +4,8 @@
   boot.loader = {
     grub.enable = true;
     grub.configurationLimit = 20;
-    
+    grub.efiSupport = true;
+
     # this will tell Grub that it does not need to install itself
     # because it is a UEFI boot
     # https://discourse.nixos.org/t/question-about-grub-and-nodev/37867/2
