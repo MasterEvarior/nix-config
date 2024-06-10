@@ -17,7 +17,7 @@
     ../../users/giannin/giannin.nix
     ../../users/work/work.nix
 
-    ../../common/boot.nix
+    ../../common/boot/boot.nix
     ../../common/locale.nix
     ../../common/printing.nix
     ../../common/bluetooth.nix
