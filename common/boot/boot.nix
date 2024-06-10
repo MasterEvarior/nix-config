@@ -21,14 +21,14 @@
       screen = "4k";
       splashImage = ./oled-background.png;
     };
-
-    environment.systemPackages = with pkgs;
-    [
-      # this is needed to scale the custom background correctly
-      imagemagick
-    ];
   };
   
   # Updating the kernel to make it (hopefully) compatible with the Lenovo docking stations
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  environment.systemPackages = with pkgs;
+  [
+    # this is needed to scale the custom background correctly
+    imagemagick
+  ];
 }
