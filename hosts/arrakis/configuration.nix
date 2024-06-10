@@ -17,7 +17,7 @@
     ../../users/giannin/giannin.nix
     ../../users/work/work.nix
 
-    ../../common/boot/boot.nix
+    ../../common/boot/customBoot.nix
     ../../common/locale.nix
     ../../common/printing.nix
     ../../common/bluetooth.nix
@@ -62,6 +62,13 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+  };
+
+
+  boot.loader.custom = {
+    enabled = true;
+    resolution = "4k";
+    backgroundImage = ./assets/img/oled-background.png;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
