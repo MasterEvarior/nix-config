@@ -13,6 +13,7 @@
     ../../common/modules/dev/containers.nix
 
     ../../common/modules/terminal.nix
+    ../../common/modules/hyprland.nix
 
     ../../users/giannin/giannin.nix
     ../../users/work/work.nix
