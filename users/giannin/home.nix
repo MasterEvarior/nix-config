@@ -73,7 +73,6 @@
   };
 
   home.packages = with pkgs; [
-
       # Entertainment & Media
       spotify
       plex-media-player
