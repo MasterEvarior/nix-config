@@ -9,7 +9,6 @@
     ../../common/modules/dev/general.nix
     ../../common/modules/dev/js.nix
     ../../common/modules/dev/java.nix
-    ../../common/modules/dev/c.nix
     ../../common/modules/dev/containers.nix
 
     ../../common/modules/terminal.nix
@@ -32,18 +31,15 @@
   # Enable flakes https://nixos.wiki/wiki/Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-
   # Configure keymap in X11
-  services.xserver = {
-    layout = "ch";
-    xkbVariant = "de_nodeadkeys";
-  };
+   services.xserver = {
+     enable = true;
+     layout = "ch";
+     xkbVariant = "de_nodeadkeys";
+     displayManager.sddm.enable = true;
+     displayManager.sddm.wayland.enable = true;
+     desktopManager.plasma5.enable = true;
+   };
 
   # Configure console keymap
   console.keyMap = "sg";
