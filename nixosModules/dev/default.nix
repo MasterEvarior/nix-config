@@ -8,10 +8,9 @@
     ./js.nix
   ];
 
-  dev.c.enable = lib.mkDefault false;
-  dev.containers.enable = lib.mkDefault true;
-  dev.java.enable = lib.mkDefault true;
-  dev.js.enable = lib.mkDefault true;
+  modules.dev.containers.enable = lib.mkDefault true;
+  modules.dev.java.enable = lib.mkDefault true;
+  modules.dev.js.enable = lib.mkDefault true;
 
   environment.systemPackages = with pkgs; [ 
     vscode 

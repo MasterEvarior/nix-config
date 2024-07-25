@@ -4,29 +4,43 @@
   imports = [
     ./hardware.nix
 
-    ../../common/modules/school/school.nix
-
-    ../../common/modules/dev
-
-    ../../common/modules/terminal.nix
-    ../../common/modules/hyprland.nix
+    ../../nixosModules/dev
+    ../../nixosModules/school
+    ../../nixosModules/settings
+    ../../nixosModules/grub2Theme
+    ../../nixosModules/desktop
 
     ../../users/giannin/giannin.nix
     ../../users/work/work.nix
-
-    ../../common/boot/customBoot.nix
-    ../../common/locale.nix
-    ../../common/printing.nix
-    ../../common/bluetooth.nix
   ];
 
+  # Enable flakes https://nixos.wiki/wiki/Flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Networking
   networking = {
     hostName = "arrakis";
     networkmanager.enable = true;
   };
+  modules.school.wifi = true;
 
-  # Enable flakes https://nixos.wiki/wiki/Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Sound
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # Custom bootloader theming
+  modules.grub2Theme = {
+    enabled = true;
+    resolution = "4k";
+    backgroundImage = ./assets/img/oled-background.png;
+  };
 
   # Configure keymap in X11
    services.xserver = {
@@ -41,42 +55,14 @@
   # Configure console keymap
   console.keyMap = "sg";
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-
-  boot.loader.custom = {
-    enabled = true;
-    resolution = "4k";
-    backgroundImage = ./assets/img/oled-background.png;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [
-      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #  wget
+  environment.systemPackages = with pkgs; [
       firefox
+      nano
     ];
 
   # This value determines the NixOS release from which the default

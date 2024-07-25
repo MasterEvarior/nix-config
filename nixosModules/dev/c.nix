@@ -2,10 +2,10 @@
 
 {
   options = {
-    dev.c.enable = lib.mkEnableOption "Enable C/C++ module";
+    modules.dev.c.enable = lib.mkEnableOption "C/C++ module";
   };
 
-  config = lib.mkIf config.dev.c.enable {
+  config = lib.mkIf config.modules.dev.c.enable {
     environment.systemPackages = with pkgs; [
       jetbrains.clion
       gcc

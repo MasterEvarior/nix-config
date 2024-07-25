@@ -1,8 +1,8 @@
 {pkgs, lib, config, ...}:
 
 {
-  options.boot.loader.custom = {
-    enabled = lib.mkEnableOption "Enable this module";
+  options.modules.grub2Theme = {
+    enabled = lib.mkEnableOption "a custom grub2theme";
     resolution = lib.mkOption {
       default = "4k";
       example = "4k";
@@ -16,7 +16,7 @@
     };
   };
 
-  config = let cfg = config.boot.loader.custom; in
+  config = let cfg = config.modules.grub2Theme; in
   lib.mkIf cfg.enabled {
     boot.loader = {
       grub.enable = true;

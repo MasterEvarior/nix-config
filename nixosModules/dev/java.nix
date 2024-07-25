@@ -2,10 +2,10 @@
 
 {
   options = {
-    dev.java.enable = lib.mkEnableOption "Enable Java module";
+    modules.dev.java.enable = lib.mkEnableOption "Java module";
   };
 
-  config = lib.mkIf config.dev.java.enable {
+  config = lib.mkIf config.modules.dev.java.enable {
     environment.systemPackages = with pkgs; [
       jetbrains.idea-ultimate
       maven
