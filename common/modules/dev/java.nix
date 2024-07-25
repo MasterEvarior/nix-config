@@ -1,14 +1,20 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    pkgs.jetbrains.idea-ultimate
-    pkgs.maven
-    pkgs.gradle_7
-  ];
+  options = {
+    dev.java.enable = lib.mkEnableOption "Enable Java module";
+  };
 
-  programs.java = {
-    package=pkgs.jdk21;
-    enable=true;
+  config = lib.mkIf config.dev.java.enable {
+    environment.systemPackages = with pkgs; [
+      jetbrains.idea-ultimate
+      maven
+      gradle_7
+    ];
+
+    programs.java = {
+      package=pkgs.jdk21;
+      enable=true;
+    };
   };
 }

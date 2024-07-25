@@ -1,5 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 
 {
-  environment.systemPackages = with pkgs; [ pkgs.nodejs_21 ];
+  options = {
+    dev.js.enable = lib.mkEnableOption "Enable JavaScript module";
+  };
+
+  config = lib.mkIf config.dev.js.enable {
+    environment.systemPackages = with pkgs; [ nodejs_21 ];
+  };
 }

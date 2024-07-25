@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -6,10 +6,7 @@
 
     ../../common/modules/school/school.nix
 
-    ../../common/modules/dev/general.nix
-    ../../common/modules/dev/js.nix
-    ../../common/modules/dev/java.nix
-    ../../common/modules/dev/containers.nix
+    ../../common/modules/dev
 
     ../../common/modules/terminal.nix
     ../../common/modules/hyprland.nix
@@ -53,9 +50,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
+    
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
