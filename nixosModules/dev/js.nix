@@ -6,6 +6,6 @@
   };
 
   config = lib.mkIf config.modules.dev.js.enable {
-    environment.systemPackages = with pkgs; [ nodejs_21 ];
+    environment.systemPackages = with pkgs; [ nodejs_22 ];
   };
 }

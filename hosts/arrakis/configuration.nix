@@ -45,11 +45,16 @@
   # Configure keymap in X11
    services.xserver = {
      enable = true;
-     layout = "ch";
-     xkbVariant = "de_nodeadkeys";
-     displayManager.sddm.enable = true;
-     displayManager.sddm.wayland.enable = true;
+     xkb = {
+      layout = "ch";
+      variant = "de_nodeadkeys";
+     };
      desktopManager.plasma5.enable = true;
+   };
+
+   services.displayManager = {
+    sddm.enable = true;
+    sddm.wayland.enable = true;
    };
 
   # Configure console keymap

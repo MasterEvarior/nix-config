@@ -2,9 +2,9 @@
   description = "Arrakis configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
 
       # The `follows` ensures that the versions are kept consistent with
       # the current flake. It works like inheritance in OOP 
