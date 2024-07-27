@@ -18,3 +18,11 @@ After the installation a couple of manual steps are still necessary. They are as
 - Log into 1Password
 - Enable/Configure 1Password terminal client and SSH key-thingy
 - Log into Jetbrains account for IDEs
+
+## Development
+
+### Git Hooks
+There are some hooks for formatting and the like. To use those, execute the following command:
+```shell
+git config --local core.hooksPath .githooks/
+``` 
