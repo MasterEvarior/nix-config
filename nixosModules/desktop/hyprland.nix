@@ -1,4 +1,4 @@
-{pkgs, lib, config, ...}: 
+{ pkgs, lib, config, ... }:
 
 {
   options.modules.desktop.hyprland = {
@@ -29,9 +29,7 @@
 
     xdg.portal = {
       enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
-      ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
   };
 }

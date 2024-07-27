@@ -1,9 +1,7 @@
 { pkgs, lib, config, ... }:
 
 {
-  options = {
-    modules.dev.java.enable = lib.mkEnableOption "Java module";
-  };
+  options = { modules.dev.java.enable = lib.mkEnableOption "Java module"; };
 
   config = lib.mkIf config.modules.dev.java.enable {
     environment.systemPackages = with pkgs; [
@@ -13,8 +11,8 @@
     ];
 
     programs.java = {
-      package=pkgs.jdk21;
-      enable=true;
+      package = pkgs.jdk21;
+      enable = true;
     };
   };
 }

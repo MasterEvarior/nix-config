@@ -1,4 +1,4 @@
-{pkgs, config, lib, ...}: 
+{ pkgs, config, lib, ... }:
 
 {
   options.modules.desktop.terminal = {
@@ -6,9 +6,7 @@
   };
 
   config = lib.mkIf config.modules.desktop.terminal.enable {
-    environment.systemPackages = with pkgs; [
-      alacritty
-    ];
+    environment.systemPackages = with pkgs; [ alacritty ];
 
     programs.zsh = {
       enable = true;

@@ -1,7 +1,1 @@
-{
-  imports = [
-    ./bluetooth.nix
-    ./locale.nix
-    ./printing.nix
-  ];
-}
+{ imports = [ ./bluetooth.nix ./locale.nix ./printing.nix ]; }

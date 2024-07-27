@@ -1,9 +1,7 @@
-{lib,...}:
+{ lib, ... }:
 
 {
-  imports = [
-    ./terminal.nix
-  ];
+  imports = [ ./terminal.nix ];
 
   modules.desktop.terminal.enable = lib.mkDefault true;
 }

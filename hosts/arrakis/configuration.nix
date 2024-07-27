@@ -52,10 +52,10 @@
     desktopManager.plasma5.enable = true;
   };
 
-   services.displayManager = {
+  services.displayManager = {
     sddm.enable = true;
     sddm.wayland.enable = true;
-   };
+  };
 
   # Configure console keymap
   console.keyMap = "sg";
@@ -65,10 +65,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-      firefox
-      nano
-    ];
+  environment.systemPackages = with pkgs; [ firefox nano ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

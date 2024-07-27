@@ -16,9 +16,10 @@
       # docker compose
       dcu = "docker compose up";
       dcd = "docker compose down";
-    
+
       # docker 
-      dktop = "docker stats --format ''\"table {{.Container}}\t{{.Name}}\t{{.CPUPerc}}  {{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}''\"";
+      dktop =
+        "docker stats --format ''\"table {{.Container}}	{{.Name}}	{{.CPUPerc}}  {{.MemPerc}}	{{.NetIO}}	{{.BlockIO}}''\"";
     };
   };
 }

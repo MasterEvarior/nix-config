@@ -1,4 +1,4 @@
-{pkgs, ...}: 
+{ pkgs, ... }:
 
 {
   users.users.work = {
@@ -6,7 +6,7 @@
     name = "work";
     description = "Work account";
     useDefaultShell = true;
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   home-manager.users.work = import ./home.nix;

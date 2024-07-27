@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 
 {
   home.username = "giannin";
@@ -10,12 +10,11 @@
     userEmail = "contact@giannin.ch";
   };
 
-
   programs.zsh = {
     enable = true;
     initExtra = ''
       # initExtra
-  
+
       # enables autocompletion and the key-based interface
       autoload -Uz compinit
       compinit
@@ -29,7 +28,7 @@
       zstyle ':vcs_info:git:*' formats '%b'
 
       PROMPT='%F{green}%T %F{blue}%~ %F{yellow} ''${vcs_info_msg_0_}%f%F{white}> '
-      '';
+    '';
   };
 
   programs.alacritty = {
@@ -42,7 +41,7 @@
         };
         # decorations = "None";
         opacity = 0.95;
-        blur = true; #this will only work on macOS and KDE Wayland
+        blur = true; # this will only work on macOS and KDE Wayland
       };
 
       # the theme is inspired by this
@@ -60,27 +59,27 @@
         normal.cyan = "#58d1eb";
         normal.white = "#c4c5b5";
 
-        bright.black   = "#625e4c";
-        bright.red     = "#f4005f";
-        bright.green   = "#98e024";
-        bright.yellow  = "#e0d561";
-        bright.blue    = "#9d65ff";
+        bright.black = "#625e4c";
+        bright.red = "#f4005f";
+        bright.green = "#98e024";
+        bright.yellow = "#e0d561";
+        bright.blue = "#9d65ff";
         bright.magenta = "#f4005f";
-        bright.cyan    = "#58d1eb";
-        bright.white   = "#f6f6ef";
+        bright.cyan = "#58d1eb";
+        bright.white = "#f6f6ef";
       };
     };
   };
 
   home.packages = with pkgs; [
-      # Entertainment & Media
-      spotify
-      plex-media-player
-      vlc
+    # Entertainment & Media
+    spotify
+    plex-media-player
+    vlc
 
-      # Secret Management
-      _1password 
-      _1password-gui
+    # Secret Management
+    _1password
+    _1password-gui
   ];
 
   home.stateVersion = "23.11";

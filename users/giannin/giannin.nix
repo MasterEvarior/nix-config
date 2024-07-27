@@ -1,4 +1,4 @@
-{pkgs, ...}: 
+{ pkgs, ... }:
 
 {
   users.users.giannin = {
@@ -6,9 +6,9 @@
     name = "giannin";
     description = "Personal account";
     useDefaultShell = true;
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [ firefox comma nil ];
   };
 
-  home-manager.users.giannin = import ./home.nix ;
+  home-manager.users.giannin = import ./home.nix;
 }

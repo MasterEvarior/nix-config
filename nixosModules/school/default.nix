@@ -1,9 +1,7 @@
-{lib, ...}:
+{ lib, ... }:
 
 {
-  imports = [
-    ./school.nix
-  ];
+  imports = [ ./school.nix ];
 
   modules.school.enable = lib.mkDefault true;
 }
