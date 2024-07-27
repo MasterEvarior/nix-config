@@ -1,11 +1,12 @@
 { pkgs, lib, ... }:
 
 {
-  imports = [ ./c.nix ./containers.nix ./java.nix ./js.nix ];
+  imports = [ ./c.nix ./containers.nix ./java.nix ./js.nix ./nix.nix ];
 
   modules.dev.containers.enable = lib.mkDefault true;
   modules.dev.java.enable = lib.mkDefault true;
   modules.dev.js.enable = lib.mkDefault true;
+  modules.dev.nix.enable = lib.mkDefault true;
 
   environment.systemPackages = with pkgs; [ vscode git ];
 
