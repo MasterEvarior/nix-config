@@ -43,14 +43,14 @@
   };
 
   # Configure keymap in X11
-   services.xserver = {
-     enable = true;
-     xkb = {
+  services.xserver = {
+    enable = true;
+    xkb = {
       layout = "ch";
       variant = "de_nodeadkeys";
-     };
-     desktopManager.plasma5.enable = true;
-   };
+    };
+    desktopManager.plasma5.enable = true;
+  };
 
    services.displayManager = {
     sddm.enable = true;
