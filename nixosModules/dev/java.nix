@@ -1,7 +1,14 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
-  options = { modules.dev.java.enable = lib.mkEnableOption "Java module"; };
+  options = {
+    modules.dev.java.enable = lib.mkEnableOption "Java module";
+  };
 
   config = lib.mkIf config.modules.dev.java.enable {
     environment.systemPackages = with pkgs; [

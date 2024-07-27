@@ -14,12 +14,19 @@
     grub2-themes.url = "github:vinceliuice/grub2-themes";
   };
 
-  outputs = { nixpkgs, home-manager, grub2-themes, ... }:
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      grub2-themes,
+      ...
+    }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
 
       nixosConfigurations = {
         "arrakis" = lib.nixosSystem {

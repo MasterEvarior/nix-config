@@ -15,7 +15,10 @@
   ];
 
   # Enable flakes https://nixos.wiki/wiki/Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Networking
   networking = {
@@ -65,7 +68,10 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ firefox nano ];
+  environment.systemPackages = with pkgs; [
+    firefox
+    nano
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

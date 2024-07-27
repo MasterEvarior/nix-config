@@ -1,16 +1,23 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
 
   options = {
     modules.school.enable = lib.mkEnableOption "school module";
-    modules.school.wifi = lib.mkEnableOption
-      "the installation of Eduroam certs. If you need to use the Eduroam WIFI, set this to true.";
+    modules.school.wifi = lib.mkEnableOption "the installation of Eduroam certs. If you need to use the Eduroam WIFI, set this to true.";
   };
 
   config = lib.mkIf config.modules.school.enable {
 
-    environment.systemPackages = with pkgs; [ onedrive zotero ];
+    environment.systemPackages = with pkgs; [
+      onedrive
+      zotero
+    ];
 
     environment.etc."config" = {
       target = "onedrive/config";

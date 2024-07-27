@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  imports = [ ./../../homeManagerModules ];
+
   home.username = "work";
   home.homeDirectory = "/home/work";
 

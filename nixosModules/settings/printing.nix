@@ -1,1 +1,4 @@
-{ lib, ... }: { services.printing.enable = lib.mkDefault true; }
+{ lib, ... }:
+{
+  services.printing.enable = lib.mkDefault true;
+}

@@ -1,1 +1,4 @@
-{ lib, ... }: { hardware.bluetooth.enable = lib.mkDefault true; }
+{ lib, ... }:
+{
+  hardware.bluetooth.enable = lib.mkDefault true;
+}
