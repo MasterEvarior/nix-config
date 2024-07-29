@@ -1,6 +1,9 @@
 { lib, ... }:
 {
-  imports = [ ./terminal ];
+  imports = [
+    ./terminal
+    ./desktop
+  ];
 
   homeModules.terminal.enable = lib.mkDefault true;
 }
