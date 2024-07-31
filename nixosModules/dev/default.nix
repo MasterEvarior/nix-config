@@ -23,6 +23,7 @@
 
   environment.shellAliases = {
     gaa = "git add --all";
+    gamend = "git commit --amend --no-edit";
     ggraph = "git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
   };
 }
