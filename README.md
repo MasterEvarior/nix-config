@@ -1,6 +1,6 @@
 # ❄️ NixOS Configuration
 [![Nix](https://img.shields.io/badge/built%20with-Nix-5277C3.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)  
-This is my NixOS configuration, whith some help of my personal Nix guru  [Imatpot](https://github.com/imatpot/dotfiles).
+This is my NixOS configuration, with some help of my personal Nix guru  [Imatpot](https://github.com/imatpot/dotfiles).
 
 ## How to use
 This guide is strictly for me only. If you try to use it on you machine it will most likely fail, because you do not have the same hardware as I do. So use with caution. 
