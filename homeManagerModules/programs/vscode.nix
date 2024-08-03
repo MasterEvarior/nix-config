@@ -32,6 +32,35 @@
       ];
       description = "Which (official) VSCode theme to apply";
     };
+    telemetry = lib.mkOption {
+      default = "off";
+      example = "off";
+      type = lib.types.enum [
+        "all"
+        "error"
+        "crash"
+        "off"
+      ];
+      description = "Change the level of telemetry to send";
+    };
+    naturalLanguageSearch = lib.mkOption {
+      default = false;
+      example = false;
+      type = lib.types.bool;
+      description = "Wether to enable natural language search for options. Needs a Microsoft online service.";
+    };
+    scm.alwaysShowRepositories = lib.mkOption {
+      default = true;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether to always show the repository inside the SCM tab";
+    };
+    scm.showHistoryGraph = lib.mkOption {
+      default = true;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether to a history graph instead of changes inside the SCM tab";
+    };
   };
 
   config = lib.mkIf config.homeModules.programs.vscode.enable {
@@ -46,6 +75,11 @@
       ];
       userSettings = {
         "workbench.colorTheme" = config.homeModules.programs.vscode.theme;
+        "telemetry.telemetryLevel" = config.homeModules.programs.vscode.telemetry;
+        "workbench.settings.enableNaturalLanguageSearch" =
+          config.homeModules.programs.vscode.naturalLanguageSearch;
+        "scm.alwaysShowRepositories" = config.homeModules.programs.vscode.scm.alwaysShowRepositories;
+        "scm.experimental.showHistoryGraph" = config.homeModules.programs.vscode.scm.showHistoryGraph;
       };
     };
   };
