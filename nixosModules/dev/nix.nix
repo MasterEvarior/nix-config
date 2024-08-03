@@ -15,5 +15,10 @@
       nixfmt-rfc-style
       nixd
     ];
+
+    environment.shellAliases = {
+      # Update package cache for comma
+      nuc = "nix run 'nixpkgs#nix-index' --extra-experimental-features 'nix-command flakes'";
+    };
   };
 }
