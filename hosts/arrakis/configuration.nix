@@ -7,8 +7,8 @@
     ../../nixosModules/dev
     ../../nixosModules/school
     ../../nixosModules/settings
-    ../../nixosModules/grub2Theme
     ../../nixosModules/desktop
+    ../../nixosModules/grub2Theme
 
     ../../users/giannin/giannin.nix
     ../../users/work/work.nix
@@ -43,16 +43,18 @@
     enabled = true;
     resolution = "4k";
     backgroundImage = ./assets/img/oled-background.png;
-  };
+  }; 
 
   # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    xkb = {
-      layout = "ch";
-      variant = "de_nodeadkeys";
+  services = {
+    desktopManager.plasma6.enable = true;
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "ch";
+        variant = "de_nodeadkeys";
+      };
     };
-    desktopManager.plasma5.enable = true;
   };
 
   services.displayManager = {
