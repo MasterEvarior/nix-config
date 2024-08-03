@@ -43,7 +43,7 @@
     enabled = true;
     resolution = "4k";
     backgroundImage = ./assets/img/oled-background.png;
-  }; 
+  };
 
   # Configure keymap in X11
   services = {

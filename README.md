@@ -13,10 +13,10 @@ This guide is strictly for me only. If you try to use it on you machine it will 
 
 ## Manuel Steps
 After the installation a couple of manual steps are still necessary. They are as follows:
-- Set passwords with `passwd <user>` where it is necessary 
-- Add Mozilla account to Firefox
 - Log into 1Password
 - Enable/Configure 1Password terminal client and SSH key-thingy
+- Set passwords with `passwd <user>` where it is necessary 
+- Add Mozilla account to Firefox
 - Log into Jetbrains account for IDEs
 
 ## Development
