@@ -4,5 +4,6 @@
     ./locale.nix
     ./printing.nix
     ./unfree.nix
+    ./flakes.nix
   ];
 }

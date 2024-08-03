@@ -18,12 +18,6 @@
 
   ];
 
-  # Enable flakes https://nixos.wiki/wiki/Flakes
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   # Custom bootloader theming
   modules.grub2Theme = {
     enabled = true;

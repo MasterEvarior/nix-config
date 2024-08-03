@@ -14,12 +14,6 @@
     ../../users/work/work.nix
   ];
 
-  # Enable flakes https://nixos.wiki/wiki/Flakes
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   # Networking
   networking = {
     hostName = "arrakis";
