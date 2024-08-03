@@ -16,10 +16,7 @@
         "separator",
         "os",
         "host",
-        {
-            "type": "kernel",
-            "format": "{release}"
-        },
+        "kernel",
         "uptime",
         "packages",
         "shell",
@@ -34,10 +31,7 @@
         "theme",
         "icons",
         "terminal",
-        {
-            "type": "terminalfont",
-            "format": "{/name}{-}{/}{name}{?size} {size}{?}"
-        },
+        "terminalfont",
         "cpu",
         {
             "type": "gpu",
