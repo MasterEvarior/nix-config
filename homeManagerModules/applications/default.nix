@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./vscode.nix
+    ./vscode
     ./fastfetch
   ];
 
