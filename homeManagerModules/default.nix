@@ -4,6 +4,7 @@
     ./terminal
     ./desktop
     ./fastfetch
+    ./programs
   ];
 
   homeModules.terminal.enable = lib.mkDefault true;
