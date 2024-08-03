@@ -43,6 +43,21 @@
             }
           ];
         };
+
+        "caladan" = lib.nixosSystem {
+          system = "${system}";
+          modules = [
+            ./hosts/caladan/configuration.nix
+            grub2-themes.nixosModules.default
+
+            # idk what this does :(
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+            }
+          ];
+        };
       };
 
       homeConfigurations = {
