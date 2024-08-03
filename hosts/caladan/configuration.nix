@@ -24,6 +24,9 @@
     backgroundImage = ./assets/img/ultrawide-background.png;
   };
 
+  # Probe for other OSs to facilitate dual boot
+  boot.loader.grub.useOSProber = true;
+
   # Networking
   networking = {
     hostName = "caladan";
