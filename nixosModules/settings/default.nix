@@ -5,5 +5,6 @@
     ./printing.nix
     ./unfree.nix
     ./flakes.nix
+    ./defaultPackages.nix
   ];
 }
