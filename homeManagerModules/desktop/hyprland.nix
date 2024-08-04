@@ -1,5 +1,18 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
+let
+  startupScript = pkgs.pkgs.writeShellScriptBin "startHyprland" ''
+    ${pkgs.waybar}/bin/waybar &
+    ${pkgs.swww}/bin/swww init &
+
+    sleep 1
+  '';
+in
 {
   options.homeModules.desktop.hyprland = {
     enable = lib.mkEnableOption "Hyprland configuration with HM";
@@ -8,9 +21,12 @@
   config = lib.mkIf config.homeModules.desktop.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = true;
       settings = {
         monitor = ",preferred,auto,auto";
         env = [ "XCURSOR_SIZE,24" ];
+
+        exec-once = ''${startupScript}/bin/startHyprland'';
 
         "$mainMod" = "SUPER";
 
