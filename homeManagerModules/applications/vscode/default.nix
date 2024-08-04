@@ -69,8 +69,19 @@
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
       extensions = with pkgs; [
+        # Angular/JS/TS
+        vscode-extensions.angular.ng-template
+        vscode-extensions.esbenp.prettier-vscode
+        vscode-extensions.dbaeumer.vscode-eslint
+        vscode-extensions.usernamehw.errorlens
+
+        # Ansible
         vscode-extensions.redhat.ansible
+
+        # Nix
         vscode-extensions.jnoortheen.nix-ide
+
+        # Div
         vscode-extensions.tomoki1207.pdf
       ];
       userSettings = {
