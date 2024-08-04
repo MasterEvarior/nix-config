@@ -81,6 +81,31 @@
         "scm.alwaysShowRepositories" = config.homeModules.programs.vscode.scm.alwaysShowRepositories;
         "scm.experimental.showHistoryGraph" = config.homeModules.programs.vscode.scm.showHistoryGraph;
       };
+      languageSnippets = {
+        nix = {
+          "Create toggleable configuration" = {
+            prefix = [ "tog-conf" ];
+            description = "Create toggleable .nix configuration";
+            body = [
+              "{"
+              "\tlib,"
+              "\tconfig,"
+              "\tpkgs,"
+              "\t..."
+              "}:"
+              ""
+              "{"
+              "\toptions.\${1|modules,homeModules|}.$2 = {"
+              "\t\tenable = lib.mkEnableOption \"$3\";"
+              "\t};"
+              ""
+              "\tconfig = lib.mkIf config.$1.$2.enable {"
+              "\t};"
+              "}"
+            ];
+          };
+        };
+      };
     };
   };
 }
