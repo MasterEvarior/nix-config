@@ -23,13 +23,13 @@
       libnotify
 
       # wallpaper daemon
-      swww
+      hyprpaper
 
       # app launcher
       rofi-wayland
 
-      # default terminal of wayland
-      kitty
+      # nm-applet
+      networkmanagerapplet
     ];
 
     xdg.portal = {
