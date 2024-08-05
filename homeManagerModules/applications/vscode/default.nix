@@ -115,6 +115,20 @@
               "}"
             ];
           };
+          "Create basic configuration" = {
+            prefix = [ "conf" ];
+            description = "Create basix .nix configuration";
+            body = [
+              "{"
+              "\tpkgs,"
+              "\t..."
+              "}:"
+              ""
+              "{"
+              "\t$1"
+              "}"
+            ];
+          };
         };
       };
     };
