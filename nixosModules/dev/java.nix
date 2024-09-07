@@ -14,7 +14,7 @@
     environment.systemPackages = with pkgs; [
       jetbrains.idea-ultimate
       maven
-      gradle_7
+      gradle
     ];
 
     programs.java = {
