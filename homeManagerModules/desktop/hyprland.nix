@@ -5,6 +5,14 @@
   ...
 }:
 
+let
+  startupScript = pkgs.pkgs.writeShellScriptBin "startHyprland" ''
+    ${pkgs.waybar}/bin/waybar &
+    ${pkgs.swww}/bin/swww init &
+
+    sleep 1
+  '';
+in
 {
   options.homeModules.desktop.hyprland = {
     enable = lib.mkEnableOption "Hyprland configuration with HM";
@@ -15,6 +23,7 @@
 
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = true;
       settings = {
         monitor = ",preferred,auto,auto";
         env = [ "XCURSOR_SIZE,24" ];
