@@ -16,12 +16,16 @@
     # Secret Management
     _1password
     _1password-gui
-    
+    libfido2 # Security Token
+
     # Mail Client
     thunderbird
     
     # Music
     spotify 
+
+    # Todo Manager
+    dooit
   ];
 
   home.stateVersion = "23.11";
