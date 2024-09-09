@@ -16,8 +16,13 @@
     # Secret Management
     _1password
     _1password-gui
+    
+    # Mail Client
     thunderbird
-   ];
+    
+    # Music
+    spotify 
+  ];
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
