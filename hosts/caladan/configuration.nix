@@ -62,6 +62,7 @@
   environment.systemPackages = with pkgs; [
     firefox
     nano
+    libfido2
   ];
 
   # This value determines the NixOS release from which the default

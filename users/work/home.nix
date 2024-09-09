@@ -16,7 +16,8 @@
     # Secret Management
     _1password
     _1password-gui
-  ];
+    thunderbird
+   ];
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
