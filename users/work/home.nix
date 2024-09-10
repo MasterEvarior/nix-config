@@ -19,14 +19,17 @@
     libfido2 # Security Token
 
     # Music
-    spotify 
+    spotify
+
+    # Time Tracking
 
     # Office
     thunderbird
     libreoffice
     watson
-    dooit
   ];
+
+  homeModules.dooit.enable = true;
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
