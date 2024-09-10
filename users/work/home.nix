@@ -26,6 +26,9 @@
 
     # Todo Manager
     dooit
+
+    # Time Tracking
+    watson
   ];
 
   home.stateVersion = "23.11";
