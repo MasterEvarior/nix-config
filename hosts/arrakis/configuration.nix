@@ -58,6 +58,10 @@
     sddm.wayland.enable = true;
   };
 
+  # Enable Thunderbolt
+  # https://nixos.wiki/wiki/Thunderbolt
+  services.hardware.bolt.enable = true;
+
   # Configure console keymap
   console.keyMap = "sg";
 
