@@ -29,6 +29,9 @@
 
     # Time Tracking
     watson
+
+    # Office
+    libreoffice
   ];
 
   home.stateVersion = "23.11";
