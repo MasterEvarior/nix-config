@@ -18,20 +18,14 @@
     _1password-gui
     libfido2 # Security Token
 
-    # Mail Client
-    thunderbird
-    
     # Music
     spotify 
 
-    # Todo Manager
-    dooit
-
-    # Time Tracking
-    watson
-
     # Office
+    thunderbird
     libreoffice
+    watson
+    dooit
   ];
 
   home.stateVersion = "23.11";
