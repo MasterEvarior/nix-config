@@ -27,6 +27,7 @@
     thunderbird
     libreoffice
     watson
+    nextcloud-client
   ];
 
   homeModules.dooit.enable = true;
