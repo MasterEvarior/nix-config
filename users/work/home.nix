@@ -29,6 +29,7 @@
   ];
 
   homeModules.dooit.enable = true;
+  homeModules.cypress.enable = true;
   homeModules.deja-dup.enable = true;
 
   home.stateVersion = "23.11";
