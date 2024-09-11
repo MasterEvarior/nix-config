@@ -14,7 +14,7 @@
   modules.dev.java.enable = lib.mkDefault true;
   modules.dev.js.enable = lib.mkDefault true;
   modules.dev.nix.enable = lib.mkDefault true;
-  modules.dev.ansible.enable = lib.mkDefault true;
+  modules.dev.ansible.enable = lib.mkDefault false;
 
   environment.systemPackages = with pkgs; [ git ];
 

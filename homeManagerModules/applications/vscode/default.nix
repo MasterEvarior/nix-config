@@ -61,6 +61,12 @@
       type = lib.types.bool;
       description = "Wether to a history graph instead of changes inside the SCM tab";
     };
+    additionalExtensions = lib.mkOption {
+      default = [ ];
+      example = [ ];
+      type = lib.types.listOf lib.types.package;
+      description = "Additional extensions that should be installed";
+    };
   };
 
   config = lib.mkIf config.homeModules.applications.vscode.enable {
@@ -69,25 +75,23 @@
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
       mutableExtensionsDir = false;
-      extensions = with pkgs; [
-        # Angular/JS/TS
-        vscode-extensions.angular.ng-template
-        vscode-extensions.esbenp.prettier-vscode
-        vscode-extensions.dbaeumer.vscode-eslint
-        vscode-extensions.usernamehw.errorlens
+      extensions =
+        with pkgs;
+        [
+          # Angular/JS/TS
+          vscode-extensions.angular.ng-template
+          vscode-extensions.esbenp.prettier-vscode
+          vscode-extensions.dbaeumer.vscode-eslint
+          vscode-extensions.usernamehw.errorlens
 
-        # Ansible
-        vscode-extensions.redhat.ansible
-        vscode-extensions.ms-python.python # is needed for the ansible extension
-        vscode-extensions.redhat.vscode-yaml # is needed for the ansible extension
+          # Nix
+          vscode-extensions.jnoortheen.nix-ide
 
-        # Nix
-        vscode-extensions.jnoortheen.nix-ide
-
-        # Div
-        vscode-extensions.tomoki1207.pdf
-        vscode-extensions.ms-azuretools.vscode-docker
-      ];
+          # Div
+          vscode-extensions.tomoki1207.pdf
+          vscode-extensions.ms-azuretools.vscode-docker
+        ]
+        ++ config.homeModules.applications.vscode.additionalExtensions;
       userSettings = {
         "workbench.colorTheme" = config.homeModules.applications.vscode.theme;
         "telemetry.telemetryLevel" = config.homeModules.applications.vscode.telemetry;
