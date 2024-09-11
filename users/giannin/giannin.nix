@@ -13,7 +13,6 @@
     ];
     packages = with pkgs; [
       firefox
-      comma
       nil
     ];
   };
