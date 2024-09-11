@@ -17,7 +17,6 @@
   modules.dev.ansible.enable = lib.mkDefault true;
 
   environment.systemPackages = with pkgs; [
-    vscode
     git
   ];
 

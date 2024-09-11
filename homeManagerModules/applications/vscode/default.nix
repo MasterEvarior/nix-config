@@ -68,6 +68,7 @@
       enable = true;
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
+      mutableExtensionsDir = false;
       extensions = with pkgs; [
         # Angular/JS/TS
         vscode-extensions.angular.ng-template
