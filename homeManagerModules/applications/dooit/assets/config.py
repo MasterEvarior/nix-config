@@ -1,6 +1,19 @@
+# Colors
+black = "#000000"
+
+BACKGROUND = black
+BAR_BACKGROUND = black
+WORKSPACES_BACKGROUND = black
+TODOS_BACKGROUND = black
+
+
+# Splash screen
+
 QUOTE = "JUST DO IT! \nDON'T LET YOUR DREAMS BE DREAMS!"
 PAD = " "
 DASHBOARD = [QUOTE, PAD]
+
+# Other things
 
 WORKSPACE = {
     "pointer": "> ",
