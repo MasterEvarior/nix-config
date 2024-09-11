@@ -77,12 +77,15 @@
 
         # Ansible
         vscode-extensions.redhat.ansible
+        vscode-extensions.ms-python.python # is needed for the ansible extension
+        vscode-extensions.redhat.vscode-yaml # is needed for the ansible extension
 
         # Nix
         vscode-extensions.jnoortheen.nix-ide
 
         # Div
         vscode-extensions.tomoki1207.pdf
+        vscode-extensions.ms-azuretools.vscode-docker
       ];
       userSettings = {
         "workbench.colorTheme" = config.homeModules.programs.vscode.theme;
