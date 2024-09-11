@@ -14,15 +14,7 @@
 
   config = lib.mkIf config.modules.school.enable {
 
-    environment.systemPackages = with pkgs; [
-      onedrive
-      zotero
-    ];
-
-    environment.etc."config" = {
-      target = "onedrive/config";
-      source = ./assets/onedrive/config;
-    };
+    environment.systemPackages = with pkgs; [ zotero ];
 
     # to connect to the Eduroam WIFI, it is necessary to install these certificates
     security.pki.certificateFiles = lib.mkIf config.modules.school.wifi [

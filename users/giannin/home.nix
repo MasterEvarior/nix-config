@@ -23,6 +23,10 @@
     _1password-gui
   ];
 
+  homeModules.applications = {
+    onedrive.enable = true;
+  };
+
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 }

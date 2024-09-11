@@ -8,6 +8,7 @@
     ./deja-dup
     ./cypress
     ./comma
+    ./onedrive
   ];
 
   homeModules.applications.vscode.enable = lib.mkDefault true;
@@ -16,4 +17,5 @@
   homeModules.applications.deja-dup.enable = lib.mkDefault false;
   homeModules.applications.cypress.enable = lib.mkDefault false;
   homeModules.applications.comma.enable = lib.mkDefault true;
+  homeModules.applications.onedrive.enable = lib.mkDefault false;
 }
