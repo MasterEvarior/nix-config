@@ -21,8 +21,6 @@
     # Music
     spotify
 
-    # Time Tracking
-
     # Office
     thunderbird
     libreoffice
@@ -31,6 +29,7 @@
   ];
 
   homeModules.dooit.enable = true;
+  homeModules.deja-dup.enable = true;
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
