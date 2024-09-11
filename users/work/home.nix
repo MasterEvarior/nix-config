@@ -28,9 +28,11 @@
     nextcloud-client
   ];
 
-  homeModules.dooit.enable = true;
-  homeModules.cypress.enable = true;
-  homeModules.deja-dup.enable = true;
+  homeModules.applications = {
+    dooit.enable = true;
+    cypress.enable = true;
+    deja-dup.enable = true;
+  };
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;

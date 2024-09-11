@@ -6,9 +6,11 @@
 }:
 
 {
-  options.homeModules.deja-dup = {
+  options.homeModules.applications.deja-dup = {
     enable = lib.mkEnableOption "Deja-Dup";
   };
 
-  config = lib.mkIf config.homeModules.deja-dup.enable { home.packages = with pkgs; [ deja-dup ]; };
+  config = lib.mkIf config.homeModules.applications.deja-dup.enable {
+    home.packages = with pkgs; [ deja-dup ];
+  };
 }

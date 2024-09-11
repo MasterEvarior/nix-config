@@ -10,10 +10,10 @@
     ./comma
   ];
 
-  homeModules.programs.vscode.enable = lib.mkDefault true;
-  homeModules.fastfetch.enable = lib.mkDefault true;
-  homeModules.dooit.enable = lib.mkDefault false;
-  homeModules.deja-dup.enable = lib.mkDefault false;
-  homeModules.cypress.enable = lib.mkDefault false;
-  homeModules.comma.enable = lib.mkDefault true;
+  homeModules.applications.vscode.enable = lib.mkDefault true;
+  homeModules.applications.fastfetch.enable = lib.mkDefault true;
+  homeModules.applications.dooit.enable = lib.mkDefault false;
+  homeModules.applications.deja-dup.enable = lib.mkDefault false;
+  homeModules.applications.cypress.enable = lib.mkDefault false;
+  homeModules.applications.comma.enable = lib.mkDefault true;
 }

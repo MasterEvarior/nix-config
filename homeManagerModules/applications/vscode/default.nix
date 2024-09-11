@@ -6,7 +6,7 @@
 }:
 
 {
-  options.homeModules.programs.vscode = {
+  options.homeModules.applications.vscode = {
     enable = lib.mkEnableOption "Visual Studio Code configuration";
     theme = lib.mkOption {
       default = "Default High Contrast";
@@ -63,7 +63,7 @@
     };
   };
 
-  config = lib.mkIf config.homeModules.programs.vscode.enable {
+  config = lib.mkIf config.homeModules.applications.vscode.enable {
     programs.vscode = {
       enable = true;
       enableUpdateCheck = false;
@@ -89,12 +89,12 @@
         vscode-extensions.ms-azuretools.vscode-docker
       ];
       userSettings = {
-        "workbench.colorTheme" = config.homeModules.programs.vscode.theme;
-        "telemetry.telemetryLevel" = config.homeModules.programs.vscode.telemetry;
+        "workbench.colorTheme" = config.homeModules.applications.vscode.theme;
+        "telemetry.telemetryLevel" = config.homeModules.applications.vscode.telemetry;
         "workbench.settings.enableNaturalLanguageSearch" =
-          config.homeModules.programs.vscode.naturalLanguageSearch;
-        "scm.alwaysShowRepositories" = config.homeModules.programs.vscode.scm.alwaysShowRepositories;
-        "scm.experimental.showHistoryGraph" = config.homeModules.programs.vscode.scm.showHistoryGraph;
+          config.homeModules.applications.vscode.naturalLanguageSearch;
+        "scm.alwaysShowRepositories" = config.homeModules.applications.vscode.scm.alwaysShowRepositories;
+        "scm.experimental.showHistoryGraph" = config.homeModules.applications.vscode.scm.showHistoryGraph;
       };
       languageSnippets = {
         nix = {
