@@ -14,12 +14,12 @@
   };
 
   services = {
-      gvfs.enable = true;
-      openssh.enable = true;
-      duplicity = {
-        enable = true;
-        frequency = null;
-        targetUrl = "";
+    gvfs.enable = true;
+    openssh.enable = true;
+    duplicity = {
+      enable = true;
+      frequency = null;
+      targetUrl = "";
     };
   };
 

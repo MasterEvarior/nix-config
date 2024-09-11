@@ -10,7 +10,5 @@
     enable = lib.mkEnableOption "Comma";
   };
 
-  config = lib.mkIf config.homeModules.comma.enable {
-    home.packages = with pkgs; [ comma ];
-  };
+  config = lib.mkIf config.homeModules.comma.enable { home.packages = with pkgs; [ comma ]; };
 }

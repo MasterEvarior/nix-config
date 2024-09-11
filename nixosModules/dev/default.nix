@@ -16,9 +16,7 @@
   modules.dev.nix.enable = lib.mkDefault true;
   modules.dev.ansible.enable = lib.mkDefault true;
 
-  environment.systemPackages = with pkgs; [
-    git
-  ];
+  environment.systemPackages = with pkgs; [ git ];
 
   environment.shellAliases = {
     gaa = "git add --all";
