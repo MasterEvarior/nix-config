@@ -78,9 +78,6 @@
       extensions =
         with pkgs;
         [
-          # Nix
-          vscode-extensions.jnoortheen.nix-ide
-
           # Div
           vscode-extensions.tomoki1207.pdf
           vscode-extensions.ms-azuretools.vscode-docker
