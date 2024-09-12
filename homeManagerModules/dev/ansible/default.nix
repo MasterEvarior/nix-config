@@ -18,7 +18,7 @@
       ansible-language-server
     ];
 
-    homeModules.applications.vscode.additionalExtensions = [
+    homeModules.applications.vscode.additionalExtensions = with pkgs; [
       vscode-extensions.redhat.ansible
       vscode-extensions.ms-python.python # is needed for the ansible extension
       vscode-extensions.redhat.vscode-yaml # is needed for the ansible extension
