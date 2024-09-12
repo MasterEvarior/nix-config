@@ -14,8 +14,6 @@
 
   home.packages = with pkgs; [
     # Secret Management
-    _1password
-    _1password-gui
     libfido2 # Security Token
 
     # Music

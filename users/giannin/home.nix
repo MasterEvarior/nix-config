@@ -17,10 +17,6 @@
     spotify
     plex-media-player
     vlc
-
-    # Secret Management
-    _1password
-    _1password-gui
   ];
 
   homeModules.applications = {
