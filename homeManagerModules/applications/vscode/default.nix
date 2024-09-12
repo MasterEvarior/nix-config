@@ -78,12 +78,6 @@
       extensions =
         with pkgs;
         [
-          # Angular/JS/TS
-          vscode-extensions.angular.ng-template
-          vscode-extensions.esbenp.prettier-vscode
-          vscode-extensions.dbaeumer.vscode-eslint
-          vscode-extensions.usernamehw.errorlens
-
           # Nix
           vscode-extensions.jnoortheen.nix-ide
 
