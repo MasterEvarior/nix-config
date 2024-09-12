@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./c.nix
     ./containers.nix
     ./java.nix
     ./nix.nix

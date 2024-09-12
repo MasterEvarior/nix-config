@@ -11,9 +11,7 @@
   };
 
   config = lib.mkIf config.homeModules.dev.js.enable {
-    home.packages = with pkgs; [
-      nodejs_22
-    ];
+    home.packages = with pkgs; [ nodejs_22 ];
 
     homeModules.applications.vscode.additionalExtensions = with pkgs; [
       vscode-extensions.angular.ng-template
