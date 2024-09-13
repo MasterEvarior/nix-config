@@ -16,9 +16,6 @@
     # Secret Management
     libfido2 # Security Token
 
-    # Music
-    spotify
-
     # Office
     thunderbird
     libreoffice
