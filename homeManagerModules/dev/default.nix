@@ -9,8 +9,10 @@
     ./nix
   ];
 
-  homeModules.dev.ansible.enable = lib.mkDefault true;
-  homeModules.dev.golang.enable = lib.mkDefault true;
-  homeModules.dev.js.enable = lib.mkDefault true;
-  homeModules.dev.nix.enable = lib.mkDefault true;
+  homeModules.dev = {
+    ansible.enable = lib.mkDefault true;
+    golang.enable = lib.mkDefault true;
+    js.enable = lib.mkDefault true;
+    nix.enable = lib.mkDefault true;
+  };
 }

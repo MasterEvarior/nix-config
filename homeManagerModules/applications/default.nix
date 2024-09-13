@@ -13,13 +13,11 @@
     ./spotify
   ];
 
-  homeModules.applications.vscode.enable = lib.mkDefault true;
-  homeModules.applications.fastfetch.enable = lib.mkDefault true;
-  homeModules.applications.dooit.enable = lib.mkDefault false;
-  homeModules.applications.deja-dup.enable = lib.mkDefault false;
-  homeModules.applications.cypress.enable = lib.mkDefault false;
-  homeModules.applications.comma.enable = lib.mkDefault true;
-  homeModules.applications.onedrive.enable = lib.mkDefault false;
-  homeModules.applications."1password".enable = lib.mkDefault true;
-  homeModules.applications.spotify.enable = lib.mkDefault true;
+  homeModules.applications = {
+    vscode.enable = lib.mkDefault true;
+    fastfetch.enable = lib.mkDefault true;
+    "1password".enable = lib.mkDefault true;
+    spotify.enable = lib.mkDefault true;
+    comma.enable = lib.mkDefault true;
+  };
 }
