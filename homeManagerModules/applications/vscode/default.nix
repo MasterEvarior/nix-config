@@ -43,11 +43,30 @@
       ];
       description = "Change the level of telemetry to send";
     };
-    naturalLanguageSearch = lib.mkOption {
+    workbench.naturalLanguageSearch = lib.mkOption {
       default = false;
       example = false;
       type = lib.types.bool;
       description = "Wether to enable natural language search for options. Needs a Microsoft online service.";
+    };
+    workbench.startupEditor = lib.mkOption {
+      default = "none";
+      example = "none";
+      type = lib.types.enum [
+        "none"
+        "welcomePage"
+        "readme"
+        "newUntitledFile"
+        "welcomePageInEmptyWorkbench"
+        "terminal"
+      ];
+      description = "Controls which editor is shown at startup, if none are restored from the previous session";
+    };
+    workbench.tipsEnabled = lib.mkOption {
+      default = false;
+      example = false;
+      type = lib.types.bool;
+      description = "When enabled, will show the watermark tips when no editor is open";
     };
     scm.alwaysShowRepositories = lib.mkOption {
       default = true;
@@ -61,6 +80,7 @@
       type = lib.types.bool;
       description = "Wether to a history graph instead of changes inside the SCM tab";
     };
+
     additionalExtensions = lib.mkOption {
       default = [ ];
       example = [ ];
@@ -94,7 +114,9 @@
           "workbench.colorTheme" = config.homeModules.applications.vscode.theme;
           "telemetry.telemetryLevel" = config.homeModules.applications.vscode.telemetry;
           "workbench.settings.enableNaturalLanguageSearch" =
-            config.homeModules.applications.vscode.naturalLanguageSearch;
+            config.homeModules.applications.vscode.workbench.naturalLanguageSearch;
+          "workbench.startupEditor" = config.homeModules.applications.vscode.workbench.startupEditor;
+          "workbench.tips.enabled" = config.homeModules.applications.vscode.workbench.tipsEnabled;
           "scm.alwaysShowRepositories" = config.homeModules.applications.vscode.scm.alwaysShowRepositories;
           "scm.experimental.showHistoryGraph" = config.homeModules.applications.vscode.scm.showHistoryGraph;
         }
