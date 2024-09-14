@@ -11,6 +11,7 @@
     ./onedrive
     ./1password
     ./spotify
+    ./zotero
   ];
 
   homeModules.applications = {

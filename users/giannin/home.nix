@@ -20,6 +20,7 @@
 
   homeModules.applications = {
     onedrive.enable = true;
+    zotero.enable = true;
   };
 
   home.stateVersion = "23.11";
