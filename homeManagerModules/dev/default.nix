@@ -7,6 +7,7 @@
     ./js
     ./c
     ./nix
+    ./typst
   ];
 
   homeModules.dev = {
@@ -14,5 +15,6 @@
     golang.enable = lib.mkDefault true;
     js.enable = lib.mkDefault true;
     nix.enable = lib.mkDefault true;
+    typst.enable = lib.mkDefault true;
   };
 }
