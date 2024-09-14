@@ -67,6 +67,12 @@
       type = lib.types.listOf lib.types.package;
       description = "Additional extensions that should be installed";
     };
+    additionalUserSettings = lib.mkOption {
+      default = { };
+      example = { };
+      type = lib.types.attrsOf lib.types.anything;
+      description = "Additional setting keys that should be set";
+    };
   };
 
   config = lib.mkIf config.homeModules.applications.vscode.enable {
@@ -83,14 +89,17 @@
           vscode-extensions.ms-azuretools.vscode-docker
         ]
         ++ config.homeModules.applications.vscode.additionalExtensions;
-      userSettings = {
-        "workbench.colorTheme" = config.homeModules.applications.vscode.theme;
-        "telemetry.telemetryLevel" = config.homeModules.applications.vscode.telemetry;
-        "workbench.settings.enableNaturalLanguageSearch" =
-          config.homeModules.applications.vscode.naturalLanguageSearch;
-        "scm.alwaysShowRepositories" = config.homeModules.applications.vscode.scm.alwaysShowRepositories;
-        "scm.experimental.showHistoryGraph" = config.homeModules.applications.vscode.scm.showHistoryGraph;
-      };
+      userSettings = lib.mkMerge [
+        {
+          "workbench.colorTheme" = config.homeModules.applications.vscode.theme;
+          "telemetry.telemetryLevel" = config.homeModules.applications.vscode.telemetry;
+          "workbench.settings.enableNaturalLanguageSearch" =
+            config.homeModules.applications.vscode.naturalLanguageSearch;
+          "scm.alwaysShowRepositories" = config.homeModules.applications.vscode.scm.alwaysShowRepositories;
+          "scm.experimental.showHistoryGraph" = config.homeModules.applications.vscode.scm.showHistoryGraph;
+        }
+        config.homeModules.applications.vscode.additionalUserSettings
+      ];
       languageSnippets = {
         nix = {
           "Create toggleable configuration" = {
