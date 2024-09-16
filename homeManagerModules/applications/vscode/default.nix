@@ -107,6 +107,7 @@
           # Div
           vscode-extensions.tomoki1207.pdf
           vscode-extensions.ms-azuretools.vscode-docker
+          vscode-extensions.ms-vscode.live-server
         ]
         ++ config.homeModules.applications.vscode.additionalExtensions;
       userSettings = lib.mkMerge [
