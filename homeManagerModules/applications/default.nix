@@ -12,6 +12,7 @@
     ./1password
     ./spotify
     ./zotero
+    ./chromium
   ];
 
   homeModules.applications = {

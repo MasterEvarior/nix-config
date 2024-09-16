@@ -16,14 +16,12 @@
     # Entertainment & Media
     plex-media-player
     vlc
-
-    # MS Teams :(
-    chromium
   ];
 
   homeModules.applications = {
     onedrive.enable = true;
     zotero.enable = true;
+    chromium.enable = true; # MS Teams
   };
 
   home.stateVersion = "23.11";
