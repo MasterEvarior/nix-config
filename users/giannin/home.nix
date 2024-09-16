@@ -16,6 +16,9 @@
     # Entertainment & Media
     plex-media-player
     vlc
+
+    # MS Teams :(
+    chromium
   ];
 
   homeModules.applications = {
