@@ -7,15 +7,14 @@ This guide is strictly for me only. If you try to use it on you machine it will 
 
 1 Clone this repository onto your machine  
 2. Cd into the appropriate host directory  
-3. Rebuild with `sudo nixos-rebuild --flake . switch`   
-4. (Optional) Update the flake with `nix flake update`  
+3. (Optional) Update the flake with `nix flake update`  
+4. Rebuild with `sudo nixos-rebuild --flake . switch`
 5. ❄️❄️❄️ Bathe in the glory of NixOS ❄️❄️❄️  
 
 ## Manuel Steps
 After the installation a couple of manual steps are still necessary. They are as follows:
 - Log into 1Password
-- Enable/Configure 1Password terminal client and SSH key-thingy
-- Set passwords with `passwd <user>` where it is necessary 
+- Set passwords with `passwd <user>` where necessary 
 - Add Mozilla account to Firefox
 - Log into Jetbrains account for IDEs
 
