@@ -25,5 +25,11 @@
       };
     };
 
+    home.file.templates = {
+      recursive = true;
+      source = ./assets/templates;
+      target = ".local/share/typst/packages/local";
+    };
+
   };
 }

@@ -1,0 +1,7 @@
+[package]
+name = "spicker"
+version = "0.1.0"
+entrypoint = "template.typ"
+authors = ["MasterEvarior"]
+license = "MIT"
+description = "My own Typst template for (school) cheatsheets"

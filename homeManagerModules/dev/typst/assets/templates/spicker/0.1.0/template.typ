@@ -1,0 +1,45 @@
+#let spicker(doc) = {
+    set page(
+        paper: "a4",
+        margin: 15pt,
+        flipped: true,
+        columns: 3
+    )
+
+    set text(
+        font: "Arial",
+        size: 5pt,
+        lang: "ch"
+    )
+
+    set par(
+        leading: 0.9em
+    )
+
+    show raw.where(block: false): box.with(
+        fill: luma(240),
+        inset: (x: 3pt, y: 0pt),
+        outset: (y: 3pt),
+        radius: 2pt,
+    )
+    
+    show raw.where(block: true): block.with(
+        fill: luma(240),
+        inset: 5pt,
+        radius: 4pt,
+        width: 100%,
+        above: 1em
+    )
+
+    show heading.where(level: 1): block.with(
+        fill: yellow,
+        breakable: false,
+        inset: 5pt,
+        radius: 4pt,
+        width: 75%,
+        outset: 1pt,
+        above: 0.5em
+    )
+
+    doc
+}
