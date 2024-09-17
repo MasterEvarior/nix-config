@@ -8,7 +8,7 @@ This guide is strictly for me only. If you try to use it on you machine it will 
 1 Clone this repository onto your machine  
 2. Cd into the appropriate host directory  
 3. (Optional) Update the flake with `nix flake update`  
-4. Rebuild with `sudo nixos-rebuild --flake . switch`
+4. Rebuild with `sudo nixos-rebuild --flake . switch`  
 5. ❄️❄️❄️ Bathe in the glory of NixOS ❄️❄️❄️  
 
 ## Manuel Steps
