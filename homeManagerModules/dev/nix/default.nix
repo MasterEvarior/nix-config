@@ -25,6 +25,9 @@
 
       # Apply current config
       nrs = "sudo nixos-rebuild --flake . switch";
+
+      # Delete old packages
+      ncg = "nix-collect-garbage";
     };
 
     homeModules.applications.vscode.additionalExtensions = with pkgs; [
