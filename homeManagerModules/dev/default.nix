@@ -8,6 +8,7 @@
     ./c
     ./nix
     ./typst
+    ./jupyter
   ];
 
   homeModules.dev = {
