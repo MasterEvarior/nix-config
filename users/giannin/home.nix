@@ -16,7 +16,10 @@
     # Entertainment & Media
     plex-media-player
     vlc
+
+    # School stuff
     teams-for-linux
+    mdbook
   ];
 
   homeModules.applications = {
