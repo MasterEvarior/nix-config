@@ -16,6 +16,8 @@
       # docker compose
       dcu = "docker compose up";
       dcd = "docker compose down";
+      dcs = "docker compose stop";
+      dcv = "docker compose config --quiet";
 
       # docker 
       dktop = "docker stats --format ''\"table {{.Container}}	{{.Name}}	{{.CPUPerc}}  {{.MemPerc}}	{{.NetIO}}	{{.BlockIO}}''\"";
