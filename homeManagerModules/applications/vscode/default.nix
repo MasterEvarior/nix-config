@@ -87,6 +87,7 @@
       type = lib.types.listOf lib.types.package;
       description = "Additional extensions that should be installed";
     };
+
     additionalUserSettings = lib.mkOption {
       default = { };
       example = { };
@@ -120,6 +121,7 @@
           "workbench.tips.enabled" = config.homeModules.applications.vscode.workbench.tipsEnabled;
           "scm.alwaysShowRepositories" = config.homeModules.applications.vscode.scm.alwaysShowRepositories;
           "scm.experimental.showHistoryGraph" = config.homeModules.applications.vscode.scm.showHistoryGraph;
+          "extensions.ignoreRecommendations" = true;
         }
         config.homeModules.applications.vscode.additionalUserSettings
       ];
