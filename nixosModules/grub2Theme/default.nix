@@ -55,7 +55,7 @@
       };
 
       # Updating the kernel to make it (hopefully) compatible with the Lenovo docking stations
-      boot.kernelPackages = pkgs.linuxPackages_latest;
+      boot.kernelPackages = pkgs.linuxPackages_6_10;
 
       environment.systemPackages = with pkgs; [
         # this is needed to scale the custom background correctly
