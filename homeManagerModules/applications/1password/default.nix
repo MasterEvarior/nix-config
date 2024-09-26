@@ -25,6 +25,18 @@
     programs.ssh = lib.mkIf config.homeModules.applications."1password".configureSSH {
       enable = true;
       matchBlocks = {
+        "github.com" = lib.hm.dag.entryBefore [ "Host *" ] {
+          identitiesOnly = true;
+          identityFile = "~/.ssh/public-keys/github.pub";
+        };
+        "gitlab.fhnw.ch" = lib.hm.dag.entryBefore [ "Host *" ] {
+          identitiesOnly = true;
+          identityFile = "~/.ssh/public-keys/gitlab_fhnw.pub";
+        };
+        "gitlab.puzzle.ch" = lib.hm.dag.entryBefore [ "Host *" ] {
+          identitiesOnly = true;
+          identityFile = "~/.ssh/public-keys/gitlab_puzzle.pub";
+        };
         "Host *" = {
           host = "*";
           extraOptions = {
@@ -36,6 +48,12 @@
 
     home.sessionVariables = lib.mkIf config.homeModules.applications."1password".configureSSH {
       SSH_AUTH_SOCK = "~/.1password/agent.sock";
+    };
+
+    home.file.publicKeys = lib.mkIf config.homeModules.applications."1password".configureSSH {
+      recursive = true;
+      source = ./assets;
+      target = ".ssh/public-keys";
     };
   };
 }
