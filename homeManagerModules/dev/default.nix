@@ -9,6 +9,7 @@
     ./nix
     ./typst
     ./jupyter
+    ./git
   ];
 
   homeModules.dev = {
@@ -17,5 +18,6 @@
     js.enable = lib.mkDefault true;
     nix.enable = lib.mkDefault true;
     typst.enable = lib.mkDefault true;
+    git.enable = lib.mkDefault true;
   };
 }
