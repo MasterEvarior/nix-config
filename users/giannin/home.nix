@@ -29,6 +29,7 @@
 
   homeModules.dev = {
     jupyter.enable = true;
+    terraform.enable = true;
   };
 
   home.stateVersion = "23.11";
