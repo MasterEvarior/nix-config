@@ -19,7 +19,6 @@
     # Office
     thunderbird
     libreoffice
-    watson
     nextcloud-client
   ];
 
@@ -27,6 +26,7 @@
     dooit.enable = true;
     cypress.enable = true;
     deja-dup.enable = true;
+    watson.enable = true;
   };
 
   home.stateVersion = "23.11";
