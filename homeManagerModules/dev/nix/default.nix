@@ -30,8 +30,48 @@
       ncg = "nix-collect-garbage";
     };
 
-    homeModules.applications.vscode.additionalExtensions = with pkgs; [
-      vscode-extensions.jnoortheen.nix-ide
-    ];
+    homeModules.applications.vscode = {
+      additionalSnippets = {
+        nix = {
+          "Create toggleable configuration" = {
+            prefix = [ "tog-conf" ];
+            description = "Create toggleable .nix configuration";
+            body = [
+              "{"
+              "\tlib,"
+              "\tconfig,"
+              "\tpkgs,"
+              "\t..."
+              "}:"
+              ""
+              "{"
+              "\toptions.\${1|modules,homeModules|}.$2 = {"
+              "\t\tenable = lib.mkEnableOption \"$3\";"
+              "\t};"
+              ""
+              "\tconfig = lib.mkIf config.$1.$2.enable {"
+              "\t};"
+              "}"
+            ];
+          };
+          "Create basic configuration" = {
+            prefix = [ "conf" ];
+            description = "Create basix .nix configuration";
+            body = [
+              "{"
+              "\tpkgs,"
+              "\t..."
+              "}:"
+              ""
+              "{"
+              "\t$1"
+              "}"
+            ];
+          };
+        };
+      };
+
+      additionalExtensions = with pkgs; [ vscode-extensions.jnoortheen.nix-ide ];
+    };
   };
 }

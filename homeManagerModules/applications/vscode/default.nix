@@ -94,6 +94,13 @@
       type = lib.types.attrsOf lib.types.anything;
       description = "Additional setting keys that should be set";
     };
+
+    additionalSnippets = lib.mkOption {
+      default = { };
+      example = { };
+      type = lib.types.attrsOf lib.types.anything;
+      description = "Additional language snippets";
+    };
   };
 
   config = lib.mkIf config.homeModules.applications.vscode.enable {
@@ -125,52 +132,10 @@
         }
         config.homeModules.applications.vscode.additionalUserSettings
       ];
-      languageSnippets = {
-        typst = {
-          "Create import template" = {
-            prefix = [ "imp" ];
-            description = "Create an import template for typst";
-            body = [ "#import \"@\${1|preview,local|}/$2:$3\":$4" ];
-          };
-        };
-        nix = {
-          "Create toggleable configuration" = {
-            prefix = [ "tog-conf" ];
-            description = "Create toggleable .nix configuration";
-            body = [
-              "{"
-              "\tlib,"
-              "\tconfig,"
-              "\tpkgs,"
-              "\t..."
-              "}:"
-              ""
-              "{"
-              "\toptions.\${1|modules,homeModules|}.$2 = {"
-              "\t\tenable = lib.mkEnableOption \"$3\";"
-              "\t};"
-              ""
-              "\tconfig = lib.mkIf config.$1.$2.enable {"
-              "\t};"
-              "}"
-            ];
-          };
-          "Create basic configuration" = {
-            prefix = [ "conf" ];
-            description = "Create basix .nix configuration";
-            body = [
-              "{"
-              "\tpkgs,"
-              "\t..."
-              "}:"
-              ""
-              "{"
-              "\t$1"
-              "}"
-            ];
-          };
-        };
-      };
+      languageSnippets = lib.mkMerge [
+        { }
+        config.homeModules.applications.vscode.additionalSnippets
+      ];
     };
   };
 }
