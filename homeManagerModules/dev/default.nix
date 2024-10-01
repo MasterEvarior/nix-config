@@ -11,6 +11,7 @@
     ./jupyter
     ./git
     ./terraform
+    ./java
   ];
 
   homeModules.dev = {
@@ -20,6 +21,6 @@
     nix.enable = lib.mkDefault true;
     typst.enable = lib.mkDefault true;
     git.enable = lib.mkDefault true;
-
+    java.enable = lib.mkDefault true;
   };
 }
