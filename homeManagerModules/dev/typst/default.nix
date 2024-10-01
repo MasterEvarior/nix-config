@@ -18,6 +18,15 @@
 
     homeModules.applications.vscode = {
       additionalExtensions = with pkgs; [ vscode-extensions.myriad-dreamin.tinymist ];
+      additionalSnippets = {
+        typst = {
+          "Create import template" = {
+            prefix = [ "imp" ];
+            description = "Create an import template for typst";
+            body = [ "#import \"@\${1|preview,local|}/$2:$3\":$4" ];
+          };
+        };
+      };
       additionalUserSettings = {
         "[typst]" = {
           "editor.formatOnSave" = true;

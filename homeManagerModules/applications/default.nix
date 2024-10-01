@@ -13,6 +13,7 @@
     ./spotify
     ./zotero
     ./chromium
+    ./watson
   ];
 
   homeModules.applications = {
