@@ -25,5 +25,10 @@
         };
       };
     };
+
+    home.shellAliases = {
+      wtdy = "watson aggregate --from $(date -I)";
+    };
+
   };
 }
