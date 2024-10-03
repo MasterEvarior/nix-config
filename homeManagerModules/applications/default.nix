@@ -14,6 +14,7 @@
     ./zotero
     ./chromium
     ./watson
+    ./ms-teams
   ];
 
   homeModules.applications = {
@@ -22,5 +23,6 @@
     "1password".enable = lib.mkDefault true;
     spotify.enable = lib.mkDefault true;
     comma.enable = lib.mkDefault true;
+    ms-teams.enable = lib.mkDefault true;
   };
 }

@@ -18,7 +18,6 @@
     vlc
 
     # School stuff
-    teams-for-linux
     mdbook
   ];
 
