@@ -20,5 +20,5 @@
         workstation = true;
       };
     };
-  }; 
+  };
 }
