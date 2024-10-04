@@ -1,3 +1,5 @@
+{lib, config, ...}:
+
 {
   imports = [
     ./bluetooth.nix
@@ -7,5 +9,10 @@
     ./flakes.nix
     ./fonts.nix
     ./defaultPackages.nix
+    ./mdns.nix
   ];
+
+  modules.settings = {
+    mdns.enable = lib.mkDefault true;
+  };
 }
