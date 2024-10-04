@@ -20,6 +20,7 @@
     thunderbird
     libreoffice
     nextcloud-client
+    chromium
   ];
 
   homeModules.applications = {
