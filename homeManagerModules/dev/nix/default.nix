@@ -68,6 +68,18 @@
               "}"
             ];
           };
+          "Create an option with mkOption" = {
+            prefix = [ "mkOption" ];
+            description = "Create an option with mkOption";
+            body = [
+              "lib.mkOption {"
+              "\tdefault = $1;"
+              "\texample = $2;"
+              "\ttype = lib.types.$3;"
+              "\tdescription = \"$4\";"
+              "};"
+            ];
+          };
         };
       };
 
