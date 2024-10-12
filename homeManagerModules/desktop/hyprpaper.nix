@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, ... }:
 
 let
   types = lib.types;

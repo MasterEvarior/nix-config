@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ lib, config, ... }:
 
 {
   options.modules.settings.mdns = {
