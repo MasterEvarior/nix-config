@@ -15,7 +15,7 @@ This guide is strictly for me only. If you try to use it on you machine it will 
 After the installation a couple of manual steps are still necessary. They are as follows:
 - Log into 1Password
 - Set passwords with `passwd <user>` where necessary 
-- Add Mozilla account to Firefox
+- Log into Mozzila account for Firefox
 - Log into Jetbrains account for IDEs
 
 ## Development
@@ -25,3 +25,6 @@ There are some hooks for formatting and the like. To use those, execute the foll
 ```shell
 git config --local core.hooksPath .githooks/
 ``` 
+
+### TODOs
+- Fixup the 1Password configuration, which is currently split into a [HM module](./homeManagerModules/applications/1password) and a [system module](./nixosModules/1Password/).

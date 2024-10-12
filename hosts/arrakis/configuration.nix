@@ -9,6 +9,7 @@
     ../../nixosModules/settings
     ../../nixosModules/desktop
     ../../nixosModules/grub2Theme
+    ../../nixosModules/1Password
 
     ../../users/giannin/giannin.nix
     ../../users/work/work.nix
