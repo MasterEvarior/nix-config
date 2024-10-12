@@ -14,6 +14,7 @@
     ../../nixosModules/desktop
     ../../nixosModules/grub2Theme
     ../../nixosModules/1Password
+    ../../nixosModules/backup
 
     ../../users/giannin/giannin.nix
   ];
@@ -23,6 +24,13 @@
     enabled = true;
     resolution = "ultrawide";
     backgroundImage = ./assets/img/ultrawide-background.png;
+  };
+
+  modules.backup = {
+    enable = true;
+    repository = "rest:http://tower.local:8000";
+    username = "restic-caladan";
+    passwordFile = "/etc/nixos/secrets/resticPwd";
   };
 
   # Probe for other OSs to facilitate dual boot
