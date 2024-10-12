@@ -24,14 +24,14 @@
       example = "daily";
       type = lib.types.string;
     };
-    paths = .mkOption {
-      default = [];
+    paths = lib.mkOption {
+      default = [ ];
       example = [ "/home" ];
       type = lib.types.listOf lib.types.string;
     };
     exclude = lib.mkOption {
       default = [
-        ".git" 
+        ".git"
         "/var/cache"
         "/home/*/.cache"
         "/home/*/Documents/GitHub"
@@ -49,41 +49,38 @@
     };
     pruneOpts = lib.lib.mkOption {
       default = [
-          "--keep-daily 7"
-          "--keep-weekly 4"
-          "--keep-monthly 3"
-          "--keep-yearly 1"
-        ];
+        "--keep-daily 7"
+        "--keep-weekly 4"
+        "--keep-monthly 3"
+        "--keep-yearly 1"
+      ];
       example = [
-          "--keep-daily 7"
-          "--keep-weekly 4"
-          "--keep-monthly 3"
-          "--keep-yearly 1"
-        ];
+        "--keep-daily 7"
+        "--keep-weekly 4"
+        "--keep-monthly 3"
+        "--keep-yearly 1"
+      ];
       type = lib.types.listOf lib.types.string;
     };
 
   };
 
-
   config =
-  let
-    moduleConfig = config.modules.backup;
-  in
-  lib.mkIf moduleConfig.enable {
-    environment.systemPackages = with pkgs; [
-      restic
-    ];
+    let
+      moduleConfig = config.modules.backup;
+    in
+    lib.mkIf moduleConfig.enable {
+      environment.systemPackages = with pkgs; [ restic ];
 
-    services.restic.backups = {
-      moduleConfig.name = {
-        initialize = true;
-        repository = moduleConfig.repository;
-        timeConfig.OnCalendar = moduleConfig.schedule;
-        paths = moduleConfig.paths;
-        example = moduleConfig.exclude ++ moduleConfig.additionalExclude;
-        pruneOpts = moduleConfig.pruneOpts;
+      services.restic.backups = {
+        moduleConfig.name = {
+          initialize = true;
+          repository = moduleConfig.repository;
+          timeConfig.OnCalendar = moduleConfig.schedule;
+          paths = moduleConfig.paths;
+          example = moduleConfig.exclude ++ moduleConfig.additionalExclude;
+          pruneOpts = moduleConfig.pruneOpts;
+        };
       };
     };
-  };
 }
