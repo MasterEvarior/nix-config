@@ -1,5 +1,5 @@
 # ❄️ NixOS Configuration
-[![Nix](https://img.shields.io/badge/built%20with-Nix-5277C3.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)  
+[![Nix](https://img.shields.io/badge/built%20with-Nix-5277C3.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)  ![Deadnix Workflow](https://github.com/MasterEvarior/nix-config/actions/workflows/dead-code.yaml/badge.svg)  
 This is my NixOS configuration, with some help of my personal Nix guru  [Imatpot](https://github.com/imatpot/dotfiles).
 
 ## How to use

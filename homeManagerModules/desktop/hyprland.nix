@@ -5,18 +5,17 @@
   ...
 }:
 
-let
-  startupScript = pkgs.pkgs.writeShellScriptBin "startHyprland" ''
-    ${pkgs.waybar}/bin/waybar &
-    ${pkgs.swww}/bin/swww init &
+# let
+#   startupScript = pkgs.pkgs.writeShellScriptBin "startHyprland" ''
+#     ${pkgs.waybar}/bin/waybar &
+#     ${pkgs.swww}/bin/swww init &
 
-    sleep 1
-  '';
-in
+#     sleep 1
+#   '';
+# in
 {
   options.homeModules.desktop.hyprland = {
     enable = lib.mkEnableOption "Hyprland configuration with HM";
-
   };
 
   config = lib.mkIf config.homeModules.desktop.hyprland.enable {
