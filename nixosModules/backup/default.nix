@@ -34,10 +34,18 @@
         ".git" 
         "/var/cache"
         "/home/*/.cache"
+        "/home/*/Documents/GitHub"
+        "/home/*/Documents/Github"
       ];
       example = [ ".git" ];
       type = lib.types.listOf lib.types.string;
       description = "See https://restic.readthedocs.io/en/latest/040_backup.html#excluding-files";
+    };
+    additionalExclude = lib.mkOption {
+      default = [ ];
+      example = [ ];
+      type = lib.types.listOf lib.types.string;
+      description = "Additional files you want to exclude";
     };
     pruneOpts = lib.lib.mkOption {
       default = [
@@ -73,7 +81,7 @@
         repository = moduleConfig.repository;
         timeConfig.OnCalendar = moduleConfig.schedule;
         paths = moduleConfig.paths;
-        example = moduleConfig.example;
+        example = moduleConfig.exclude ++ moduleConfig.additionalExclude;
         pruneOpts = moduleConfig.pruneOpts;
       };
     };
