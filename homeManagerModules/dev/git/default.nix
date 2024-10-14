@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   options.homeModules.dev.git = {
@@ -20,6 +25,8 @@
         };
       };
     };
+
+    home.packages = with pkgs; [ git-ignore ];
 
   };
 }
