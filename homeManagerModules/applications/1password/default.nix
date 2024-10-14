@@ -25,6 +25,10 @@
     programs.ssh = lib.mkIf config.homeModules.applications."1password".configureSSH {
       enable = true;
       matchBlocks = {
+        "185.79.235.161" = lib.hm.dag.entryBefore [ "Host *" ] {
+          identitiesOnly = true;
+          identityFile = "~/.ssh/public-keys/cloudscale.pub";
+        };
         "github.com" = lib.hm.dag.entryBefore [ "Host *" ] {
           identitiesOnly = true;
           identityFile = "~/.ssh/public-keys/github.pub";
