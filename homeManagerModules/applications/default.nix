@@ -15,6 +15,7 @@
     ./chromium
     ./watson
     ./ms-teams
+    ./tmux
   ];
 
   homeModules.applications = {
@@ -24,5 +25,6 @@
     spotify.enable = lib.mkDefault true;
     comma.enable = lib.mkDefault true;
     ms-teams.enable = lib.mkDefault true;
+    tmux.enable = lib.mkDefault true;
   };
 }

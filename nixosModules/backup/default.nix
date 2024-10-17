@@ -11,33 +11,33 @@
     name = lib.mkOption {
       default = (config.networking.hostName);
       example = "arrakis";
-      type = lib.types.String;
+      type = lib.types.str;
     };
     repository = lib.mkOption {
       default = "";
       example = "rest:https://your-url.example.com";
-      type = lib.types.String;
+      type = lib.types.str;
       description = "Wether to a configure the SSH config for the 1Password agent";
     };
     username = lib.mkOption {
       default = "";
       example = "username";
-      type = lib.types.String;
+      type = lib.types.str;
     };
     passwordFile = lib.mkOption {
       default = "";
       example = "/etc/restic/yourPwd";
-      type = lib.types.String;
+      type = lib.types.str;
     };
     schedule = lib.mkOption {
       default = "daily";
       example = "daily";
-      type = lib.types.String;
+      type = lib.types.str;
     };
     paths = lib.mkOption {
       default = [ ];
       example = [ "/home" ];
-      type = lib.types.listOf lib.types.String;
+      type = lib.types.listOf lib.types.str;
     };
     exclude = lib.mkOption {
       default = [
@@ -48,13 +48,13 @@
         "/home/*/Documents/Github"
       ];
       example = [ ".git" ];
-      type = lib.types.listOf lib.types.String;
+      type = lib.types.listOf lib.types.str;
       description = "See https://restic.readthedocs.io/en/latest/040_backup.html#excluding-files";
     };
     additionalExclude = lib.mkOption {
       default = [ ];
       example = [ ];
-      type = lib.types.listOf lib.types.String;
+      type = lib.types.listOf lib.types.str;
       description = "Additional files you want to exclude";
     };
     pruneOpts = lib.mkOption {
@@ -70,7 +70,7 @@
         "--keep-monthly 3"
         "--keep-yearly 1"
       ];
-      type = lib.types.listOf lib.types.String;
+      type = lib.types.listOf lib.types.str;
     };
 
   };

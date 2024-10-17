@@ -33,8 +33,7 @@
     pulse.enable = true;
   };
 
-  networking.extraHosts = 
-  ''
+  networking.extraHosts = ''
     127.0.0.1 edview.unilu.ch 
     127.0.0.1 edview-test.unilu.ch
   '';
