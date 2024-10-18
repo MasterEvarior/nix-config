@@ -23,6 +23,10 @@
       ];
 
       additionalUserSettings = {
+        "[html]" = {
+          "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "editor.formatOnSave" = true;
+        };
         "[javascript]" = {
           "editor.defaultFormatter" = "esbenp.prettier-vscode";
           "editor.formatOnSave" = true;
