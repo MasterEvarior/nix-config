@@ -15,6 +15,7 @@
 
     # Div
     file
+    htop
   ];
 
   environment.interactiveShellInit = ''
