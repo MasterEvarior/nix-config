@@ -14,8 +14,9 @@
     home.packages = with pkgs; [ fzf ];
 
     home.shellAliases = {
-      ivs = "code --new-window $(fzf --preview=\"bat --color=always {}\")";
-      fzf = "fzf --preview=\"bat --color=always {}\"";
+      fzc = "result=$(fzf --select-1 --exit-0 --preview=\"bat --color=always {}\"); if [[ -d $result ]]; then code $result ; else code $(dirname $result); fi;";
+      fzf = "fzf --exit-0 --preview=\"bat --color=always {}\"";
+      cdf = "result=$(fzf --select-1 --exit-0 --preview=\"bat --color=always {}\"); if [[ -d $result ]]; then cd $result ; else cd $(dirname $result); fi;";
     };
   };
 }
