@@ -1,2 +1,3 @@
+addedFiles=$(git diff --cached --name-only --diff-filter=d)
 find ../../. -type f -name '*.nix' -exec nixfmt {} \;
-git add --all
+git add $addedFiles
