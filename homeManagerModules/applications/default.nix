@@ -16,6 +16,7 @@
     ./watson
     ./ms-teams
     ./tmux
+    ./fzf
   ];
 
   homeModules.applications = {
@@ -26,5 +27,6 @@
     comma.enable = lib.mkDefault true;
     ms-teams.enable = lib.mkDefault true;
     tmux.enable = lib.mkDefault true;
+    fzf.enable = lib.mkDefault true;
   };
 }
