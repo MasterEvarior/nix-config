@@ -1,0 +1,21 @@
+layout {
+    pane split_direction="vertical" {
+        pane {
+            name "Main"
+            focus true
+        }
+        pane split_direction="horizontal" {
+            pane {
+                name "Session Manager"
+                plugin location="session-manager"
+            }
+            pane {
+                name "Home"
+                cwd "~"
+            }
+        }
+    }
+    pane size=1 borderless=true {
+      plugin location="status-bar"
+    }
+}

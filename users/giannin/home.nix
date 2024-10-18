@@ -24,6 +24,7 @@
   homeModules.applications = {
     onedrive.enable = true;
     zotero.enable = true;
+    zellij.additionalLayouts = ./assets/zellij-layouts;
   };
 
   homeModules.dev = {

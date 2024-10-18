@@ -28,6 +28,7 @@
     cypress.enable = true;
     deja-dup.enable = true;
     watson.enable = true;
+    zellij.additionalLayouts = ./assets/zellij-layouts;
   };
 
   home.stateVersion = "23.11";

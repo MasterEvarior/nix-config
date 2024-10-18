@@ -27,9 +27,8 @@ in
 
     home.file = {
       ".config/zellij/config.kdl".source = ./assets/config.kdl;
-      ".config/zellij/layouts/default.kdl".source = ./assets/default.kdl;
+      #".config/zellij/layouts/default.kdl".source = ./assets/default.kdl;
     };
-
     home.file.additionalLayouts =
       mkIf (config.homeModules.applications.zellij.additionalLayouts != null)
         {
