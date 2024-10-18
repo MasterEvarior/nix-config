@@ -15,7 +15,7 @@
     ./chromium
     ./watson
     ./ms-teams
-    ./tmux
+    ./zellij
     ./fzf
   ];
 
@@ -26,7 +26,7 @@
     spotify.enable = lib.mkDefault true;
     comma.enable = lib.mkDefault true;
     ms-teams.enable = lib.mkDefault true;
-    tmux.enable = lib.mkDefault true;
     fzf.enable = lib.mkDefault true;
+    zellij.enable = lib.mkDefault true;
   };
 }
