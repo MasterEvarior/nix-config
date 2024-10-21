@@ -17,6 +17,7 @@
     ./ms-teams
     ./zellij
     ./fzf
+    ./signal
   ];
 
   homeModules.applications = {
