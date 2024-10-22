@@ -5,7 +5,6 @@
     ./hardware.nix
 
     ../../nixosModules/dev
-    ../../nixosModules/school
     ../../nixosModules/settings
     ../../nixosModules/desktop
     ../../nixosModules/grub2Theme
@@ -20,7 +19,11 @@
     hostName = "arrakis";
     networkmanager.enable = true;
   };
-  modules.school.wifi = true;
+  # to connect to the Eduroam WIFI, it is necessary to install these certificates
+  security.pki.certificateFiles = lib.mkIf config.modules.school.wifi [
+    ./assets/eduroam/DigiCertGlobalRootCA.pem
+    ./assets/eduroam/DigiCertTLSRSASHA2562020CA1-1.pem
+  ];
 
   # Sound
   sound.enable = true;
