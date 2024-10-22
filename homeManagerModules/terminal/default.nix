@@ -27,9 +27,97 @@
         setopt prompt_subst
         add-zsh-hook precmd vcs_info
         zstyle ':vcs_info:git:*' formats '%b'
-
-        PROMPT='%F{green}%T %F{blue}%~ %F{yellow} ''${vcs_info_msg_0_}%f%F{white}> '
       '';
+    };
+
+    programs.oh-my-posh = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        "$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
+        blocks = [
+          {
+            alignment = "left";
+            segments = [
+              {
+                type = "session";
+                style = "diamond";
+                foreground = "#ffffff";
+                background = "#8800dd";
+                trailing_diamond = "";
+                template = "{{ if .Root }}⚠{{ end }}{{ .UserName }}@{{ .HostName }}";
+              }
+              {
+                background = "#29315A";
+                foreground = "#3EC669";
+                properties = {
+                  style = "folder";
+                };
+                style = "diamond";
+                template = "{{ .Path }}";
+                trailing_diamond = "";
+                type = "path";
+              }
+              {
+                background = "#e3e3e3";
+                foreground = "#242526";
+                properties = {
+                  branch_max_length = 25;
+                  fetch_stash_count = true;
+                  fetch_status = true;
+                  fetch_upstream_icon = true;
+                };
+                style = "diamond";
+                template = "{{ .UpstreamIcon }}{{ .HEAD }} {{ if gt .Ahead 0}}{{ .Ahead }}⇈{{ end }} {{ if gt .Behind 0}}{{ .Behind }}⇊{{ end }}";
+                trailing_diamond = "";
+                type = "git";
+              }
+              {
+                foreground = "#C94A16";
+                style = "plain";
+                template = "{{ if eq .Code 0 }}{{ else }}❌{{ end }}";
+                type = "status";
+                properties = {
+                  always_enabled = true;
+                };
+              }
+            ];
+            type = "prompt";
+          }
+          {
+            alignment = "right";
+            segments = [
+              {
+                type = "executiontime";
+                style = "diamond";
+                foreground = "#ffffff";
+                background = "#8800dd";
+                template = "⏲ {{ .FormattedMs }} ";
+                properties = {
+                  threshold = 500;
+                  style = "austin";
+                  always_enabled = true;
+                };
+              }
+            ];
+            type = "prompt";
+          }
+          {
+            alignment = "left";
+            newline = true;
+            segments = [
+              {
+                foreground = "#63F08C";
+                style = "plain";
+                template = "➜ ";
+                type = "text";
+              }
+            ];
+            type = "prompt";
+          }
+        ];
+        version = 2;
+      };
     };
 
     programs.alacritty = {
@@ -40,9 +128,13 @@
             lines = 50;
             columns = 150;
           };
-          decorations = "buttonless";
+          #decorations = "none";
           opacity = 0.5;
           blur = true; # this will only work on macOS and KDE Wayland
+        };
+
+        mouse = {
+          hide_when_typing = true;
         };
 
         # the theme is inspired by this
