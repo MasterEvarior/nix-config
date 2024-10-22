@@ -2,10 +2,10 @@
 
 {
   options = {
-    modules.dev.containers.enable = lib.mkEnableOption "containers";
+    modules.containers.enable = lib.mkEnableOption "Containerization with Docker";
   };
 
-  config = lib.mkIf config.modules.dev.containers.enable {
+  config = lib.mkIf config.modules.containers.enable {
     virtualisation.docker = {
       enable = true;
       autoPrune.enable = true;

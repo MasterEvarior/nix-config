@@ -8,13 +8,7 @@
   imports = [
     ./hardware.nix
 
-    ../../nixosModules/dev
-    ../../nixosModules/school
-    ../../nixosModules/settings
-    ../../nixosModules/desktop
-    ../../nixosModules/grub2Theme
-    ../../nixosModules/1Password
-    ../../nixosModules/backup
+    ../../nixosModules
 
     ../../users/giannin/giannin.nix
   ];
