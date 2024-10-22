@@ -6,11 +6,11 @@
 }:
 
 {
-  options.modules.desktop.terminal = {
-    enable = lib.mkEnableOption "a customized terminal and shell";
+  options.modules.terminal = {
+    enable = lib.mkEnableOption "Alacritty and ZSH";
   };
 
-  config = lib.mkIf config.modules.desktop.terminal.enable {
+  config = lib.mkIf config.modules.terminal.enable {
     environment.systemPackages = with pkgs; [ alacritty ];
 
     programs.zsh = {

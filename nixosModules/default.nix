@@ -7,10 +7,13 @@
     ./desktop
     ./grub2Theme
     ./settings
+    ./terminal
     ./containers
   ];
 
   modules = {
-    containers.enable = true;
+    terminal.enable = lib.mkDefault true;
+    containers.enable = lib.mkDefault true;
+    desktop.enable = lib.mkDefault true;
   };
 }
