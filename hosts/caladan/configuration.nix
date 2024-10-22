@@ -33,6 +33,8 @@
     passwordFile = "/etc/nixos/secrets/resticPwd";
   };
 
+  modules.desktop.hyprland.enable = true;
+
   # Probe for other OSs to facilitate dual boot
   boot.loader.grub.useOSProber = true;
 

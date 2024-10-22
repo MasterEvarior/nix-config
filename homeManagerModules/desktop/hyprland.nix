@@ -16,6 +16,12 @@
 {
   options.homeModules.desktop.hyprland = {
     enable = lib.mkEnableOption "Hyprland configuration with HM";
+    monitors = lib.mkOption {
+      default = [ ",preferred,auto,auto" ];
+      example = [ ",preferred,auto,auto" ];
+      type = lib.types.listOf lib.types.str;
+      description = "List of your monitor configuration";
+    };
   };
 
   config = lib.mkIf config.homeModules.desktop.hyprland.enable {
@@ -24,7 +30,7 @@
       enable = true;
       systemd.enable = true;
       settings = {
-        monitor = ",preferred,auto,auto";
+        monitor = config.homeModules.desktop.hyprland.monitors;
         env = [ "XCURSOR_SIZE,24" ];
 
         exec-once = [
