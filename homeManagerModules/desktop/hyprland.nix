@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  osConfig,
   ...
 }:
 
@@ -17,10 +18,10 @@
   options.homeModules.desktop.hyprland = {
     enable = lib.mkEnableOption "Hyprland configuration with HM";
     monitors = lib.mkOption {
-      default = [ ",preferred,auto,auto" ];
+      default = osConfig.modules.desktop.hyprland.monitors;
       example = [ ",preferred,auto,auto" ];
       type = lib.types.listOf lib.types.str;
-      description = "List of your monitor configuration";
+      description = "List of your monitor configuration, will usually be set at host level";
     };
   };
 

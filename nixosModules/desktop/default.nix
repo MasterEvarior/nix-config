@@ -1,10 +1,54 @@
-{ lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
-  imports = [
-    ./terminal.nix
-    ./hyprland.nix
-  ];
+  options.modules.desktop.hyprland = {
+    enable = lib.mkEnableOption " Hyprland";
+    monitors = lib.mkOption {
+      default = [ ",preferred,auto,auto" ];
+      example = [ ",preferred,auto,auto" ];
+      type = lib.types.listOf lib.types.str;
+      description = "List of your monitor configuration";
+    };
+  };
 
-  modules.desktop.terminal.enable = lib.mkDefault true;
+  config = lib.mkIf config.modules.desktop.hyprland.enable {
+    # Most of this comes from this execellent vimjoyer video
+    # https://www.youtube.com/watch?v=61wGzIv12Ds
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+
+    environment.systemPackages = with pkgs; [
+      waybar
+
+      # notification daemon
+      dunst
+      libnotify
+
+      # wallpaper daemon
+      hyprpaper
+
+      # app launcher
+      rofi-wayland
+
+      # nm-applet
+      networkmanagerapplet
+    ];
+
+    environment.sessionVariables = {
+      # hint Electron applications to use Wayland
+      NIXOS_OZONE_WL = "1";
+    };
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
+  };
 }
