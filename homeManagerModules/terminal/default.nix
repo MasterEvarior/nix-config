@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   options.homeModules.terminal = {
@@ -35,8 +40,8 @@
             lines = 50;
             columns = 150;
           };
-          # decorations = "None";
-          opacity = 0.95;
+          decorations = "buttonless";
+          opacity = 0.5;
           blur = true; # this will only work on macOS and KDE Wayland
         };
 
