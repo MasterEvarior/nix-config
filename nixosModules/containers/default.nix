@@ -21,6 +21,7 @@
 
       # docker 
       dktop = "docker stats --format ''\"table {{.Container}}	{{.Name}}	{{.CPUPerc}}  {{.MemPerc}}	{{.NetIO}}	{{.BlockIO}}''\"";
+      dkimyeet = "docker rmi -f $(docker images -aq)";
     };
   };
 }
