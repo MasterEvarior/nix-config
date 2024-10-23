@@ -9,6 +9,7 @@
     ./settings
     ./terminal
     ./containers
+    ./nvidia
   ];
 
   modules = {
