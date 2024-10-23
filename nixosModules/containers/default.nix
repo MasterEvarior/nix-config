@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   options = {
@@ -11,6 +11,11 @@
       autoPrune.enable = true;
       autoPrune.dates = "daily";
     };
+
+    environment.systemPackages = with pkgs;[
+      docker-sbom
+      docker-buildx
+    ];
 
     environment.shellAliases = {
       # docker compose
