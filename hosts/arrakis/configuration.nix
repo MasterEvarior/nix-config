@@ -16,7 +16,7 @@
     networkmanager.enable = true;
   };
   # to connect to the Eduroam WIFI, it is necessary to install these certificates
-  security.pki.certificateFiles = lib.mkIf config.modules.school.wifi [
+  security.pki.certificateFiles = [
     ./assets/eduroam/DigiCertGlobalRootCA.pem
     ./assets/eduroam/DigiCertTLSRSASHA2562020CA1-1.pem
   ];
