@@ -39,7 +39,15 @@
 
       # nm-applet
       networkmanagerapplet
+
+      # required packages
+      # https://wiki.hyprland.org/0.41.0/Nix/Hyprland-on-NixOS/
+      dconf
     ];
+
+    # required see:
+    # https://wiki.hyprland.org/0.41.0/Nix/Hyprland-on-NixOS/
+    security.polkit.enable = true;
 
     environment.sessionVariables = {
       # hint Electron applications to use Wayland
