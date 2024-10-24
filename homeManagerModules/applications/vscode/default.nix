@@ -9,7 +9,7 @@
   options.homeModules.applications.vscode = {
     enable = lib.mkEnableOption "Visual Studio Code configuration";
     theme = lib.mkOption {
-      default = "Default High Contrast";
+      default = "Catppuccin Mocha";
       example = "dark";
       type = lib.types.enum [
         "Abyss"
@@ -29,8 +29,9 @@
         "Solarized Dark"
         "Solarized Light"
         "Tommorow Night Blue"
+        "Catppuccin Mocha"
       ];
-      description = "Which (official) VSCode theme to apply";
+      description = "Which VSCode theme to apply";
     };
     telemetry = lib.mkOption {
       default = "off";
@@ -116,6 +117,10 @@
           vscode-extensions.tomoki1207.pdf
           vscode-extensions.ms-azuretools.vscode-docker
           vscode-extensions.ms-vscode.live-server
+
+          # Catpuccin Theme
+          vscode-extensions.catppuccin.catppuccin-vsc
+          vscode-extensions.catppuccin.catppuccin-vsc-icons
         ]
         ++ config.homeModules.applications.vscode.additionalExtensions;
       userSettings = lib.mkMerge [

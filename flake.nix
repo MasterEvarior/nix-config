@@ -12,6 +12,9 @@
     };
 
     grub2-themes.url = "github:vinceliuice/grub2-themes";
+
+    # https://github.com/catppuccin/vscode?tab=readme-ov-file#nix-home-manager-users
+    catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
   };
 
   outputs =
@@ -20,14 +23,13 @@
       home-manager,
       grub2-themes,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = (nixpkgs.legacyPackages.${system}.extend inputs.catppuccin-vsc.overlays.default);
     in
     {
-
       nixosConfigurations = {
         "arrakis" = lib.nixosSystem {
           system = "${system}";
