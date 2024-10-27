@@ -17,7 +17,7 @@
   modules.grub2Theme = {
     enabled = true;
     resolution = "ultrawide";
-    backgroundImage = ./assets/img/ultrawide-background.png;
+    backgroundImage = ./assets/wallpapers/grub/ultrawide-background.png;
   };
 
   modules.backup = {
