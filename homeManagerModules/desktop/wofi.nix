@@ -13,124 +13,184 @@
       # Theme an settings are from here:
       # https://github.com/hiimsergey/rofi-catppuccin?tab=readme-ov-file
       settings = {
-        show-icons = true;
-        display-ssh = "🖧";
-        display-run = "⚙";
-        display-drun = "⚙";
-        display-window = "⚙";
-        display-combi = "⚙";
-        display-filebrowser = "🗄";
+        show = "drun";
+        width = "750";
+        height = "400";
+        always_parse_args = true;
+        show_all = false;
+        term = "alacritty";
+        hide_scroll = true;
+        print_command = true;
+        insensitive = true;
+        prompt = "";
+        columns = 2;
       };
 
       style = ''
+        @define-color	rosewater  #f5e0dc;
+        @define-color	rosewater-rgb  rgb(245, 224, 220);
+        @define-color	flamingo  #f2cdcd;
+        @define-color	flamingo-rgb  rgb(242, 205, 205);
+        @define-color	pink  #f5c2e7;
+        @define-color	pink-rgb  rgb(245, 194, 231);
+        @define-color	mauve  #cba6f7;
+        @define-color	mauve-rgb  rgb(203, 166, 247);
+        @define-color	red  #f38ba8;
+        @define-color	red-rgb  rgb(243, 139, 168);
+        @define-color	maroon  #eba0ac;
+        @define-color	maroon-rgb  rgb(235, 160, 172);
+        @define-color	peach  #fab387;
+        @define-color	peach-rgb  rgb(250, 179, 135);
+        @define-color	yellow  #f9e2af;
+        @define-color	yellow-rgb  rgb(249, 226, 175);
+        @define-color	green  #a6e3a1;
+        @define-color	green-rgb  rgb(166, 227, 161);
+        @define-color	teal  #94e2d5;
+        @define-color	teal-rgb  rgb(148, 226, 213);
+        @define-color	sky  #89dceb;
+        @define-color	sky-rgb  rgb(137, 220, 235);
+        @define-color	sapphire  #74c7ec;
+        @define-color	sapphire-rgb  rgb(116, 199, 236);
+        @define-color	blue  #89b4fa;
+        @define-color	blue-rgb  rgb(137, 180, 250);
+        @define-color	lavender  #b4befe;
+        @define-color	lavender-rgb  rgb(180, 190, 254);
+        @define-color	text  #cdd6f4;
+        @define-color	text-rgb  rgb(205, 214, 244);
+        @define-color	subtext1  #bac2de;
+        @define-color	subtext1-rgb  rgb(186, 194, 222);
+        @define-color	subtext0  #a6adc8;
+        @define-color	subtext0-rgb  rgb(166, 173, 200);
+        @define-color	overlay2  #9399b2;
+        @define-color	overlay2-rgb  rgb(147, 153, 178);
+        @define-color	overlay1  #7f849c;
+        @define-color	overlay1-rgb  rgb(127, 132, 156);
+        @define-color	overlay0  #6c7086;
+        @define-color	overlay0-rgb  rgb(108, 112, 134);
+        @define-color	surface2  #585b70;
+        @define-color	surface2-rgb  rgb(88, 91, 112);
+        @define-color	surface1  #45475a;
+        @define-color	surface1-rgb  rgb(69, 71, 90);
+        @define-color	surface0  #313244;
+        @define-color	surface0-rgb  rgb(49, 50, 68);
+        @define-color	base  #1e1e2e;
+        @define-color	base-rgb  rgb(30, 30, 46);
+        @define-color	mantle  #181825;
+        @define-color	mantle-rgb  rgb(24, 24, 37);
+        @define-color	crust  #11111b;
+        @define-color	crust-rgb  rgb(17, 17, 27);
+
         * {
-              base: #1e1e2e;
-              surface0: #313244;
-              overlay0: #6c7086;
-              text: #cdd6f4;
+          font-family: 'Inconsolata Nerd Font', monospace;
+          font-size: 14px;
+        }
 
-              mauve: #cba6f7;
-              red: #f38ba8;
-              peach: #fab387;
-              green: #a6e3a1;
-              lavender: #b4befe;
+        /* Window */
+        window {
+          margin: 0px;
+          padding: 10px;
+          border: 0.16em solid @lavender;
+          border-radius: 0.1em;
+          background-color: @base;
+          animation: slideIn 0.5s ease-in-out both;
+        }
 
-              background-color: @base;
+        /* Slide In */
+        @keyframes slideIn {
+          0% {
+            opacity: 0;
           }
 
-          window {
-              height: 600;
-              width: 600;
+          100% {
+            opacity: 1;
+          }
+        }
 
-              border: 3;
-              border-radius: 10;
-              border-color: @lavender;
+        /* Inner Box */
+        #inner-box {
+          margin: 5px;
+          padding: 10px;
+          border: none;
+          background-color: @base;
+          animation: fadeIn 0.5s ease-in-out both;
+        }
+
+        /* Fade In */
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
           }
 
-          mainbox {
-              spacing: 0;
-              children: [inputbar, message, listview];
+          100% {
+            opacity: 1;
           }
+        }
 
-          inputbar {
-              color: @text;
-              padding: 14;
-              background-color: @base;
-          }
+        /* Outer Box */
+        #outer-box {
+          margin: 5px;
+          padding: 10px;
+          border: none;
+          background-color: @base;
+        }
 
-          message {
-              padding: 10;
-              background-color: @overlay0;
-          }
+        /* Scroll */
+        #scroll {
+          margin: 0px;
+          padding: 10px;
+          border: none;
+          background-color: @base;
+        }
 
-          listview {
-              padding: 8;
-              border-radius: 0 0 10 10;
-              border: 2 2 2 2;
-              border-color: @base;
-              background-color: @base;
-              dynamic: false;
-          }
+        /* Input */
+        #input {
+          margin: 5px 20px;
+          padding: 10px;
+          border: none;
+          border-radius: 0.1em;
+          color: @text;
+          background-color: @base;
+          animation: fadeIn 0.5s ease-in-out both;
+        }
 
-          textbox {
-              text-color: @text;
-              background-color: inherit;
-          }
+        #input image {
+            border: none;
+            color: @red;
+        }
 
-          error-message {
-              border: 20 20 20 20;
-          }
+        #input * {
+          outline: 4px solid @red!important;
+        }
 
-          entry, prompt, case-indicator {
-              text-color: inherit;
-          }
+        /* Text */
+        #text {
+          margin: 5px;
+          border: none;
+          color: @text;
+          animation: fadeIn 0.5s ease-in-out both;
+        }
 
-          prompt {
-              margin: 0 10 0 0;
-          }
+        #entry {
+          background-color: @base;
+        }
 
-          element {
-              padding: 5;
-              vertical-align: 0.5;
-              border-radius: 10;
-              background-color: @surface0;
-          }
+        #entry arrow {
+          border: none;
+          color: @lavender;
+        }
 
-          element.selected.normal {
-              background-color: @overlay0;
-          }
+        /* Selected Entry */
+        #entry:selected {
+          border: 0.11em solid @lavender;
+        }
 
-          element.alternate.normal {
-              background-color: inherit;
-          }
+        #entry:selected #text {
+          color: @mauve;
+        }
 
-          element.normal.active, element.alternate.active {
-              background-color: @peach;
-          }
-
-          element.selected.active {
-              background-color: @green;
-          }
-
-          element.normal.urgent, element.alternate.urgent {
-              background-color: @red;
-          }
-
-          element.selected.urgent {
-              background-color: @mauve;
-          }
-
-          element-text, element-icon {
-              size: 40;
-              margin: 0 10 0 0;
-              vertical-align: 0.5;
-              background-color: inherit;
-              text-color: @text;
-          }
-
-          element-text .active, element-text .urgent {
-              text-color: @base;
-          }
+        #entry:drop(active) {
+          background-color: @lavender!important;
+        }
       '';
     };
   };
