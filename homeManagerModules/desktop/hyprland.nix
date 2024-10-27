@@ -6,14 +6,6 @@
   ...
 }:
 
-# let
-#   startupScript = pkgs.pkgs.writeShellScriptBin "startHyprland" ''
-#     ${pkgs.waybar}/bin/waybar &
-#     ${pkgs.swww}/bin/swww init &
-
-#     sleep 1
-#   '';
-# in
 {
   options.homeModules.desktop.hyprland = {
     enable = lib.mkEnableOption "Hyprland configuration with HM";
@@ -107,7 +99,7 @@
           "$mainMod, M, exit,"
           "$mainMod, E, exec, dolphin"
           "$mainMod, V, togglefloating,"
-          "$mainMod, R, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -show icons"
+          "$mainMod, R, exec, ${pkgs.wofi}/bin/wofi -show drun -show icons"
           "$mainMod, P, pseudo," # dwindle
           "$mainMod, J, togglesplit," # dwindle
           "$mainMod, left, movefocus, l"

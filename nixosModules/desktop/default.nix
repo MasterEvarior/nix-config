@@ -35,7 +35,7 @@
       hyprpaper
 
       # app launcher
-      rofi-wayland
+      wofi
 
       # nm-applet
       networkmanagerapplet
