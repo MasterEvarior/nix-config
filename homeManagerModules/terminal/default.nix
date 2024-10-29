@@ -126,7 +126,7 @@
             columns = 150;
           };
           #decorations = "none";
-          opacity = 0.5;
+          #opacity = 0.5;
           blur = true; # this will only work on macOS and KDE Wayland
         };
 
