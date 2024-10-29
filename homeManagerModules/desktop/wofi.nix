@@ -13,7 +13,8 @@
       # Theme an settings are from here:
       # https://github.com/hiimsergey/rofi-catppuccin?tab=readme-ov-file
       settings = {
-        show = "drun";
+        mode = "drun";
+        stylesheet = "./style.css";
         width = "750";
         height = "400";
         always_parse_args = true;
@@ -90,9 +91,9 @@
           margin: 0px;
           padding: 10px;
           border: 0.16em solid @lavender;
-          border-radius: 0.1em;
+          border-radius: 0.5em;
           background-color: @base;
-          animation: slideIn 0.5s ease-in-out both;
+          animation: slideIn 0.25s ease-in-out both;
         }
 
         /* Slide In */

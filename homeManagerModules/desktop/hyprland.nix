@@ -99,7 +99,7 @@
           "$mainMod, M, exit,"
           "$mainMod, E, exec, dolphin"
           "$mainMod, V, togglefloating,"
-          "$mainMod, space, exec, ${pkgs.wofi}/bin/wofi -show drun -show icons"
+          "$mainMod, space, exec, ${pkgs.wofi}/bin/wofi"
           "$mainMod, P, pseudo," # dwindle
           "$mainMod, J, togglesplit," # dwindle
           "$mainMod, left, movefocus, l"
