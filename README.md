@@ -18,6 +18,9 @@ After the installation a couple of manual steps are still necessary. They are as
 - Log into Mozzila account for Firefox
 - Log into Jetbrains account for IDEs
 
+## Theme
+I try to style everything according to the [Catpuccin Mocha Theme](https://github.com/catppuccin). If you like what you see, head over there and drop them a couple of bucks!
+
 ## Development
 
 ### Git Hooks
