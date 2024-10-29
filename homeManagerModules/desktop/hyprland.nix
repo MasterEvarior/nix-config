@@ -92,14 +92,14 @@
           force_default_wallpaper = 0;
         };
 
-        "$mainMod" = "SUPER";
+        "$mainMod" = "ALT";
         bind = [
           "$mainMod, Q, exec, alacritty"
           "$mainMod, C, killactive,"
           "$mainMod, M, exit,"
           "$mainMod, E, exec, dolphin"
           "$mainMod, V, togglefloating,"
-          "$mainMod, R, exec, ${pkgs.wofi}/bin/wofi -show drun -show icons"
+          "$mainMod, space, exec, ${pkgs.wofi}/bin/wofi -show drun -show icons"
           "$mainMod, P, pseudo," # dwindle
           "$mainMod, J, togglesplit," # dwindle
           "$mainMod, left, movefocus, l"
