@@ -16,78 +16,26 @@
           layer = "top";
           position = "top";
 
-          modules-left = [
-            "hyprland/workspaces"
-            "custom/right-arrow-dark"
-          ];
+          modules-left = [ "hyprland/workspaces" ];
 
           modules-center = [
-            "custom/left-arrow-dark"
-            "clock#1"
-            "custom/left-arrow-light"
-            "custom/left-arrow-dark"
-            "clock#2"
-            "custom/right-arrow-dark"
-            "custom/right-arrow-light"
-            "clock#3"
-            "custom/right-arrow-dark"
+
           ];
 
           modules-right = [
-            "custom/left-arrow-dark"
-            "pulseaudio"
-            "custom/left-arrow-light"
-            "custom/left-arrow-dark"
-            "memory"
-            "custom/left-arrow-light"
-            "custom/left-arrow-dark"
-            "cpu"
-            "custom/left-arrow-light"
-            "custom/left-arrow-dark"
             "battery"
-            "custom/left-arrow-light"
-            "custom/left-arrow-dark"
-            "tray"
+            "clock"
+            "pulseaudio"
           ];
 
-          "custom/left-arrow-dark" = {
-            "format" = "";
-            "tooltip" = false;
-          };
-
-          "custom/left-arrow-light" = {
-            "format" = "";
-            "tooltip" = false;
-          };
-
-          "custom/right-arrow-dark" = {
-            "format" = "";
-            "tooltip" = false;
-          };
-
-          "custom/right-arrow-light" = {
-            "format" = "";
-            "tooltip" = false;
-          };
-
           "hyprland/workspaces" = {
-            "disable-scroll" = true;
-            "format" = "{name}";
+            disable-scroll = true;
+            format = "{name}";
           };
 
-          "clock#1" = {
-            "format" = "{:%a}";
-            "tooltip" = false;
-          };
-
-          "clock#2" = {
-            "format" = "{:%H:%M}";
-            "tooltip" = false;
-          };
-
-          "clock#3" = {
-            "format" = "{:%d-%m-%y}";
-            "tooltip" = false;
+          clock = {
+            format = "{:%H:%M}";
+            tooltip = false;
           };
 
           pulseaudio = {
@@ -95,7 +43,7 @@
             "format-bluetooth" = "{icon}  {volume}%";
             "format-muted" = "MUTE";
             "format-icons" = {
-              "headphones" = "";
+              "headphones" = "🎧";
               "default" = [
                 ""
                 ""
@@ -106,16 +54,6 @@
             "on-click-right" = "pavucontrol";
           };
 
-          "memory" = {
-            "interval" = 5;
-            "format" = "Mem {}%";
-          };
-
-          "cpu" = {
-            "interval" = 5;
-            "format" = "CPU {usage:2}%";
-          };
-
           "battery" = {
             "states" = {
               "good" = 95;
@@ -123,95 +61,142 @@
               "critical" = 10;
             };
             "format" = "{icon} {capacity}%";
-            "format-icons" = [
-              ""
-              ""
-              ""
-              ""
-              ""
-            ];
           };
 
           "tray" = {
-            "icon-size" = 15;
+            "icon-size" = 21;
+            "spacing" = 10;
           };
         };
       };
 
       style = ''
+        @define-color rosewater #f5e0dc;
+        @define-color flamingo #f2cdcd;
+        @define-color pink #f5c2e7;
+        @define-color mauve #cba6f7;
+        @define-color red #f38ba8;
+        @define-color maroon #eba0ac;
+        @define-color peach #fab387;
+        @define-color yellow #f9e2af;
+        @define-color green #a6e3a1;
+        @define-color teal #94e2d5;
+        @define-color sky #89dceb;
+        @define-color sapphire #74c7ec;
+        @define-color blue #89b4fa;
+        @define-color lavender #b4befe;
+        @define-color text #cdd6f4;
+        @define-color subtext1 #bac2de;
+        @define-color subtext0 #a6adc8;
+        @define-color overlay2 #9399b2;
+        @define-color overlay1 #7f849c;
+        @define-color overlay0 #6c7086;
+        @define-color surface2 #585b70;
+        @define-color surface1 #45475a;
+        @define-color surface0 #313244;
+        @define-color base #1e1e2e;
+        @define-color mantle #181825;
+        @define-color crust #11111b;
+
         * {
-          font-size: 20px;
-          font-family: monospace;
+          font-family: FantasqueSansMono Nerd Font;
+          font-size: 17px;
+          min-height: 0;
         }
 
-        window#waybar {
-          background: #292b2e;
-          color: #fdf6e3;
+        #waybar {
+          background: transparent;
+          color: @text;
+          margin: 5px 5px;
         }
 
-        #custom-right-arrow-dark,
-        #custom-left-arrow-dark {
-          color: #1a1a1a;
-        }
-        #custom-right-arrow-light,
-        #custom-left-arrow-light {
-          color: #292b2e;
-          background: #1a1a1a;
-        }
-
-        #workspaces,
-        #clock.1,
-        #clock.2,
-        #clock.3,
-        #pulseaudio,
-        #memory,
-        #cpu,
-        #battery,
-        #disk,
-        #tray {
-          background: #1a1a1a;
+        #workspaces {
+          border-radius: 1rem;
+          margin: 5px;
+          background-color: @surface0;
+          margin-left: 1rem;
         }
 
         #workspaces button {
-          padding: 0 2px;
-          color: #fdf6e3;
+          color: @lavender;
+          border-radius: 1rem;
+          padding: 0.4rem;
         }
-        #workspaces button.focused {
-          color: #268bd2;
+
+        #workspaces button.active {
+          color: @sky;
+          border-radius: 1rem;
         }
+
         #workspaces button:hover {
-          box-shadow: inherit;
-          text-shadow: inherit;
+          color: @sapphire;
+          border-radius: 1rem;
         }
-        #workspaces button:hover {
-          background: #1a1a1a;
-          border: #1a1a1a;
-          padding: 0 3px;
+
+        #custom-music,
+        #tray,
+        #backlight,
+        #clock,
+        #battery,
+        #pulseaudio,
+        #custom-lock,
+        #custom-power {
+          background-color: @surface0;
+          padding: 0.5rem 1rem;
+          margin: 5px 0;
+        }
+
+        #clock {
+          color: @blue;
+          border-radius: 0px 1rem 1rem 0px;
+          margin-right: 1rem;
+        }
+
+        #battery {
+          color: @green;
+        }
+
+        #battery.charging {
+          color: @green;
+        }
+
+        #battery.warning:not(.charging) {
+          color: @red;
+        }
+
+        #backlight {
+          color: @yellow;
+        }
+
+        #backlight, #battery {
+            border-radius: 0;
         }
 
         #pulseaudio {
-          color: #268bd2;
-        }
-        #memory {
-          color: #2aa198;
-        }
-        #cpu {
-          color: #6c71c4;
-        }
-        #battery {
-          color: #859900;
-        }
-        #disk {
-          color: #b58900;
+          color: @maroon;
+          border-radius: 1rem 0px 0px 1rem;
+          margin-left: 1rem;
         }
 
-        #clock,
-        #pulseaudio,
-        #memory,
-        #cpu,
-        #battery,
-        #disk {
-          padding: 0 10px;
+        #custom-music {
+          color: @mauve;
+          border-radius: 1rem;
+        }
+
+        #custom-lock {
+            border-radius: 1rem 0px 0px 1rem;
+            color: @lavender;
+        }
+
+        #custom-power {
+            margin-right: 1rem;
+            border-radius: 0px 1rem 1rem 0px;
+            color: @red;
+        }
+
+        #tray {
+          margin-right: 1rem;
+          border-radius: 1rem;
         }
       '';
     };

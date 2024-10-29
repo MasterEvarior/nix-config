@@ -92,7 +92,7 @@
           force_default_wallpaper = 0;
         };
 
-        "$mainMod" = "ALT";
+        "$mainMod" = "SUPER";
         bind = [
           "$mainMod, Q, exec, alacritty"
           "$mainMod, C, killactive,"
