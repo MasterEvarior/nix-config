@@ -15,6 +15,12 @@
 
     # https://github.com/catppuccin/vscode?tab=readme-ov-file#nix-home-manager-users
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
+
+    # https://github.com/Gerg-L/spicetify-nix
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -22,6 +28,7 @@
       nixpkgs,
       home-manager,
       grub2-themes,
+      spicetify-nix,
       ...
     }@inputs:
     let
@@ -35,9 +42,8 @@
           system = "${system}";
           modules = [
             ./hosts/arrakis/configuration.nix
-            grub2-themes.nixosModules.default
 
-            # idk what this does :(
+            grub2-themes.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -50,9 +56,8 @@
           system = "${system}";
           modules = [
             ./hosts/caladan/configuration.nix
-            grub2-themes.nixosModules.default
 
-            # idk what this does :(
+            grub2-themes.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -65,11 +70,17 @@
       homeConfigurations = {
         "giannin" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./users/giannin/home.nix ];
+          modules = [
+            ./users/giannin/home.nix
+            inputs.spicetify-nix.homeManagerModules.default
+          ];
         };
         "work" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./users/work/home.nix ];
+          modules = [
+            ./users/work/home.nix
+            inputs.spicetify-nix.homeManagerModules.default
+          ];
         };
       };
     };
