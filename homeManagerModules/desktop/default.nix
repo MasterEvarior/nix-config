@@ -11,6 +11,7 @@
     ./hyprpaper.nix
     ./waybar.nix
     ./wofi.nix
+    ./dunst.nix
   ];
 
   config = lib.mkIf osConfig.programs.hyprland.enable {
