@@ -8,6 +8,12 @@
 {
   options.homeModules.dev.git = {
     enable = lib.mkEnableOption "Git";
+    rebase = lib.mkOption {
+      default = false;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether to rebase on pull";
+    };
   };
 
   config = lib.mkIf config.homeModules.dev.git.enable {
@@ -23,7 +29,7 @@
       };
       extraConfig = {
         pull = {
-          rebase = false;
+          rebase = config.homeModules.dev.git.rebase;
         };
       };
     };

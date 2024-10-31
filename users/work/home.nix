@@ -36,6 +36,8 @@
     zellij.additionalLayouts = ./assets/zellij-layouts;
   };
 
+  homeModules.dev.git.rebase = true;
+
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 }
