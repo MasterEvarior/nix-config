@@ -15,6 +15,7 @@
     programs.git = {
       enable = true;
       aliases = {
+        s = "status";
         a = "add";
         aa = "add --all";
         amend = "commit --amend --no-edit";
