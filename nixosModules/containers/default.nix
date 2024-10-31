@@ -21,7 +21,7 @@
       enable = true;
       autoPrune.enable = true;
       autoPrune.dates = "daily";
-      rootless = = {
+      rootless = {
         enable = config.modules.containers.rootless;
         setSocketVariable = config.modules.containers.rootless;
       };
