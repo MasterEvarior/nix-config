@@ -21,6 +21,8 @@
     programs.git = {
       enable = true;
       aliases = {
+        clear = "! clear";
+        ss = "stash save";
         s = "status";
         a = "add";
         aa = "add --all";
