@@ -21,6 +21,11 @@
     libreoffice
     nextcloud-client
     chromium
+
+    # SBOMs
+    cyclonedx-cli
+    cdxgen
+    syft
   ];
 
   homeModules.applications = {
