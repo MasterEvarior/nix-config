@@ -6,12 +6,6 @@
   home.username = "giannin";
   home.homeDirectory = "/home/giannin";
 
-  programs.git = {
-    enable = true;
-    userName = "Giannin";
-    userEmail = "contact@giannin.ch";
-  };
-
   home.packages = with pkgs; [
     # Entertainment & Media
     plex-media-player
@@ -21,11 +15,19 @@
     mdbook
   ];
 
-  homeModules.applications = {
-    onedrive.enable = true;
-    zotero.enable = true;
-    signal.enable = true;
-    zellij.additionalLayouts = ./assets/zellij-layouts;
+  homeModules = {
+    applications = {
+      onedrive.enable = true;
+      zotero.enable = true;
+      signal.enable = true;
+      zellij.additionalLayouts = ./assets/zellij-layouts;
+    };
+
+    dev.git = {
+      enable = true;
+      userName = "Giannin";
+      userEmail = "contact@giannin.ch";
+    };
   };
 
   homeModules.dev = {
