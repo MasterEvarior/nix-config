@@ -141,6 +141,29 @@
         { }
         config.homeModules.applications.vscode.additionalSnippets
       ];
+
+      keybindings = [
+        {
+          "key" = "alt+f12";
+          "command" = "workbench.action.terminal.toggleTerminal";
+          "when" = "terminal.active";
+        }
+        {
+          "key" = "ctrl+shift+[Equal]";
+          "command" = "-workbench.action.terminal.toggleTerminal";
+          "when" = "terminal.active";
+        }
+        {
+          "key" = "ctrl+w";
+          "command" = "editor.action.smartSelect.expand";
+          "when" = "editorTextFocus";
+        }
+        {
+          "key" = "shift+alt+right";
+          "command" = "-editor.action.smartSelect.expand";
+          "when" = "editorTextFocus";
+        }
+      ];
     };
   };
 }
