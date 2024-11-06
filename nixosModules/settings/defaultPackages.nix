@@ -16,12 +16,10 @@
 
     # Div
     file
-    htop
   ];
 
   environment.interactiveShellInit = ''
-    alias ls='lsd'
-    alias cat='bat'
-    alias htop='btop'
+    alias cat='bat';
+    alias htop='btop';
   '';
 }
