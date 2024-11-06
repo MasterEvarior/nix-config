@@ -12,6 +12,7 @@
     bat
     lsd
     eza
+    btop
 
     # Div
     file
@@ -21,5 +22,6 @@
   environment.interactiveShellInit = ''
     alias ls='lsd'
     alias cat='bat'
+    alias htop='btop'
   '';
 }
