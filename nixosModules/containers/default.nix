@@ -12,7 +12,7 @@
       default = false;
       example = false;
       type = lib.types.bool;
-      description = "Wether or not to use Docker rootless";
+      description = "Wether or not to use Docker rootless. This needs a restart afterwards.";
     };
   };
 
