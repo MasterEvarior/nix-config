@@ -16,10 +16,8 @@
     nextcloud-client
     chromium
 
-    # SBOMs
-    cyclonedx-cli
-    cdxgen
-    syft
+    # Media
+    vlc
   ];
 
   homeModules = {
