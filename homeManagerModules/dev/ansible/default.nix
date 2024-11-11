@@ -12,11 +12,12 @@
 
   config = lib.mkIf config.homeModules.dev.ansible.enable {
     home.packages = with pkgs; [
-      python3
       ansible
       ansible-lint
       ansible-language-server
     ];
+
+    homeModules.dev.python.enable = true;
 
     homeModules.applications.vscode.additionalExtensions = with pkgs; [
       vscode-extensions.redhat.ansible

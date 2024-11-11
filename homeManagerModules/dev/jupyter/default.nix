@@ -12,10 +12,14 @@
 
   config = lib.mkIf config.homeModules.dev.jupyter.enable {
 
-    home.packages = with pkgs; [
-      python3
-      python311Packages.jupyter-core
-    ];
+    homeModules.dev.python = {
+      enable = true;
+      additionalPackages = with pkgs; [
+        python311Packages.pip
+        python311Packages.ipykernel
+        python311Packages.notebook
+      ];
+    };
 
     homeModules.applications.vscode.additionalExtensions = with pkgs; [
       vscode-extensions.ms-toolsai.jupyter

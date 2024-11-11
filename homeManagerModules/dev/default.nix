@@ -12,6 +12,7 @@
     ./git
     ./terraform
     ./java
+    ./python
   ];
 
   homeModules.dev = {
