@@ -14,10 +14,11 @@
 
     homeModules.dev.python = {
       enable = true;
-      additionalPackages = with pkgs; [
-        python311Packages.pip
-        python311Packages.ipykernel
-        python311Packages.notebook
+      additionalPackages = with pkgs.python311Packages; [
+        pip
+        ipykernel
+        notebook
+        mpmath
       ];
     };
 
