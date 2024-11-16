@@ -13,6 +13,9 @@
 
     # School stuff
     mdbook
+
+    # Wallpapers
+    gowall
   ];
 
   homeModules = {
