@@ -21,6 +21,10 @@
 
     # Crypress tests
     google-chrome
+
+    # Open Shift
+    ocm
+    openshift
   ];
 
   homeModules = {
