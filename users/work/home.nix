@@ -18,6 +18,9 @@
 
     # Media
     vlc
+
+    # Crypress tests
+    google-chrome
   ];
 
   homeModules = {
