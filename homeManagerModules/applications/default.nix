@@ -17,6 +17,7 @@
     ./ms-teams
     ./zellij
     ./fzf
+    ./github-cli
     ./signal
   ];
 
@@ -29,5 +30,6 @@
     ms-teams.enable = lib.mkDefault true;
     fzf.enable = lib.mkDefault true;
     zellij.enable = lib.mkDefault true;
+    github-cli.enable = lib.mkDefault true;
   };
 }
