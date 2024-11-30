@@ -23,6 +23,7 @@
       onedrive.enable = true;
       zotero.enable = true;
       signal.enable = true;
+      cypress.enable = true;
       zellij.additionalLayouts = ./assets/zellij-layouts;
     };
 
