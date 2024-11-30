@@ -15,6 +15,12 @@
       type = lib.types.listOf lib.types.str;
       description = "List of your monitor configuration, will usually be set at host level";
     };
+    wallpaper = lib.mkOption {
+      default = osConfig.modules.desktop.hyprland.wallpaper;
+      example = ./your-wallpaper.gif;
+      type = lib.types.nullOr lib.types.path;
+      description = "Wallpaper for SWWW to display";
+    };
   };
 
   config = lib.mkIf config.homeModules.desktop.hyprland.enable {
@@ -31,6 +37,7 @@
           "${pkgs.waybar}/bin/waybar"
           "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
           "${pkgs.dunst}/bin/dunst"
+          # "${pkgs.swww}/bin/swww ${config.homeModules.desktop.hyprland.wallpaper}"
         ];
 
         general = {

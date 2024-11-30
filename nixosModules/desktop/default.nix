@@ -14,6 +14,12 @@
       type = lib.types.listOf lib.types.str;
       description = "List of your monitor configuration";
     };
+    wallpaper = lib.mkOption {
+      default = null;
+      example = ./your-wallpaper.gif;
+      type = lib.types.nullOr lib.types.path;
+      description = "Wallpaper for SWWW to display";
+    };
   };
 
   config = lib.mkIf config.modules.desktop.hyprland.enable {
@@ -32,7 +38,7 @@
       libnotify
 
       # wallpaper daemon
-      hyprpaper
+      swww
 
       # app launcher
       wofi
