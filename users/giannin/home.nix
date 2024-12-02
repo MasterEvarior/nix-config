@@ -24,6 +24,7 @@
       zotero.enable = true;
       signal.enable = true;
       zellij.additionalLayouts = ./assets/zellij-layouts;
+      cypress.enable = true;
     };
 
     dev.git = {
