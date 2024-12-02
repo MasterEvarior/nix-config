@@ -37,7 +37,7 @@
           "${pkgs.waybar}/bin/waybar"
           "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
           "${pkgs.dunst}/bin/dunst"
-          "${pkgs.swww}/bin/swww ${config.homeModules.desktop.hyprland.wallpaper}"
+          # "${pkgs.swww}/bin/swww ${config.homeModules.desktop.hyprland.wallpaper}"
         ];
 
         general = {
