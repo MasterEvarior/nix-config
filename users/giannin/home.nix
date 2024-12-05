@@ -25,7 +25,6 @@
       signal.enable = true;
       cypress.enable = true;
       zellij.additionalLayouts = ./assets/zellij-layouts;
-      cypress.enable = true;
     };
 
     dev.git = {
