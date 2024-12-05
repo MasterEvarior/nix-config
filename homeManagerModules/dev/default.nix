@@ -13,6 +13,7 @@
     ./terraform
     ./java
     ./python
+    ./openshift
   ];
 
   homeModules.dev = {
