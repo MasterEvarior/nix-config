@@ -10,9 +10,11 @@
     ./fonts.nix
     ./defaultPackages.nix
     ./mdns.nix
+    ./shebang.nix
   ];
 
   modules.settings = {
     mdns.enable = lib.mkDefault true;
+    shebang.enable = lib.mkDefault true;
   };
 }
