@@ -2,12 +2,12 @@
   description = "My NixOS configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
 
       # The `follows` ensures that the versions are kept consistent with
-      # the current flake. It works like inheritance in OOP 
+      # the current flake. It works like inheritance in OOP
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

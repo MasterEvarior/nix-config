@@ -7,7 +7,7 @@
 
 {
   imports = [
-    # ./spicetify.nix 
+    # ./spicetify.nix
   ];
 
   options.homeModules.applications.spotify = {

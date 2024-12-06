@@ -18,7 +18,7 @@
     ];
 
     programs.java = {
-      package = pkgs.jdk22;
+      package = pkgs.jdk23;
       enable = true;
     };
   };
