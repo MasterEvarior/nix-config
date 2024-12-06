@@ -18,7 +18,7 @@
 
   config = lib.mkIf config.homeModules.applications."1password".enable {
     home.packages = with pkgs; [
-      _1password
+      _1password-cli
       _1password-gui
     ];
 
