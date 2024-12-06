@@ -8,16 +8,35 @@
 {
   options.homeModules.applications.cypress = {
     enable = lib.mkEnableOption "E2E-Testing Tool Cypress";
-  };
-
-  config = lib.mkIf config.homeModules.applications.cypress.enable {
-    home.packages = with pkgs; [
-      cypress
-      steam-run
-    ];
-
-    home.shellAliases = {
-      cypress = "steam-run npx cypress";
+    additionalBrowsers = lib.mkOption {
+      default = with pkgs; [
+        google-chrome
+        firefox
+      ];
+      example = with pkgs; [
+        google-chrome
+        firefox
+      ];
+      type = lib.types.listOf lib.types.package;
+      description = "Additional browsers that should be installed for E2E testing";
     };
   };
+
+  config =
+    let
+      conf = config.homeModules.applications.cypress;
+    in
+    lib.mkIf config.homeModules.applications.cypress.enable {
+      home.packages =
+        with pkgs;
+        [
+          cypress
+          steam-run
+        ]
+        ++ conf.additionalBrowsers;
+
+      home.shellAliases = {
+        cypress = "steam-run npx cypress";
+      };
+    };
 }

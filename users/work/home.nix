@@ -14,19 +14,18 @@
     thunderbird
     libreoffice
     nextcloud-client
-    chromium
 
     # Media
     vlc
-
-    # Crypress tests
-    google-chrome
   ];
 
   homeModules = {
     applications = {
       dooit.enable = true;
-      cypress.enable = true;
+      cypress = {
+        enable = true;
+        additionalBrowsers = [ ];
+      };
       deja-dup.enable = true;
       watson.enable = true;
       zellij.additionalLayouts = ./assets/zellij-layouts;
