@@ -40,6 +40,7 @@
           clear = "! clear";
           ss = "stash save";
           s = "status";
+          p = "pull";
           a = "add";
           aa = "add --all";
           amend = "commit --amend --no-edit";

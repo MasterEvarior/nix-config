@@ -21,10 +21,6 @@
 
     # Crypress tests
     google-chrome
-
-    # Open Shift
-    ocm
-    openshift
   ];
 
   homeModules = {
@@ -35,10 +31,13 @@
       watson.enable = true;
       zellij.additionalLayouts = ./assets/zellij-layouts;
     };
-    dev.git = {
-      enable = true;
-      userName = "Giannin";
-      userEmail = "puzzle@giannin.ch";
+    dev = {
+      git = {
+        enable = true;
+        userName = "Giannin";
+        userEmail = "puzzle@giannin.ch";
+      };
+      openshift.enable = true;
     };
   };
 
