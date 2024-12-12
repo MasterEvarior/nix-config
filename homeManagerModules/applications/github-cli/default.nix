@@ -28,6 +28,7 @@
       dash = "!(gh dash)";
       workflow-status = "!(gh run list --limit 10)";
       workflow-status-monitor = "!(while true; do gh run list --limit 10; sleep 3; clear; done)";
+      workflow-status-monitor-current-branch = "!(while true; do gh run list --branch $(git rev-parse --abbrev-ref HEAD) --limit 10; sleep 3; clear; done)";
       pr-to-review = "!(gh pr list --search 'is:open user-review-requested:@me')";
       pr-for-dependency-upgrades = "!(gh pr list --search 'is:open Update in:title')";
       pr-list = "!(gh pr list)";
