@@ -40,7 +40,8 @@
       dcv = "docker compose config --quiet";
 
       # docker
-      dktop = "docker stats --format ''\"table {{.Container}}	{{.Name}}	{{.CPUPerc}}  {{.MemPerc}}	{{.NetIO}}	{{.BlockIO}}''\"";
+      dktop = "docker stats --format ''\"table {{.Container}}	{{.Name}}	{{.CPUPerc}}  {{.MemPerc}}	{{.NetIO}}	{{.BlockIO}}\"";
+      dkprune = "docker container prune --force && docker image prune --force";
       dkimyeet = "docker rmi -f $(docker images -aq)"; # delete all unused images
     };
   };
