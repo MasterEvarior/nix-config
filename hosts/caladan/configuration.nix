@@ -20,13 +20,6 @@
     backgroundImage = ./assets/wallpapers/grub/ultrawide-background.png;
   };
 
-  modules.backup = {
-    enable = true;
-    repository = "rest:http://tower.local:8000";
-    username = "restic-caladan";
-    passwordFile = "/etc/nixos/secrets/resticPwd";
-  };
-
   modules.desktop.hyprland = {
     enable = true;
     monitors = [

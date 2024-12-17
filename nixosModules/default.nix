@@ -3,7 +3,6 @@
 {
   imports = [
     ./1Password
-    ./backup
     ./desktop
     ./grub2Theme
     ./settings
