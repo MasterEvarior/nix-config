@@ -22,21 +22,21 @@
       cfg = config.homeModules.dev.js;
     in
     lib.mkIf cfg.enable {
-      home.packages = with pkgs; [ nodejs_22 ];
+      home.packages =
+        with pkgs;
+        [ nodejs_22 ]
+        ++ lib.lists.optionals (cfg.typescript.enable) [
+          typescript
+          typescript-language-server
+        ];
 
       homeModules.applications.vscode = {
-        additionalExtensions =
-          with pkgs;
-          [
-            vscode-extensions.esbenp.prettier-vscode
-            vscode-extensions.dbaeumer.vscode-eslint
-            vscode-extensions.usernamehw.errorlens
-            vscode-extensions.editorconfig.editorconfig
-          ]
-          ++ lib.lists.optionals (cfg.typescript.enable) [
-            typescript
-            typescript-language-server
-          ];
+        additionalExtensions = with pkgs; [
+          vscode-extensions.esbenp.prettier-vscode
+          vscode-extensions.dbaeumer.vscode-eslint
+          vscode-extensions.usernamehw.errorlens
+          vscode-extensions.editorconfig.editorconfig
+        ];
 
         additionalUserSettings = {
           "[html]" = {
