@@ -19,6 +19,7 @@
     ./fzf
     ./github-cli
     ./signal
+    ./license-cli
   ];
 
   homeModules.applications = {
@@ -31,5 +32,6 @@
     fzf.enable = lib.mkDefault true;
     zellij.enable = lib.mkDefault true;
     github-cli.enable = lib.mkDefault true;
+    license-cli.enable = lib.mkDefault true;
   };
 }
