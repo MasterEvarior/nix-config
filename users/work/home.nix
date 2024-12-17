@@ -24,7 +24,6 @@
       dooit.enable = true;
       cypress = {
         enable = true;
-        additionalBrowsers = [ ];
       };
       deja-dup.enable = true;
       watson.enable = true;
