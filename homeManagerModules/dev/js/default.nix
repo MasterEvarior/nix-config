@@ -6,8 +6,14 @@
 }:
 
 {
+  imports = [
+    ./angular.nix
+    ./react.nix
+    ./vue.nix
+  ];
+
   options.homeModules.dev.js = {
-    enable = lib.mkEnableOption "JS/TS/Angular/...";
+    enable = lib.mkEnableOption "JS/TS/...";
   };
 
   config = lib.mkIf config.homeModules.dev.js.enable {
@@ -15,7 +21,6 @@
 
     homeModules.applications.vscode = {
       additionalExtensions = with pkgs; [
-        vscode-extensions.angular.ng-template
         vscode-extensions.esbenp.prettier-vscode
         vscode-extensions.dbaeumer.vscode-eslint
         vscode-extensions.usernamehw.errorlens
