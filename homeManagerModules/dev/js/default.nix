@@ -13,31 +13,46 @@
   ];
 
   options.homeModules.dev.js = {
-    enable = lib.mkEnableOption "JS/TS/...";
+    enable = lib.mkEnableOption "JS support";
+    typescript.enable = lib.mkEnableOption "TS support";
   };
 
-  config = lib.mkIf config.homeModules.dev.js.enable {
-    home.packages = with pkgs; [ nodejs_22 ];
+  config =
+    let
+      cfg = config.homeModules.dev.js;
+    in
+    lib.mkIf cfg.enable {
+      home.packages = with pkgs; [ nodejs_22 ];
 
-    homeModules.applications.vscode = {
-      additionalExtensions = with pkgs; [
-        vscode-extensions.esbenp.prettier-vscode
-        vscode-extensions.dbaeumer.vscode-eslint
-        vscode-extensions.usernamehw.errorlens
-        vscode-extensions.editorconfig.editorconfig
-      ];
+      homeModules.applications.vscode = {
+        additionalExtensions =
+          with pkgs;
+          [
+            vscode-extensions.esbenp.prettier-vscode
+            vscode-extensions.dbaeumer.vscode-eslint
+            vscode-extensions.usernamehw.errorlens
+            vscode-extensions.editorconfig.editorconfig
+          ]
+          ++ lib.lists.optionals (cfg.typescript.enable) [
+            typescript
+            typescript-language-server
+          ];
 
-      additionalUserSettings = {
-        "[html]" = {
-          "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "editor.formatOnSave" = true;
-        };
-        "[javascript]" = {
-          "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "editor.formatOnSave" = true;
+        additionalUserSettings = {
+          "[html]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+            "editor.formatOnSave" = true;
+          };
+          "[javascript]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+            "editor.formatOnSave" = true;
+          };
+          "[typescript]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+            "editor.formatOnSave" = true;
+          };
         };
       };
-    };
 
-  };
+    };
 }
