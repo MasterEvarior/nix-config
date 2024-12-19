@@ -113,6 +113,9 @@
             type = "prompt";
           }
         ];
+        upgrade =  {
+          notice = false;
+        };
         version = 2;
       };
     };
