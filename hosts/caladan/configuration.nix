@@ -13,7 +13,7 @@
   modules.grub2Theme = {
     enabled = true;
     resolution = "ultrawide";
-    backgroundImage = ./assets/wallpapers/grub/ultrawide-background.png;
+    backgroundImage = ./assets/wallpapers/grub/ultrawide-background.jpg;
   };
 
   modules.desktop.hyprland = {
