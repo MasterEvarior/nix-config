@@ -163,6 +163,16 @@
           "command" = "-editor.action.smartSelect.expand";
           "when" = "editorTextFocus";
         }
+        {
+          "key" = "ctrl+d";
+          "command" = "editor.action.copyLinesDownAction";
+          "when" = "editorTextFocus && !editorReadonly";
+        }
+        {
+          "key" = "ctrl+y";
+          "command" = "editor.action.deleteLines";
+          "when" = "textInputFocus && !editorReadonly";
+        }
       ];
     };
   };
