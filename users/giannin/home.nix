@@ -38,7 +38,6 @@
   };
 
   homeModules.dev = {
-    jupyter.enable = true;
     terraform.enable = true;
   };
 
