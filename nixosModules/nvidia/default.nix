@@ -9,7 +9,7 @@
     # Most of this is straight from the wiki
     # https://nixos.wiki/wiki/Nvidia
 
-    hardware.opengl.enable = true;
+    hardware.graphics.enable = true;
 
     hardware.nvidia = {
       modesetting.enable = true;
