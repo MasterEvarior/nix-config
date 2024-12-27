@@ -29,8 +29,10 @@
           yarn
         ]
         ++ lib.lists.optionals (cfg.typescript.enable) [
-          typescript
           typescript-language-server
+        ]
+        ++ lib.lists.optionals (cfg.typescript.enable && !cfg.angular.enable) [
+          typescript
         ];
 
       homeModules.applications.vscode = {
