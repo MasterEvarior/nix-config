@@ -1,5 +1,6 @@
 # ❄️ NixOS Configuration
-[![Nix](https://img.shields.io/badge/built%20with-Nix-5277C3.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)  ![Quality Check](https://github.com/MasterEvarior/nix-config/actions/workflows/quality.yaml/badge.svg)  
+[![Nix](https://img.shields.io/badge/built%20with-Nix-5277C3.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/MasterEvarior/nix-config/quality.yaml?style=flat-square&logo=github&label=Quality%20Check)
+  
 This is my NixOS configuration, with some help of my personal Nix guru  [Imatpot](https://github.com/imatpot/dotfiles).
 
 ## How to use
