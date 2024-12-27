@@ -24,7 +24,10 @@
     lib.mkIf cfg.enable {
       home.packages =
         with pkgs;
-        [ nodejs_22 ]
+        [
+          nodejs_22
+          yarn
+        ]
         ++ lib.lists.optionals (cfg.typescript.enable) [
           typescript
           typescript-language-server
