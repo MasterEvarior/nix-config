@@ -1,7 +1,5 @@
 on: [push]
-
 name: Quality Check
-
 jobs:
   deadnix:
     name: Deadnix
