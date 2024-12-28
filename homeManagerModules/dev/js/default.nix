@@ -59,5 +59,26 @@
         };
       };
 
+      homeModules.applications.treefmt.additionalFormatters = with pkgs; [
+        {
+          name = "prettier";
+          command = "prettier";
+          options = [ "--write" ];
+          includes = [
+            "*.cjs"
+            "*.css"
+            "*.html"
+            "*.js"
+            "*.jsx"
+            "*.mdx"
+            "*.mjs"
+            "*.scss"
+            "*.ts"
+            "*.tsx"
+            "*.vue"
+          ];
+          package = nodePackages.prettier;
+        }
+      ];
     };
 }
