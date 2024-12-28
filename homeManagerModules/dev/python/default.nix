@@ -25,5 +25,17 @@
         pythonPkgs: with pythonPkgs; config.homeModules.dev.python.additionalPackages
       ))
     ];
+
+    homeModules.applications.treefmt.additionalFormatters = with pkgs; [
+      {
+        name = "black";
+        command = "black";
+        includes = [
+          "*.py"
+          "*.pyi"
+        ];
+        package = black;
+      }
+    ];
   };
 }
