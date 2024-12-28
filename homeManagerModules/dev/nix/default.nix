@@ -98,5 +98,21 @@
         };
       };
     };
+
+    homeModules.applications.treefmt.additionalFormatters = with pkgs; [
+      {
+        name = "deadnix";
+        command = "deadnix";
+        includes = [ "*.nix" ];
+        options = [ "--edit" ];
+        package = deadnix;
+      }
+      {
+        name = "nixfmt-rfc-style";
+        command = "nixfmt";
+        includes = [ "*.nix" ];
+        package = nixfmt-rfc-style;
+      }
+    ];
   };
 }

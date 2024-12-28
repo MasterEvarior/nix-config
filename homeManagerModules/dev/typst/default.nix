@@ -34,6 +34,19 @@
       };
     };
 
+    homeModules.applications.treefmt.additionalFormatters = with pkgs; [
+      {
+        name = "typstfmt";
+        command = "typstfmt";
+        includes = [
+          "*.typ"
+          "*.typst"
+        ];
+        options = [ "--edit" ];
+        package = typstfmt;
+      }
+    ];
+
     home.file.templates = {
       recursive = true;
       source = ./assets/templates;

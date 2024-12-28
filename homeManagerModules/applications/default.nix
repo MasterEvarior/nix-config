@@ -20,6 +20,7 @@
     ./github-cli
     ./signal
     ./license-cli
+    ./treefmt
   ];
 
   homeModules.applications = {
@@ -33,5 +34,6 @@
     zellij.enable = lib.mkDefault true;
     github-cli.enable = lib.mkDefault true;
     license-cli.enable = lib.mkDefault true;
+    treefmt.enable = lib.mkDefault true;
   };
 }
