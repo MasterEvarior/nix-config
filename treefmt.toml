@@ -1,0 +1,44 @@
+[formatter.mdformat]
+command = "mdformat"
+options = []
+excludes = []
+includes = ["*.md"]
+
+[formatter.yamlfmt]
+command = "yamlfmt"
+options = []
+excludes = []
+includes = ["*.yml","*.yaml"]
+
+[formatter.jsonfmt]
+command = "jsonfmt"
+options = ["-w"]
+excludes = []
+includes = ["*.json","*.jsonc"]
+
+[formatter.beautysh]
+command = "beautysh"
+options = ["-i","2"]
+excludes = []
+includes = ["*.sh"]
+
+[formatter.typstfmt]
+command = "typstfmt"
+options = ["--edit"]
+excludes = []
+includes = ["*.typ","*.typst"]
+
+[formatter.deadnix]
+command = "deadnix"
+options = ["--edit"]
+excludes = []
+includes = ["*.nix"]
+
+[formatter.nixfmt-rfc-style]
+command = "nixfmt"
+options = []
+excludes = []
+includes = ["*.nix"]
+
+[global]
+excludes = [ "*.png", "*.jpg", "*.jpeg" ]
