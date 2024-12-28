@@ -59,6 +59,15 @@
       default = [ ];
       description = "A list of additional formatters to be installed and configured";
     };
+    globalExcludes = lib.mkOption {
+      default = [ ];
+      example = [
+        "*.png"
+        "*.jpg"
+      ];
+      type = lib.types.listOf lib.types.str;
+      description = "List of files that should be ignored by every formatter";
+    };
   };
 
   config =
@@ -71,49 +80,58 @@
         excludes = ${builtins.toJSON formatter.excludes}
         includes = ${builtins.toJSON formatter.includes}
       '';
-      generateEntireTOML = builtins.concatStringsSep "\n" (
-        lib.map generateFormatterTOML cfg.additionalFormatters
-      );
+      generateEntireTOML = ''
+        ${builtins.concatStringsSep "\n" (lib.map generateFormatterTOML cfg.additionalFormatters)}
+        [global]
+        excludes = ${builtins.toJSON cfg.globalExcludes}
+      '';
       packages = map (p: p.package) cfg.additionalFormatters;
     in
     lib.mkIf config.homeModules.applications.treefmt.enable {
-      homeModules.applications.treefmt.additionalFormatters = lib.mkBefore [
-        {
-          name = "mdformat";
-          command = "mdformat";
-          includes = [ "*.md" ];
-          package = pkgs.mdformat;
-        }
-        {
-          name = "yamlfmt";
-          command = "yamlfmt";
-          includes = [
-            "*.yml"
-            "*.yaml"
-          ];
-          package = pkgs.yamlfmt;
-        }
-        {
-          name = "jsonfmt";
-          command = "jsonfmt";
-          includes = [
-            "*.json"
-            "*.jsonc"
-          ];
-          options = [ "-w" ];
-          package = pkgs.jsonfmt;
-        }
-        {
-          name = "beautysh";
-          command = "beautysh";
-          includes = [ "*.sh" ];
-          options = [
-            "-i"
-            "2"
-          ];
-          package = pkgs.beautysh;
-        }
-      ];
+      homeModules.applications.treefmt = {
+        globalExcludes = lib.mkBefore [
+          "*.png"
+          "*.jpg"
+          "*.jpeg"
+        ];
+        additionalFormatters = lib.mkBefore [
+          {
+            name = "mdformat";
+            command = "mdformat";
+            includes = [ "*.md" ];
+            package = pkgs.mdformat;
+          }
+          {
+            name = "yamlfmt";
+            command = "yamlfmt";
+            includes = [
+              "*.yml"
+              "*.yaml"
+            ];
+            package = pkgs.yamlfmt;
+          }
+          {
+            name = "jsonfmt";
+            command = "jsonfmt";
+            includes = [
+              "*.json"
+              "*.jsonc"
+            ];
+            options = [ "-w" ];
+            package = pkgs.jsonfmt;
+          }
+          {
+            name = "beautysh";
+            command = "beautysh";
+            includes = [ "*.sh" ];
+            options = [
+              "-i"
+              "2"
+            ];
+            package = pkgs.beautysh;
+          }
+        ];
+      };
 
       home.packages =
         with pkgs;
