@@ -1,10 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, osConfig, ... }:
 
+let
+  username = "giannin";
+in
 {
   imports = [ ./../../homeManagerModules ];
 
-  home.username = "giannin";
-  home.homeDirectory = "/home/giannin";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   home.packages = with pkgs; [
     # Entertainment & Media
@@ -27,6 +30,24 @@
         additionalBrowsers = [ ];
       };
       zellij.additionalLayouts = ./assets/zellij-layouts;
+      b2-backup = {
+        enable = true;
+        name = "${osConfig.networking.hostName}-${username}";
+        directoriesToBackup = [
+          /home/giannin/Downloads
+          /home/giannin/Pictures
+          /home/giannin/Templates
+          /home/giannin/Desktop
+          /home/giannin/Videos
+          /home/giannin/Music
+          /home/giannin/Documents
+        ];
+        directoriesToExclude = [
+          /home/giannin/Documents/Github
+          /home/giannin/Documents/GitHub
+          /home/giannin/Documents/OneDrive
+        ];
+      };
     };
 
     dev.git = {

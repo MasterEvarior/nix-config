@@ -21,6 +21,7 @@
     ./signal
     ./license-cli
     ./treefmt
+    ./b2-backup
   ];
 
   homeModules.applications = {
