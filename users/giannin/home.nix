@@ -21,6 +21,10 @@ in
     gowall
   ];
 
+  sops = {
+    age.keyFile = "/home/giannin/.config/sops/age/keys.txt"; # must have no password!
+  };
+
   homeModules = {
     applications = {
       onedrive.enable = true;

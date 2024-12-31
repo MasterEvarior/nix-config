@@ -39,10 +39,14 @@
             ./hosts/arrakis/configuration.nix
 
             inputs.grub2-themes.nixosModules.default
+            inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.sharedModules = [
+                inputs.sops-nix.homeManagerModules.sops
+              ];
             }
           ];
         };
@@ -53,10 +57,14 @@
             ./hosts/caladan/configuration.nix
 
             inputs.grub2-themes.nixosModules.default
+            inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.sharedModules = [
+                inputs.sops-nix.homeManagerModules.sops
+              ];
             }
           ];
         };
@@ -67,14 +75,12 @@
           inherit pkgs;
           modules = [
             ./users/giannin/home.nix
-            inputs.spicetify-nix.homeManagerModules.default
           ];
         };
         "work" = inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             ./users/work/home.nix
-            inputs.spicetify-nix.homeManagerModules.default
           ];
         };
       };
