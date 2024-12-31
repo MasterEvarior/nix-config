@@ -39,6 +39,8 @@
         aliases = {
           clear = "! clear";
           ss = "stash save";
+          sl = "stash list";
+          sa = "stash save";
           s = "status";
           pl = "pull";
           ps = "push";
