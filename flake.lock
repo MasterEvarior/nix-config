@@ -56,6 +56,24 @@
         "type": "github"
       }
     },
+    "my-sops-secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735662371,
+        "narHash": "sha256-5dfoPmvZmOpW2WGIHn850/ZGPIuyNUBKQc4euTWuKSE=",
+        "ref": "main",
+        "rev": "5924e08cacc95afeaf6a5f4d3b4d0e77b8b020c7",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/MasterEvarior/nix-secrets"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/MasterEvarior/nix-secrets"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1712963716,
@@ -109,7 +127,29 @@
         "catppuccin-vsc": "catppuccin-vsc",
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_3"
+        "my-sops-secrets": "my-sops-secrets",
+        "nixpkgs": "nixpkgs_3",
+        "sops-nix": "sops-nix"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735468296,
+        "narHash": "sha256-ZjUjbvS06jf4fElOF4ve8EHjbpbRVHHypStoY8HGzk8=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "bcb8b65aa596866eb7e5c3e1a6cccbf5d1560b27",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     }
   },
