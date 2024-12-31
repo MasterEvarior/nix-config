@@ -15,26 +15,14 @@
 
     # https://github.com/catppuccin/vscode?tab=readme-ov-file#nix-home-manager-users
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
-
-    # https://github.com/Gerg-L/spicetify-nix
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
-    {
-      nixpkgs,
-      home-manager,
-      grub2-themes,
-      spicetify-nix,
-      ...
-    }@inputs:
+    inputs:
     let
       system = "x86_64-linux";
-      lib = nixpkgs.lib;
-      pkgs = (nixpkgs.legacyPackages.${system}.extend inputs.catppuccin-vsc.overlays.default);
+      lib = inputs.nixpkgs.lib;
+      pkgs = (inputs.nixpkgs.legacyPackages.${system}.extend inputs.catppuccin-vsc.overlays.default);
     in
     {
       nixosConfigurations = {
@@ -43,8 +31,8 @@
           modules = [
             ./hosts/arrakis/configuration.nix
 
-            grub2-themes.nixosModules.default
-            home-manager.nixosModules.home-manager
+            inputs.grub2-themes.nixosModules.default
+            inputs.home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -57,8 +45,8 @@
           modules = [
             ./hosts/caladan/configuration.nix
 
-            grub2-themes.nixosModules.default
-            home-manager.nixosModules.home-manager
+            inputs.grub2-themes.nixosModules.default
+            inputs.home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -68,14 +56,14 @@
       };
 
       homeConfigurations = {
-        "giannin" = home-manager.lib.homeManagerConfiguration {
+        "giannin" = inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             ./users/giannin/home.nix
             inputs.spicetify-nix.homeManagerModules.default
           ];
         };
-        "work" = home-manager.lib.homeManagerConfiguration {
+        "work" = inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             ./users/work/home.nix

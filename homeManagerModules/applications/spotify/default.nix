@@ -16,6 +16,5 @@
 
   config = lib.mkIf config.homeModules.applications.spotify.enable {
     home.packages = with pkgs; [ spotify ];
-    # homeModules.applications.spotify.spicetify.enable = lib.mkDefault false;
   };
 }
