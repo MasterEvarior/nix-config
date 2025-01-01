@@ -29,7 +29,7 @@
     let
       system = "x86_64-linux";
       lib = inputs.nixpkgs.lib;
-      pkgs = (inputs.nixpkgs.legacyPackages.${system}.extend inputs.catppuccin-vsc.overlays.default);
+      hmExtraSpecialArgs = { inherit inputs; };
     in
     {
       nixosConfigurations = {
@@ -47,6 +47,7 @@
               home-manager.sharedModules = [
                 inputs.sops-nix.homeManagerModules.sops
               ];
+              home-manager.extraSpecialArgs = hmExtraSpecialArgs;
             }
           ];
         };
@@ -65,6 +66,7 @@
               home-manager.sharedModules = [
                 inputs.sops-nix.homeManagerModules.sops
               ];
+              home-manager.extraSpecialArgs = hmExtraSpecialArgs;
             }
           ];
         };
@@ -72,13 +74,11 @@
 
       homeConfigurations = {
         "giannin" = inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
           modules = [
             ./users/giannin/home.nix
           ];
         };
         "work" = inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
           modules = [
             ./users/work/home.nix
           ];

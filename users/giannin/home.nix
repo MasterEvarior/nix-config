@@ -1,7 +1,13 @@
-{ pkgs, osConfig, ... }:
+{
+  pkgs,
+  osConfig,
+  inputs,
+  ...
+}:
 
 let
   username = "giannin";
+  secretPath = "${builtins.toString inputs.my-sops-secrets}/secrets.yaml";
 in
 {
   imports = [ ./../../homeManagerModules ];
@@ -22,7 +28,9 @@ in
   ];
 
   sops = {
-    age.keyFile = "/home/giannin/.config/sops/age/keys.txt"; # must have no password!
+    age.keyFile = "/home/giannin/.config/sops/age/keys.txt";
+    defaultSopsFile = secretPath;
+    secrets."b2_backup/passphrase" = { };
   };
 
   homeModules = {
