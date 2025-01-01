@@ -1,13 +1,11 @@
 {
   pkgs,
   osConfig,
-  inputs,
   ...
 }:
 
 let
   username = "giannin";
-  secretPath = "${builtins.toString inputs.my-sops-secrets}/secrets.yaml";
 in
 {
   imports = [ ./../../homeManagerModules ];
@@ -27,13 +25,8 @@ in
     gowall
   ];
 
-  sops = {
-    age.keyFile = "/home/giannin/.config/sops/age/keys.txt";
-    defaultSopsFile = secretPath;
-    secrets."b2_backup/passphrase" = { };
-  };
-
   homeModules = {
+    sops.enable = true;
     applications = {
       onedrive.enable = true;
       zotero.enable = true;
