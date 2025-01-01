@@ -29,60 +29,44 @@
     let
       system = "x86_64-linux";
       lib = inputs.nixpkgs.lib;
-      hmExtraSpecialArgs = { inherit inputs; };
+      hmConfiguration = {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.sharedModules = [
+          inputs.sops-nix.homeManagerModules.sops
+        ];
+        home-manager.extraSpecialArgs = { inherit inputs; };
+      };
+      systemModules = configPath: [
+        configPath
+        inputs.grub2-themes.nixosModules.default
+        inputs.sops-nix.nixosModules.sops
+        inputs.home-manager.nixosModules.home-manager
+        hmConfiguration
+      ];
+      mkSystem =
+        _hostname:
+        lib.nixosSystem {
+          system = "${system}";
+          modules = systemModules ./hosts/arrakis/configuration.nix;
+        };
+      mkHome =
+        homePath:
+        inputs.home-manager.lib.homeManagerConfiguration {
+          modules = [
+            homePath
+          ];
+        };
     in
     {
       nixosConfigurations = {
-        "arrakis" = lib.nixosSystem {
-          system = "${system}";
-          modules = [
-            ./hosts/arrakis/configuration.nix
-
-            inputs.grub2-themes.nixosModules.default
-            inputs.sops-nix.nixosModules.sops
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.sharedModules = [
-                inputs.sops-nix.homeManagerModules.sops
-              ];
-              home-manager.extraSpecialArgs = hmExtraSpecialArgs;
-            }
-          ];
-        };
-
-        "caladan" = lib.nixosSystem {
-          system = "${system}";
-          modules = [
-            ./hosts/caladan/configuration.nix
-
-            inputs.grub2-themes.nixosModules.default
-            inputs.sops-nix.nixosModules.sops
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.sharedModules = [
-                inputs.sops-nix.homeManagerModules.sops
-              ];
-              home-manager.extraSpecialArgs = hmExtraSpecialArgs;
-            }
-          ];
-        };
+        "arrakis" = mkSystem "arrakis";
+        "caladan" = mkSystem "caladan";
       };
 
       homeConfigurations = {
-        "giannin" = inputs.home-manager.lib.homeManagerConfiguration {
-          modules = [
-            ./users/giannin/home.nix
-          ];
-        };
-        "work" = inputs.home-manager.lib.homeManagerConfiguration {
-          modules = [
-            ./users/work/home.nix
-          ];
-        };
+        "giannin" = mkHome ./users/giannin/home.nix;
+        "work" = mkHome ./users/work/home.nix;
       };
     };
 }
