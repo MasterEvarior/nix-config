@@ -29,6 +29,14 @@ I try to style everything according to the [Catpuccin Mocha Theme](https://githu
 
 ## Development
 
+### Linting
+
+Run all the linters with the `treefmt` command. Note that the command does not install the required formatters.
+
+```shell
+treefmt
+```
+
 ### Git Hooks
 
 There are some hooks for formatting and the like. To use those, execute the following command:
