@@ -6,6 +6,8 @@ This is my NixOS configuration, with some help of my personal Nix guru  [Imatpot
 
 ## How to use
 
+### Setup
+
 This guide is strictly for me only. If you try to use it on you machine it will most likely fail, because you do not have the same hardware as I do. So use with caution.
 
 1 Clone this repository onto your machine\
@@ -14,7 +16,7 @@ This guide is strictly for me only. If you try to use it on you machine it will 
 4\. Rebuild with `sudo nixos-rebuild --flake . switch`\
 5\. ❄️❄️❄️ Bathe in the glory of NixOS ❄️❄️❄️
 
-## Manuel Steps
+#### Manuel Steps
 
 After the installation a couple of manual steps are still necessary. They are as follows:
 
@@ -22,6 +24,20 @@ After the installation a couple of manual steps are still necessary. They are as
 - Set passwords with `passwd <user>` where necessary
 - Log into Mozzila account for Firefox
 - Log into Jetbrains account for IDEs
+
+### Secrets
+
+Secrets are managed with [sops-nix](https://github.com/Mic92/sops-nix) in a separate repository.
+
+### Backups
+
+Backups are done weekly to [Backblaze B2](https://www.backblaze.com/), zipped and encrypted with GPG.
+
+Use this command to decrypt then when necessary:
+
+```shell
+gpg --decrypt --pinentry-mode loopback --output test.zip 2025-01-02T193940.zip
+```
 
 ## Theme
 

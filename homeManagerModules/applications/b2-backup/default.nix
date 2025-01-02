@@ -24,8 +24,8 @@
       description = "Systemd timer interval";
     };
     localBackupDirectory = lib.mkOption {
-      default = "~/.b2-backups";
-      example = "~/.b2-backups";
+      default = "${config.home.homeDirectory}/.b2-backups";
+      example = "${config.home.homeDirectory}/.b2-backups";
       type = lib.types.str;
       description = "Path where backups are temporarily stored before they are uploaded and then deleted.";
     };
@@ -111,24 +111,27 @@
               echo "Ensuring backup directory is empty"
               rm -rf ${cfg.localBackupDirectory}/*
 
-              FILENAME="$(echo "$(date +"%FT%H%M%S").zip")"
+              FILENAME="$(echo $(date +'%FT%H%M%S').zip)"
               FILEPATH="${cfg.localBackupDirectory}/$FILENAME"
               echo "Creating backup of files ${include} at $FILEPATH without ${exclude}"
               ${pkgs.zip}/bin/zip -q -r $FILEPATH ${include} ${exclude}
 
               echo "Encrypting backup"
+              ENCRYPTED_FILENAME="$FILENAME.gpg"
               ENCRYPTED_FILEPATH="$FILEPATH.gpg"
               ${pkgs.gnupg}/bin/gpg --symmetric --cipher-algo AES256 --passphrase $(${cfg.encryptionPasswordEval}) --batch --output $ENCRYPTED_FILEPATH $FILEPATH
 
+              echo "Logging into Backblaze B2"
+              ${pkgs.backblaze-b2}/bin/b2v4 account authorize ${cfg.b2AuthenticationEval} > /dev/null
+
               echo "Uploading to bucket ${bucketName}"
-              ${pkgs.backblaze-b2}/bin/b2v4 account authorize $(${cfg.b2AuthenticationEval})
               if ! ${pkgs.backblaze-b2}/bin/b2v4 bucket get ${bucketName}; then
                 echo "${bucketName} not found, creating new bucket"
                 ${pkgs.backblaze-b2}/bin/b2v4 bucket create ${bucketName} ${bucketType} 
               fi
               ${pkgs.backblaze-b2}/bin/b2v4 bucket update ${bucketName} ${bucketType} --lifecycle-rule '${lifecycleRule}'
 
-              ${pkgs.backblaze-b2}/bin/b2v4 file upload ${bucketName} $ENCRYPTED_FILEPATH $FILENAME --no-progress
+              ${pkgs.backblaze-b2}/bin/b2v4 file upload ${bucketName} $ENCRYPTED_FILEPATH $ENCRYPTED_FILENAME --no-progress
               ${pkgs.backblaze-b2}/bin/b2v4 account clear
 
               echo "Cleaning up local backups at ${cfg.localBackupDirectory}"
