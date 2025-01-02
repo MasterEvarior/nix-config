@@ -1,6 +1,7 @@
 {
   pkgs,
   osConfig,
+  config,
   ...
 }:
 
@@ -35,9 +36,16 @@ in
         additionalBrowsers = [ ];
       };
       zellij.additionalLayouts = ./assets/zellij-layouts;
+
       b2-backup = {
         enable = true;
         name = "${osConfig.networking.hostName}-${username}";
+        encryptionPasswordEval = "${pkgs.bat}/bin/bat -pp ${
+          config.sops.secrets."b2_backup/passphrase".path
+        }";
+        b2AuthenticationEval = "$(${pkgs.bat}/bin/bat -pp ${
+          config.sops.secrets."b2_backup/application_key/id".path
+        }) $(${pkgs.bat}/bin/bat -pp ${config.sops.secrets."b2_backup/application_key/key".path})";
         directoriesToBackup = [
           /home/giannin/Downloads
           /home/giannin/Pictures

@@ -11,7 +11,7 @@
     name = lib.mkOption {
       example = "arrakis";
       type = lib.types.str;
-      description = "Name of the backup, should be unique for each host. Will be used to create the bucketname.";
+      description = "Name of the backup, should be unique for each host, user and over all of B2. Will be used to create the bucket name of the bucket.";
     };
     schedule = lib.mkOption {
       default = "weekly";
@@ -46,6 +46,22 @@
       type = lib.types.listOf lib.types.path;
       description = "List of directories to exclude from backup";
     };
+    encryptionPasswordEval = lib.mkOption {
+      example = "cat /your/secret/password.txt";
+      type = lib.types.str;
+      description = "Command to retrieve the password for encrypting your password.";
+    };
+    b2AuthenticationEval = lib.mkOption {
+      example = "$(cat -pp ~/your/application_key/id) $(cat -pp ~/your/application_key/key)";
+      type = lib.types.str;
+      description = "Command(s) to evluate your application key id and the key itself";
+    };
+    weeksToKeepBackups = lib.mkOption {
+      default = 26;
+      example = 26;
+      type = lib.types.int;
+      description = "Amount of weeks to keep the backups files before they get deleted";
+    };
   };
 
   config =
@@ -60,11 +76,20 @@
           + builtins.concatStringsSep " " (lib.map (d: "'" + toString d + "/*'") cfg.directoriesToExclude)
           + " @";
       bucketName = "${cfg.name}-${builtins.hashString "md5" cfg.name}";
+      bucketType = "allPrivate";
+      daysToKeep = cfg.weeksToKeepBackups * 7;
+      lifecycleRule = builtins.toJSON {
+        daysFromStartingToCancelingUnfinishedLargeFiles = 1;
+        daysFromUploadingToHiding = daysToKeep;
+        daysFromHidingToDeleting = 1;
+        fileNamePrefix = "";
+      };
     in
     lib.mkIf config.homeModules.applications.b2-backup.enable {
       home.packages = with pkgs; [
         backblaze-b2
         zip
+        gnupg
       ];
 
       systemd.user = {
@@ -86,14 +111,28 @@
               echo "Ensuring backup directory is empty"
               rm -rf ${cfg.localBackupDirectory}/*
 
-              FILENAME=${cfg.localBackupDirectory}/$(echo "$(date +"%FT%H%M%S").zip")
-              echo "Creating backup of files ${include} at $FILENAME without ${exclude}"
-              ${pkgs.zip}/bin/zip -q -r $FILENAME ${include} ${exclude}
+              FILENAME="$(echo "$(date +"%FT%H%M%S").zip")"
+              FILEPATH="${cfg.localBackupDirectory}/$FILENAME"
+              echo "Creating backup of files ${include} at $FILEPATH without ${exclude}"
+              ${pkgs.zip}/bin/zip -q -r $FILEPATH ${include} ${exclude}
+
+              echo "Encrypting backup"
+              ENCRYPTED_FILEPATH="$FILEPATH.gpg"
+              ${pkgs.gnupg}/bin/gpg --symmetric --cipher-algo AES256 --passphrase $(${cfg.encryptionPasswordEval}) --batch --output $ENCRYPTED_FILEPATH $FILEPATH
+
+              echo "Uploading to bucket ${bucketName}"
+              ${pkgs.backblaze-b2}/bin/b2v4 account authorize $(${cfg.b2AuthenticationEval})
+              if ! ${pkgs.backblaze-b2}/bin/b2v4 bucket get ${bucketName}; then
+                echo "${bucketName} not found, creating new bucket"
+                ${pkgs.backblaze-b2}/bin/b2v4 bucket create ${bucketName} ${bucketType} 
+              fi
+              ${pkgs.backblaze-b2}/bin/b2v4 bucket update ${bucketName} ${bucketType} --lifecycle-rule '${lifecycleRule}'
+
+              ${pkgs.backblaze-b2}/bin/b2v4 file upload ${bucketName} $ENCRYPTED_FILEPATH $FILENAME --no-progress
+              ${pkgs.backblaze-b2}/bin/b2v4 account clear
 
               echo "Cleaning up local backups at ${cfg.localBackupDirectory}"
               rm -rf ${cfg.localBackupDirectory}/*
-
-              echo "Uploading to bucket ${bucketName}"
 
               echo "Backup done!"
             ''}";
