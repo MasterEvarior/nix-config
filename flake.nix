@@ -67,6 +67,7 @@
       homeConfigurations = {
         "giannin" = mkHome ./users/giannin/home.nix;
         "work" = mkHome ./users/work/home.nix;
+        "htpc" = mkHome ./users/htpc/home.nix;
       };
     };
 }
