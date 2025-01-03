@@ -27,6 +27,14 @@ in
       type = lib.types.path;
       description = "Path to your secrets.yaml file";
     };
+    secretsToLoad = lib.mkOption {
+      default = { };
+      example = {
+        "your/secret" = { };
+      };
+      type = lib.types.attrs;
+      description = "A set where you can specified secrets to load";
+    };
   };
 
   config =
@@ -45,9 +53,7 @@ in
         defaultSopsFile = "${secretsFilePath}";
         validateSopsFiles = false;
 
-        secrets."b2_backup/passphrase" = { };
-        secrets."b2_backup/application_key/id" = { };
-        secrets."b2_backup/application_key/key" = { };
+        secrets = { } // cfg.secretsToLoad;
       };
     };
 }

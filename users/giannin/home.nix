@@ -27,7 +27,15 @@ in
   ];
 
   homeModules = {
-    sops.enable = true;
+    sops = {
+      enable = true;
+      secretsToLoad = {
+        "b2_backup/passphrase" = { };
+        "b2_backup/application_key/id" = { };
+        "b2_backup/application_key/key" = { };
+      };
+    };
+
     applications = {
       onedrive.enable = true;
       zotero.enable = true;
