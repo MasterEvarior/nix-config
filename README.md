@@ -39,7 +39,22 @@ Use this command to decrypt then when necessary:
 gpg --decrypt --pinentry-mode loopback --output test.zip 2025-01-02T193940.zip
 ```
 
-## Theme
+## Resources
+
+A list of all the PCs/Laptops and their users.
+
+### Users
+
+- `giannin` - My personal user
+- `work` - User for work
+- `htpc` - User for the home theater PC in the living room
+
+### Hosts
+
+- `arrakis` - My Thinkpad P16s Gen 2
+- `caladan`- My Desktop (whatever the specs may be)
+
+## Theming
 
 I try to style everything according to the [Catpuccin Mocha Theme](https://github.com/catppuccin). If you like what you see, head over there and drop them a couple of bucks!
 
