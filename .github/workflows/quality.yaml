@@ -19,7 +19,7 @@ jobs:
           go-version: '>1.21'
       - name: Install yamlfmt
         run: go install github.com/google/yamlfmt/cmd/yamlfmt@latest
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5
       - uses: CfirTsabari/actions-pipx@v1
       - name: Install mdformat
         run: pipx install mdformat==0.7.18
