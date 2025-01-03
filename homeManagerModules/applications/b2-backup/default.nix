@@ -84,6 +84,7 @@
         daysFromHidingToDeleting = 1;
         fileNamePrefix = "";
       };
+      serviceName = "b2-backup";
     in
     lib.mkIf config.homeModules.applications.b2-backup.enable {
       home.packages = with pkgs; [
@@ -92,10 +93,15 @@
         gnupg
       ];
 
+      home.shellAliases = {
+        "${serviceName}-show-timer" = "systemctl --user list-timers b2-backup.timer --all";
+        "${serviceName}-now" = "systemctl --user start b2-backup.service";
+      };
+
       systemd.user = {
         enable = true;
 
-        services.b2-backup = {
+        services."${serviceName}" = {
           Unit = {
             Description = "Backup data to Backblaze B2";
           };
@@ -142,7 +148,7 @@
           };
         };
 
-        timers.b2-backup = {
+        timers."${serviceName}" = {
           Unit = {
             Description = "Run the b2-backup service in a defined interval";
           };
