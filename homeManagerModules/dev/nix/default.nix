@@ -15,6 +15,7 @@
       nixfmt-rfc-style
       nixd
       deadnix
+      nurl
     ];
 
     home.shellAliases = {
@@ -95,6 +96,9 @@
               command = [ "nixfmt" ];
             };
           };
+        };
+        "[nix]" = {
+          "editor.formatOnSave" = true;
         };
       };
     };
