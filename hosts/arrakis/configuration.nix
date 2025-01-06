@@ -30,11 +30,6 @@
     pulse.enable = true;
   };
 
-  networking.extraHosts = ''
-    127.0.0.1 edview.unilu.ch 
-    127.0.0.1 edview-test.unilu.ch
-  '';
-
   # Custom bootloader theming
   modules.grub2Theme = {
     enabled = true;
