@@ -135,9 +135,12 @@
                 echo "${bucketName} not found, creating new bucket"
                 ${pkgs.backblaze-b2}/bin/b2v4 bucket create ${bucketName} ${bucketType} 
               fi
-              ${pkgs.backblaze-b2}/bin/b2v4 bucket update ${bucketName} ${bucketType} --lifecycle-rule '${lifecycleRule}'
+              ${pkgs.backblaze-b2}/bin/b2v4 bucket update ${bucketName} ${bucketType} --lifecycle-rule '${lifecycleRule}' > /dev/null
 
-              ${pkgs.backblaze-b2}/bin/b2v4 file upload ${bucketName} $ENCRYPTED_FILEPATH $ENCRYPTED_FILENAME --no-progress
+              echo "Uploading as file $ENCRYPTED_FILENAME"
+              ${pkgs.backblaze-b2}/bin/b2v4 file upload ${bucketName} $ENCRYPTED_FILEPATH $ENCRYPTED_FILENAME --no-progress > /dev/null
+
+              echo "Logging out from Backblaze B2"
               ${pkgs.backblaze-b2}/bin/b2v4 account clear
 
               echo "Cleaning up local backups at ${cfg.localBackupDirectory}"
