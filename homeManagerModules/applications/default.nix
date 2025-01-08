@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 {
   imports = [
@@ -25,18 +25,33 @@
     ./nano
   ];
 
-  homeModules.applications = {
-    vscode.enable = lib.mkDefault true;
-    fastfetch.enable = lib.mkDefault true;
-    "1password".enable = lib.mkDefault true;
-    spotify.enable = lib.mkDefault true;
-    comma.enable = lib.mkDefault true;
-    ms-teams.enable = lib.mkDefault true;
-    fzf.enable = lib.mkDefault true;
-    zellij.enable = lib.mkDefault true;
-    github-cli.enable = lib.mkDefault true;
-    license-cli.enable = lib.mkDefault true;
-    treefmt.enable = lib.mkDefault true;
-    nano.enable = lib.mkDefault true;
+  options.homeModules.applications.module = {
+    enableDefaults = lib.mkOption {
+      default = true;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether defaults should be enabled or not";
+    };
   };
+
+  config =
+    let
+      enableByDefault = config.homeModules.applications.module.enableDefaults;
+    in
+    {
+      homeModules.applications = {
+        vscode.enable = lib.mkDefault enableByDefault;
+        fastfetch.enable = lib.mkDefault enableByDefault;
+        "1password".enable = lib.mkDefault enableByDefault;
+        spotify.enable = lib.mkDefault enableByDefault;
+        comma.enable = lib.mkDefault enableByDefault;
+        ms-teams.enable = lib.mkDefault enableByDefault;
+        fzf.enable = lib.mkDefault enableByDefault;
+        zellij.enable = lib.mkDefault enableByDefault;
+        github-cli.enable = lib.mkDefault enableByDefault;
+        license-cli.enable = lib.mkDefault enableByDefault;
+        treefmt.enable = lib.mkDefault enableByDefault;
+        nano.enable = lib.mkDefault enableByDefault;
+      };
+    };
 }

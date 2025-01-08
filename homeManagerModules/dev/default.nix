@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 {
   imports = [
@@ -16,14 +16,29 @@
     ./openshift
   ];
 
-  homeModules.dev = {
-    js = {
-      enable = lib.mkDefault true;
-      typescript.enable = lib.mkDefault true;
+  options.homeModules.dev.module = {
+    enableDefaults = lib.mkOption {
+      default = true;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether defaults should be enabled or not";
     };
-    nix.enable = lib.mkDefault true;
-    typst.enable = lib.mkDefault true;
-    git.enable = lib.mkDefault true;
-    java.enable = lib.mkDefault true;
   };
+
+  config =
+    let
+      enableByDefault = config.homeModules.dev.module.enableDefaults;
+    in
+    {
+      homeModules.dev = {
+        js = {
+          enable = lib.mkDefault enableByDefault;
+          typescript.enable = lib.mkDefault enableByDefault;
+        };
+        nix.enable = lib.mkDefault enableByDefault;
+        typst.enable = lib.mkDefault enableByDefault;
+        git.enable = lib.mkDefault enableByDefault;
+        java.enable = lib.mkDefault enableByDefault;
+      };
+    };
 }
