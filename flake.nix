@@ -27,7 +27,6 @@
   outputs =
     inputs:
     let
-      system = "x86_64-linux";
       lib = inputs.nixpkgs.lib;
       hmConfiguration = {
         home-manager.useGlobalPkgs = true;
@@ -45,10 +44,10 @@
         hmConfiguration
       ];
       mkSystem =
-        _hostname:
+        hostname:
         lib.nixosSystem {
-          system = "${system}";
-          modules = systemModules ./hosts/arrakis/configuration.nix;
+          system = "x86_64-linux";
+          modules = systemModules (./. + "/hosts/${hostname}/configuration.nix");
         };
       mkHome =
         homePath:
