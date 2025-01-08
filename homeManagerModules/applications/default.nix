@@ -22,6 +22,7 @@
     ./license-cli
     ./treefmt
     ./b2-backup
+    ./nano
   ];
 
   homeModules.applications = {
@@ -36,5 +37,6 @@
     github-cli.enable = lib.mkDefault true;
     license-cli.enable = lib.mkDefault true;
     treefmt.enable = lib.mkDefault true;
+    nano.enable = lib.mkDefault true;
   };
 }
