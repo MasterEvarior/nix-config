@@ -28,20 +28,19 @@
     inputs:
     let
       lib = inputs.nixpkgs.lib;
-      hmConfiguration = {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.sharedModules = [
-          inputs.sops-nix.homeManagerModules.sops
-        ];
-        home-manager.extraSpecialArgs = { inherit inputs; };
-      };
       systemModules = configPath: [
         configPath
         inputs.grub2-themes.nixosModules.default
         inputs.sops-nix.nixosModules.sops
         inputs.home-manager.nixosModules.home-manager
-        hmConfiguration
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.sharedModules = [
+            inputs.sops-nix.homeManagerModules.sops
+          ];
+          home-manager.extraSpecialArgs = { inherit inputs; };
+        }
       ];
       mkSystem =
         hostname:
