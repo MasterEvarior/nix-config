@@ -14,6 +14,7 @@
     ./java
     ./python
     ./openshift
+    ./just
   ];
 
   options.homeModules.dev.module = {
