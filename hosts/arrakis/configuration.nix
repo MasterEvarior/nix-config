@@ -53,6 +53,12 @@
     };
   };
 
+  networking.extraHosts = ''
+    127.0.0.1 edview.unilu.ch 
+    127.0.0.1 edview-test.unilu.ch
+    127.0.0.1	webtransfer.local
+  '';
+
   programs.hyprland.enable = true;
 
   environment.systemPackages = with pkgs; [
