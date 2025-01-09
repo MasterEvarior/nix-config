@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -46,10 +46,18 @@
         layout = "ch";
         variant = "de_nodeadkeys";
       };
+      videoDrivers = [
+        "displaylink"
+        "modesetting"
+      ];
     };
   };
 
   programs.hyprland.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    displaylink
+  ];
 
   services.displayManager = {
     sddm.enable = true;

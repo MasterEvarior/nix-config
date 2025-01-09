@@ -39,6 +39,20 @@ Use this command to decrypt then when necessary:
 gpg --decrypt --pinentry-mode loopback --output test.zip 2025-01-02T193940.zip
 ```
 
+### Displaylink
+If docking station with DisplayLink should be used, it is necessary to include the `displaylink` driver package and set the video driver settings:
+```
+services.xserver.videoDrivers = [ 
+    "displaylink" 
+    "modesetting" 
+];
+```
+
+Alternatively the drivers can be downloaded manually:
+```
+nix-prefetch-url --name displaylink-600.zip https://www.synaptics.com/sites/default/files/exe_files/2024-05/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.0-EXE.zip
+```
+
 ## Resources
 
 A list of all the PCs/Laptops and their users.
