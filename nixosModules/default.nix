@@ -9,6 +9,7 @@
     ./terminal
     ./containers
     ./nvidia
+    ./displaylink
   ];
 
   modules = {

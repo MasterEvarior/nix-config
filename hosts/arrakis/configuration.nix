@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -31,10 +31,13 @@
   };
 
   # Custom bootloader theming
-  modules.grub2Theme = {
-    enabled = true;
-    resolution = "4k";
-    backgroundImage = ./assets/img/oled-background.png;
+  modules = {
+    displaylink.enable = true;
+    grub2Theme = {
+      enabled = true;
+      resolution = "4k";
+      backgroundImage = ./assets/img/oled-background.png;
+    };
   };
 
   # Configure keymap in X11
@@ -46,10 +49,6 @@
         layout = "ch";
         variant = "de_nodeadkeys";
       };
-      videoDrivers = [
-        "displaylink"
-        "modesetting"
-      ];
     };
   };
 
@@ -60,10 +59,6 @@
   '';
 
   programs.hyprland.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    displaylink
-  ];
 
   services.displayManager = {
     sddm.enable = true;
