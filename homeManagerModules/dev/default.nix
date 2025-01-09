@@ -15,6 +15,7 @@
     ./python
     ./openshift
     ./just
+    ./php
   ];
 
   options.homeModules.dev.module = {

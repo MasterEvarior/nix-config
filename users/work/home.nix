@@ -35,6 +35,7 @@
         userName = "Giannin";
         userEmail = "puzzle@giannin.ch";
       };
+      php.enable = true;
       openshift.enable = true;
     };
   };
