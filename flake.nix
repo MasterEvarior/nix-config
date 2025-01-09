@@ -28,25 +28,24 @@
     inputs:
     let
       lib = inputs.nixpkgs.lib;
-      systemModules = configPath: [
-        configPath
-        inputs.grub2-themes.nixosModules.default
-        inputs.sops-nix.nixosModules.sops
-        inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.sharedModules = [
-            inputs.sops-nix.homeManagerModules.sops
-          ];
-          home-manager.extraSpecialArgs = { inherit inputs; };
-        }
-      ];
       mkSystem =
         hostname:
         lib.nixosSystem {
           system = "x86_64-linux";
-          modules = systemModules (./. + "/hosts/${hostname}/configuration.nix");
+          modules = [
+            (./. + "/hosts/${hostname}/configuration.nix")
+            inputs.grub2-themes.nixosModules.default
+            inputs.sops-nix.nixosModules.sops
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.sharedModules = [
+                inputs.sops-nix.homeManagerModules.sops
+              ];
+              home-manager.extraSpecialArgs = { inherit inputs; };
+            }
+          ];
         };
       mkHome =
         homePath:
