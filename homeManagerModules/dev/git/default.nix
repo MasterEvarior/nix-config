@@ -24,18 +24,25 @@
       type = lib.types.bool;
       description = "Wether to rebase on pull";
     };
+    disableSafeDirectories = lib.mkOption {
+      default = false;
+      example = false;
+      type = lib.types.bool;
+      description = "See https://stackoverflow.com/questions/71849415/i-cannot-add-the-parent-directory-to-safe-directory-in-git";
+    };
   };
 
   config =
     let
-      conf = config.homeModules.dev.git;
+      cfg = config.homeModules.dev.git;
+      safeDirs = if cfg.disableSafeDirectories then { safe.directory = ''*''; } else { };
     in
-    lib.mkIf conf.enable {
+    lib.mkIf cfg.enable {
 
       programs.git = {
         enable = true;
-        userName = conf.userName;
-        userEmail = conf.userEmail;
+        userName = cfg.userName;
+        userEmail = cfg.userEmail;
         aliases = {
           clear = "! clear";
           ss = "stash save";
@@ -53,7 +60,7 @@
         extraConfig = {
           pull = {
             rebase = config.homeModules.dev.git.rebase;
-          };
+          } // safeDirs;
         };
       };
 
