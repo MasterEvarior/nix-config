@@ -13,6 +13,11 @@
     # https://github.com/catppuccin/vscode?tab=readme-ov-file#nix-home-manager-users
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
 
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,6 +47,7 @@
               home-manager.useUserPackages = true;
               home-manager.sharedModules = [
                 inputs.sops-nix.homeManagerModules.sops
+                inputs.spicetify-nix.homeManagerModules.default
               ];
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
