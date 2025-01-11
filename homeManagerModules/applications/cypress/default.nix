@@ -36,7 +36,7 @@
         ++ conf.additionalBrowsers;
 
       home.shellAliases = {
-        cypress = "steam-run npx cypress";
+        cypress = "steam-run ${builtins.toString pkgs.cypress}/bin/cypress";
       };
     };
 }
