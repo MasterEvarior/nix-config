@@ -24,6 +24,7 @@
     ./b2-backup
     ./nano
     ./micro
+    ./libreoffice
   ];
 
   options.homeModules.applications.module = {
@@ -53,6 +54,7 @@
         license-cli.enable = lib.mkDefault enableByDefault;
         treefmt.enable = lib.mkDefault enableByDefault;
         micro.enable = lib.mkDefault enableByDefault;
+        libreoffice.enable = lib.mkDefault enableByDefault;
       };
     };
 }

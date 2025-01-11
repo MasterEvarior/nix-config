@@ -12,7 +12,6 @@
 
     # Office
     thunderbird
-    libreoffice
     nextcloud-client
 
     # Media
