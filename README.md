@@ -41,7 +41,7 @@ gpg --decrypt --pinentry-mode loopback --output test.zip 2025-01-02T193940.zip
 
 ### Displaylink
 
-If docking station with DisplayLink should be used, it is necessary to include the `displaylink` driver package and set the video driver settings:
+If a docking station with DisplayLink should be used, it is necessary to include the `displaylink` driver package and set the video driver settings:
 
 ```
 services.xserver.videoDrivers = [ 
