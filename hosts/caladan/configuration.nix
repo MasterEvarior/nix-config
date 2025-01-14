@@ -9,25 +9,34 @@
     ../../users/giannin/giannin.nix
   ];
 
-  # Custom bootloader theming
-  modules.grub2Theme = {
-    enabled = true;
-    resolution = "ultrawide";
-    backgroundImage = ./assets/wallpapers/grub/ultrawide-background.jpg;
-  };
+  modules = {
+    # Enable unfree Nvidia trash
+    nvidia.enable = true;
 
-  modules.desktop.hyprland = {
-    enable = true;
-    monitors = [
-      "DP-3, 2560x1080@144, 0x0, 1"
-      "DP-1, 1920x1080@60, 2560x0, 1, transform, 3"
-      ", preferred, auto, 1"
-    ];
-    wallpaper = ./assets/wallpapers/desktop/marine-tunnel.jpg;
-  };
+    displayManager.sddm = {
+      enable = true;
+      wallpaper = ./assets/wallpapers/sddm/background.png;
+    };
 
-  # Enable unfree Nvidia trash
-  modules.nvidia.enable = true;
+    desktop = {
+      plasma.enable = true;
+      hyprland = {
+        enable = true;
+        monitors = [
+          "DP-3, 2560x1080@144, 0x0, 1"
+          "DP-1, 1920x1080@60, 2560x0, 1, transform, 3"
+          ", preferred, auto, 1"
+        ];
+        wallpaper = ./assets/wallpapers/desktop/marine-tunnel.jpg;
+      };
+    };
+
+    grub2Theme = {
+      enabled = true;
+      resolution = "ultrawide";
+      backgroundImage = ./assets/wallpapers/grub/ultrawide-background.jpg;
+    };
+  };
 
   # Probe for other OSs to facilitate dual boot
   boot.loader.grub.useOSProber = true;

@@ -11,6 +11,7 @@
     ./nvidia
     ./displaylink
     ./plasma
+    ./sddm
   ];
 
   modules = {
