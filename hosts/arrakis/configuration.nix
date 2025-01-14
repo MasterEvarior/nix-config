@@ -47,7 +47,6 @@
 
   # Configure keymap in X11
   services = {
-    desktopManager.plasma6.enable = true;
     xserver = {
       enable = true;
       xkb = {
