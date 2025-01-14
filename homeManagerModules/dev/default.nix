@@ -16,6 +16,7 @@
     ./openshift
     ./just
     ./php
+    ./minikube
   ];
 
   options.homeModules.dev.module = {

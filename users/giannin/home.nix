@@ -72,10 +72,13 @@ in
       };
     };
 
-    dev.git = {
-      enable = true;
-      userName = "Giannin";
-      userEmail = "contact@giannin.ch";
+    dev = {
+      minikube.enable = true;
+      git = {
+        enable = true;
+        userName = "Giannin";
+        userEmail = "contact@giannin.ch";
+      };
     };
   };
 
