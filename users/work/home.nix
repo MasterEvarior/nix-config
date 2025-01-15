@@ -26,6 +26,7 @@
       };
       deja-dup.enable = true;
       watson.enable = true;
+      bitwarden.enable = true;
       zellij.additionalLayouts = ./assets/zellij-layouts;
     };
     dev = {

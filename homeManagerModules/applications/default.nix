@@ -25,6 +25,7 @@
     ./nano
     ./micro
     ./libreoffice
+    ./bitwarden
   ];
 
   options.homeModules.applications.module = {
