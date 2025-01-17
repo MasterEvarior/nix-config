@@ -104,77 +104,80 @@
     };
   };
 
-  config = lib.mkIf config.homeModules.applications.vscode.enable {
-    programs.vscode = {
-      enable = true;
-      enableUpdateCheck = false;
-      enableExtensionUpdateCheck = false;
-      mutableExtensionsDir = false;
-      extensions =
-        with pkgs;
-        [
-          # Div
-          vscode-extensions.tomoki1207.pdf
-          vscode-extensions.ms-azuretools.vscode-docker
-          vscode-extensions.ms-vscode.live-server
-          vscode-extensions.tamasfe.even-better-toml
+  config =
+    let
+      cfg = config.homeModules.applications.vscode;
+    in
+    lib.mkIf config.homeModules.applications.vscode.enable {
+      programs.vscode = {
+        enable = true;
+        enableUpdateCheck = false;
+        enableExtensionUpdateCheck = false;
+        mutableExtensionsDir = false;
+        extensions =
+          with pkgs;
+          [
+            # Div
+            vscode-extensions.tomoki1207.pdf
+            vscode-extensions.ms-azuretools.vscode-docker
+            vscode-extensions.ms-vscode.live-server
+            vscode-extensions.tamasfe.even-better-toml
 
-          # Catpuccin Theme
-          vscode-extensions.catppuccin.catppuccin-vsc
-          vscode-extensions.catppuccin.catppuccin-vsc-icons
-        ]
-        ++ config.homeModules.applications.vscode.additionalExtensions;
-      userSettings = lib.mkMerge [
-        {
-          "workbench.colorTheme" = config.homeModules.applications.vscode.theme;
-          "telemetry.telemetryLevel" = config.homeModules.applications.vscode.telemetry;
-          "workbench.settings.enableNaturalLanguageSearch" =
-            config.homeModules.applications.vscode.workbench.naturalLanguageSearch;
-          "workbench.startupEditor" = config.homeModules.applications.vscode.workbench.startupEditor;
-          "workbench.tips.enabled" = config.homeModules.applications.vscode.workbench.tipsEnabled;
-          "scm.alwaysShowRepositories" = config.homeModules.applications.vscode.scm.alwaysShowRepositories;
-          "scm.experimental.showHistoryGraph" = config.homeModules.applications.vscode.scm.showHistoryGraph;
-          "extensions.ignoreRecommendations" = true;
-        }
-        config.homeModules.applications.vscode.additionalUserSettings
-      ];
-      languageSnippets = lib.mkMerge [
-        { }
-        config.homeModules.applications.vscode.additionalSnippets
-      ];
+            # Catpuccin Theme
+            vscode-extensions.catppuccin.catppuccin-vsc
+            vscode-extensions.catppuccin.catppuccin-vsc-icons
+          ]
+          ++ cfg.additionalExtensions;
+        userSettings = lib.mkMerge [
+          {
+            "workbench.colorTheme" = cfg.theme;
+            "telemetry.telemetryLevel" = cfg.telemetry;
+            "workbench.settings.enableNaturalLanguageSearch" = cfg.workbench.naturalLanguageSearch;
+            "workbench.startupEditor" = cfg.workbench.startupEditor;
+            "workbench.tips.enabled" = cfg.workbench.tipsEnabled;
+            "scm.alwaysShowRepositories" = cfg.scm.alwaysShowRepositories;
+            "extensions.ignoreRecommendations" = true;
+            "update.showReleaseNotes" = false;
+          }
+          cfg.additionalUserSettings
+        ];
+        languageSnippets = lib.mkMerge [
+          { }
+          cfg.additionalSnippets
+        ];
 
-      keybindings = [
-        {
-          "key" = "alt+f12";
-          "command" = "workbench.action.terminal.toggleTerminal";
-          "when" = "terminal.active";
-        }
-        {
-          "key" = "ctrl+shift+[Equal]";
-          "command" = "-workbench.action.terminal.toggleTerminal";
-          "when" = "terminal.active";
-        }
-        {
-          "key" = "ctrl+w";
-          "command" = "editor.action.smartSelect.expand";
-          "when" = "editorTextFocus";
-        }
-        {
-          "key" = "shift+alt+right";
-          "command" = "-editor.action.smartSelect.expand";
-          "when" = "editorTextFocus";
-        }
-        {
-          "key" = "ctrl+d";
-          "command" = "editor.action.copyLinesDownAction";
-          "when" = "editorTextFocus && !editorReadonly";
-        }
-        {
-          "key" = "ctrl+y";
-          "command" = "editor.action.deleteLines";
-          "when" = "textInputFocus && !editorReadonly";
-        }
-      ];
+        keybindings = [
+          {
+            "key" = "alt+f12";
+            "command" = "workbench.action.terminal.toggleTerminal";
+            "when" = "terminal.active";
+          }
+          {
+            "key" = "ctrl+shift+[Equal]";
+            "command" = "-workbench.action.terminal.toggleTerminal";
+            "when" = "terminal.active";
+          }
+          {
+            "key" = "ctrl+w";
+            "command" = "editor.action.smartSelect.expand";
+            "when" = "editorTextFocus";
+          }
+          {
+            "key" = "shift+alt+right";
+            "command" = "-editor.action.smartSelect.expand";
+            "when" = "editorTextFocus";
+          }
+          {
+            "key" = "ctrl+d";
+            "command" = "editor.action.copyLinesDownAction";
+            "when" = "editorTextFocus && !editorReadonly";
+          }
+          {
+            "key" = "ctrl+y";
+            "command" = "editor.action.deleteLines";
+            "when" = "textInputFocus && !editorReadonly";
+          }
+        ];
+      };
     };
-  };
 }
