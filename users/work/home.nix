@@ -36,7 +36,10 @@
         userEmail = "puzzle@giannin.ch";
       };
       php.enable = true;
-      openshift.enable = true;
+      kubernetes = {
+        enable = true;
+        openshift.enable = true;
+      };
     };
   };
 

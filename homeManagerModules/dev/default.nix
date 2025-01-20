@@ -13,10 +13,9 @@
     ./terraform
     ./java
     ./python
-    ./openshift
+    ./kubernetes
     ./just
     ./php
-    ./minikube
   ];
 
   options.homeModules.dev.module = {

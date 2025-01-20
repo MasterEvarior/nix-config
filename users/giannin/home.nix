@@ -73,17 +73,18 @@ in
     };
 
     dev = {
-      minikube.enable = true;
+      kubernetes = {
+        enable = true;
+        minikube.enable = true;
+      };
+      terraform.enable = true;
+
       git = {
         enable = true;
         userName = "Giannin";
         userEmail = "contact@giannin.ch";
       };
     };
-  };
-
-  homeModules.dev = {
-    terraform.enable = true;
   };
 
   home.stateVersion = "23.11";
