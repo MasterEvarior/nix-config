@@ -76,6 +76,7 @@ in
       kubernetes = {
         enable = true;
         minikube.enable = true;
+        flux.enable = true;
       };
       terraform.enable = true;
 
