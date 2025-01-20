@@ -94,8 +94,9 @@
       ];
 
       home.shellAliases = {
-        "${serviceName}-show-timer" = "systemctl --user list-timers b2-backup.timer --all";
-        "${serviceName}-now" = "systemctl --user start b2-backup.service";
+        "${serviceName}-timer" = "systemctl --user list-timers ${serviceName}.timer --all";
+        "${serviceName}-now" = "systemctl --user start ${serviceName}.service";
+        "${serviceName}-status" = "systemctl --user status ${serviceName}.service";
       };
 
       systemd.user = {
@@ -117,7 +118,7 @@
               echo "Ensuring backup directory is empty"
               rm -rf ${cfg.localBackupDirectory}/*
 
-              FILENAME="$(echo $(date +'%FT%H%M%S').zip)"
+              FILENAME="$(date +'%FT%H%M%S').zip"
               FILEPATH="${cfg.localBackupDirectory}/$FILENAME"
               echo "Creating backup of files ${include} at $FILEPATH without ${exclude}"
               ${pkgs.zip}/bin/zip -q -r $FILEPATH ${include} ${exclude}
