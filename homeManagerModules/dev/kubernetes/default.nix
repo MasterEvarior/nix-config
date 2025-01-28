@@ -28,6 +28,7 @@
           kubernetes-helm
           kubectl
           kubeseal
+          kustomize
         ]
         ++ optionals (cfg.openshift.enable) openshiftPackages
         ++ optionals (cfg.minikube.enable) minikubePackages
