@@ -18,11 +18,6 @@
       in
       {
         enable = true;
-
-        enabledExtensions = with spicePkgs.extensions; [
-          wikify
-        ];
-
         theme = spicePkgs.themes.catppuccin;
         colorScheme = "mocha";
       };
