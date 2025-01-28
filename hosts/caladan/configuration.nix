@@ -36,6 +36,11 @@
       resolution = "ultrawide";
       backgroundImage = ./assets/wallpapers/grub/ultrawide-background.jpg;
     };
+
+    settings.garbageCollection = {
+      enable = true;
+      keep = 3;
+    };
   };
 
   # Probe for other OSs to facilitate dual boot
