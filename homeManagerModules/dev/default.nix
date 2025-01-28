@@ -16,6 +16,7 @@
     ./kubernetes
     ./just
     ./php
+    ./containerization
   ];
 
   options.homeModules.dev.module = {
@@ -41,6 +42,7 @@
         typst.enable = lib.mkDefault enableByDefault;
         git.enable = lib.mkDefault enableByDefault;
         java.enable = lib.mkDefault enableByDefault;
+        containerization.enable = lib.mkDefault enableByDefault;
       };
     };
 }
