@@ -26,6 +26,7 @@
         with pkgs;
         [
           nodejs_22
+          nodemon
           yarn
         ]
         ++ lib.lists.optionals (cfg.typescript.enable) [
