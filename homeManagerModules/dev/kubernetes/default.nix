@@ -16,9 +16,15 @@
   config =
     let
       cfg = config.homeModules.dev.kubernetes;
-      openshiftPackages = with pkgs; [ ocm ];
+      openshiftPackages = with pkgs; [
+        ocm
+        openshift
+      ];
       minikubePackages = with pkgs; [ minikube ];
-      fluxPackages = with pkgs; [ fluxctl ];
+      fluxPackages = with pkgs; [
+        fluxctl
+        flux
+      ];
       optionals = lib.lists.optionals;
     in
     lib.mkIf config.homeModules.dev.kubernetes.enable {
