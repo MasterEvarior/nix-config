@@ -137,6 +137,7 @@
             "scm.alwaysShowRepositories" = cfg.scm.alwaysShowRepositories;
             "extensions.ignoreRecommendations" = true;
             "update.showReleaseNotes" = false;
+            "terminal.integrated.fontFamily" = "Hack Nerd Font";
           }
           cfg.additionalUserSettings
         ];
