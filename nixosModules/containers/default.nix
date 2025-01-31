@@ -184,7 +184,7 @@
         dke = "docker exec -it";
         dkl = "docker logs -f";
         dkrm = "docker stop $(docker ps -aq) && docker rm $(docker ps -aq)";
-        dkprune = "docker container prune --force && docker image prune --force";
+        dkprune = "docker container prune --force && docker image prune --force && docker system prune";
         dkimyeet = "docker rmi -f $(docker images -aq)"; # delete all unused images
         dknuclear = "${nuclearScript}";
       };
