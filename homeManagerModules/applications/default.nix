@@ -26,6 +26,7 @@
     ./micro
     ./libreoffice
     ./bitwarden
+    ./zoxide
   ];
 
   options.homeModules.applications.module = {
@@ -56,6 +57,7 @@
         treefmt.enable = lib.mkDefault enableByDefault;
         micro.enable = lib.mkDefault enableByDefault;
         libreoffice.enable = lib.mkDefault enableByDefault;
+        zoxide.enable = lib.mkDefault enableByDefault;
       };
     };
 }
