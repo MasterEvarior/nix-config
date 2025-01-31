@@ -181,6 +181,8 @@
         # docker
         dktop = "docker stats --format ''\"table {{.Container}}	{{.Name}}	{{.CPUPerc}}  {{.MemPerc}}	{{.NetIO}}	{{.BlockIO}}\"";
         dkp = "docker ps";
+        dke = "docker exec -it";
+        dkl = "docker logs -f";
         dkrm = "docker stop $(docker ps -aq) && docker rm $(docker ps -aq)";
         dkprune = "docker container prune --force && docker image prune --force";
         dkimyeet = "docker rmi -f $(docker images -aq)"; # delete all unused images
