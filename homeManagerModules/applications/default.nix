@@ -27,6 +27,7 @@
     ./libreoffice
     ./bitwarden
     ./zoxide
+    ./lsd
   ];
 
   options.homeModules.applications.module = {
@@ -58,6 +59,7 @@
         micro.enable = lib.mkDefault enableByDefault;
         libreoffice.enable = lib.mkDefault enableByDefault;
         zoxide.enable = lib.mkDefault enableByDefault;
+        lsd.enable = lib.mkDefault enableByDefault;
       };
     };
 }
