@@ -47,7 +47,7 @@
           clear = "! clear";
           ss = "stash save";
           sl = "stash list";
-          sa = "stash save";
+          sa = "stash apply";
           s = "status";
           pl = "pull";
           ps = "push";
