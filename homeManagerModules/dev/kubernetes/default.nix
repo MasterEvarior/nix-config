@@ -47,6 +47,7 @@
 
         additionalExtensions = with pkgs; [
           vscode-extensions.tim-koehler.helm-intellisense
+          vscode-extensions.redhat.vscode-yaml # is needed for the k8s extension
           vscode-extensions.ms-kubernetes-tools.vscode-kubernetes-tools
         ];
       };
