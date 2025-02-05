@@ -17,22 +17,6 @@
         "url": "https://flakehub.com/f/catppuccin/vscode/%2A.tar.gz"
       }
     },
-    "flake-compat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1733328505,
-        "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "ff81ac966bb2cae68946d5ed5fc4994f96d0ffec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "grub2-themes": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -108,11 +92,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1738588386,
-        "narHash": "sha256-A3O0uLfFZX+52KyAa0+OIU7ByaxNe+jvEjsDv+IeLkA=",
+        "lastModified": 1738747677,
+        "narHash": "sha256-UE+5g/ekb+NcjrRBgLsUVFXHi6lTdspmhR7Vq576qP8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "04cbac3004a503f10bbe8fdd6150a70c8ecb33ab",
+        "rev": "5eac03ec5c7916a20c65042cc30b0f659e73d76e",
         "type": "github"
       },
       "original": {
@@ -124,11 +108,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1738435198,
-        "narHash": "sha256-5+Hmo4nbqw8FrW85FlNm4IIrRnZ7bn0cmXlScNsNRLo=",
+        "lastModified": 1738702386,
+        "narHash": "sha256-nJj8f78AYAxl/zqLiFGXn5Im1qjFKU8yBPKoWEeZN5M=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f6687779bf4c396250831aa5a32cbfeb85bb07a3",
+        "rev": "030ba1976b7c0e1a67d9716b17308ccdab5b381e",
         "type": "github"
       },
       "original": {
@@ -171,18 +155,17 @@
     },
     "spicetify-nix": {
       "inputs": {
-        "flake-compat": "flake-compat",
         "nixpkgs": [
           "nixpkgs"
         ],
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1738580832,
-        "narHash": "sha256-xgF3wq6cFYtsgHFNQw8NL6fb+bkeM7LmdNpdp/KTt3Y=",
+        "lastModified": 1738725875,
+        "narHash": "sha256-KJeErSFeuVVo+EOgoZoAKAbh9jOxgd7g/ldgUjbHvOA=",
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "rev": "fb1d78cbac7ceafa01cd8ddddcc1315781852056",
+        "rev": "0be8bb03478dad374659369be3b2a5017c63fa61",
         "type": "github"
       },
       "original": {
