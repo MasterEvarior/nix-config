@@ -175,6 +175,7 @@
         # docker compose
         dcu = "docker compose up";
         dcd = "docker compose down";
+        dcdd = "docker compose down && docker volume prune -f";
         dcs = "docker compose stop";
         dcv = "docker compose config --quiet";
 
