@@ -22,8 +22,7 @@
       ];
       minikubePackages = with pkgs; [ minikube ];
       fluxPackages = with pkgs; [
-        fluxctl
-        flux
+        fluxcd
       ];
       optionals = lib.lists.optionals;
     in
@@ -33,15 +32,23 @@
         [
           kubernetes-helm
           kubectl
-          kubeseal
           kustomize
         ]
         ++ optionals (cfg.openshift.enable) openshiftPackages
         ++ optionals (cfg.minikube.enable) minikubePackages
         ++ optionals (cfg.flux.enable) fluxPackages;
 
-      homeModules.applications.vscode.additionalExtensions = with pkgs; [
-        vscode-extensions.tim-koehler.helm-intellisense
-      ];
+      homeModules.applications.vscode = {
+        additionalUserSettings = {
+          "yaml.schemas" = {
+            "kubernetes" = "*.yaml";
+          };
+        };
+
+        additionalExtensions = with pkgs; [
+          vscode-extensions.tim-koehler.helm-intellisense
+          vscode-extensions.ms-kubernetes-tools.vscode-kubernetes-tools
+        ];
+      };
     };
 }
