@@ -33,6 +33,7 @@
           kubernetes-helm
           kubectl
           kustomize
+          kubectx
         ]
         ++ optionals (cfg.openshift.enable) openshiftPackages
         ++ optionals (cfg.minikube.enable) minikubePackages
