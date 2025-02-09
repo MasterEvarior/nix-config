@@ -39,6 +39,12 @@
         ++ optionals (cfg.minikube.enable) minikubePackages
         ++ optionals (cfg.flux.enable) fluxPackages;
 
+      home.shellAliases = {
+        k = "kubectl";
+        kctx = "kubectx";
+        kns = "kubens";
+      };
+
       homeModules.applications.vscode = {
         additionalUserSettings = {
           "yaml.schemas" = {
