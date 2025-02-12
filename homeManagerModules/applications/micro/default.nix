@@ -7,6 +7,12 @@
 {
   options.homeModules.applications.micro = {
     enable = lib.mkEnableOption "Micro";
+    makeDefault = lib.mkOption {
+      default = true;
+      example = false;
+      type = lib.types.bool;
+      description = "Wether to set Micro as the default editor for everything shell";
+    };
     replaceNano = lib.mkOption {
       default = true;
       example = true;
@@ -21,6 +27,14 @@
     let
       cfg = config.homeModules.applications.micro;
       alias = if cfg.replaceNano then { nano = "micro"; } else { };
+      variables =
+        if cfg.makeDefault then
+          {
+            VISUAL = "micro";
+            EDITOR = "micro";
+          }
+        else
+          { };
       themeName = "catppuccin-mocha";
     in
     lib.mkIf config.homeModules.applications.micro.enable {
@@ -84,6 +98,7 @@
       );
 
       home.shellAliases = alias;
+      home.sessionVariables = variables;
       homeModules.applications.nano.enable = (!cfg.replaceNano);
     };
 }
