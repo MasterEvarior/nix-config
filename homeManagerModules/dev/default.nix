@@ -16,6 +16,7 @@
     ./kubernetes
     ./just
     ./php
+    ./latex
     ./containerization
   ];
 

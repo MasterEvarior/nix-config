@@ -40,6 +40,7 @@
         enable = true;
         openshift.enable = true;
       };
+      latex.enable = true;
     };
   };
 
