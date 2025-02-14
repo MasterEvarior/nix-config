@@ -52,6 +52,7 @@
           };
           "vs-kubernetes" = {
             "vs-kubernetes.minikube-show-information-expiration" = "2100-01-01T19:42:00.282Z";
+            "vs-kubernetes.crd-code-completion" = "disabled";
           };
         };
 
