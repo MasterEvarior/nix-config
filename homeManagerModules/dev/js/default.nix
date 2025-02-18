@@ -57,6 +57,10 @@
             "editor.defaultFormatter" = "esbenp.prettier-vscode";
             "editor.formatOnSave" = true;
           };
+          "[css]" = {
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
+            "editor.formatOnSave" = true;
+          };
           "javascript.updateImportsOnFileMove.enabled" = "always";
         };
       };
