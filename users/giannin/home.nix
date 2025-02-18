@@ -81,7 +81,7 @@ in
       terraform.enable = true;
       js = {
         enable = true;
-        react.enable = true;
+        angular.enable = true;
       };
       git = {
         enable = true;
