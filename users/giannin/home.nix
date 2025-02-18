@@ -79,7 +79,10 @@ in
         flux.enable = true;
       };
       terraform.enable = true;
-
+      js = {
+        enable = true;
+        react.enable = true;
+      };
       git = {
         enable = true;
         userName = "Giannin";
