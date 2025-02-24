@@ -61,6 +61,9 @@
           pull = {
             rebase = config.homeModules.dev.git.rebase;
           } // safeDirs;
+          push = {
+            autoSetupRemote = true;
+          };
         };
       };
 
