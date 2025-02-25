@@ -138,6 +138,7 @@
             "extensions.ignoreRecommendations" = true;
             "update.showReleaseNotes" = false;
             "terminal.integrated.fontFamily" = "Hack Nerd Font";
+            "git.openRepositoryInParentFolders" = "never";
           }
           cfg.additionalUserSettings
         ];
