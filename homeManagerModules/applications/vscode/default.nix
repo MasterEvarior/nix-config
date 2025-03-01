@@ -81,6 +81,18 @@
       type = lib.types.bool;
       description = "Wether to a history graph instead of changes inside the SCM tab";
     };
+    showReleaseNotes = lib.mkOption {
+      default = false;
+      example = false;
+      type = lib.types.bool;
+      description = "Wether to show release notes when VSC was updated";
+    };
+    confirmNativePaste = lib.mkOption {
+      default = false;
+      example = false;
+      type = lib.types.bool;
+      description = "Wether to get an annoying popup when pasting an image or similar";
+    };
 
     additionalExtensions = lib.mkOption {
       default = [ ];
@@ -136,9 +148,10 @@
             "workbench.tips.enabled" = cfg.workbench.tipsEnabled;
             "scm.alwaysShowRepositories" = cfg.scm.alwaysShowRepositories;
             "extensions.ignoreRecommendations" = true;
-            "update.showReleaseNotes" = false;
             "terminal.integrated.fontFamily" = "Hack Nerd Font";
             "git.openRepositoryInParentFolders" = "never";
+            "update.showReleaseNotes" = cfg.showReleaseNotes;
+            "explorer.confirmPasteNative" = cfg.confirmNativePaste;
           }
           cfg.additionalUserSettings
         ];
