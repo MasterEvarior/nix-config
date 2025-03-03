@@ -15,6 +15,7 @@
       jetbrains.idea-ultimate
       maven
       gradle
+      gradle-completion
     ];
 
     programs.java = {
