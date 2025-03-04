@@ -78,11 +78,11 @@ in
         minikube.enable = true;
         flux.enable = true;
       };
-      terraform.enable = true;
       js = {
         enable = true;
         angular.enable = true;
       };
+      golang.enable = true;
       git = {
         enable = true;
         userName = "Giannin";
