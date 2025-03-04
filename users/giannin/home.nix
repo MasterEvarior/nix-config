@@ -82,7 +82,10 @@ in
         enable = true;
         angular.enable = true;
       };
-      golang.enable = true;
+      golang = {
+        enable = true;
+        setupVisualStudioCode = true;
+      };
       git = {
         enable = true;
         userName = "Giannin";
