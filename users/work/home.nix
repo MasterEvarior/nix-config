@@ -40,6 +40,10 @@
         enable = true;
         openshift.enable = true;
       };
+      golang = {
+        enable = true;
+        setupVisualStudioCode = true;
+      };
       latex.enable = true;
     };
   };
