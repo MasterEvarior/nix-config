@@ -22,6 +22,7 @@
         with pkgs;
         [
           go
+          gotools
         ]
         ++ optionals (cfg.installIDE) [ jetbrains.goland ];
 
