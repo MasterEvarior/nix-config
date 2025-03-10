@@ -27,18 +27,33 @@
         ]
         ++ optionals (cfg.installIDE) [ jetbrains.goland ];
 
-      homeModules.applications.vscode = {
-        additionalUserSettings = {
-          "go.lintTool" = "golangci-lint";
-          "go.lintFlags" = [
-            "--fast"
+      homeModules.applications = {
+        vscode = {
+          additionalUserSettings = {
+            "go.lintTool" = "golangci-lint";
+            "go.lintFlags" = [
+              "--fast"
+            ];
+          };
+
+          additionalExtensions = optionals (cfg.setupVisualStudioCode) [
+            pkgs.vscode-extensions.golang.go
           ];
         };
 
-        additionalExtensions = optionals (cfg.setupVisualStudioCode) [
-          pkgs.vscode-extensions.golang.go
+        treefmt.additionalFormatters = with pkgs; [
+          {
+            name = "golang";
+            command = "golangci-lint run";
+            includes = [
+              "*.go"
+            ];
+            options = [ ];
+            package = golangci-lint;
+          }
         ];
       };
+
     };
 
 }
