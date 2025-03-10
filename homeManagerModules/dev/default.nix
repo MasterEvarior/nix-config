@@ -27,11 +27,18 @@
       type = lib.types.bool;
       description = "Wether defaults should be enabled or not";
     };
+    enableDirEnv = lib.mkOption {
+      default = false;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether or not to enable and setup direnv";
+    };
   };
 
   config =
     let
-      enableByDefault = config.homeModules.dev.module.enableDefaults;
+      cfg = config.homeModules.dev.module;
+      enableByDefault = cfg.enableDefaults;
     in
     {
       homeModules.dev = {
@@ -44,6 +51,12 @@
         git.enable = lib.mkDefault enableByDefault;
         java.enable = lib.mkDefault enableByDefault;
         containerization.enable = lib.mkDefault enableByDefault;
+      };
+
+      programs.direnv = {
+        enable = cfg.enableDirEnv;
+        enableZshIntegration = cfg.enableDirEnv;
+        nix-direnv.enable = cfg.enableDirEnv;
       };
     };
 }
