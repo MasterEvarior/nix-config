@@ -44,11 +44,11 @@
         treefmt.additionalFormatters = with pkgs; [
           {
             name = "golang";
-            command = "golangci-lint run";
+            command = "golangci-lint";
             includes = [
               "*.go"
             ];
-            options = [ ];
+            options = [ "run" ];
             package = golangci-lint;
           }
         ];
