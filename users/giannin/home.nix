@@ -18,10 +18,6 @@ in
     # Entertainment & Media
     plex-media-player
     vlc
-    handbrake
-
-    # School stuff
-    mdbook
 
     # Wallpapers
     gowall
