@@ -48,7 +48,13 @@
       homeModules.applications.vscode = {
         additionalUserSettings = {
           "yaml.schemas" = {
-            "kubernetes" = "*.yaml";
+            "kubernetes" = [
+              "secret.yaml"
+              "pvc.yaml"
+              "deployment.yaml"
+              "certficate.yaml"
+              "deployment.yaml"
+            ];
           };
           "vs-kubernetes" = {
             "vs-kubernetes.minikube-show-information-expiration" = "2100-01-01T19:42:00.282Z";
