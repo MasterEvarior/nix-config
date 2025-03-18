@@ -77,7 +77,8 @@ in
       };
       js = {
         enable = true;
-        angular.enable = true;
+        typescript.enable = true;
+        angular.enable = false;
       };
       golang = {
         enable = true;
