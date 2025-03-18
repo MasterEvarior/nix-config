@@ -54,6 +54,7 @@
               "deployment.yaml"
               "certficate.yaml"
               "deployment.yaml"
+              "job.yaml"
             ];
           };
           "vs-kubernetes" = {
