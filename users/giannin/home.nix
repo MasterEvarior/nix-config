@@ -72,7 +72,7 @@ in
       module.enableDirEnv = true;
       kubernetes = {
         enable = true;
-        minikube.enable = true;
+        minikube.enable = false;
         flux.enable = true;
       };
       js = {
