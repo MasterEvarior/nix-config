@@ -30,6 +30,12 @@
       type = lib.types.bool;
       description = "See https://stackoverflow.com/questions/71849415/i-cannot-add-the-parent-directory-to-safe-directory-in-git";
     };
+    defaultBranchName = lib.mkOption {
+      default = "main";
+      example = "main";
+      type = lib.types.str;
+      description = "How the default branch should be named when creating a new project";
+    };
   };
 
   config =
@@ -63,6 +69,9 @@
           } // safeDirs;
           push = {
             autoSetupRemote = true;
+          };
+          init = {
+            defaultBranch = cfg.defaultBranchName;
           };
         };
       };
