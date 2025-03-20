@@ -116,6 +116,11 @@
         upgrade = {
           notice = false;
         };
+
+        # https://github.com/JanDeDobbeleer/oh-my-posh/issues/5310
+        disable_notice = true;
+        auto_upgrade = false;
+
         version = 2;
       };
     };
