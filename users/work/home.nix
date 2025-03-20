@@ -40,9 +40,9 @@
         enable = true;
         openshift.enable = true;
       };
-      golang = {
+      js = {
         enable = true;
-        setupVisualStudioCode = true;
+        angular.enable = true;
       };
       latex.enable = true;
     };
