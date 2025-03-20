@@ -18,6 +18,7 @@
       127.0.0.1 edview.unilu.ch 
       127.0.0.1 edview-test.unilu.ch
       127.0.0.1	webtransfer.local
+      127.0.0.1	webtransfer.container
     '';
   };
   # to connect to the Eduroam WIFI, it is necessary to install these certificates
