@@ -2,19 +2,43 @@
   lib,
   config,
   pkgs,
+  types,
   ...
 }:
 
 {
-  options.homeModules.applications."1password" = {
-    enable = lib.mkEnableOption "1Password GUI and client";
-    configureSSH = lib.mkOption {
-      default = true;
-      example = true;
-      type = lib.types.bool;
-      description = "Wether to a configure the SSH config for the 1Password agent";
+
+  options.homeModules.applications."1password" =
+    let
+      additionalPublicKeyType = types.submodule {
+        options = {
+          host = lib.mkOption {
+            example = "example.ch";
+            type = lib.types.str;
+            description = "IP or domain name for which the key should work";
+          };
+          key = lib.lib.mkOption {
+            example = ./your.key;
+            type = lib.types.path;
+            description = "Path to the key";
+          };
+        };
+      };
+    in
+    {
+      enable = lib.mkEnableOption "1Password GUI and client";
+      configureSSH = lib.mkOption {
+        default = true;
+        example = true;
+        type = lib.types.bool;
+        description = "Wether to a configure the SSH config for the 1Password agent";
+      };
+      additionalPublicKeys = lib.mkOption {
+        default = [ ];
+        type = lib.types.listOf additionalPublicKeyType;
+        description = "List of additional public SSH keys";
+      };
     };
-  };
 
   config = lib.mkIf config.homeModules.applications."1password".enable {
     home.packages = with pkgs; [
@@ -28,7 +52,7 @@
           publicKey:
           lib.hm.dag.entryBefore [ "Host *" ] {
             identitiesOnly = true;
-            identityFile = publicKey;
+            identityFile = (toString publicKey);
           };
       in
       lib.mkIf config.homeModules.applications."1password".configureSSH {
