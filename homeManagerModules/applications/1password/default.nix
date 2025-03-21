@@ -25,6 +25,10 @@
     programs.ssh = lib.mkIf config.homeModules.applications."1password".configureSSH {
       enable = true;
       matchBlocks = {
+        "webtransfer.ch" = lib.hm.dag.entryBefore [ "Host *" ] {
+          identitiesOnly = true;
+          identityFile = "~/.ssh/public-keys/webtransfer.pub";
+        };
         "192.168.68.66" = lib.hm.dag.entryBefore [ "Host *" ] {
           identitiesOnly = true;
           identityFile = "~/.ssh/public-keys/homelab_1.pub";
