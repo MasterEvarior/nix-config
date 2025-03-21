@@ -22,41 +22,32 @@
       _1password-gui
     ];
 
-    programs.ssh = lib.mkIf config.homeModules.applications."1password".configureSSH {
-      enable = true;
-      matchBlocks = {
-        "webtransfer.ch" = lib.hm.dag.entryBefore [ "Host *" ] {
-          identitiesOnly = true;
-          identityFile = "~/.ssh/public-keys/webtransfer.pub";
-        };
-        "192.168.68.66" = lib.hm.dag.entryBefore [ "Host *" ] {
-          identitiesOnly = true;
-          identityFile = "~/.ssh/public-keys/homelab_1.pub";
-        };
-        "185.79.235.161" = lib.hm.dag.entryBefore [ "Host *" ] {
-          identitiesOnly = true;
-          identityFile = "~/.ssh/public-keys/cloudscale.pub";
-        };
-        "github.com" = lib.hm.dag.entryBefore [ "Host *" ] {
-          identitiesOnly = true;
-          identityFile = "~/.ssh/public-keys/github.pub";
-        };
-        "gitlab.fhnw.ch" = lib.hm.dag.entryBefore [ "Host *" ] {
-          identitiesOnly = true;
-          identityFile = "~/.ssh/public-keys/gitlab_fhnw.pub";
-        };
-        "gitlab.puzzle.ch" = lib.hm.dag.entryBefore [ "Host *" ] {
-          identitiesOnly = true;
-          identityFile = "~/.ssh/public-keys/gitlab_puzzle.pub";
-        };
-        "Host *" = {
-          host = "*";
-          extraOptions = {
-            "IdentityAgent" = "~/.1password/agent.sock";
+    programs.ssh =
+      let
+        mkMatchBlock =
+          publicKey:
+          lib.hm.dag.entryBefore [ "Host *" ] {
+            identitiesOnly = true;
+            identityFile = publicKey;
+          };
+      in
+      lib.mkIf config.homeModules.applications."1password".configureSSH {
+        enable = true;
+        matchBlocks = {
+          "webtransfer.ch" = mkMatchBlock "~/.ssh/public-keys/webtransfer.pub";
+          "192.168.68.66" = mkMatchBlock "~/.ssh/public-keys/homelab_1.pub";
+          "185.79.235.161" = mkMatchBlock "~/.ssh/public-keys/cloudscale.pub";
+          "github.com" = mkMatchBlock "~/.ssh/public-keys/github.pub";
+          "gitlab.fhnw.ch" = mkMatchBlock "~/.ssh/public-keys/gitlab_fhnw.pub";
+          "gitlab.puzzle.ch" = mkMatchBlock "~/.ssh/public-keys/gitlab_puzzle.pub";
+          "Host *" = {
+            host = "*";
+            extraOptions = {
+              "IdentityAgent" = "~/.1password/agent.sock";
+            };
           };
         };
       };
-    };
 
     home.sessionVariables = lib.mkIf config.homeModules.applications."1password".configureSSH {
       SSH_AUTH_SOCK = "~/.1password/agent.sock";
