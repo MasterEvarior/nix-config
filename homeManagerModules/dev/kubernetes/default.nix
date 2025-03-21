@@ -141,10 +141,37 @@
               "\t\tmetadata:"
               "\t\t\tlabels:"
               "\t\t\t\tapp: $1"
-              "\t\t\tspec:"
-              "\t\t\t\tcontainers:"
-              "\t\t\t\t\t- name: $1"
-              "\t\t\t\t\t\timage: $3"
+              "\t\tspec:"
+              "\t\t\tcontainers:"
+              "\t\t\t\t- name: $1"
+              "\t\t\t\t\timage: $3"
+            ];
+          };
+          "Create image repository and policy" = {
+            prefix = [ "k-image" ];
+            description = "Create a Flux image repository and policy";
+            body = [
+              "apiVersion: image.toolkit.fluxcd.io/v1beta1"
+              "kind: ImageRepository"
+              "metadata:"
+              "\tname: $1"
+              "\tnamespace: flux-system"
+              "spec:"
+              "\timage: $1/$1"
+              "\tinterval: 1h"
+              "---"
+              "apiVersion: image.toolkit.fluxcd.io/v1beta1"
+              "kind: ImagePolicy"
+              "metadata:"
+              "\tname: $1"
+              "\tnamespace: flux-system"
+              "spec:"
+              "\timageRepositoryRef:"
+              "\t\tname: $1"
+              "\tpolicy:"
+              "\tsemver:"
+              "\t\trange: \"0.x.x\""
+
             ];
           };
         };
