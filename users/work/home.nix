@@ -24,6 +24,22 @@
       cypress = {
         enable = true;
       };
+      "1password" = {
+        enable = true;
+        ssh = {
+          configureSSH = true;
+          additionalPublicKeys = [
+            {
+              host = "webtransfer.ch";
+              file = ./assets/ssh/webtransfer.pub;
+            }
+            {
+              host = "gitlab.puzzle.ch";
+              file = ./assets/ssh/gitlab_puzzle.pub;
+            }
+          ];
+        };
+      };
       deja-dup.enable = true;
       watson.enable = true;
       bitwarden.enable = true;
@@ -34,6 +50,7 @@
         enable = true;
         userName = "Giannin";
         userEmail = "puzzle@giannin.ch";
+        rebase = true;
       };
       php.enable = true;
       kubernetes = {
@@ -47,8 +64,6 @@
       latex.enable = true;
     };
   };
-
-  homeModules.dev.git.rebase = true;
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;

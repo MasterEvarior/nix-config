@@ -2,31 +2,14 @@
   lib,
   config,
   pkgs,
-  types,
   ...
 }:
 
 {
 
-  options.homeModules.applications."1password" =
-    let
-      additionalPublicKeyType = types.submodule {
-        options = {
-          host = lib.mkOption {
-            example = "example.ch";
-            type = lib.types.str;
-            description = "IP or domain name for which the key should work";
-          };
-          key = lib.lib.mkOption {
-            example = ./your.key;
-            type = lib.types.path;
-            description = "Path to the key";
-          };
-        };
-      };
-    in
-    {
-      enable = lib.mkEnableOption "1Password GUI and client";
+  options.homeModules.applications."1password" = {
+    enable = lib.mkEnableOption "1Password GUI and client";
+    ssh = {
       configureSSH = lib.mkOption {
         default = true;
         example = true;
@@ -35,52 +18,78 @@
       };
       additionalPublicKeys = lib.mkOption {
         default = [ ];
-        type = lib.types.listOf additionalPublicKeyType;
+        type =
+          with lib.types;
+          listOf (submodule {
+            options = {
+              host = lib.mkOption {
+                example = "example.com";
+                type = lib.types.str;
+                description = "Domain or IP you want to SSH key to work for";
+              };
+              file = lib.mkOption {
+                example = ./your-key.pub;
+                type = lib.types.path;
+                description = "Path to your public key";
+              };
+            };
+          });
         description = "List of additional public SSH keys";
       };
     };
+  };
 
-  config = lib.mkIf config.homeModules.applications."1password".enable {
-    home.packages = with pkgs; [
-      _1password-cli
-      _1password-gui
-    ];
+  config =
+    let
+      cfg = config.homeModules.applications."1password";
+    in
+    lib.mkIf config.homeModules.applications."1password".enable {
+      home.packages = with pkgs; [
+        _1password-cli
+        _1password-gui
+      ];
 
-    programs.ssh =
-      let
-        mkMatchBlock =
-          publicKey:
-          lib.hm.dag.entryBefore [ "Host *" ] {
-            identitiesOnly = true;
-            identityFile = (toString publicKey);
-          };
-      in
-      lib.mkIf config.homeModules.applications."1password".configureSSH {
-        enable = true;
-        matchBlocks = {
-          "webtransfer.ch" = mkMatchBlock "~/.ssh/public-keys/webtransfer.pub";
-          "192.168.68.66" = mkMatchBlock "~/.ssh/public-keys/homelab_1.pub";
-          "185.79.235.161" = mkMatchBlock "~/.ssh/public-keys/cloudscale.pub";
-          "github.com" = mkMatchBlock "~/.ssh/public-keys/github.pub";
-          "gitlab.fhnw.ch" = mkMatchBlock "~/.ssh/public-keys/gitlab_fhnw.pub";
-          "gitlab.puzzle.ch" = mkMatchBlock "~/.ssh/public-keys/gitlab_puzzle.pub";
-          "Host *" = {
-            host = "*";
-            extraOptions = {
-              "IdentityAgent" = "~/.1password/agent.sock";
+      programs.ssh =
+        let
+          mkMatchBlock =
+            publicKey:
+            lib.hm.dag.entryBefore [ "Host *" ] {
+              identitiesOnly = true;
+              identityFile = (toString publicKey);
             };
-          };
+          convertToMatchBlocks =
+            additionalKeysList:
+            (builtins.listToAttrs (
+              lib.map (ak: {
+                name = ak.host;
+                value = mkMatchBlock ak.file;
+              }) additionalKeysList
+            ));
+        in
+        lib.mkIf cfg.ssh.configureSSH {
+          enable = true;
+          matchBlocks = lib.mkMerge [
+            {
+              "github.com" = mkMatchBlock "~/.ssh/public-keys/github.pub";
+              "Host *" = {
+                host = "*";
+                extraOptions = {
+                  "IdentityAgent" = "~/.1password/agent.sock";
+                };
+              };
+            }
+            (convertToMatchBlocks cfg.ssh.additionalPublicKeys)
+          ];
         };
+
+      home.sessionVariables = lib.mkIf cfg.ssh.configureSSH {
+        SSH_AUTH_SOCK = "~/.1password/agent.sock";
       };
 
-    home.sessionVariables = lib.mkIf config.homeModules.applications."1password".configureSSH {
-      SSH_AUTH_SOCK = "~/.1password/agent.sock";
+      home.file.publicKeys = lib.mkIf cfg.ssh.configureSSH {
+        recursive = true;
+        source = ./assets;
+        target = ".ssh/public-keys";
+      };
     };
-
-    home.file.publicKeys = lib.mkIf config.homeModules.applications."1password".configureSSH {
-      recursive = true;
-      source = ./assets;
-      target = ".ssh/public-keys";
-    };
-  };
 }

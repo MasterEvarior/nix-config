@@ -36,6 +36,26 @@ in
     applications = {
       onedrive.enable = true;
       zotero.enable = true;
+      "1password" = {
+        enable = true;
+        ssh = {
+          configureSSH = true;
+          additionalPublicKeys = [
+            {
+              host = "192.168.68.66";
+              file = ./assets/ssh/homelab_1.pub;
+            }
+            {
+              host = "gitlab.fhnw.ch";
+              file = ./assets/ssh/gitlab_fhnw.pub;
+            }
+            {
+              host = "185.79.235.161";
+              file = ./assets/ssh/cloudscale.pub;
+            }
+          ];
+        };
+      };
       cypress = {
         enable = true;
         additionalBrowsers = [ ];
