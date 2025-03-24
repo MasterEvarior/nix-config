@@ -6,38 +6,41 @@
 }:
 
 {
-
-  options.homeModules.applications."1password" = {
-    enable = lib.mkEnableOption "1Password GUI and client";
-    ssh = {
-      configureSSH = lib.mkOption {
-        default = true;
-        example = true;
-        type = lib.types.bool;
-        description = "Wether to a configure the SSH config for the 1Password agent";
-      };
-      additionalPublicKeys = lib.mkOption {
-        default = [ ];
-        type =
-          with lib.types;
-          listOf (submodule {
-            options = {
-              host = lib.mkOption {
-                example = "example.com";
-                type = lib.types.str;
-                description = "Domain or IP you want to SSH key to work for";
-              };
-              file = lib.mkOption {
-                example = ./your-key.pub;
-                type = lib.types.path;
-                description = "Path to your public key";
-              };
+  options.homeModules.applications."1password" =
+    let
+      publicKeyType =
+        with lib.types;
+        listOf (submodule {
+          options = {
+            host = lib.mkOption {
+              example = "example.com";
+              type = lib.types.str;
+              description = "Domain or IP you want to SSH key to work for";
             };
-          });
-        description = "List of additional public SSH keys";
+            file = lib.mkOption {
+              example = ./your-key.pub;
+              type = lib.types.path;
+              description = "Path to your public key";
+            };
+          };
+        });
+    in
+    {
+      enable = lib.mkEnableOption "1Password GUI and client";
+      ssh = {
+        configureSSH = lib.mkOption {
+          default = true;
+          example = true;
+          type = lib.types.bool;
+          description = "Wether to a configure the SSH config for the 1Password agent";
+        };
+        additionalPublicKeys = lib.mkOption {
+          default = [ ];
+          type = publicKeyType;
+          description = "List of additional public SSH keys";
+        };
       };
     };
-  };
 
   config =
     let
@@ -86,6 +89,7 @@
         SSH_AUTH_SOCK = "~/.1password/agent.sock";
       };
 
+      # copy default keys which every user should have anyway
       home.file.publicKeys = lib.mkIf cfg.ssh.configureSSH {
         recursive = true;
         source = ./assets;
