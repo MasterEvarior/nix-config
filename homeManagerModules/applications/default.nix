@@ -30,6 +30,7 @@
     ./zoxide
     ./lsd
     ./utils
+    ./playerctl
   ];
 
   options.homeModules.applications.module = {
@@ -62,6 +63,7 @@
         libreoffice.enable = lib.mkDefault enableByDefault;
         zoxide.enable = lib.mkDefault enableByDefault;
         lsd.enable = lib.mkDefault enableByDefault;
+        playerctl.enable = lib.mkDefault enableByDefault;
         utils.enable = lib.mkDefault enableByDefault;
       };
     };

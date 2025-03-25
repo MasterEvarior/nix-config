@@ -21,5 +21,28 @@
         theme = spicePkgs.themes.catppuccin;
         colorScheme = "mocha";
       };
+
+    homeModules.applications.playerctl.additionalAliases = [
+      {
+        name = "spause";
+        command = "playerctl -p spotify pause";
+      }
+      {
+        name = "splay";
+        command = "playerctl -p spotify play";
+      }
+      {
+        name = "spresume";
+        command = "playerctl -p spotify play";
+      }
+      {
+        name = "spskip";
+        command = "playerctl -p spotify next";
+      }
+      {
+        name = "sprev";
+        command = "playerctl -p spotify previous";
+      }
+    ];
   };
 }
