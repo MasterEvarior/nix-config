@@ -61,23 +61,11 @@
             value = (mkSystem h);
           }) hostnames
         );
-      mkHome =
-        homePath:
-        inputs.home-manager.lib.homeManagerConfiguration {
-          modules = [
-            homePath
-          ];
-        };
     in
     {
       nixosConfigurations = mkSystems [
         "arrakis"
         "caladan"
       ];
-      homeConfigurations = {
-        "giannin" = mkHome ./users/giannin/home.nix;
-        "work" = mkHome ./users/work/home.nix;
-        "htpc" = mkHome ./users/htpc/home.nix;
-      };
     };
 }
