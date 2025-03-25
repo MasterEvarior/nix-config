@@ -36,6 +36,12 @@
       type = lib.types.str;
       description = "How the default branch should be named when creating a new project";
     };
+    delta = lib.mkOption {
+      default = true;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether or not to enable a better diff view";
+    };
   };
 
   config =
@@ -54,6 +60,7 @@
           ss = "stash save";
           sl = "stash list";
           sa = "stash apply";
+          sd = "stash drop";
           s = "status";
           pl = "pull";
           ps = "push";
@@ -69,11 +76,17 @@
           pull = {
             rebase = config.homeModules.dev.git.rebase;
           } // safeDirs;
-          push = {
-            autoSetupRemote = true;
-          };
-          init = {
-            defaultBranch = cfg.defaultBranchName;
+          push.autoSetupRemote = true;
+          init.defaultBranch = cfg.defaultBranchName;
+          color.ui = true;
+        };
+        delta = {
+          enable = cfg.delta;
+          options = {
+            navigate = true;
+            light = false;
+            side-by-side = true;
+            syntax-theme = "ansi";
           };
         };
       };
