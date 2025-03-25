@@ -191,6 +191,10 @@
             "command" = "editor.action.deleteLines";
             "when" = "textInputFocus && !editorReadonly";
           }
+          {
+            "key" = "ctrl+shift+t";
+            "command" = "workbench.action.terminal.new";
+          }
         ];
       };
     };
