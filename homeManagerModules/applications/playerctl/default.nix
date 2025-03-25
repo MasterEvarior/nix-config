@@ -12,12 +12,12 @@ let
       options = {
         name = lib.mkOption {
           example = "sp-play";
-          type = lib.types.str;
+          type = str;
           description = "Name of the alias, which can be typed in the terminal";
         };
         command = lib.mkOption {
           example = "playerctl -p spotify play";
-          type = lib.types.str;
+          type = str;
           description = "Command that should be executed";
         };
       };
