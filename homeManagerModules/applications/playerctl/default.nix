@@ -67,21 +67,9 @@ in
             "next" = "playerctl next";
             "play" = "playerctl play";
             "resume" = "playerctl play";
+            "pause" = "playerctl pause";
           }
           (mkAdditionalAliases cfg.additionalAliases)
         ];
-
-      /*
-        home.shellAliases =
-          let
-            spotify = "playerctl -p spotify";
-          in
-          {
-            sp-pause = "${spotify} pause";
-            sp-play = "${spotify} play";
-            sp-skip = "${spotify} next";
-            sp-prev = "${spotify} previous";
-          };
-      */
     };
 }
