@@ -180,6 +180,7 @@
         dcv = "docker compose config --quiet";
 
         # docker
+        dk = "docker";
         dktop = "docker stats --format ''\"table {{.Container}}	{{.Name}}	{{.CPUPerc}}  {{.MemPerc}}	{{.NetIO}}	{{.BlockIO}}\"";
         dkp = "docker ps";
         dke = "docker exec -it";
