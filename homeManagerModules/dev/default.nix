@@ -51,6 +51,7 @@
         git.enable = lib.mkDefault enableByDefault;
         java.enable = lib.mkDefault enableByDefault;
         containerization.enable = lib.mkDefault enableByDefault;
+        python.enable = lib.mkDefault enableByDefault;
       };
 
       programs.direnv = {

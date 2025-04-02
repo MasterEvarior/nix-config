@@ -21,9 +21,7 @@
 
   config = lib.mkIf config.homeModules.dev.python.enable {
     home.packages = with pkgs; [
-      (python3.withPackages (
-        pythonPkgs: with pythonPkgs; config.homeModules.dev.python.additionalPackages
-      ))
+      (python3.withPackages (_pythonPkgs: config.homeModules.dev.python.additionalPackages))
     ];
 
     homeModules.applications.treefmt.additionalFormatters = with pkgs; [
