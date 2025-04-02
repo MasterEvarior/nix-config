@@ -2,36 +2,36 @@
 
 {
   imports = [
-    ./btop
-    ./vscode
-    ./fastfetch
-    ./dooit
-    ./deja-dup
-    ./cypress
-    ./comma
-    ./onedrive
     ./1password
-    ./spotify
-    ./zotero
+    ./b2-backup
+    ./bitwarden
+    ./btop
     ./chromium
-    ./watson
-    ./ms-teams
-    ./zellij
+    ./comma
+    ./cypress
+    ./deja-dup
+    ./dooit
+    ./fastfetch
     ./fzf
     ./github-cli
     ./gitlab-cli
-    ./signal
-    ./license-cli
-    ./treefmt
-    ./b2-backup
-    ./nano
-    ./micro
     ./libreoffice
-    ./bitwarden
-    ./zoxide
+    ./license-cli
     ./lsd
-    ./utils
+    ./micro
+    ./ms-teams
+    ./nano
+    ./onedrive
     ./playerctl
+    ./signal
+    ./spotify
+    ./treefmt
+    ./utils
+    ./vscode
+    ./watson
+    ./zellij
+    ./zotero
+    ./zoxide
   ];
 
   options.homeModules.applications.module = {
