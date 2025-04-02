@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./btop
     ./vscode
     ./fastfetch
     ./dooit
@@ -65,6 +66,7 @@
         lsd.enable = lib.mkDefault enableByDefault;
         playerctl.enable = lib.mkDefault enableByDefault;
         utils.enable = lib.mkDefault enableByDefault;
+        btop.enable = lib.mkDefault enableByDefault;
       };
     };
 }
