@@ -14,6 +14,9 @@
     thunderbird
     nextcloud-client
 
+    # RDP Client
+    remmina
+
     # Media
     vlc
   ];
