@@ -13,6 +13,7 @@
     lsd
     eza
     btop
+    dust
 
     # Div
     file
