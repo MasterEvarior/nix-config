@@ -141,20 +141,23 @@
           ++ cfg.additionalExtensions;
         userSettings = lib.mkMerge [
           {
-            "workbench.colorTheme" = cfg.theme;
+            "chat.agent.enabled" = false;
+            "chat.commandCenter.enabled" = false;
+            "explorer.confirmPasteNative" = cfg.confirmNativePaste;
+            "extensions.ignoreRecommendations" = true;
+            "github.copilot.enable" = false;
+            "git.openRepositoryInParentFolders" = "never";
+            "scm.alwaysShowRepositories" = cfg.scm.alwaysShowRepositories;
             "telemetry.telemetryLevel" = cfg.telemetry;
+            "terminal.integrated.fontFamily" = "Hack Nerd Font";
+            "update.showReleaseNotes" = cfg.showReleaseNotes;
+            "window.commandCenter" = false;
+            "workbench.colorTheme" = cfg.theme;
+            "workbench.layoutControl.enabled" = false;
+            "workbench.navigationControl.enabled" = false;
             "workbench.settings.enableNaturalLanguageSearch" = cfg.workbench.naturalLanguageSearch;
             "workbench.startupEditor" = cfg.workbench.startupEditor;
             "workbench.tips.enabled" = cfg.workbench.tipsEnabled;
-            "scm.alwaysShowRepositories" = cfg.scm.alwaysShowRepositories;
-            "extensions.ignoreRecommendations" = true;
-            "terminal.integrated.fontFamily" = "Hack Nerd Font";
-            "git.openRepositoryInParentFolders" = "never";
-            "update.showReleaseNotes" = cfg.showReleaseNotes;
-            "explorer.confirmPasteNative" = cfg.confirmNativePaste;
-            "chat.commandCenter.enabled" = false;
-            "github.copilot.enable" = false;
-            "chat.agent.enabled" = false;
           }
           cfg.additionalUserSettings
         ];
