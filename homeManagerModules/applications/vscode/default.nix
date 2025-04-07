@@ -152,6 +152,9 @@
             "git.openRepositoryInParentFolders" = "never";
             "update.showReleaseNotes" = cfg.showReleaseNotes;
             "explorer.confirmPasteNative" = cfg.confirmNativePaste;
+            "chat.commandCenter.enabled" = false;
+            "github.copilot.enable" = false;
+            "chat.agent.enabled" = false;
           }
           cfg.additionalUserSettings
         ];
