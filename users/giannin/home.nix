@@ -104,7 +104,6 @@ in
         enable = true;
         setupVisualStudioCode = true;
       };
-      just.enable = true;
       git = {
         enable = true;
         userName = "Giannin";
