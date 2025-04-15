@@ -19,20 +19,10 @@ in
   ];
 
   homeModules = {
-    applications = {
-      vscode.enable = false;
-      "1password".enable = false;
-      spotify.enable = false;
-      comma.enable = false;
-      fzf.enable = false;
-      treefmt.enable = false;
-    };
-    dev = {
-      js = {
-        enable = false;
-        typescript.enable = false;
-      };
-      java.enable = false;
+    applications.module.enableDefaults = false;
+    dev.module = {
+      enableDefaults = false;
+      enableDirEnv = false;
     };
   };
 
