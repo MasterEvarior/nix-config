@@ -1,8 +1,13 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  ...
+}:
 
 {
   imports = [
     ./ansible
+    ./direnv
     ./golang
     ./js
     ./c
@@ -52,12 +57,7 @@
         java.enable = lib.mkDefault enableByDefault;
         containerization.enable = lib.mkDefault enableByDefault;
         python.enable = lib.mkDefault enableByDefault;
-      };
-
-      programs.direnv = {
-        enable = cfg.enableDirEnv;
-        enableZshIntegration = cfg.enableDirEnv;
-        nix-direnv.enable = cfg.enableDirEnv;
+        direnv.enable = lib.mkDefault enableByDefault;
       };
     };
 }
