@@ -23,5 +23,9 @@
         enableFishIntegration = isDefaultShell pkgs.fish;
         nix-direnv.enable = true;
       };
+
+      home.shellAliases = {
+        direnv-init-flake = ''echo "${(builtins.readFile ./assets/template.nix)}" > flake.nix && echo "use flake" > .envrc && direnv allow'';
+      };
     };
 }
