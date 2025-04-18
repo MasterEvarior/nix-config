@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     # Text editor
-    nano
+    micro
 
     # Browser
     firefox
