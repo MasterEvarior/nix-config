@@ -33,33 +33,27 @@
       type = lib.types.bool;
       description = "Wether defaults should be enabled or not";
     };
-    enableDirEnv = lib.mkOption {
-      default = false;
-      example = true;
-      type = lib.types.bool;
-      description = "Wether or not to enable and setup direnv";
-    };
   };
 
   config =
     let
       cfg = config.homeModules.dev.module;
-      enableByDefault = cfg.enableDefaults;
+      enableByDefault = lib.mkDefault cfg.enableDefaults;
     in
     {
       homeModules.dev = {
         js = {
-          enable = lib.mkDefault enableByDefault;
-          typescript.enable = lib.mkDefault enableByDefault;
+          enable = enableByDefault;
+          typescript.enable = enableByDefault;
         };
-        nix.enable = lib.mkDefault enableByDefault;
-        typst.enable = lib.mkDefault enableByDefault;
-        git.enable = lib.mkDefault enableByDefault;
-        java.enable = lib.mkDefault enableByDefault;
-        containerization.enable = lib.mkDefault enableByDefault;
-        python.enable = lib.mkDefault enableByDefault;
-        direnv.enable = lib.mkDefault enableByDefault;
-        renovate.enable = lib.mkDefault enableByDefault;
+        nix.enable = enableByDefault;
+        typst.enable = enableByDefault;
+        git.enable = enableByDefault;
+        java.enable = enableByDefault;
+        containerization.enable = enableByDefault;
+        python.enable = enableByDefault;
+        direnv.enable = enableByDefault;
+        renovate.enable = enableByDefault;
       };
     };
 }
