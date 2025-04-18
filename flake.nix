@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,11 +33,13 @@
   outputs =
     inputs:
     let
+      system = "x86_64-linux";
       lib = inputs.nixpkgs.lib;
+      pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
       mkSystem =
         hostname:
         lib.nixosSystem {
-          system = "x86_64-linux";
+          system = system;
           modules = [
             (./. + "/hosts/${hostname}/configuration.nix")
             inputs.grub2-themes.nixosModules.default
@@ -50,7 +53,10 @@
                 inputs.sops-nix.homeManagerModules.sops
                 inputs.spicetify-nix.homeManagerModules.default
               ];
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                inherit pkgs-unstable;
+              };
             }
           ];
         };
