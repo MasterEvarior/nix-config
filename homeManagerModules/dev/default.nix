@@ -7,22 +7,23 @@
 {
   imports = [
     ./ansible
-    ./direnv
-    ./golang
-    ./js
     ./c
-    ./nix
-    ./typst
-    ./jupyter
-    ./git
-    ./terraform
-    ./java
-    ./python
-    ./kubernetes
-    ./just
-    ./php
-    ./latex
     ./containerization
+    ./direnv
+    ./git
+    ./golang
+    ./java
+    ./js
+    ./jupyter
+    ./just
+    ./kubernetes
+    ./latex
+    ./nix
+    ./php
+    ./python
+    ./renovate
+    ./terraform
+    ./typst
   ];
 
   options.homeModules.dev.module = {
@@ -58,6 +59,7 @@
         containerization.enable = lib.mkDefault enableByDefault;
         python.enable = lib.mkDefault enableByDefault;
         direnv.enable = lib.mkDefault enableByDefault;
+        renovate.enable = lib.mkDefault enableByDefault;
       };
     };
 }
