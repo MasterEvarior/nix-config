@@ -20,10 +20,7 @@ in
 
   homeModules = {
     applications.module.enableDefaults = false;
-    dev.module = {
-      enableDefaults = false;
-      enableDirEnv = false;
-    };
+    dev.module.enableDefaults = false;
   };
 
   home.stateVersion = "24.11";

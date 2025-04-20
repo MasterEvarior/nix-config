@@ -89,7 +89,6 @@ in
     };
 
     dev = {
-      module.enableDirEnv = true;
       kubernetes = {
         enable = true;
         minikube.enable = false;
