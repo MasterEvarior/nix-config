@@ -103,6 +103,10 @@ in
         enable = true;
         setupVisualStudioCode = true;
       };
+      python = {
+        enable = true;
+        setupVisualStudioCode = true;
+      };
       git = {
         enable = true;
         userName = "Giannin";
