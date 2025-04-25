@@ -13,6 +13,12 @@
       type = lib.types.int;
       description = "How many generations to keep";
     };
+    autoOptimiseStore = lib.mkOption {
+      default = true;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether or not to enable auto optimise for the nix-store";
+    };
   };
 
   config =
@@ -20,10 +26,13 @@
       cfg = config.modules.settings.garbageCollection;
     in
     lib.mkIf config.modules.settings.garbageCollection.enable {
-      nix.gc = {
-        automatic = true;
-        dates = "daily";
-        options = "--delete-older-than +${toString cfg.keep}";
+      nix = {
+        settings.auto-optimise-store = cfg.autoOptimiseStore;
+        gc = {
+          automatic = true;
+          dates = "daily";
+          options = "--delete-older-than +${toString cfg.keep}";
+        };
       };
     };
 }
