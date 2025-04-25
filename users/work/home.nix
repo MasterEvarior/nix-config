@@ -40,6 +40,10 @@
               host = "gitlab.puzzle.ch";
               file = ./assets/ssh/gitlab_puzzle.pub;
             }
+            {
+              host = "gitlab.bfh.ch";
+              file = ./assets/ssh/gitlab_bfh.pub;
+            }
           ];
         };
       };
