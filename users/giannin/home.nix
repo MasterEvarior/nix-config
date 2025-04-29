@@ -15,8 +15,7 @@ in
   home.homeDirectory = "/home/${username}";
 
   home.packages = with pkgs; [
-    # Entertainment & Media
-    plex-media-player
+    # Media
     vlc
 
     # Wallpapers
