@@ -21,6 +21,9 @@ in
 
     # Wallpapers
     gowall
+
+    # School
+    jmeter
   ];
 
   homeModules = {
