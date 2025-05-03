@@ -14,5 +14,8 @@
       enable = true;
       xwayland.enable = true;
     };
+
+    # required per the wiki
+    security.polkit.enable = true;
   };
 }
