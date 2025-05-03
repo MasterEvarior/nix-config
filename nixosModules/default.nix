@@ -10,14 +10,12 @@
     ./containers
     ./nvidia
     ./displaylink
-    ./plasma
     ./sddm
   ];
 
   modules = {
     terminal.enable = lib.mkDefault true;
     containers.enable = lib.mkDefault true;
-    desktop.hyprland.enable = lib.mkDefault true;
     desktop.plasma.enable = lib.mkDefault true;
   };
 }

@@ -20,15 +20,7 @@
 
     desktop = {
       plasma.enable = true;
-      hyprland = {
-        enable = true;
-        monitors = [
-          "DP-3, 2560x1080@144, 0x0, 1"
-          "DP-1, 1920x1080@60, 2560x0, 1, transform, 3"
-          ", preferred, auto, 1"
-        ];
-        wallpaper = ./assets/wallpapers/desktop/marine-tunnel.jpg;
-      };
+      sway.enable = true;
     };
 
     grub2Theme = {
