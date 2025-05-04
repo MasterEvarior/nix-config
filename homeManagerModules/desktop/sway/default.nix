@@ -68,6 +68,7 @@
         package = null;
         config = {
           terminal = cfg.terminal;
+          startup = [ ];
           input = {
             "type:keyboard" = {
               xkb_layout = "ch";
@@ -78,6 +79,46 @@
               pointer_accel = "0.0"; # set mouse sensitivity (between -1 and 1)
             };
           };
+          focus = {
+            followMouse = true;
+          };
+          gaps = {
+            outer = 5;
+            smartBorders = "on";
+            smartGaps = true;
+          };
+          bars = [
+            {
+              position = "top";
+              mode = "dock";
+              colors = {
+                background = theme.base;
+                statusline = theme.text;
+                focusedStatusline = theme.text;
+                focusedSeparator = theme.base;
+                focusedWorkspace = {
+                  background = theme.mauve;
+                  border = theme.base;
+                  text = theme.crust;
+                };
+                activeWorkspace = {
+                  background = theme.surface2;
+                  border = theme.base;
+                  text = theme.text;
+                };
+                inactiveWorkspace = {
+                  background = theme.base;
+                  border = theme.base;
+                  text = theme.text;
+                };
+                urgentWorkspace = {
+                  background = theme.red;
+                  border = theme.base;
+                  text = theme.crust;
+                };
+              };
+            }
+          ];
           colors = {
             focused = {
               background = theme.base;
@@ -116,7 +157,6 @@
             };
             background = theme.base;
           };
-          startup = [ ];
         };
       };
     };
