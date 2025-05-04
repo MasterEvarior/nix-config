@@ -20,7 +20,21 @@
 
     desktop = {
       plasma.enable = true;
-      sway.enable = true;
+      sway = {
+        enable = true;
+        outputs = {
+          "LG Electronics LG ULTRAWIDE 0x00059AB6" = {
+            mode = "2560x1080";
+            bg = "${./assets/wallpapers/desktop/ocean_with_cloud.png} fill";
+            pos = "0,0";
+          };
+          "AOC 24G2W1G4 ATNN11A013004" = {
+            mode = "1920x1080";
+            pos = "2560,0";
+            transform = "90";
+          };
+        };
+      };
     };
 
     grub2Theme = {

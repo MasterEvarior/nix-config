@@ -21,6 +21,16 @@
       type = lib.types.package;
       description = "Terminal that should be opened with the associated shortcut";
     };
+    outputs = lib.mkOption {
+      default = osConfig.modules.desktop.sway.outputs;
+      example = {
+        HDMI-A-2 = {
+          bg = "~/path/to/background.png fill";
+        };
+      };
+      type = lib.types.attrs;
+      description = "An attribute set that defines output modules. See sway-output(5) for options.";
+    };
   };
 
   config =
@@ -80,6 +90,7 @@
               pointer_accel = "0.0"; # set mouse sensitivity (between -1 and 1)
             };
           };
+          output = cfg.outputs;
           focus = {
             followMouse = true;
           };
