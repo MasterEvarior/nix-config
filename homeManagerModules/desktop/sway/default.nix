@@ -2,6 +2,7 @@
   lib,
   config,
   osConfig,
+  pkgs,
   ...
 }:
 
@@ -15,9 +16,9 @@
       description = "Wether or not to validate the Sway config before writing it to disk.";
     };
     terminal = lib.mkOption {
-      default = "alacritty";
-      example = "alacritty";
-      type = lib.types.str;
+      default = pkgs.alacritty;
+      example = pkgs.alacritty;
+      type = lib.types.package;
       description = "Terminal that should be opened with the associated shortcut";
     };
   };
@@ -67,7 +68,7 @@
         checkConfig = cfg.checkConfig;
         package = null;
         config = {
-          terminal = cfg.terminal;
+          terminal = "${cfg.terminal}";
           startup = [ ];
           input = {
             "type:keyboard" = {
