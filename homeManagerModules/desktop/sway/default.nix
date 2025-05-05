@@ -11,6 +11,7 @@
     ./fuzzel.nix
     ./mako.nix
     ./wlogout.nix
+    ./snipping-tools.nix
   ];
 
   options.homeModules.desktop.sway.module = {
@@ -80,6 +81,7 @@
           # Because wlogout uses CSS's rgba and rgb, there needs to be some manual adjustment to the theme still
           theme = mergedTheme;
         };
+        snipping-tools.enable = enableByDefault;
       };
     };
 }
