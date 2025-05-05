@@ -25,11 +25,36 @@
       type = lib.types.attrs;
       description = "Theme";
     };
+    additionalStartupCommands = lib.mkOption {
+      default = [ ];
+      example = [
+        {
+          command = "pipewire";
+          always = true;
+        }
+      ];
+      type = lib.types.listOf lib.types.attrs;
+      description = "Additional commands to execute on Sway startup";
+    };
+    additionalKeybindings = lib.mkOption {
+      default = { };
+      example = {
+        "Mod1+d exec" = "${pkgs.firefox}";
+      };
+      type = lib.types.attrs;
+      description = "Additional keybindings";
+    };
     terminal = lib.mkOption {
       default = pkgs.alacritty;
       example = pkgs.alacritty;
       type = lib.types.package;
       description = "Terminal that should be opened with the associated shortcut";
+    };
+    browser = lib.mkOption {
+      default = pkgs.firefox;
+      example = pkgs.firefox;
+      type = lib.types.package;
+      description = "Browser that should be opened with the associated shortcut";
     };
     outputs = lib.mkOption {
       default = osConfig.modules.desktop.sway.outputs;
@@ -47,6 +72,7 @@
     let
       cfg = config.homeModules.desktop.sway;
       theme = cfg.theme;
+      modifier = config.wayland.windowManager.sway.config.modifier;
     in
     lib.mkIf config.homeModules.desktop.sway.enable {
       assertions = [
@@ -66,7 +92,12 @@
         package = null;
         config = {
           terminal = "${cfg.terminal}";
-          startup = [ ];
+          startup = [
+            {
+              command = "pipewire";
+              always = true;
+            }
+          ] ++ cfg.additionalStartupCommands;
           input = {
             "type:keyboard" = {
               xkb_layout = "ch";
@@ -79,9 +110,17 @@
           };
           output = cfg.outputs;
           focus = {
-            followMouse = true;
+            followMouse = false;
+            mouseWarping = false;
           };
+          keybindings = lib.mkOptionDefault (
+            {
+              "${modifier}+b" = "exec --no-startup-id ${cfg.browser}";
+            }
+            // cfg.additionalKeybindings
+          );
           gaps = {
+            inner = 10;
             outer = 5;
             smartBorders = "on";
             smartGaps = true;

@@ -38,5 +38,11 @@
         [urgency=high]
         border-color=${theme.pink}
       '';
+
+      homeModules.desktop.sway.additionalStartupCommands = [
+        {
+          command = "${pkgs.mako}";
+        }
+      ];
     };
 }
