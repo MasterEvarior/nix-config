@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -20,10 +21,17 @@
   };
 
   config = lib.mkIf config.modules.desktop.sway.enable {
+    environment.systemPackages = with pkgs; [ wl-clipboard ];
+
     programs.sway = {
       enable = true;
       xwayland.enable = true;
+      wrapperFeatures.gtk = true;
     };
+
+    # Enable the gnome-keyring secrets vault.
+    # Will be exposed through DBus to programs willing to store secrets.
+    services.gnome.gnome-keyring.enable = true;
 
     # required per the wiki
     security.polkit.enable = true;
