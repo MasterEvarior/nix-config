@@ -10,6 +10,7 @@
     ./sway.nix
     ./fuzzel.nix
     ./mako.nix
+    ./wlogout.nix
   ];
 
   options.homeModules.desktop.sway.module = {
@@ -72,6 +73,11 @@
         };
         mako = {
           enable = enableByDefault;
+          theme = mergedTheme;
+        };
+        wlogout = {
+          enable = enableByDefault;
+          # Because wlogout uses CSS's rgba and rgb, there needs to be some manual adjustment to the theme still
           theme = mergedTheme;
         };
       };
