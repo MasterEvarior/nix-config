@@ -19,6 +19,7 @@
     ./fzf
     ./github-cli
     ./gitlab-cli
+    ./gowall
     ./libreoffice
     ./license-cli
     ./lsd

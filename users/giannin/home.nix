@@ -18,9 +18,6 @@ in
     # Media
     vlc
 
-    # Wallpapers
-    gowall
-
     # School
     jmeter
   ];
@@ -38,6 +35,7 @@ in
     applications = {
       onedrive.enable = true;
       zotero.enable = true;
+      gowall.enable = true;
       "1password" = {
         enable = true;
         ssh = {
