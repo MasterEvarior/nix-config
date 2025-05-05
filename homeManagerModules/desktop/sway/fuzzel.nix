@@ -51,7 +51,7 @@
       '';
 
       homeModules.desktop.sway.additionalKeybindings = {
-        "+d" = "exec --no-startup-id ${pkgs.fuzzel}";
+        "+d" = "exec --no-startup-id ${pkgs.fuzzel}/bin/fuzzel";
       };
     };
 }
