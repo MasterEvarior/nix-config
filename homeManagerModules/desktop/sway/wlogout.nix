@@ -25,7 +25,6 @@
       theme = config.homeModules.desktop.sway.wlogout.theme;
       configDir = ".config/wlogout/";
       iconDir = "${configDir}/icons/";
-      modifier = config.wayland.windowManager.sway.config.modifier;
     in
     lib.mkIf config.homeModules.desktop.sway.wlogout.enable {
       home.packages = with pkgs; [
@@ -33,7 +32,7 @@
       ];
 
       homeModules.desktop.sway.additionalKeybindings = {
-        "${modifier}+Shift+e" = "exec --no-startup-id wlogout";
+        "+Shift+e" = "exec --no-startup-id wlogout";
       };
 
       home.file."${configDir}layout".text = ''

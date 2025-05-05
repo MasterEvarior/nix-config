@@ -26,7 +26,6 @@
       stripHashtag = lib.strings.stringAsChars (x: if x == "#" then "" else x);
       ff = color: "${stripHashtag color}ff";
       dd = color: "${stripHashtag color}dd";
-      modifier = config.wayland.windowManager.sway.config.modifier;
     in
     lib.mkIf config.homeModules.desktop.sway.fuzzel.enable {
       home.packages = with pkgs; [
@@ -52,7 +51,7 @@
       '';
 
       homeModules.desktop.sway.additionalKeybindings = {
-        "${modifier}+d" = "exec --no-startup-id ${pkgs.fuzzel}";
+        "+d" = "exec --no-startup-id ${pkgs.fuzzel}";
       };
     };
 }
