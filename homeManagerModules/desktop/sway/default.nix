@@ -9,6 +9,7 @@
   imports = [
     ./sway.nix
     ./fuzzel.nix
+    ./mako.nix
   ];
 
   options.homeModules.desktop.sway.module = {
@@ -59,15 +60,20 @@
         defaultTheme
         cfg.themeCustomization
       ];
+      enableByDefault = lib.mkDefault osConfig.modules.desktop.sway.enable;
     in
     lib.mkIf config.homeModules.desktop.sway.module.enable {
       homeModules.desktop.sway = {
-        enable = lib.mkDefault osConfig.modules.desktop.sway.enable;
+        enable = enableByDefault;
         theme = mergedTheme;
-      };
-      homeModules.desktop.sway.fuzzel = {
-        enable = lib.mkDefault osConfig.modules.desktop.sway.enable;
-        theme = mergedTheme;
+        fuzzel = {
+          enable = enableByDefault;
+          theme = mergedTheme;
+        };
+        mako = {
+          enable = enableByDefault;
+          theme = mergedTheme;
+        };
       };
     };
 }
