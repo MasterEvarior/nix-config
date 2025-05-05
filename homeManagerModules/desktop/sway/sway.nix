@@ -140,9 +140,6 @@
             "${modifier}+9" = "workspace number 9";
 
             # Movement
-            "${modifier}+Down" = "focus down";
-            "${modifier}+Left" = "focus left";
-            "${modifier}+Right" = "focus right";
             "${modifier}+Shift+0" = "move container to workspace number 10";
             "${modifier}+Shift+1" = "move container to workspace number 1";
             "${modifier}+Shift+2" = "move container to workspace number 2";
@@ -158,16 +155,15 @@
             "${modifier}+Shift+Right" = "move right";
             "${modifier}+Shift+Up" = "move up";
             "${modifier}+Shift+c" = "reload";
-            "${modifier}+Shift+h" = "move left";
-            "${modifier}+Shift+j" = "move down";
-            "${modifier}+Shift+k" = "move up";
-            "${modifier}+Shift+l" = "move right";
             "${modifier}+Shift+q" = "kill";
             "${modifier}+Shift+space" = " floating toggle";
             "${modifier}+e" = "layout toggle split";
             "${modifier}+f" = "fullscreen toggle";
 
             # Focus
+            "${modifier}+Down" = "focus down";
+            "${modifier}+Left" = "focus left";
+            "${modifier}+Right" = "focus right";
             "${modifier}+Up" = "focus up";
             "${modifier}+a" = "focus parent";
             "${modifier}+h" = "focus left";
@@ -183,8 +179,8 @@
             "${modifier}+w" = "layout tabbed";
           } // (addModifierToKeybindings cfg.additionalKeybindings);
           gaps = {
-            inner = 10;
-            outer = 5;
+            inner = 5;
+            outer = 3;
             smartBorders = "on";
             smartGaps = true;
           };
