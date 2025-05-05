@@ -45,15 +45,15 @@
       description = "Additional keybindings, without the modifier key at the start";
     };
     terminal = lib.mkOption {
-      default = pkgs.alacritty;
-      example = pkgs.alacritty;
-      type = lib.types.package;
+      default = "${pkgs.alacritty}/bin/alacritty";
+      example = "${pkgs.alacritty}/bin/alacritty";
+      type = lib.types.str;
       description = "Terminal that should be opened with the associated shortcut";
     };
     browser = lib.mkOption {
-      default = pkgs.firefox;
-      example = pkgs.firefox;
-      type = lib.types.package;
+      default = "firefox";
+      example = "firefox";
+      type = lib.types.str;
       description = "Browser that should be opened with the associated shortcut";
     };
     outputs = lib.mkOption {
@@ -97,6 +97,7 @@
         package = null;
         config = {
           terminal = "${cfg.terminal}";
+          modifier = "Mod4"; # this is the Windows key
           startup = [
             {
               command = "pipewire";
@@ -120,7 +121,8 @@
           };
           keybindings = {
             #Terminal
-            "${modifier}+Return" = "exec ${cfg.terminal}";
+            "${modifier}+Return" = "exec --no-startup-id ${cfg.terminal}";
+            "${modifier}+t" = "exec --no-startup-id alacritty";
 
             # Browser
             "${modifier}+b" = "exec --no-startup-id ${cfg.browser}";
