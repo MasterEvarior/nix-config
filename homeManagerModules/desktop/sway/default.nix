@@ -84,8 +84,8 @@
         };
         waybar = {
           enable = enableByDefault;
-          logoutCommand = "wlogout";
         };
+        # TODO: fix this module
         snipping-tools.enable = enableByDefault;
       };
     };

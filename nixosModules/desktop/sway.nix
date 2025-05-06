@@ -37,6 +37,13 @@
         pulseaudio
       ];
 
+      fonts.packages = with pkgs; [
+        # Waybar
+        font-awesome
+      ];
+
+      services.blueman.enable = true;
+
       programs.sway = {
         enable = true;
         xwayland.enable = true;

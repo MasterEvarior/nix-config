@@ -30,9 +30,11 @@
       home.packages = with pkgs; [
         wlogout
       ];
-
-      homeModules.desktop.sway.additionalKeybindings = {
-        "+Shift+e" = "exec --no-startup-id wlogout";
+      homeModules.desktop.sway = {
+        waybar.logoutCommand = "${pkgs.wlogout}/bin/wlogout";
+        additionalKeybindings = {
+          "+Shift+e" = "exec --no-startup-id wlogout";
+        };
       };
 
       home.file."${configDir}layout".text = ''

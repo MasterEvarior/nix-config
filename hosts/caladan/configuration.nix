@@ -77,9 +77,13 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    audio.enable = true;
     pulse.enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    wireplumber.enable = true;
   };
 
   # This value determines the NixOS release from which the default

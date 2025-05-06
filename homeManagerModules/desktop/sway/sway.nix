@@ -44,6 +44,12 @@
       type = lib.types.attrs;
       description = "Additional keybindings, without the modifier key at the start";
     };
+    bar = lib.mkOption {
+      default = { };
+      example = { };
+      type = lib.types.attrs;
+      description = "Replace the default bar with something custom";
+    };
     terminal = lib.mkOption {
       default = "${pkgs.alacritty}/bin/alacritty";
       example = "${pkgs.alacritty}/bin/alacritty";
@@ -78,6 +84,37 @@
         lib.attrsets.mapAttrs' (
           name: value: lib.attrsets.nameValuePair (modifier + name) value
         ) keybindings;
+      defaultBar = {
+        position = "top";
+        mode = "dock";
+        colors = {
+          background = theme.base;
+          statusline = theme.text;
+          focusedStatusline = theme.text;
+          focusedSeparator = theme.base;
+          focusedWorkspace = {
+            background = theme.mauve;
+            border = theme.base;
+            text = theme.crust;
+          };
+          activeWorkspace = {
+            background = theme.surface2;
+            border = theme.base;
+            text = theme.text;
+          };
+          inactiveWorkspace = {
+            background = theme.base;
+            border = theme.base;
+            text = theme.text;
+          };
+          urgentWorkspace = {
+            background = theme.red;
+            border = theme.base;
+            text = theme.crust;
+          };
+        };
+      };
+      bar = if cfg.bar == { } then defaultBar else cfg.bar;
     in
     lib.mkIf config.homeModules.desktop.sway.enable {
       assertions = [
@@ -100,7 +137,7 @@
           modifier = "Mod4"; # this is the Windows key
           startup = [
             {
-              command = "pipewire";
+              command = "pipewire-pulse";
               always = true;
             }
           ] ++ cfg.additionalStartupCommands;
@@ -188,36 +225,7 @@
             smartGaps = true;
           };
           bars = [
-            {
-              position = "top";
-              mode = "dock";
-              colors = {
-                background = theme.base;
-                statusline = theme.text;
-                focusedStatusline = theme.text;
-                focusedSeparator = theme.base;
-                focusedWorkspace = {
-                  background = theme.mauve;
-                  border = theme.base;
-                  text = theme.crust;
-                };
-                activeWorkspace = {
-                  background = theme.surface2;
-                  border = theme.base;
-                  text = theme.text;
-                };
-                inactiveWorkspace = {
-                  background = theme.base;
-                  border = theme.base;
-                  text = theme.text;
-                };
-                urgentWorkspace = {
-                  background = theme.red;
-                  border = theme.base;
-                  text = theme.crust;
-                };
-              };
-            }
+            bar
           ];
           colors = {
             focused = {

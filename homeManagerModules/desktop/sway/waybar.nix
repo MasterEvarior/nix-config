@@ -1,12 +1,19 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
 {
   options.homeModules.desktop.sway.waybar = {
     enable = lib.mkEnableOption "Waybar";
+    timezone = lib.mkOption {
+      default = "Europe/Zurich";
+      example = "Europe/Zurich";
+      type = lib.types.str;
+      description = "The timezone to display the time in";
+    };
     logoutCommand = lib.mkOption {
       example = "wlogout";
       type = lib.types.str;
@@ -17,357 +24,177 @@
   config =
     let
       cfg = config.homeModules.desktop.sway.waybar;
+      toUTF8 = x: builtins.fromJSON ''"\u${x}"'';
     in
     lib.mkIf config.homeModules.desktop.sway.waybar.enable {
+      home.packages = with pkgs; [
+        pavucontrol
+        blueman
+      ];
+
+      services.blueman-applet.enable = true;
+
+      homeModules.desktop.sway.bar = {
+        command = "${pkgs.waybar}/bin/waybar";
+      };
+
       programs.waybar = {
         enable = true;
         settings = {
           mainbar = {
-            layer = "top";
             "modules-left" = [
-              "custom/launcher"
-              "cpu"
-              "memory"
-              "custom/media"
-              "tray"
+              "sway/workspaces"
+              "sway/mode"
             ];
             "modules-center" = [
-              "river/tags"
+              "clock"
             ];
             "modules-right" = [
+              "bluetooth"
               "pulseaudio"
-              "clock"
-              "battery"
+              "network"
+              "idle_inhibitor"
               "custom/power"
             ];
-            pulseaudio = {
-              tooltip = false;
-              "scroll-step" = 5;
-              format = "{icon} {volume}%";
-              "format-muted" = "{icon} {volume}%";
-              "on-click" = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
-              "format-icons" = {
-                default = [
-                  "\uf026"
-                  "\uf027"
-                  "\uf028"
-                ];
-              };
+            bluetooth = {
+              on-click = "${pkgs.blueman}/bin/blueman-manager";
             };
-            "river/tags" = {
-              "num-tags" = 6;
+            "sway/mode" = {
+              format = "<span style=\"italic\">{}</span>";
             };
             network = {
-              tooltip = false;
-              "format-wifi" = "\uf1eb  {essid}";
-              "format-ethernet" = "";
+              "format-wifi" = "{essid} ({signalStrength}%) " + (toUTF8 "f1eb");
+              "format-ethernet" = "Ethernet " + (toUTF8 "f796");
+              "format-disconnected" = "Disconnected " + (toUTF8 "f0c1");
+              "max-length" = 50;
+              "on-click" = "kitty -e 'nmtui'";
             };
-            battery = {
-              states = {
-                good = 95;
-                warning = 30;
-                critical = 20;
+            "idle_inhibitor" = {
+              format = "{icon}";
+              "format-icons" = {
+                "activated" = toUTF8 "f205";
+                "deactivated" = toUTF8 "f204";
               };
-              format = "{icon}  {capacity}%";
-              "format-charging" = "\uf1e6 {capacity}%";
-              "format-plugged" = "\uf1e6 {capacity}%";
-              "format-alt" = "{time} {icon}";
-              "format-icons" = [
-                "\uf244"
-                "\uf243"
-                "\uf242"
-                "\uf241"
-                "\uf240"
-              ];
-            };
-            tray = {
-              "icon-size" = 18;
-              spacing = 10;
             };
             clock = {
-              format = "%I:%M %p %d/%m/%Y";
+              interval = 1;
+              format = "{:%H:%M:%S %Y-%m-%d}";
+              timezone = cfg.timezone;
             };
-            cpu = {
-              interval = 15;
-              format = "\uf2db {}%";
-              "max-length" = 10;
-            };
-            memory = {
-              interval = 30;
-              format = "\uf0c9 {}%";
-              "max-length" = 10;
-            };
-            "custom/media" = {
-              interval = 30;
-              format = "{icon} {}";
-              "return-type" = "json";
-              "max-length" = 20;
+            pulseaudio = {
+              format = "{volume}% {icon} ";
+              "format-bluetooth" = "{volume}% {icon}${toUTF8 "f294"} {format_source}";
+              "format-bluetooth-muted" = "${toUTF8 "f6a9"} {icon}${toUTF8 "f294"} {format_source}";
+              "format-muted" = "0% {icon} ";
+              "format-source" = "{volume}% ${toUTF8 "f130"}";
+              "format-source-muted" = "${toUTF8 "f131"}";
               "format-icons" = {
-                spotify = "\uf1bc ";
-                default = "\uf885 ";
+                headphone = toUTF8 "f025";
+                "hands-free" = toUTF8 "f025";
+                headset = toUTF8 "f025";
+                phone = toUTF8 "f095";
+                portable = toUTF8 "f095";
+                car = toUTF8 "f1b9";
+                default = [
+                  (toUTF8 "f026")
+                  (toUTF8 "f027")
+                  (toUTF8 "f028")
+                ];
               };
-              escape = true;
-              exec = "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null";
-              "on-click" = "playerctl play-pause";
-            };
-            "custom/launcher" = {
-              format = "\uf303 ";
-              "on-click" = "rofi -show drun";
-              "on-click-right" = "killall rofi";
+              "on-click" = "${pkgs.pavucontrol}/bin/pavucontrol";
             };
             "custom/power" = {
-              format = "\uf138 ";
-              "on-click" = "bash ${cfg.logoutCommand}";
+              format = toUTF8 "f011";
+              "on-click" = cfg.logoutCommand;
+              tooltip = false;
             };
           };
         };
         style = ''
           * {
-          	border: none;
-          	border-radius: 10;
-              font-family: "JetbrainsMono Nerd Font" ;
-          	font-size: 15px;
-          	min-height: 10px;
+              border: none;
+              font-family: Font Awesome, Roboto, Arial, sans-serif;
+              font-size: 13px;
+              color: #ffffff;
+              border-radius: 20px;
           }
 
+          window {
+          	/*font-weight: bold;*/
+          }
           window#waybar {
-          	background: transparent;
+              background: rgba(0, 0, 0, 0);
+          }
+          /*-----module groups----*/
+          .modules-right {
+          	background-color: rgba(0,43,51,0.85);
+              margin: 2px 10px 0 0;
+          }
+          .modules-center {
+          	background-color: rgba(0,43,51,0.85);
+              margin: 2px 0 0 0;
+          }
+          .modules-left {
+              margin: 2px 0 0 5px;
+          	background-color: rgba(0,119,179,0.6);
+          }
+          /*-----modules indv----*/
+          #workspaces button {
+              padding: 1px 5px;
+              background-color: transparent;
+          }
+          #workspaces button:hover {
+              box-shadow: inherit;
+          	background-color: rgba(0,153,153,1);
           }
 
-          window#waybar.hidden {
-          	opacity: 0.2;
+          #workspaces button.focused {
+          	background-color: rgba(0,43,51,0.85);
           }
 
-          #window {
-          	margin-top: 6px;
-          	padding-left: 10px;
-          	padding-right: 10px;
-          	border-radius: 10px;
-          	transition: none;
-              color: transparent;
-          	background: transparent;
+          #clock,
+          #battery,
+          #cpu,
+          #memory,
+          #temperature,
+          #network,
+          #pulseaudio,
+          #custom-media,
+          #tray,
+          #mode,
+          #custom-power,
+          #custom-menu,
+          #idle_inhibitor {
+              padding: 0 10px;
           }
-          #tags {
-          	margin-top: 6px;
-          	margin-left: 12px;
-          	font-size: 4px;
-          	margin-bottom: 0px;
-          	border-radius: 10px;
-          	background: #161320;
-          	transition: none;
+          #mode {
+              color: #cc3436;
+              font-weight: bold;
           }
-
-          #tags button {
-          	transition: none;
-          	color: #B5E8E0;
-          	background: transparent;
-          	font-size: 16px;
-          	border-radius: 2px;
-          }
-
-          #tags button.occupied {
-          	transition: none;
-          	color: #F28FAD;
-          	background: transparent;
-          	font-size: 4px;
-          }
-
-          #tags button.focused {
-          	color: #ABE9B3;
-              border-top: 2px solid #ABE9B3;
-              border-bottom: 2px solid #ABE9B3;
-          }
-
-          #tags button:hover {
-          	transition: none;
-          	box-shadow: inherit;
-          	text-shadow: inherit;
-          	color: #FAE3B0;
-              border-color: #E8A2AF;
-              color: #E8A2AF;
-          }
-
-          #tags button.focused:hover {
-              color: #E8A2AF;
-          }
-
-          #network {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	padding-right: 10px;
-          	margin-bottom: 0px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #161320;
-          	background: #bd93f9;
-          }
-
-          #pulseaudio {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	padding-right: 10px;
-          	margin-bottom: 0px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #1A1826;
-          	background: #FAE3B0;
-          }
-
-          #battery {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	padding-right: 10px;
-          	margin-bottom: 0px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #161320;
-          	background: #B5E8E0;
-          }
-
-          #battery.charging, #battery.plugged {
-          	color: #161320;
-              background-color: #B5E8E0;
-          }
-
-          #battery.critical:not(.charging) {
-              background-color: #B5E8E0;
-              color: #161320;
-              animation-name: blink;
-              animation-duration: 0.5s;
-              animation-timing-function: linear;
-              animation-iteration-count: infinite;
-              animation-direction: alternate;
-          }
-
-          @keyframes blink {
-              to {
-                  background-color: #BF616A;
-                  color: #B5E8E0;
-              }
-          }
-
-          #backlight {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	padding-right: 10px;
-          	margin-bottom: 0px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #161320;
-          	background: #F8BD96;
-          }
-          #clock {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	padding-right: 10px;
-          	margin-bottom: 0px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #161320;
-          	background: #ABE9B3;
-          	/*background: #1A1826;*/
-          }
-
-          #memory {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	margin-bottom: 0px;
-          	padding-right: 10px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #161320;
-          	background: #DDB6F2;
-          }
-          #cpu {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	margin-bottom: 0px;
-          	padding-right: 10px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #161320;
-          	background: #96CDFB;
-          }
-
-          #tray {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	margin-bottom: 0px;
-          	padding-right: 10px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #B5E8E0;
-          	background: #161320;
-          }
-
-          #custom-launcher {
-          	font-size: 24px;
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	padding-right: 5px;
-          	border-radius: 10px;
-          	transition: none;
-              color: #89DCEB;
-              background: #161320;
-          }
-
           #custom-power {
-          	font-size: 20px;
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	margin-right: 8px;
-          	padding-left: 10px;
-          	padding-right: 5px;
-          	margin-bottom: 0px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #161320;
-          	background: #F28FAD;
+              background-color: rgba(0,119,179,0.6);
+              border-radius: 100px;
+              margin: 5px 5px;
+              padding: 1px 1px 1px 6px;
           }
-
-          #custom-wallpaper {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	padding-right: 10px;
-          	margin-bottom: 0px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #161320;
-          	background: #C9CBFF;
+          /*-----Indicators----*/
+          #idle_inhibitor.activated {
+              color: #2dcc36;
           }
-
-          #custom-updates {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	padding-right: 10px;
-          	margin-bottom: 0px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #161320;
-          	background: #E8A2AF;
+          #pulseaudio.muted {
+              color: #cc3436;
           }
-
-          #custom-media {
-          	margin-top: 6px;
-          	margin-left: 8px;
-          	padding-left: 10px;
-          	padding-right: 10px;
-          	margin-bottom: 0px;
-          	border-radius: 10px;
-          	transition: none;
-          	color: #161320;
-          	background: #F2CDCD;
+          #battery.charging {
+              color: #2dcc36;
+          }
+          #battery.warning:not(.charging) {
+          	color: #e6e600;
+          }
+          #battery.critical:not(.charging) {
+              color: #cc3436;
+          }
+          #temperature.critical {
+              color: #cc3436;
           }
         '';
         systemd.enable = true;
