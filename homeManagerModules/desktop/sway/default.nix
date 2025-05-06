@@ -7,11 +7,12 @@
 
 {
   imports = [
-    ./sway.nix
     ./fuzzel.nix
     ./mako.nix
-    ./wlogout.nix
     ./snipping-tools.nix
+    ./sway.nix
+    ./waybar.nix
+    ./wlogout.nix
   ];
 
   options.homeModules.desktop.sway.module = {
@@ -80,6 +81,10 @@
           enable = enableByDefault;
           # Because wlogout uses CSS's rgba and rgb, there needs to be some manual adjustment to the theme still
           theme = mergedTheme;
+        };
+        waybar = {
+          enable = enableByDefault;
+          logoutCommand = "wlogout";
         };
         snipping-tools.enable = enableByDefault;
       };
