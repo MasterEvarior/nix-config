@@ -119,10 +119,13 @@
             followMouse = false;
             mouseWarping = false;
           };
+          window = {
+            titlebar = false;
+            hideEdgeBorders = "none";
+          };
           keybindings = {
             #Terminal
             "${modifier}+Return" = "exec --no-startup-id ${cfg.terminal}";
-            "${modifier}+t" = "exec --no-startup-id alacritty";
 
             # Browser
             "${modifier}+b" = "exec --no-startup-id ${cfg.browser}";
