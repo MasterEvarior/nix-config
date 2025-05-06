@@ -41,7 +41,7 @@
 
       homeModules.desktop.sway.additionalStartupCommands = [
         {
-          command = "${pkgs.mako}";
+          command = "${pkgs.mako}/bin/mako";
         }
       ];
     };
