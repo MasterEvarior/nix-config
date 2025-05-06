@@ -11,6 +11,7 @@
     ./defaultPackages.nix
     ./mdns.nix
     ./shebang.nix
+    ./sound.nix
     ./garbageCollection.nix
   ];
 

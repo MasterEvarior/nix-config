@@ -27,18 +27,6 @@
     ./assets/eduroam/DigiCertTLSRSASHA2562020CA1-1.pem
   ];
 
-  # Sound
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    audio.enable = true;
-    pulse.enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-  };
-
   # Custom bootloader theming
   modules = {
     displaylink.enable = true;
