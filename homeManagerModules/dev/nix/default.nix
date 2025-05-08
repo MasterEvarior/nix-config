@@ -37,7 +37,7 @@
         # Delete old packages
         ncg = "nix-collect-garbage";
 
-        nix-to-json = "${jsonToNixScript}";
+        nix-from-json = "${jsonToNixScript}";
       };
 
       homeModules.applications.vscode = {
