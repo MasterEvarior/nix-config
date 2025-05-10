@@ -47,8 +47,8 @@
     bar = lib.mkOption {
       default = { };
       example = { };
-      type = lib.types.attrs;
-      description = "Replace the default bar with something custom";
+      type = lib.types.nullOr lib.types.attrs;
+      description = "Replace the default bar with something custom or set to null to not start a bar";
     };
     terminal = lib.mkOption {
       default = "${pkgs.alacritty}/bin/alacritty";
@@ -120,7 +120,13 @@
           };
         };
       };
-      bar = if cfg.bar == { } then defaultBar else cfg.bar;
+      bar =
+        if cfg.bar == { } then
+          defaultBar
+        else if cfg.bar == null then
+          { }
+        else
+          cfg.bar;
       swayfxConfig =
         if cfg.addSwayFXEffects then
           ''
