@@ -62,12 +62,6 @@
       type = lib.types.str;
       description = "Browser that should be opened with the associated shortcut";
     };
-    disableHardwareCursor = lib.mkOption {
-      default = false;
-      example = true;
-      type = lib.types.bool;
-      description = "Wether or not to disable the hardware cursor. May help with SwayFX if the cursor is invisible.";
-    };
     addSwayFXEffects = lib.mkOption {
       default = osConfig.modules.desktop.sway.useSwayFX;
       example = true;
@@ -127,7 +121,6 @@
         };
       };
       bar = if cfg.bar == { } then defaultBar else cfg.bar;
-      hardwareCursor = if cfg.disableHardwareCursor then { WLR_NO_HARDWARE_CURSORS = "1"; } else { };
       swayfxConfig =
         if cfg.addSwayFXEffects then
           ''
@@ -151,8 +144,6 @@
           message = "Sway needs to be enabled at Home Manager level for this module to work";
         }
       ];
-
-      home.sessionVariables = { } // hardwareCursor;
 
       wayland.windowManager.sway = {
         enable = true;

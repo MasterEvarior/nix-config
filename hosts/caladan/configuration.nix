@@ -23,6 +23,7 @@
       sway = {
         enable = true;
         useSwayFX = true;
+        disableHardwareCursor = true;
         outputs = {
           "LG Electronics LG ULTRAWIDE 0x00059AB6" = {
             mode = "2560x1080";

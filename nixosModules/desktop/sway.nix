@@ -30,12 +30,19 @@
       type = lib.types.bool;
       description = "Wether or not enable Swaylock";
     };
+    disableHardwareCursor = lib.mkOption {
+      default = false;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether or not to disable the hardware cursor. May help with SwayFX if the cursor is invisible.";
+    };
   };
 
   config =
     let
       cfg = config.modules.desktop.sway;
       package = if cfg.useSwayFX then pkgs.swayfx else pkgs.sway;
+      hardwareCursor = if cfg.disableHardwareCursor then { WLR_NO_HARDWARE_CURSORS = "1"; } else { };
     in
     lib.mkIf config.modules.desktop.sway.enable {
       environment.systemPackages = with pkgs; [
@@ -58,6 +65,8 @@
           package = package;
         };
       };
+
+      environment.sessionVariables = { } // hardwareCursor;
 
       security.pam.services.swaylock = { };
 
