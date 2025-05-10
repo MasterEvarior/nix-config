@@ -11,6 +11,7 @@
     ./mako.nix
     ./snipping-tools.nix
     ./sway.nix
+    ./swaylock.nix
     ./waybar.nix
     ./wlogout.nix
   ];
@@ -84,6 +85,10 @@
         };
         waybar = {
           enable = enableByDefault;
+        };
+        swaylock = {
+          enable = enableByDefault;
+          theme = mergedTheme;
         };
         # TODO: fix this module
         snipping-tools.enable = enableByDefault;

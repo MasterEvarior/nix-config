@@ -24,6 +24,12 @@
       type = lib.types.bool;
       description = "Use SwayFX instead of Sway";
     };
+    useSwaylock = lib.mkOption {
+      default = true;
+      example = false;
+      type = lib.types.bool;
+      description = "Wether or not enable Swaylock";
+    };
   };
 
   config =
@@ -44,12 +50,16 @@
 
       services.blueman.enable = true;
 
-      programs.sway = {
-        enable = true;
-        xwayland.enable = true;
-        wrapperFeatures.gtk = true;
-        package = package;
+      programs = {
+        sway = {
+          enable = true;
+          xwayland.enable = true;
+          wrapperFeatures.gtk = true;
+          package = package;
+        };
       };
+
+      security.pam.services.swaylock = { };
 
       # Enable the gnome-keyring secrets vault.
       # Will be exposed through DBus to programs willing to store secrets.

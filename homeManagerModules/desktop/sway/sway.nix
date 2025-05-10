@@ -232,10 +232,6 @@
             "${modifier}+Right" = "focus right";
             "${modifier}+Up" = "focus up";
             "${modifier}+a" = "focus parent";
-            "${modifier}+h" = "focus left";
-            "${modifier}+j" = "focus down";
-            "${modifier}+k" = "focus up";
-            "${modifier}+l" = "focus right";
 
             # Resize, Layouts
             "${modifier}+r" = "mode resize";
