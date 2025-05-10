@@ -62,6 +62,18 @@
       type = lib.types.str;
       description = "Browser that should be opened with the associated shortcut";
     };
+    disableHardwareCursor = lib.mkOption {
+      default = false;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether or not to disable the hardware cursor. May help with SwayFX if the cursor is invisible.";
+    };
+    addSwayFXEffects = lib.mkOption {
+      default = osConfig.modules.desktop.sway.useSwayFX;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether or not to enable cool effects from SwayFX";
+    };
     outputs = lib.mkOption {
       default = osConfig.modules.desktop.sway.outputs;
       example = {
@@ -115,6 +127,18 @@
         };
       };
       bar = if cfg.bar == { } then defaultBar else cfg.bar;
+      hardwareCursor = if cfg.disableHardwareCursor then { WLR_NO_HARDWARE_CURSORS = "1"; } else { };
+      swayfxConfig =
+        if cfg.addSwayFXEffects then
+          ''
+            smart_corner_radius on
+            corner_radius 10
+            default_dim_inactive 0.05
+            shadows on
+            shadow_blur_radius 20
+          ''
+        else
+          "";
     in
     lib.mkIf config.homeModules.desktop.sway.enable {
       assertions = [
@@ -127,6 +151,8 @@
           message = "Sway needs to be enabled at Home Manager level for this module to work";
         }
       ];
+
+      home.sessionVariables = { } // hardwareCursor;
 
       wayland.windowManager.sway = {
         enable = true;
@@ -265,7 +291,20 @@
             };
             background = theme.base;
           };
+          floating = {
+            titlebar = false;
+            criteria = [
+              {
+                "app_id" = ".blueman-manager-wrapped";
+              }
+
+              {
+                "app_id" = "org.pulseaudio.pavucontrol";
+              }
+            ];
+          };
         };
+        extraConfig = swayfxConfig;
       };
     };
 }

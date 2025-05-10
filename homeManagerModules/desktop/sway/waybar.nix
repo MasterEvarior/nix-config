@@ -58,14 +58,21 @@
             ];
             bluetooth = {
               on-click = "${pkgs.blueman}/bin/blueman-manager";
+              tooltip = true;
+              format = (toUTF8 "f293");
+              format-disabled = (toUTF8 "f294");
+              tooltip-format-disabled = "Bluetooth disabled";
+              tooltip-format-connected = (toUTF8 "f293") + " {device_alias}";
+              tooltip-format-connected-battery =
+                (toUTF8 "f293") + " {device_alias}  {device_battery_percentage}%";
             };
             "sway/mode" = {
               format = "<span style=\"italic\">{}</span>";
             };
             network = {
               "format-wifi" = "{essid} ({signalStrength}%) " + (toUTF8 "f1eb");
-              "format-ethernet" = "Ethernet " + (toUTF8 "f796");
-              "format-disconnected" = "Disconnected " + (toUTF8 "f0c1");
+              "format-ethernet" = (toUTF8 "f796");
+              "format-disconnected" = (toUTF8 "f0c1");
               "max-length" = 50;
               "on-click" = "kitty -e 'nmtui'";
             };

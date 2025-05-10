@@ -29,7 +29,7 @@
   config =
     let
       cfg = config.modules.desktop.sway;
-      package = if cfg.useSwayFX then pkgs.sway else pkgs.swayfx;
+      package = if cfg.useSwayFX then pkgs.swayfx else pkgs.sway;
     in
     lib.mkIf config.modules.desktop.sway.enable {
       environment.systemPackages = with pkgs; [
