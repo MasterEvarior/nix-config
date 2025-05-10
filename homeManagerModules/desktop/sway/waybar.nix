@@ -14,6 +14,14 @@
       type = lib.types.str;
       description = "The timezone to display the time in";
     };
+    theme = lib.mkOption {
+      example = {
+        text = "#cad3f5";
+        subtext1 = "#b8c0e0";
+      };
+      type = lib.types.attrs;
+      description = "Theme";
+    };
     logoutCommand = lib.mkOption {
       example = "wlogout";
       type = lib.types.str;
@@ -49,7 +57,7 @@
               "bluetooth"
               "pulseaudio"
               "network"
-              "idle_inhibitor"
+              # "idle_inhibitor" disable for now, because I do not really need it anyway and it looks bad
               "custom/power"
             ];
             bluetooth = {
@@ -66,11 +74,11 @@
               format = "<span style=\"italic\">{}</span>";
             };
             network = {
-              "format-wifi" = "{essid} ({signalStrength}%) " + (toUTF8 "f1eb");
-              "format-ethernet" = (toUTF8 "f796");
-              "format-disconnected" = (toUTF8 "f0c1");
-              "max-length" = 50;
-              "on-click" = "kitty -e 'nmtui'";
+              format-wifi = "{essid} ({signalStrength}%) " + (toUTF8 "f1eb");
+              format-ethernet = (toUTF8 "f796");
+              format-disconnected = (toUTF8 "f0c1");
+              tooltip-format = "{icon} {bandwidthTotalBytes}";
+              max-length = 50;
             };
             "idle_inhibitor" = {
               format = "{icon}";
@@ -86,8 +94,6 @@
             };
             pulseaudio = {
               format = "{volume}% {icon} ";
-              "format-bluetooth" = "{volume}% {icon}${toUTF8 "f294"} {format_source}";
-              "format-bluetooth-muted" = "${toUTF8 "f6a9"} {icon}${toUTF8 "f294"} {format_source}";
               "format-muted" = "0% {icon} ";
               "format-source" = "{volume}% ${toUTF8 "f130"}";
               "format-source-muted" = "${toUTF8 "f131"}";
@@ -117,87 +123,88 @@
           * {
               border: none;
               font-family: Font Awesome, Roboto, Arial, sans-serif;
-              font-size: 13px;
-              color: #ffffff;
-              border-radius: 20px;
+              font-size: 1rem;
+              color: ${cfg.theme.text};
+              border-radius: 10px;
           }
 
           window {
-          	/*font-weight: bold;*/
+          	font-weight: bold;
           }
+
           window#waybar {
-              background: rgba(0, 0, 0, 0);
+            background: rgba(0, 0, 0, 0);
           }
+
           /*-----module groups----*/
           .modules-right {
-          	background-color: rgba(0,43,51,0.85);
-              margin: 2px 10px 0 0;
+          	background-color: ${cfg.theme.base};
+            margin: 2px 10px 0 0;
+            padding-left: 5px;
+            padding-right: 5px;
           }
+
           .modules-center {
-          	background-color: rgba(0,43,51,0.85);
-              margin: 2px 0 0 0;
+          	background-color: ${cfg.theme.base};
+            margin: 2px 0 0 0;
           }
+
           .modules-left {
-              margin: 2px 0 0 5px;
-          	background-color: rgba(0,119,179,0.6);
+            margin: 2px 0 0 5px;
+          	background-color: ${cfg.theme.base};
           }
-          /*-----modules indv----*/
+
+          /* Workspaces */
           #workspaces button {
-              padding: 1px 5px;
-              background-color: transparent;
+            padding: 1px 5px;
+            background-color: transparent;
           }
+
           #workspaces button:hover {
-              box-shadow: inherit;
-          	background-color: rgba(0,153,153,1);
+            box-shadow: inherit;
+          	background-color: ${cfg.theme.rosewater};
           }
 
           #workspaces button.focused {
-          	background-color: rgba(0,43,51,0.85);
+          	background-color: ${cfg.theme.subtext0};
           }
 
           #clock,
-          #battery,
-          #cpu,
-          #memory,
-          #temperature,
           #network,
           #pulseaudio,
-          #custom-media,
-          #tray,
           #mode,
-          #custom-power,
-          #custom-menu,
           #idle_inhibitor {
-              padding: 0 10px;
+            padding: 0 5px;
           }
+
           #mode {
-              color: #cc3436;
-              font-weight: bold;
+            color: ${cfg.theme.rosewater};
+            font-weight: bold;
           }
+
           #custom-power {
-              background-color: rgba(0,119,179,0.6);
-              border-radius: 100px;
-              margin: 5px 5px;
-              padding: 1px 1px 1px 6px;
+            background-color: ${cfg.theme.base};
+            border-radius: 100px;
+            margin: 5px 5px;
+            padding: 1px 1px 1px 6px;
           }
+
           /*-----Indicators----*/
           #idle_inhibitor.activated {
-              color: #2dcc36;
+              color: ${cfg.theme.green};
           }
-          #pulseaudio.muted {
-              color: #cc3436;
-          }
+
+          /* Battery Stuff*/
           #battery.charging {
-              color: #2dcc36;
+              color: ${cfg.theme.green};
           }
+
           #battery.warning:not(.charging) {
-          	color: #e6e600;
+          	color: ${cfg.theme.yellow};
           }
+
           #battery.critical:not(.charging) {
-              color: #cc3436;
-          }
-          #temperature.critical {
-              color: #cc3436;
+              color: ${cfg.theme.red};
           }
         '';
         systemd.enable = true;

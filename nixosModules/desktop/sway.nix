@@ -53,6 +53,8 @@
       fonts.packages = with pkgs; [
         # Waybar
         font-awesome
+        roboto
+        roboto-mono
       ];
 
       services.blueman.enable = true;

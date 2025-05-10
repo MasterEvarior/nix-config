@@ -86,6 +86,7 @@
         };
         waybar = {
           enable = enableByDefault;
+          theme = mergedTheme;
         };
         swaylock = {
           enable = enableByDefault;

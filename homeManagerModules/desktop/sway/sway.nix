@@ -130,7 +130,6 @@
       swayfxConfig =
         if cfg.addSwayFXEffects then
           ''
-            smart_corner_radius on
             corner_radius 10
             default_dim_inactive 0.05
             shadows on
