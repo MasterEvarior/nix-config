@@ -21,9 +21,11 @@
 
     in
     lib.mkIf config.modules.settings.swap.enable {
-      swapDevices = {
-        device = "/swapfile";
-        size = cfg.size * 1024;
-      };
+      swapDevices = [
+        {
+          device = "/swapfile";
+          size = cfg.size * 1024;
+        }
+      ];
     };
 }

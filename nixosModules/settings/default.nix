@@ -21,15 +21,16 @@
       defaultTrue = lib.mkDefault true;
     in
     {
-      mdns.enable = defaultTrue;
-      shebang.enable = defaultTrue;
-      garbageCollection.enable = defaultTrue;
-      locale.enable = defaultTrue;
-      unfree.enable = defaultTrue;
       bluetooth.enable = defaultTrue;
       flakes.enable = defaultTrue;
       fonts.enable = defaultTrue;
+      garbageCollection.enable = defaultTrue;
+      locale.enable = defaultTrue;
+      mdns.enable = defaultTrue;
       printing.enable = defaultTrue;
+      shebang.enable = defaultTrue;
       sound.enable = defaultTrue;
+      swap.enable = defaultTrue;
+      unfree.enable = defaultTrue;
     };
 }
