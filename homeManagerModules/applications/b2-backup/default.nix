@@ -118,7 +118,7 @@
               echo "Ensuring backup directory is empty"
               rm -rf ${cfg.localBackupDirectory}/*
 
-              FILENAME="$(date +'%FT%H%M%S').zip"
+              FILENAME="$(uuidgen).zip"
               FILEPATH="${cfg.localBackupDirectory}/$FILENAME"
               echo "Creating backup of files ${include} at $FILEPATH without ${exclude}"
               ${pkgs.zip}/bin/zip -q -r $FILEPATH ${include} ${exclude}
