@@ -12,12 +12,24 @@
     ./mdns.nix
     ./shebang.nix
     ./sound.nix
+    ./swap.nix
     ./garbageCollection.nix
   ];
 
-  modules.settings = {
-    mdns.enable = lib.mkDefault true;
-    shebang.enable = lib.mkDefault true;
-    garbageCollection.enable = lib.mkDefault true;
-  };
+  modules.settings =
+    let
+      defaultTrue = lib.mkDefault true;
+    in
+    {
+      mdns.enable = defaultTrue;
+      shebang.enable = defaultTrue;
+      garbageCollection.enable = defaultTrue;
+      locale.enable = defaultTrue;
+      unfree.enable = defaultTrue;
+      bluetooth.enable = defaultTrue;
+      flakes.enable = defaultTrue;
+      fonts.enable = defaultTrue;
+      printing.enable = defaultTrue;
+      sound.enable = defaultTrue;
+    };
 }
