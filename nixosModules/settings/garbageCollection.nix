@@ -8,10 +8,10 @@
   options.modules.settings.garbageCollection = {
     enable = lib.mkEnableOption "Automatic garbage collection";
     keep = lib.mkOption {
-      default = 5;
-      example = 5;
+      default = 60;
+      example = 60;
       type = lib.types.int;
-      description = "How many generations to keep";
+      description = "How many days an old generation should be kept";
     };
     autoOptimiseStore = lib.mkOption {
       default = true;
@@ -31,7 +31,7 @@
         gc = {
           automatic = true;
           dates = "daily";
-          options = "--delete-older-than +${toString cfg.keep}";
+          options = "--delete-older-than ${toString cfg.keep}d";
         };
       };
     };

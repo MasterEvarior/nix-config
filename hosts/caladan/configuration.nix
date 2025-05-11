@@ -48,7 +48,7 @@
 
     settings.garbageCollection = {
       enable = true;
-      keep = 3;
+      keep = 90;
     };
   };
 
