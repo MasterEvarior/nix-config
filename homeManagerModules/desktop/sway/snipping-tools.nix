@@ -22,16 +22,18 @@
         grim = "${pkgs.grim}/bin/grim";
         slurp = "${pkgs.slurp}/bin/slurp";
         swappy = "${pkgs.swappy}/bin/swappy";
-        command = ''exec "${grim} -g $(${slurp}) - | ${swappy} -f -"'';
+        grimCommand = ''exec ${grim} -g "$(${slurp})"'';
+        simpleScreenshot = "${grimCommand} - | wl-copy";
+        screenshotWithSwappy = "${grimCommand} - | ${swappy} -f -";
       in
       {
-        "+Shift+p" = command;
-        "+Print" = command;
+        "+Shift+p" = screenshotWithSwappy;
+        "+p" = simpleScreenshot;
       };
 
     home.file.".config/swappy/config".text = ''
       [Default]
-      save_dir=${config.home.homeDirectory}/Pictures/swappy
+      save_dir=${config.home.homeDirectory}/Pictures/Screenshots
       save_filename_format=screenshot-%Y%m%d-%H%M%S.png
       show_panel=false
       line_size=5
