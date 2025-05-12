@@ -87,11 +87,19 @@
       type = lib.types.bool;
       description = "Wether to show release notes when VSC was updated";
     };
-    confirmNativePaste = lib.mkOption {
-      default = false;
-      example = false;
-      type = lib.types.bool;
-      description = "Wether to get an annoying popup when pasting an image or similar";
+    explorer = {
+      confirmNativePaste = lib.mkOption {
+        default = false;
+        example = false;
+        type = lib.types.bool;
+        description = "Wether to get an annoying popup when pasting an image or similar";
+      };
+      confirmDelete = lib.mkOption {
+        default = false;
+        example = false;
+        type = lib.types.bool;
+        description = "Wether to get an annoying popup when deleting something from the explorer view";
+      };
     };
 
     additionalExtensions = lib.mkOption {
@@ -143,7 +151,8 @@
           {
             "chat.agent.enabled" = false;
             "chat.commandCenter.enabled" = false;
-            "explorer.confirmPasteNative" = cfg.confirmNativePaste;
+            "explorer.confirmPasteNative" = cfg.explorer.confirmNativePaste;
+            "explorer.confirmDelete" = cfg.explorer.confirmDelete;
             "extensions.ignoreRecommendations" = true;
             "github.copilot.enable" = false;
             "git.openRepositoryInParentFolders" = "never";
