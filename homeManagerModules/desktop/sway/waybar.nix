@@ -91,6 +91,7 @@
               interval = 1;
               format = "{:%H:%M:%S %Y-%m-%d}";
               timezone = cfg.timezone;
+              tooltip = false;
             };
             pulseaudio = {
               format = "{volume}% {icon} ";

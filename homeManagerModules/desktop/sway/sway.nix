@@ -182,6 +182,16 @@
             titlebar = false;
             hideEdgeBorders = "none";
           };
+          modes = {
+            resize = {
+              Down = "resize shrink height 10 px";
+              Escape = "mode default";
+              Left = "resize grow width 10 px";
+              Return = "mode default";
+              Right = "resize shrink width 10 px";
+              Up = "resize grow height 10 px";
+            };
+          };
           keybindings = {
             #Terminal
             "${modifier}+Return" = "exec --no-startup-id ${cfg.terminal}";
@@ -238,9 +248,9 @@
           } // (addModifierToKeybindings cfg.additionalKeybindings);
           gaps = {
             inner = 5;
-            outer = 3;
+            outer = 2;
             smartBorders = "on";
-            smartGaps = true;
+            smartGaps = false;
           };
           bars = [
             bar

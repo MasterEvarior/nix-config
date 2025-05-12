@@ -27,8 +27,8 @@
         screenshotWithSwappy = "${grimCommand} - | ${swappy} -f -";
       in
       {
-        "+Shift+p" = screenshotWithSwappy;
         "+p" = simpleScreenshot;
+        "+Shift+p" = screenshotWithSwappy;
       };
 
     home.file.".config/swappy/config".text = ''
@@ -40,7 +40,7 @@
       text_size=20
       text_font=sans-serif
       paint_mode=brush
-      early_exit=false
+      early_exit=true
       fill_shape=false
       auto_save=false
       custom_color=rgb(233, 12, 12)

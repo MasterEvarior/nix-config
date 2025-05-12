@@ -53,7 +53,7 @@
         ignore-timeout=${if cfg.ignoreTimout then "1" else "0"}
         max-visible=${toString cfg.maxVisible}
 
-        border-radius=15
+        border-radius=10
 
         background-color=${theme.base}
         text-color=${theme.text}
