@@ -34,6 +34,7 @@
     ./utils
     ./vscode
     ./watson
+    ./yazi
     ./zellij
     ./zotero
     ./zoxide
@@ -72,6 +73,7 @@
         playerctl.enable = enableByDefault;
         utils.enable = enableByDefault;
         btop.enable = enableByDefault;
+        yazi.enable = enableByDefault;
       };
     };
 }
