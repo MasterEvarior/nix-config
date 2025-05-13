@@ -15,6 +15,9 @@
       jsonToNixScript = pkgs.writers.writePython3 "json-to-nix" { } (
         builtins.readFile ./assets/json-to-nix.py
       );
+      tomlToNixScript = pkgs.writers.writePython3 "toml-to-nix" { } (
+        builtins.readFile ./assets/toml-to-nix.py
+      );
     in
     lib.mkIf config.homeModules.dev.nix.enable {
       home.packages = with pkgs; [
@@ -38,6 +41,7 @@
         ncg = "nix-collect-garbage";
 
         nix-from-json = "${jsonToNixScript}";
+        nix-from-toml = "${tomlToNixScript}";
       };
 
       homeModules.applications.vscode = {
