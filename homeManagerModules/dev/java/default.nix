@@ -19,7 +19,7 @@
     ];
 
     programs.java = {
-      package = pkgs.jdk21;
+      package = pkgs.jdk23;
       enable = true;
     };
   };
