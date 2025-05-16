@@ -22,6 +22,7 @@
     ./php
     ./python
     ./renovate
+    ./ssh
     ./terraform
     ./typst
   ];
@@ -54,6 +55,7 @@
         python.enable = enableByDefault;
         direnv.enable = enableByDefault;
         renovate.enable = enableByDefault;
+        ssh.enable = enableByDefault;
       };
     };
 }
