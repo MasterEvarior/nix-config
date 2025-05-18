@@ -24,6 +24,8 @@
         enable = true;
         useSwayFX = true;
         disableHardwareCursor = true;
+        enableUnsupportedGPU = true;
+        focusOnStartup = "LG Electronics LG ULTRAWIDE 0x00059AB6";
         outputs = {
           "LG Electronics LG ULTRAWIDE 0x00059AB6" = {
             mode = "2560x1080";

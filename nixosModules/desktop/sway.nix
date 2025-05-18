@@ -36,6 +36,13 @@
       type = lib.types.bool;
       description = "Wether or not to disable the hardware cursor. May help with SwayFX if the cursor is invisible.";
     };
+    enableUnsupportedGPU = lib.mkEnableOption "Add --unsupported-gpu option to sway";
+    focusOnStartup = lib.mkOption {
+      default = null;
+      example = "AOC 24G2W1G4 ATNN11A013004";
+      type = lib.types.nullOr lib.types.str;
+      description = "Output to focus on after startup";
+    };
   };
 
   config =
@@ -43,6 +50,7 @@
       cfg = config.modules.desktop.sway;
       package = if cfg.useSwayFX then pkgs.swayfx else pkgs.sway;
       hardwareCursor = if cfg.disableHardwareCursor then { WLR_NO_HARDWARE_CURSORS = "1"; } else { };
+      extraOptions = if cfg.enableUnsupportedGPU then [ "--unsupported-gpu" ] else [ ];
     in
     lib.mkIf config.modules.desktop.sway.enable {
       environment.systemPackages = with pkgs; [
@@ -65,6 +73,7 @@
           xwayland.enable = true;
           wrapperFeatures.gtk = true;
           package = package;
+          extraOptions = extraOptions;
         };
       };
 

@@ -78,6 +78,12 @@
       type = lib.types.attrs;
       description = "An attribute set that defines output modules. See sway-output(5) for options.";
     };
+    focusOnStartup = lib.mkOption {
+      default = osConfig.modules.desktop.sway.focusOnStartup;
+      example = "AOC 24G2W1G4 ATNN11A013004";
+      type = lib.types.nullOr lib.types.str;
+      description = "Output to focus on after startup";
+    };
   };
 
   config =
@@ -137,6 +143,8 @@
           ''
         else
           "";
+      outputToFocusOnStartup =
+        if cfg.focusOnStartup == null then "" else "focus output " + cfg.focusOnStartup;
     in
     lib.mkIf config.homeModules.desktop.sway.enable {
       assertions = [
@@ -306,7 +314,7 @@
             ];
           };
         };
-        extraConfig = swayfxConfig;
+        extraConfig = swayfxConfig + outputToFocusOnStartup;
       };
     };
 }
