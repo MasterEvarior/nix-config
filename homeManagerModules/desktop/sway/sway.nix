@@ -313,6 +313,7 @@
               }
             ];
           };
+          fonts = { };
         };
         extraConfig = swayfxConfig + outputToFocusOnStartup;
       };

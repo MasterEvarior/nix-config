@@ -70,7 +70,7 @@
       homeModules.desktop.sway = {
         enable = enableByDefault;
         theme = mergedTheme;
-        bar = null;
+        bar = (lib.mkDefault null);
         fuzzel = {
           enable = enableByDefault;
           theme = mergedTheme;

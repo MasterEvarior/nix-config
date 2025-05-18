@@ -40,7 +40,9 @@
         blueman
       ];
 
-      services.blueman-applet.enable = true;
+      homeModules.desktop.sway.bar = {
+        command = "${pkgs.waybar}/bin/waybar";
+      };
 
       programs.waybar = {
         enable = true;
@@ -208,7 +210,6 @@
               color: ${cfg.theme.red};
           }
         '';
-        systemd.enable = true;
       };
     };
 }
