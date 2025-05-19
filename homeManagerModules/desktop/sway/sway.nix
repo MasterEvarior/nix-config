@@ -145,6 +145,17 @@
           "";
       outputToFocusOnStartup =
         if cfg.focusOnStartup == null then "" else "focus output " + cfg.focusOnStartup;
+      scripts = {
+        floatingWindow =
+          pkgs.writeShellApplication {
+            name = "floating.sh";
+            runtimeInputs = with pkgs; [
+              jq
+            ];
+            text = (builtins.readFile ./assets/floating.sh);
+          }
+          + "/bin/floating.sh";
+      };
     in
     lib.mkIf config.homeModules.desktop.sway.enable {
       assertions = [
@@ -203,6 +214,7 @@
           keybindings = {
             #Terminal
             "${modifier}+Return" = "exec --no-startup-id ${cfg.terminal}";
+            "${modifier}+Shift+Return" = "exec ${scripts.floatingWindow} ${cfg.terminal}";
 
             # Browser
             "${modifier}+b" = "exec --no-startup-id ${cfg.browser}";
