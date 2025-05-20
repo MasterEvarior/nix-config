@@ -38,7 +38,10 @@
       home.packages = with pkgs; [
         pavucontrol
         blueman
+        font-awesome
       ];
+
+      fonts.fontconfig.enable = true;
 
       homeModules.desktop.sway.bar = {
         command = "${pkgs.waybar}/bin/waybar";

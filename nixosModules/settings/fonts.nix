@@ -15,9 +15,6 @@
       jetbrains-mono
       nerdfonts
       cascadia-code
-
-      # Waybar
-      font-awesome
     ];
   };
 }
