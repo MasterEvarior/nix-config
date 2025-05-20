@@ -8,6 +8,7 @@
   imports = [
     ./1password
     ./b2-backup
+    ./bemoji
     ./bitwarden
     ./btop
     ./chromium
