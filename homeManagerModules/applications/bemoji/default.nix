@@ -32,22 +32,24 @@
       xdg = lib.mkIf cfg.createDesktopEntry {
         enable = true;
         desktopEntries = {
-          bemoji = {
-            name = "Bemoji";
-            genericName = "Emoji Chooser";
+          bemojiType = {
+            name = "Bemoji - Type";
             exec = "${pkgs.bemoji}/bin/bemoji -t";
             terminal = false;
             categories = [
               "Application"
             ];
-            actions = {
-              "Type" = {
-                exec = "${pkgs.bemoji}/bin/bemoji -t";
-              };
-              "Copy to Clipboard" = {
-                exec = "${pkgs.bemoji}/bin/bemoji -c";
-              };
+            settings = {
+              Keywords = "emoji";
             };
+          };
+          bemojiCopy = {
+            name = "Bemoji - Copy";
+            exec = "${pkgs.bemoji}/bin/bemoji -c";
+            terminal = false;
+            categories = [
+              "Application"
+            ];
             settings = {
               Keywords = "emoji";
             };

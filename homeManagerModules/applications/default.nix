@@ -37,6 +37,7 @@
     ./watson
     ./yazi
     ./zellij
+    ./zathura
     ./zotero
     ./zoxide
   ];

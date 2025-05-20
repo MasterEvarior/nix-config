@@ -70,6 +70,10 @@
 
       homeModules.applications = {
         bemoji.enable = enableByDefault;
+        zathura = {
+          enable = enableByDefault;
+          makeDefaultApplication = true;
+        };
       };
 
       homeModules.desktop.sway = {
