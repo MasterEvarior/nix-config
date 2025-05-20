@@ -10,6 +10,7 @@
     ./b2-backup
     ./bemoji
     ./bitwarden
+    ./bruno
     ./btop
     ./chromium
     ./comma
