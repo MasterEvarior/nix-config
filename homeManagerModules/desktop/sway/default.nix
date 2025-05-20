@@ -67,6 +67,11 @@
       enableByDefault = lib.mkDefault osConfig.modules.desktop.sway.enable;
     in
     lib.mkIf config.homeModules.desktop.sway.module.enable {
+
+      homeModules.applications = {
+        bemoji.enable = enableByDefault;
+      };
+
       homeModules.desktop.sway = {
         enable = enableByDefault;
         theme = mergedTheme;

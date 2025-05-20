@@ -35,11 +35,22 @@
           bemoji = {
             name = "Bemoji";
             genericName = "Emoji Chooser";
-            exec = "${pkgs.bemoji}/bin/bemoji";
+            exec = "${pkgs.bemoji}/bin/bemoji -t";
             terminal = false;
             categories = [
               "Application"
             ];
+            actions = {
+              "Type" = {
+                exec = "${pkgs.bemoji}/bin/bemoji -t";
+              };
+              "Copy to Clipboard" = {
+                exec = "${pkgs.bemoji}/bin/bemoji -c";
+              };
+            };
+            settings = {
+              Keywords = "emoji";
+            };
           };
         };
       };
