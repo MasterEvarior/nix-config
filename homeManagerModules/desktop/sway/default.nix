@@ -2,6 +2,7 @@
   lib,
   config,
   osConfig,
+  pkgs,
   ...
 }:
 
@@ -74,11 +75,14 @@
           enable = enableByDefault;
           makeDefaultApplication = true;
         };
+        yazi.enable = true;
       };
 
       homeModules.desktop.sway = {
         enable = enableByDefault;
         theme = mergedTheme;
+        terminal = "${pkgs.alacritty}/bin/alacritty";
+        fileBrowser = "${pkgs.alacritty}/bin/alacritty -e ${pkgs.yazi}/bin/yazi";
         bar = (lib.mkDefault null);
         fuzzel = {
           enable = enableByDefault;

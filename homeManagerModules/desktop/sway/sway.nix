@@ -51,10 +51,14 @@
       description = "Replace the default bar with something custom or set to null to not start a bar";
     };
     terminal = lib.mkOption {
-      default = "${pkgs.alacritty}/bin/alacritty";
       example = "${pkgs.alacritty}/bin/alacritty";
       type = lib.types.str;
       description = "Terminal that should be opened with the associated shortcut";
+    };
+    fileBrowser = lib.mkOption {
+      example = "${pkgs.yazi}/bin/yazi";
+      type = lib.types.str;
+      description = "File browser that should be opened with the associated shortcut";
     };
     browser = lib.mkOption {
       default = "firefox";
@@ -219,6 +223,9 @@
             # Browser
             "${modifier}+b" = "exec --no-startup-id ${cfg.browser}";
 
+            # File Browser
+            "${modifier}+e" = "exec ${scripts.floatingWindow} ${cfg.fileBrowser}";
+
             # Workspaces
             "${modifier}+0" = "workspace number 10";
             "${modifier}+1" = "workspace number 1";
@@ -249,8 +256,6 @@
             "${modifier}+Shift+c" = "reload";
             "${modifier}+Shift+q" = "kill";
             "${modifier}+Shift+space" = " floating toggle";
-            "${modifier}+e" = "layout toggle split";
-            "${modifier}+f" = "fullscreen toggle";
 
             # Focus
             "${modifier}+Down" = "focus down";
@@ -261,10 +266,11 @@
 
             # Resize, Layouts
             "${modifier}+r" = "mode resize";
-            "${modifier}+s" = "layout stacking";
             "${modifier}+space" = "focus mode_toggle";
             "${modifier}+v" = "splitv";
-            "${modifier}+w" = "layout tabbed";
+            "${modifier}+t" = "layout tabbed";
+            "${modifier}+s" = "layout toggle split";
+            "${modifier}+f" = "fullscreen toggle";
           } // (addModifierToKeybindings cfg.additionalKeybindings);
           gaps = {
             inner = 5;
