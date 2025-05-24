@@ -13,7 +13,7 @@
   config = lib.mkIf config.homeModules.dev.typst.enable {
     home.packages = with pkgs; [
       typst
-      typst-lsp
+      tinymist
       typstfmt
     ];
 

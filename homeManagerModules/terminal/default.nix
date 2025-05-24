@@ -8,8 +8,8 @@
   config = lib.mkIf config.homeModules.terminal.enable {
     programs.zsh = {
       enable = true;
-      initExtra = ''
-        # initExtra
+      initContent = ''
+        # initContent
 
         # enables autocompletion and the key-based interface
         autoload -Uz compinit

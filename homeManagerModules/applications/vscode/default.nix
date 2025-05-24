@@ -131,86 +131,88 @@
     lib.mkIf config.homeModules.applications.vscode.enable {
       programs.vscode = {
         enable = true;
-        enableUpdateCheck = false;
-        enableExtensionUpdateCheck = false;
         mutableExtensionsDir = false;
-        extensions =
-          with pkgs;
-          [
-            # Div
-            vscode-extensions.tomoki1207.pdf
-            vscode-extensions.ms-vscode.live-server
-            vscode-extensions.tamasfe.even-better-toml
+        profiles.default = {
+          enableUpdateCheck = false;
+          enableExtensionUpdateCheck = false;
+          extensions =
+            with pkgs;
+            [
+              # Div
+              vscode-extensions.tomoki1207.pdf
+              vscode-extensions.ms-vscode.live-server
+              vscode-extensions.tamasfe.even-better-toml
 
-            # Catpuccin Theme
-            vscode-extensions.catppuccin.catppuccin-vsc
-            vscode-extensions.catppuccin.catppuccin-vsc-icons
-          ]
-          ++ cfg.additionalExtensions;
-        userSettings = lib.mkMerge [
-          {
-            "chat.agent.enabled" = false;
-            "chat.commandCenter.enabled" = false;
-            "explorer.confirmPasteNative" = cfg.explorer.confirmNativePaste;
-            "explorer.confirmDelete" = cfg.explorer.confirmDelete;
-            "extensions.ignoreRecommendations" = true;
-            "github.copilot.enable" = false;
-            "git.openRepositoryInParentFolders" = "never";
-            "scm.alwaysShowRepositories" = cfg.scm.alwaysShowRepositories;
-            "telemetry.telemetryLevel" = cfg.telemetry;
-            "terminal.integrated.fontFamily" = "Hack Nerd Font";
-            "update.showReleaseNotes" = cfg.showReleaseNotes;
-            "window.commandCenter" = false;
-            "workbench.colorTheme" = cfg.theme;
-            "workbench.layoutControl.enabled" = false;
-            "workbench.navigationControl.enabled" = false;
-            "workbench.settings.enableNaturalLanguageSearch" = cfg.workbench.naturalLanguageSearch;
-            "workbench.startupEditor" = cfg.workbench.startupEditor;
-            "workbench.tips.enabled" = cfg.workbench.tipsEnabled;
-          }
-          cfg.additionalUserSettings
-        ];
-        languageSnippets = lib.mkMerge [
-          { }
-          cfg.additionalSnippets
-        ];
+              # Catpuccin Theme
+              vscode-extensions.catppuccin.catppuccin-vsc
+              vscode-extensions.catppuccin.catppuccin-vsc-icons
+            ]
+            ++ cfg.additionalExtensions;
+          userSettings = lib.mkMerge [
+            {
+              "chat.agent.enabled" = false;
+              "chat.commandCenter.enabled" = false;
+              "explorer.confirmPasteNative" = cfg.explorer.confirmNativePaste;
+              "explorer.confirmDelete" = cfg.explorer.confirmDelete;
+              "extensions.ignoreRecommendations" = true;
+              "github.copilot.enable" = false;
+              "git.openRepositoryInParentFolders" = "never";
+              "scm.alwaysShowRepositories" = cfg.scm.alwaysShowRepositories;
+              "telemetry.telemetryLevel" = cfg.telemetry;
+              "terminal.integrated.fontFamily" = "Hack Nerd Font";
+              "update.showReleaseNotes" = cfg.showReleaseNotes;
+              "window.commandCenter" = false;
+              "workbench.colorTheme" = cfg.theme;
+              "workbench.layoutControl.enabled" = false;
+              "workbench.navigationControl.enabled" = false;
+              "workbench.settings.enableNaturalLanguageSearch" = cfg.workbench.naturalLanguageSearch;
+              "workbench.startupEditor" = cfg.workbench.startupEditor;
+              "workbench.tips.enabled" = cfg.workbench.tipsEnabled;
+            }
+            cfg.additionalUserSettings
+          ];
+          languageSnippets = lib.mkMerge [
+            { }
+            cfg.additionalSnippets
+          ];
 
-        keybindings = [
-          {
-            "key" = "alt+f12";
-            "command" = "workbench.action.terminal.toggleTerminal";
-            "when" = "terminal.active";
-          }
-          {
-            "key" = "ctrl+shift+[Equal]";
-            "command" = "-workbench.action.terminal.toggleTerminal";
-            "when" = "terminal.active";
-          }
-          {
-            "key" = "ctrl+w";
-            "command" = "editor.action.smartSelect.expand";
-            "when" = "editorTextFocus";
-          }
-          {
-            "key" = "shift+alt+right";
-            "command" = "-editor.action.smartSelect.expand";
-            "when" = "editorTextFocus";
-          }
-          {
-            "key" = "ctrl+d";
-            "command" = "editor.action.copyLinesDownAction";
-            "when" = "editorTextFocus && !editorReadonly";
-          }
-          {
-            "key" = "ctrl+y";
-            "command" = "editor.action.deleteLines";
-            "when" = "textInputFocus && !editorReadonly";
-          }
-          {
-            "key" = "ctrl+shift+t";
-            "command" = "workbench.action.terminal.new";
-          }
-        ];
+          keybindings = [
+            {
+              "key" = "alt+f12";
+              "command" = "workbench.action.terminal.toggleTerminal";
+              "when" = "terminal.active";
+            }
+            {
+              "key" = "ctrl+shift+[Equal]";
+              "command" = "-workbench.action.terminal.toggleTerminal";
+              "when" = "terminal.active";
+            }
+            {
+              "key" = "ctrl+w";
+              "command" = "editor.action.smartSelect.expand";
+              "when" = "editorTextFocus";
+            }
+            {
+              "key" = "shift+alt+right";
+              "command" = "-editor.action.smartSelect.expand";
+              "when" = "editorTextFocus";
+            }
+            {
+              "key" = "ctrl+d";
+              "command" = "editor.action.copyLinesDownAction";
+              "when" = "editorTextFocus && !editorReadonly";
+            }
+            {
+              "key" = "ctrl+y";
+              "command" = "editor.action.deleteLines";
+              "when" = "textInputFocus && !editorReadonly";
+            }
+            {
+              "key" = "ctrl+shift+t";
+              "command" = "workbench.action.terminal.new";
+            }
+          ];
+        };
       };
     };
 }
