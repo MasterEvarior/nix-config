@@ -12,6 +12,7 @@
     ./mako.nix
     ./snipping-tools.nix
     ./sway.nix
+    ./swayidle.nix
     ./swaylock.nix
     ./waybar.nix
     ./wlogout.nix
@@ -105,7 +106,10 @@
           enable = enableByDefault;
           theme = mergedTheme;
         };
-        # TODO: fix this module
+        swayidle = {
+          enable = enableByDefault;
+          lock.command = "${pkgs.swaylock}/bin/swaylock -f";
+        };
         snipping-tools.enable = enableByDefault;
       };
     };
