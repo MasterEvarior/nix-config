@@ -43,6 +43,26 @@
       type = lib.types.nullOr lib.types.str;
       description = "Output to focus on after startup";
     };
+    workspaceAssignments = lib.mkOption {
+      default = [ ];
+      type = lib.types.listOf (
+        lib.types.submodule {
+          options = {
+            outputName = lib.mkOption {
+              example = "eDP-1";
+              type = lib.types.str;
+              description = "Name of the output you want to assign the workspaces too";
+            };
+            workspace = lib.mkOption {
+              example = 1;
+              type = lib.types.int;
+              description = "Workspace you want to assign to this output";
+            };
+          };
+        }
+      );
+      description = "Assign particular workspaces to selected outputs";
+    };
   };
 
   config =

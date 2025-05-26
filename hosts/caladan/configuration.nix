@@ -18,29 +18,44 @@
       wallpaper = ./assets/wallpapers/sddm/background.png;
     };
 
-    desktop = {
-      plasma.enable = true;
-      sway = {
-        enable = true;
-        useSwayFX = true;
-        disableHardwareCursor = true;
-        enableUnsupportedGPU = true;
-        focusOnStartup = "LG Electronics LG ULTRAWIDE 0x00059AB6";
-        outputs = {
-          "LG Electronics LG ULTRAWIDE 0x00059AB6" = {
-            mode = "2560x1080";
-            bg = "${./assets/wallpapers/desktop/horizontal/ocean_with_cloud.png} fill";
-            pos = "0,0";
+    desktop =
+      let
+        ultrawide = "LG Electronics LG ULTRAWIDE 0x00059AB6";
+        side = "AOC 24G2W1G4 ATNN11A013004";
+      in
+      {
+        plasma.enable = true;
+        sway = {
+          enable = true;
+          useSwayFX = true;
+          disableHardwareCursor = true;
+          enableUnsupportedGPU = true;
+          focusOnStartup = ultrawide;
+          outputs = {
+            "${ultrawide}" = {
+              mode = "2560x1080";
+              bg = "${./assets/wallpapers/desktop/horizontal/ocean_with_cloud.png} fill";
+              pos = "0,0";
+            };
+            ${side} = {
+              mode = "1920x1080";
+              bg = "${./assets/wallpapers/desktop/vertical/anime-landscape-6.png} fill";
+              pos = "2560,0";
+              transform = "90";
+            };
           };
-          "AOC 24G2W1G4 ATNN11A013004" = {
-            mode = "1920x1080";
-            bg = "${./assets/wallpapers/desktop/vertical/anime-landscape-6.png} fill";
-            pos = "2560,0";
-            transform = "90";
-          };
+          workspaceAssignments = [
+            {
+              outputName = ultrawide;
+              workspace = 1;
+            }
+            {
+              outputName = side;
+              workspace = 2;
+            }
+          ];
         };
       };
-    };
 
     grub2Theme = {
       enabled = true;

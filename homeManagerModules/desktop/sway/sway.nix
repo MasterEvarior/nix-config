@@ -82,6 +82,26 @@
       type = lib.types.attrs;
       description = "An attribute set that defines output modules. See sway-output(5) for options.";
     };
+    workspaceAssignments = lib.mkOption {
+      default = osConfig.modules.desktop.sway.workspaceAssignments;
+      type = lib.types.listOf (
+        lib.types.submodule {
+          options = {
+            outputName = lib.mkOption {
+              example = "eDP-1";
+              type = lib.types.str;
+              description = "Name of the output you want to assign the workspaces too";
+            };
+            workspace = lib.mkOption {
+              example = 1;
+              type = lib.types.int;
+              description = "Workspace you want to assign to this output";
+            };
+          };
+        }
+      );
+      description = "Assign particular workspaces to selected outputs";
+    };
     focusOnStartup = lib.mkOption {
       default = osConfig.modules.desktop.sway.focusOnStartup;
       example = "AOC 24G2W1G4 ATNN11A013004";
@@ -149,6 +169,12 @@
           "";
       outputToFocusOnStartup =
         if cfg.focusOnStartup == null then "" else "focus output " + cfg.focusOnStartup;
+      mapWorkspaceAssignments =
+        assignments:
+        lib.lists.forEach assignments (a: {
+          output = a.outputName;
+          workspace = (toString a.workspace);
+        });
       scripts = {
         floatingWindow =
           pkgs.writeShellApplication {
@@ -332,6 +358,7 @@
             ];
           };
           fonts = { };
+          workspaceOutputAssign = (mapWorkspaceAssignments cfg.workspaceAssignments);
         };
         extraConfig = swayfxConfig + outputToFocusOnStartup;
       };
