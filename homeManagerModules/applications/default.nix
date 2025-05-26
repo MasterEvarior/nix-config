@@ -18,6 +18,7 @@
     ./deja-dup
     ./dooit
     ./fastfetch
+    ./flex-launcher
     ./fzf
     ./github-cli
     ./gitlab-cli
