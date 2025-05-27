@@ -168,6 +168,7 @@
               "workbench.settings.enableNaturalLanguageSearch" = cfg.workbench.naturalLanguageSearch;
               "workbench.startupEditor" = cfg.workbench.startupEditor;
               "workbench.tips.enabled" = cfg.workbench.tipsEnabled;
+              "workbench.editor.empty.hint" = "hidden";
             }
             cfg.additionalUserSettings
           ];
@@ -210,6 +211,12 @@
             {
               "key" = "ctrl+shift+t";
               "command" = "workbench.action.terminal.new";
+            }
+            {
+              "key" = "ctrl+i";
+              "command" = "-inlineChat.start";
+              "when" =
+                "editorFocus && inlineChatHasEditsAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput || editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput";
             }
           ];
         };
