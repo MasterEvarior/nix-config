@@ -55,7 +55,7 @@
         enable = true;
         userName = cfg.userName;
         userEmail = cfg.userEmail;
-        aliases = {
+        aliases = rec {
           clear = "! clear";
           ss = "stash save";
           sl = "stash list";
@@ -72,6 +72,9 @@
           unstage = "reset --soft HEAD~1";
           count = ''!echo "Total commits: $(git rev-list --count HEAD)"'';
           drop = "stash drop";
+          recent = "log -3";
+          latest = "log -1";
+          last = latest;
         };
         extraConfig = {
           pull = {
