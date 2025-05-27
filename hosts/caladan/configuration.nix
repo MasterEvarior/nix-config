@@ -51,7 +51,7 @@
             }
             {
               outputName = side;
-              workspace = 2;
+              workspace = 10;
             }
           ];
         };
