@@ -15,7 +15,7 @@
         description = "Command to execute to lock the computer";
       };
       timeout = lib.mkOption {
-        default = 120;
+        default = 300;
         example = 120;
         type = lib.types.int;
         description = "Amount in seconds of inactivity before locking the computer";
