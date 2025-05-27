@@ -91,7 +91,7 @@ in
     dev = {
       kubernetes = {
         enable = true;
-        minikube.enable = true;
+        minikube.enable = false;
         flux.enable = false;
       };
       js = {
