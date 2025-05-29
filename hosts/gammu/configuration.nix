@@ -12,7 +12,6 @@
   networking = {
     hostName = "gammu";
     networkmanager.enable = true;
-    wireless.enable = true;
   };
 
   # Bootloader.
