@@ -14,12 +14,19 @@ in
 
   home.packages = with pkgs; [
     # Entertainment & Media
-    plex-media-player
+    plex-desktop
     vlc
+    firefox
+
+    # Nix
+    git
   ];
 
   homeModules = {
-    applications.module.enableDefaults = false;
+    applications = {
+      module.enableDefaults = false;
+      flex-launcher.enable = true;
+    };
     dev.module.enableDefaults = false;
   };
 

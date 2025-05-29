@@ -73,6 +73,7 @@
       nixosConfigurations = mkSystems [
         "arrakis"
         "caladan"
+        "gammu"
       ];
     };
 }

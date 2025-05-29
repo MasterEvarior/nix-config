@@ -2,7 +2,7 @@
 
 [![Nix](https://img.shields.io/badge/built%20with-Nix-5277C3.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/MasterEvarior/nix-config/quality.yaml?style=flat-square&logo=github&label=Quality%20Check)
 
-This is my NixOS configuration, with some help of my personal Nix guru  [Imatpot](https://github.com/imatpot/dotfiles).
+This is my NixOS configuration, with some help of my personal Nix guru [Imatpot](https://github.com/imatpot/dotfiles).
 
 ## How to use
 
@@ -47,12 +47,13 @@ A list of all the PCs/Laptops and their users.
 
 - `giannin` - My personal user
 - `work` - User for work
-- `htpc` - User for the home theater PC in the living room
+- `htpc` - User for the HTPC in the living room
 
 ### Hosts
 
 - `arrakis` - My Thinkpad P16s Gen 2
-- `caladan`- My Desktop (whatever the specs may be)
+- `caladan`- My Desktop
+- `gammu`- Home Theater PC
 
 ## Theming
 
