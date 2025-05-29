@@ -25,7 +25,10 @@ in
   homeModules = {
     applications = {
       module.enableDefaults = false;
-      flex-launcher.enable = true;
+      flex-launcher = {
+        enable = true;
+        config = '''';
+      };
     };
     dev.module.enableDefaults = false;
   };
