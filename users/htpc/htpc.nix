@@ -3,7 +3,7 @@
 {
   users.users.htpc = {
     isNormalUser = true;
-    name = "HTPC";
+    name = "htpc";
     description = "Home Theater PC";
     useDefaultShell = true;
     extraGroups = [
