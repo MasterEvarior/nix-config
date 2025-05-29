@@ -55,7 +55,7 @@
         enable = true;
         userName = cfg.userName;
         userEmail = cfg.userEmail;
-        aliases = {
+        aliases = rec {
           clear = "! clear";
           ss = "stash save";
           sl = "stash list";
@@ -69,9 +69,12 @@
           amend = "commit --amend --no-edit";
           graph = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
           cm = "commit -m";
-          unstage = "reset --soft HEAD~1";
+          unstage = "reset --";
           count = ''!echo "Total commits: $(git rev-list --count HEAD)"'';
           drop = "stash drop";
+          recent = "log -3";
+          latest = "log -1";
+          last = latest;
         };
         extraConfig = {
           pull = {

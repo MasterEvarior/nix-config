@@ -13,11 +13,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Connect to school VPN
+    openconnect-sso = {
+      url = "github:ThinkChaos/openconnect-sso/fix/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Secret Managment with SOPS
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     my-sops-secrets = {
       url = "git+ssh://git@github.com/MasterEvarior/nix-secrets?ref=main&shallow=1";
       flake = false;

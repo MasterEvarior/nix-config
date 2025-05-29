@@ -30,6 +30,7 @@
     ./ms-teams
     ./nano
     ./onedrive
+    ./openconnect
     ./playerctl
     ./signal
     ./spotify

@@ -36,6 +36,7 @@ in
       onedrive.enable = true;
       zotero.enable = true;
       gowall.enable = true;
+      openconnect.enable = true;
       "1password" = {
         enable = true;
         ssh = {
