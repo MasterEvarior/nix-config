@@ -27,6 +27,7 @@ in
       module.enableDefaults = false;
       flex-launcher = {
         enable = true;
+        autostart = true;
         config = '''';
       };
     };
