@@ -128,7 +128,7 @@
         style = ''
           * {
               border: none;
-              font-family: Font Awesome, Roboto, Arial, sans-serif;
+              font-family: NotoSans, Font Awesome, FontAwesome6Free, SymbolsNerdFont, Roboto, Arial, sans-serif;
               font-size: 1rem;
               color: ${cfg.theme.text};
               border-radius: 10px;
