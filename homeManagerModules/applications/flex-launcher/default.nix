@@ -34,7 +34,19 @@
         flex-launcher
       ];
 
-      home.file.".config/autostart/flex-launcher.desktop".text = lib.mkIf cfg.autostart '''';
+      home.file.".config/autostart/flex-launcher.desktop".text = lib.mkIf cfg.autostart ''
+        [Desktop Entry]
+        Version=1.5
+        Type=Application
+        Name=Flex Launcher
+        GenericName=Application Launcher
+        Comment=Customizable HTPC Application Launcher
+        TryExec=${pkgs.flex-launcher}/bin/flex-launcher
+        Exec=${pkgs.flex-launcher}/bin/flex-launcher
+        Categories=Video;AudioVideo;
+        X-GNOME-Autostart-enabled=true
+        X-GNOME-Autostart-Delay=0
+      '';
       home.file.".config/flex-launcher/config.ini".text = cfg.config;
     };
 }
