@@ -8,6 +8,7 @@
 
 {
   imports = [
+    ./autotiling.nix
     ./fuzzel.nix
     ./mako.nix
     ./snipping-tools.nix
@@ -85,6 +86,9 @@
         terminal = "${pkgs.alacritty}/bin/alacritty";
         fileBrowser = "${pkgs.alacritty}/bin/alacritty -e ${pkgs.yazi}/bin/yazi";
         bar = (lib.mkDefault null);
+        autotiling = {
+          enable = true;
+        };
         fuzzel = {
           enable = enableByDefault;
           theme = mergedTheme;
