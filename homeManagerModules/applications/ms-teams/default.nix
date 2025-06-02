@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs-unstable,
+  pkgs,
   ...
 }:
 
@@ -11,6 +11,6 @@
   };
 
   config = lib.mkIf config.homeModules.applications.ms-teams.enable {
-    home.packages = with pkgs-unstable; [ teams-for-linux ];
+    home.packages = with pkgs; [ teams-for-linux ];
   };
 }
