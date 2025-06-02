@@ -11,7 +11,10 @@
   };
 
   config = lib.mkIf config.homeModules.dev.terraform.enable {
-    home.packages = with pkgs; [ terraform ];
+    home.packages = with pkgs; [
+      terraform
+      terraformer
+    ];
 
     homeModules.applications.vscode = {
       additionalExtensions = with pkgs; [ vscode-extensions.hashicorp.terraform ];

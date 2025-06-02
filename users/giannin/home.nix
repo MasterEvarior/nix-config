@@ -95,6 +95,7 @@ in
         minikube.enable = false;
         flux.enable = false;
       };
+      terraform.enable = true;
       js = {
         enable = true;
         typescript.enable = true;
