@@ -112,7 +112,7 @@
         };
         swayidle = {
           enable = enableByDefault;
-          lock.command = "${pkgs.swaylock}/bin/swaylock -f";
+          lock.command = lib.mkDefault "${pkgs.swaylock}/bin/swaylock -f";
         };
         snipping-tools.enable = enableByDefault;
       };

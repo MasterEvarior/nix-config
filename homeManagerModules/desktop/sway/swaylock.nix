@@ -47,6 +47,7 @@
     let
       cfg = config.homeModules.desktop.sway.swaylock;
       stripHashtag = lib.strings.stringAsChars (x: if x == "#" then "" else x);
+      lockCommand = "${pkgs.swaylock}/bin/swaylock --show-keyboard-layout --indicator-idle-visible --indicator-caps-lock ${cfg.backgroundImages}";
     in
     lib.mkIf config.homeModules.desktop.sway.swaylock.enable {
       home.packages = with pkgs; [
@@ -89,8 +90,11 @@
       };
 
       homeModules.desktop.sway.additionalKeybindings = {
-        "+l" =
-          "exec ${pkgs.swaylock}/bin/swaylock --show-keyboard-layout --indicator-idle-visible --indicator-caps-lock ${cfg.backgroundImages}";
+        "+l" = "exec ${lockCommand}";
+      };
+
+      homeModules.desktop.sway.swayidle = {
+        lock.command = lockCommand + "-f";
       };
     };
 }
