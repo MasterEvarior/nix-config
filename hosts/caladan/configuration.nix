@@ -39,7 +39,7 @@
             };
             ${side} = {
               mode = "1920x1080";
-              bg = "${./assets/wallpapers/desktop/vertical/anime-landscape-6.png} fill";
+              bg = "${./assets/wallpapers/desktop/vertical/anime-landscape-7.png} fill";
               pos = "2560,0";
               transform = "90";
             };
