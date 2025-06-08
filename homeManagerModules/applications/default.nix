@@ -13,6 +13,7 @@
     ./bruno
     ./btop
     ./chromium
+    ./codesnap
     ./comma
     ./cypress
     ./deja-dup
