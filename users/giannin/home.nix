@@ -33,7 +33,15 @@ in
       onedrive.enable = true;
       zotero.enable = true;
       gowall.enable = true;
-      openconnect.enable = true;
+      openconnect = {
+        enable = true;
+        aliases = [
+          {
+            name = "fhnw";
+            server = "vpn.fhnw.ch";
+          }
+        ];
+      };
       "1password" = {
         enable = true;
         ssh = {
