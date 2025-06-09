@@ -17,9 +17,6 @@ in
   home.packages = with pkgs; [
     # Media
     vlc
-
-    # School
-    jmeter
   ];
 
   homeModules = {
