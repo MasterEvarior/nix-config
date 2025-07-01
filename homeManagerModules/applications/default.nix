@@ -21,6 +21,7 @@
     ./fastfetch
     ./flex-launcher
     ./fzf
+    ./gemini-cli
     ./github-cli
     ./gitlab-cli
     ./gowall

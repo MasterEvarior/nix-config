@@ -23,7 +23,7 @@
 
   homeModules = {
     applications = {
-      dooit.enable = true;
+      gemini-cli.enable = true;
       cypress = {
         enable = true;
       };
@@ -48,7 +48,6 @@
         };
       };
       deja-dup.enable = true;
-      watson.enable = true;
       bitwarden.enable = true;
       zellij.additionalLayouts = ./assets/zellij-layouts;
     };
