@@ -67,7 +67,6 @@
         enable = true;
         angular.enable = true;
       };
-      latex.enable = true;
     };
   };
 
