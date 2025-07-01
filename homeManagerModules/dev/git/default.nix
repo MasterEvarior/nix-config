@@ -66,6 +66,7 @@
           ps = "push";
           a = "add";
           aa = "add --all";
+          diffn = "diff --name-status";
           amend = "commit --amend --no-edit";
           graph = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
           cm = "commit -m";
