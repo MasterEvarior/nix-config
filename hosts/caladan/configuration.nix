@@ -15,7 +15,8 @@
 
     displayManager.sddm = {
       enable = true;
-      wallpaper = ./assets/wallpapers/sddm/background.png;
+      theme = "Catppuccin-Official";
+      catppuccin-official.wallpaper = ./assets/wallpapers/sddm/background.png;
     };
 
     desktop =

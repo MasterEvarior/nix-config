@@ -1,51 +1,43 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 
 {
+  imports = [
+    ./catppuccin-official.nix
+    ./silent-sddm.nix
+  ];
+
   options.modules.displayManager.sddm = {
     enable = lib.mkEnableOption "SDDM theming";
-    flavor = lib.mkOption {
-      default = "mocha";
-      example = "mocha";
+    theme = lib.mkOption {
+      default = "Catppuccin-Official";
+      example = "Catppuccin-Official";
       type = lib.types.enum [
-        "latte"
-        "frappe"
-        "macchiato"
-        "mocha"
+        "Catppuccin-Official"
+        "Silent-SDDM"
       ];
-      description = "Change the flavor of catppuccin";
-    };
-    wallpaper = lib.mkOption {
-      example = ./your/wallpaper;
-      type = lib.types.path;
-      description = "Path to your wallpaper";
-    };
-    loginBackground = lib.mkOption {
-      default = true;
-      example = true;
-      type = lib.types.bool;
+      description = "Which (if any) theme to enable";
     };
   };
 
   config =
     let
       cfg = config.modules.displayManager.sddm;
+      enableCatppuccin = cfg.theme == "Catppuccin-Official";
+      enableSilent = cfg.theme == "Silent-SDDM";
     in
     lib.mkIf (config.services.displayManager.sddm.enable && cfg.enable) {
-      environment.systemPackages = [
-        (pkgs.catppuccin-sddm.override {
-          flavor = cfg.flavor;
-          background = "${cfg.wallpaper}";
-          loginBackground = cfg.loginBackground;
-        })
+      assertions = [
+        {
+          assertion = !(enableCatppuccin && enableSilent);
+          message = "Can only enable one SDDM theme at the time";
+        }
       ];
 
-      services.displayManager.sddm = {
-        theme = "catppuccin-mocha";
-      };
+      modules.displayManager.sddm.catppuccin-official.enable = enableCatppuccin;
+      modules.displayManager.sddm.silent-sddm.enable = enableSilent;
     };
 }
