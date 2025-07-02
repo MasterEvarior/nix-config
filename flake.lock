@@ -268,8 +268,29 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "openconnect-sso": "openconnect-sso",
+        "silentSDDM": "silentSDDM",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix"
+      }
+    },
+    "silentSDDM": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751388393,
+        "narHash": "sha256-1QHvGrDBHDCzOnAPMTl2PsDA5bl5hAdANBBtHBuB9pI=",
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
+        "rev": "e18717f73a20972f260e0b01724c83372e9f48fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
+        "type": "github"
       }
     },
     "sops-nix": {

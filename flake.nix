@@ -7,6 +7,10 @@
     grub2-themes.url = "github:vinceliuice/grub2-themes";
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -40,6 +44,9 @@
         hostname:
         lib.nixosSystem {
           system = system;
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             (./. + "/hosts/${hostname}/configuration.nix")
             inputs.grub2-themes.nixosModules.default
