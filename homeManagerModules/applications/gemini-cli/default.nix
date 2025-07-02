@@ -40,7 +40,7 @@
         gemini-cli
       ];
 
-      home.file.".gemini/settings.txt".text = ''
+      home.file.".gemini/settings.json".text = ''
         {
           "theme": "GitHub",
           "telemetry": {
