@@ -28,8 +28,9 @@
 
   config =
     let
+      cfg = config.modules.displayManager.sddm.silent-sddm;
       sddm-theme = inputs.silentSDDM.packages.${pkgs.system}.default.override {
-        theme = "rei"; # select the config of your choice
+        theme = cfg.flavor;
       };
     in
     lib.mkIf config.modules.displayManager.sddm.silent-sddm.enable {
