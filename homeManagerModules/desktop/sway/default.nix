@@ -80,11 +80,9 @@
         yazi.enable = true;
       };
 
-      homeModules.desktop.sway = {
+      homeModules.desktop.sway = rec {
         enable = enableByDefault;
         theme = mergedTheme;
-        terminal = "${pkgs.alacritty}/bin/alacritty";
-        fileBrowser = "${pkgs.alacritty}/bin/alacritty -e ${pkgs.yazi}/bin/yazi";
         bar = (lib.mkDefault null);
         autotiling = {
           enable = true;

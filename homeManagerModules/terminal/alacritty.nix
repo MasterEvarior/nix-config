@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -114,6 +115,11 @@
           ];
         };
       };
+    };
+
+    homeModules.desktop.sway = rec {
+      terminal = "${pkgs.alacritty}/bin/alacritty";
+      fileBrowser = terminal + " -e ${pkgs.yazi}/bin/yazi";
     };
   };
 }

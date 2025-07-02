@@ -1,15 +1,21 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  osConfig,
+  ...
+}:
 
 {
   imports = [
     ./alacritty.nix
+    ./kitty.nix
     ./oh-my-posh.nix
   ];
 
   options.homeModules.terminal = {
     enable = lib.mkEnableOption "shell and terminal configuration";
     terminal = lib.mkOption {
-      default = "alacritty";
+      default = osConfig.modules.terminal.terminal;
       example = "alacritty";
       type = lib.types.enum [
         "alacritty"
@@ -54,6 +60,7 @@
 
       homeModules.terminal = {
         oh-my-posh.enable = lib.mkDefault true;
+        kitty.enable = enableKitty;
         alacritty.enable = enableAlacritty;
       };
     };
