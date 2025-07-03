@@ -397,6 +397,12 @@
       ];
       description = "Which official Kitty theme to apply";
     };
+    font = lib.mkOption {
+      default = pkgs.nerd-fonts.jetbrains-mono;
+      example = pkgs.nerd-fonts.jetbrains-mono;
+      type = lib.types.package;
+      description = "Package of the font which should be used";
+    };
   };
 
   config =
@@ -411,6 +417,10 @@
           enableZshIntegration = isDefaultShell pkgs.zsh;
           enableBashIntegration = isDefaultShell pkgs.bash;
           enableFishIntegration = isDefaultShell pkgs.fish;
+        };
+        font = {
+          package = cfg.font;
+          name = cfg.font.pname;
         };
         themeFile = cfg.theme;
       };
