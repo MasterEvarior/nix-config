@@ -27,13 +27,17 @@
     ./assets/eduroam/DigiCertTLSRSASHA2562020CA1-1.pem
   ];
 
-  # Custom bootloader theming
   modules = {
     displaylink.enable = true;
     grub2Theme = {
       enabled = true;
       resolution = "4k";
       backgroundImage = ./assets/img/oled-background.png;
+    };
+    displayManager.sddm = {
+      enable = true;
+      theme = "Silent-SDDM";
+      silent-sddm.flavor = "catppuccin-mocha";
     };
   };
 
