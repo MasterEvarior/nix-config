@@ -1,9 +1,13 @@
 { ... }:
 
+let
+  username = "work";
+  avatar = ./assets/avatar.png;
+in
 {
-  users.users.work = {
+  users.users."${username}" = {
     isNormalUser = true;
-    name = "work";
+    name = username;
     description = "Work account";
     useDefaultShell = true;
     extraGroups = [
@@ -24,4 +28,9 @@
   };
 
   home-manager.users.work = import ./home.nix;
+
+  systemd.tmpfiles.rules = [
+    "f+ /var/lib/AccountsService/users/${username}  0600 root root -  [User]\\nIcon=/var/lib/AccountsService/icons/${username}\\n"
+    "L+ /var/lib/AccountsService/icons/${username}  -    -    -    -  ${avatar}"
+  ];
 }
