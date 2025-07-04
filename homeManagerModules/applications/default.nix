@@ -69,7 +69,6 @@
         comma.enable = enableByDefault;
         ms-teams.enable = enableByDefault;
         fzf.enable = enableByDefault;
-        zellij.enable = enableByDefault;
         github-cli.enable = enableByDefault;
         license-cli.enable = enableByDefault;
         treefmt.enable = enableByDefault;

@@ -49,7 +49,6 @@
       };
       deja-dup.enable = true;
       bitwarden.enable = true;
-      zellij.additionalLayouts = ./assets/zellij-layouts;
     };
     dev = {
       git = {

@@ -67,7 +67,6 @@ in
         enable = true;
         additionalBrowsers = [ ];
       };
-      zellij.additionalLayouts = ./assets/zellij-layouts;
 
       b2-backup = {
         enable = true;
