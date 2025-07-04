@@ -32,6 +32,10 @@
         };
       };
 
+      home.shellAliases = {
+        pdfviewer = "${pkgs.zathura}/bin/zathura";
+      };
+
       xdg = {
         enable = true;
         desktopEntries = lib.mkIf cfg.createDesktopEntry {
