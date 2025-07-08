@@ -83,16 +83,6 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
 
-  # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    xkb.layout = "ch";
-    xkb.variant = "";
-  };
-
-  # Configure console keymap
-  console.keyMap = "sg";
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

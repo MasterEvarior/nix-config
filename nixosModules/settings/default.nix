@@ -3,6 +3,7 @@
 {
   imports = [
     ./bluetooth.nix
+    ./keymap.nix
     ./locale.nix
     ./printing.nix
     ./unfree.nix
@@ -22,6 +23,7 @@
     in
     {
       bluetooth.enable = defaultTrue;
+      keymap.enable = defaultTrue;
       flakes.enable = defaultTrue;
       fonts.enable = defaultTrue;
       garbageCollection.enable = defaultTrue;
