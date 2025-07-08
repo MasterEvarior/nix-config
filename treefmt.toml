@@ -41,4 +41,4 @@ excludes = []
 includes = ["*.nix"]
 
 [global]
-excludes = [ "*.png", "*.jpg", "*.jpeg", "*.pem", "*.pub"]
+excludes = [ "*.png", "*.jpg", "*.jpeg", "*.pem", "*.pub", "*.ttf", "*.kdl"]
