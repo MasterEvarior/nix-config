@@ -39,6 +39,31 @@
       theme = "Silent-SDDM";
       silent-sddm.flavor = "catppuccin-mocha";
     };
+    desktop = {
+      plasma.enable = true;
+      sway =
+        let
+          builtIn = "Samsung Display Corp. 0x4165";
+        in
+        {
+          enable = true;
+          useSwayFX = true;
+          disableHardwareCursor = true;
+          outputs = {
+            "${builtIn}" = {
+              mode = "3840x2400";
+              bg = "${./assets/img/sway-background.png} fill";
+              pos = "0,0";
+            };
+          };
+          workspaceAssignments = [
+            {
+              outputName = builtIn;
+              workspace = 1;
+            }
+          ];
+        };
+    };
   };
 
   # Configure keymap in X11
