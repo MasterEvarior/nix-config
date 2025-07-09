@@ -80,10 +80,10 @@
     "my-sops-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1752007191,
-        "narHash": "sha256-NZzieGWZdVHLhw0wf5rIl3/WjJR5ckRC1jzVEpCNVN8=",
+        "lastModified": 1752073686,
+        "narHash": "sha256-ryqaU829A4sc52JaL0JRKgMruMXjCruTMUkcYyf5Oiw=",
         "ref": "main",
-        "rev": "50370a70dd760414bd452e78480de8c86bc60396",
+        "rev": "c02446e92ec84d85d2f8228b2fa1b82b224cdf01",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/MasterEvarior/nix-secrets"
