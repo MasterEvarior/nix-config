@@ -65,6 +65,23 @@
       backgroundImage = ./assets/wallpapers/grub/ultrawide-background.jpg;
     };
 
+    smb = {
+      enable = true;
+      shares = [
+        {
+          path = "/tower/movies";
+          source = "//192.168.68.56/movies";
+        }
+        {
+          path = "/tower/tv";
+          source = "//192.168.68.56/tv";
+        }
+        {
+          path = "/tower/photos";
+          source = "//192.168.68.56/photos";
+        }
+      ];
+    };
     settings.garbageCollection = {
       enable = true;
       keep = 90;
