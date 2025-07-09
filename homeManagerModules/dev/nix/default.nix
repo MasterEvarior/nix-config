@@ -25,6 +25,7 @@
         nixd
         deadnix
         nurl
+        nix-converter
       ];
 
       home.shellAliases = {
