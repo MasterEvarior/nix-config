@@ -36,15 +36,16 @@
           kubectl
           kustomize
           kubectx
+          kubefetch
         ]
         ++ optionals (cfg.openshift.enable) openshiftPackages
         ++ optionals (cfg.minikube.enable) minikubePackages
         ++ optionals (cfg.flux.enable) fluxPackages;
 
       home.shellAliases = {
-        k = "kubectl";
-        kctx = "kubectx";
-        kns = "kubens";
+        k = "${lib.getBin pkgs.kubectl}/bin/kubectl";
+        kctx = "${lib.getBin pkgs.kubectx}/bin/kubectx";
+        kns = "${lib.getBin pkgs.kubectx}/bin/kubens";
       };
 
       programs.kubecolor = {
