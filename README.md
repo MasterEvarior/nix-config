@@ -27,7 +27,7 @@ After the installation a couple of manual steps are still necessary. They are as
 
 ### Secrets
 
-Secrets are managed with [sops-nix](https://github.com/Mic92/sops-nix) in a separate repository.
+Secrets are managed with [sops-nix](https://github.com/Mic92/sops-nix) in a separate repository. There are two (mostly) independent modules, one for Home Manager and one system wide.
 
 ### Backups
 

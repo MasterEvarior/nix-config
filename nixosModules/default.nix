@@ -6,6 +6,7 @@
     ./desktop
     ./grub2Theme
     ./settings
+    ./sops
     ./terminal
     ./containers
     ./nvidia
