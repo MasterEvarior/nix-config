@@ -80,10 +80,10 @@
     "my-sops-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1752168744,
-        "narHash": "sha256-F14L82YVwW9nUXU1a7gI96B6eCiZZkk801np35xQLNs=",
+        "lastModified": 1752169734,
+        "narHash": "sha256-nPTg3MoG1SI1C1xG5sjuisFYHE0AE4KuRQ7NMFZLc+4=",
         "ref": "main",
-        "rev": "f4236a6e8350ce0c54713d43d3a2baf1596c7bc6",
+        "rev": "8856248471cb4974780955f5338871a9e2820a1c",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/MasterEvarior/nix-secrets"
@@ -150,11 +150,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1752168036,
-        "narHash": "sha256-Kopi4uTfz4+2Opcn7jE1EMedbaJVLQ63K3H910ZVvwA=",
+        "lastModified": 1752169618,
+        "narHash": "sha256-JLaMSBUyOmsYSu+TnoJLAqO/ULunxI9GOI9yHyzehmA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b71d7d18209415ba8d73022f1418c2f2befbcb19",
+        "rev": "a49b7125a9ab703ab816c930bdb3dab524835309",
         "type": "github"
       },
       "original": {
