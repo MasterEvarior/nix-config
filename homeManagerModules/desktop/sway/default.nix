@@ -9,6 +9,7 @@
 {
   imports = [
     ./autotiling.nix
+    ./bzmenu.nix
     ./fuzzel.nix
     ./mako.nix
     ./snipping-tools.nix
@@ -80,11 +81,14 @@
         yazi.enable = true;
       };
 
-      homeModules.desktop.sway = rec {
+      homeModules.desktop.sway = {
         enable = enableByDefault;
         theme = mergedTheme;
         bar = (lib.mkDefault null);
         autotiling = {
+          enable = true;
+        };
+        bzmenu = {
           enable = true;
         };
         fuzzel = {

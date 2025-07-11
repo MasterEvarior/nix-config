@@ -27,12 +27,23 @@
       type = lib.types.str;
       description = "Command that triggers the logout";
     };
+    bluetoothCommand = lib.mkOption {
+      default = null;
+      example = "${pkgs.blueman}/bin/blueman-manager";
+      type = lib.types.nullOr lib.types.str;
+      description = "Command to execute when clicking on the Bluetooth symbol";
+    };
   };
 
   config =
     let
       cfg = config.homeModules.desktop.sway.waybar;
       toUTF8 = x: builtins.fromJSON ''"\u${x}"'';
+      bluetoothCommand =
+        if cfg.bluetoothCommand == null then
+          "${pkgs.blueman}/bin/blueman-manager"
+        else
+          cfg.bluetoothCommand;
     in
     lib.mkIf config.homeModules.desktop.sway.waybar.enable {
       home.packages = with pkgs; [
@@ -66,7 +77,7 @@
               "custom/power"
             ];
             bluetooth = {
-              on-click = "${pkgs.blueman}/bin/blueman-manager";
+              on-click = bluetoothCommand;
               tooltip = true;
               format = (toUTF8 "f293");
               format-disabled = (toUTF8 "f294");

@@ -53,5 +53,7 @@
       homeModules.desktop.sway.additionalKeybindings = {
         "+d" = "exec --no-startup-id ${pkgs.fuzzel}/bin/fuzzel";
       };
+
+      homeModules.desktop.sway.bzmenu.launcher = "fuzzel";
     };
 }
