@@ -41,8 +41,12 @@
         # Delete old packages
         ncg = "nix-collect-garbage";
 
+        # Convert
         nix-from-json = "${jsonToNixScript}";
         nix-from-toml = "${tomlToNixScript}";
+
+        # Quick fix (hail mary style)
+        nix-store-quickfix = "${./assets/fix.sh}";
       };
 
       homeModules.applications.vscode = {
