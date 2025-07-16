@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs-unstable,
+  pkgs,
   ...
 }:
 
@@ -20,7 +20,7 @@
   };
 
   config = lib.mkIf config.homeModules.applications.onedrive.enable {
-    home.packages = with pkgs-unstable; [ onedrive ];
+    home.packages = with pkgs; [ onedrive ];
 
     home.file.".config/onedrive/config".text = config.homeModules.applications.onedrive.configuration;
   };

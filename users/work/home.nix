@@ -23,7 +23,6 @@
 
   homeModules = {
     applications = {
-      gemini-cli.enable = true;
       cypress = {
         enable = true;
       };

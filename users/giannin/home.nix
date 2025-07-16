@@ -33,7 +33,6 @@ in
       onedrive.enable = true;
       zotero.enable = true;
       gowall.enable = true;
-      gemini-cli.enable = true;
       openconnect = {
         enable = true;
         aliases = [

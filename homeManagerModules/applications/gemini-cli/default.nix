@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs-unstable,
+  pkgs,
   ...
 }:
 
@@ -36,7 +36,7 @@
       cfg = config.homeModules.applications.gemini-cli;
     in
     lib.mkIf config.homeModules.applications.gemini-cli.enable {
-      home.packages = with pkgs-unstable; [
+      home.packages = with pkgs; [
         gemini-cli
       ];
 
