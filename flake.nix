@@ -32,6 +32,12 @@
       url = "git+ssh://git@github.com/MasterEvarior/nix-secrets?ref=main&shallow=1";
       flake = false;
     };
+
+    # Zen
+    zen-browser = {
+      url = "github:MarceColl/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -40,6 +46,7 @@
       system = "x86_64-linux";
       lib = inputs.nixpkgs.lib;
       pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+      zen-browser = inputs.zen-browser.packages."${system}".default;
       mkSystem =
         hostname:
         lib.nixosSystem {
@@ -63,6 +70,7 @@
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 inherit pkgs-unstable;
+                inherit zen-browser;
               };
             }
           ];

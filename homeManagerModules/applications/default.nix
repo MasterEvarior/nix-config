@@ -41,8 +41,9 @@
     ./vscode
     ./watson
     ./yazi
-    ./zellij
     ./zathura
+    ./zellij
+    ./zen-browser
     ./zotero
     ./zoxide
   ];
@@ -80,6 +81,7 @@
         utils.enable = enableByDefault;
         btop.enable = enableByDefault;
         yazi.enable = enableByDefault;
+        zen-browser.enable = enableByDefault;
       };
     };
 }
