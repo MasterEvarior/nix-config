@@ -24,7 +24,7 @@
   config =
     let
       cfg = config.modules.containers;
-      nuclearScript = pkgs.writers.writePython3 "docker-nuclear" {
+      dockerNuclearScript = pkgs.writers.writePython3 "docker-nuclear" {
         libraries = with pkgs.python3Packages; [
           rich
           docker
@@ -69,7 +69,7 @@
         dkrm = "docker stop $(docker ps -aq) && docker rm $(docker ps -aq)";
         dkprune = "docker container prune --force && docker image prune --force && docker system prune";
         dkimyeet = "docker rmi -f $(docker images -aq)"; # delete all unused images
-        dknuclear = "${nuclearScript}";
+        dknuclear = "${dockerNuclearScript}";
       };
 
       virtualisation.podman = {

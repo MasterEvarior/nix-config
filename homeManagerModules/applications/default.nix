@@ -13,6 +13,7 @@
     ./bruno
     ./btop
     ./chromium
+    ./chartdb
     ./codesnap
     ./comma
     ./cypress
