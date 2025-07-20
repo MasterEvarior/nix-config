@@ -44,9 +44,9 @@
         ++ optionals (cfg.flux.enable) fluxPackages;
 
       home.shellAliases = {
-        k = "${lib.getBin pkgs.kubectl}/bin/kubectl";
-        kctx = "${lib.getBin pkgs.kubectx}/bin/kubectx";
-        kns = "${lib.getBin pkgs.kubectx}/bin/kubens";
+        k = "kubectl";
+        kctx = "kubectx";
+        kns = "kubens";
       };
 
       programs.kubecolor = {
