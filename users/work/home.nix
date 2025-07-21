@@ -14,6 +14,11 @@
     thunderbird
     nextcloud-client
 
+    # Work work work
+    mdbook
+    mdbook-alerts
+    mdbook-mermaid
+
     # RDP Client
     remmina
 
