@@ -56,6 +56,7 @@
           "[typescript]" = {
             "editor.defaultFormatter" = "esbenp.prettier-vscode";
             "editor.formatOnSave" = true;
+            "updateImportsOnFileMove.enabled" = "always";
           };
           "[css]" = {
             "editor.defaultFormatter" = "esbenp.prettier-vscode";
