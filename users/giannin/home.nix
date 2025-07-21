@@ -33,6 +33,7 @@ in
       onedrive.enable = true;
       zotero.enable = true;
       gowall.enable = true;
+      bruno.enable = true;
       openconnect = {
         enable = true;
         aliases = [

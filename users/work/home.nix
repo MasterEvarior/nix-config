@@ -23,9 +23,8 @@
 
   homeModules = {
     applications = {
-      cypress = {
-        enable = true;
-      };
+      bruno.enable = true;
+      cypress.enable = true;
       "1password" = {
         enable = true;
         ssh = {
