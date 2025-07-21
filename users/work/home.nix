@@ -13,12 +13,6 @@
     # Office
     thunderbird
     nextcloud-client
-
-    # Work work work
-    mdbook
-    mdbook-alerts
-    mdbook-mermaid
-
     # RDP Client
     remmina
 
@@ -30,6 +24,9 @@
     applications = {
       bruno.enable = true;
       cypress.enable = true;
+      mdbook.enable = true;
+      deja-dup.enable = true;
+      bitwarden.enable = true;
       "1password" = {
         enable = true;
         ssh = {
@@ -50,8 +47,6 @@
           ];
         };
       };
-      deja-dup.enable = true;
-      bitwarden.enable = true;
     };
     dev = {
       git = {

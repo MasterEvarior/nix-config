@@ -29,6 +29,7 @@
     ./libreoffice
     ./license-cli
     ./lsd
+    ./mdbook
     ./micro
     ./ms-teams
     ./nano

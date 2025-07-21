@@ -34,6 +34,7 @@ in
       zotero.enable = true;
       gowall.enable = true;
       bruno.enable = true;
+      mdbook.enable = true;
       openconnect = {
         enable = true;
         aliases = [
