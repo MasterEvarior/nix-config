@@ -36,6 +36,10 @@
           typescript
         ];
 
+      home.file.".npmrc".text = ''
+        prefix = ''${HOME}/.npm-packages
+      '';
+
       homeModules.applications.vscode = {
         additionalExtensions = with pkgs; [
           vscode-extensions.esbenp.prettier-vscode
