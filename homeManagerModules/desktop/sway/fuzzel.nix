@@ -26,10 +26,40 @@
       stripHashtag = lib.strings.stringAsChars (x: if x == "#" then "" else x);
       ff = color: "${stripHashtag color}ff";
       dd = color: "${stripHashtag color}dd";
+      createShellApp =
+        {
+          name,
+          script,
+          icon ? null,
+        }:
+        pkgs.makeDesktopItem {
+          name = name;
+          desktopName = name;
+          icon = icon;
+          exec = pkgs.writeShellScript (lib.strings.replaceString "" "-" (lib.toLower name)) script;
+        };
     in
     lib.mkIf config.homeModules.desktop.sway.fuzzel.enable {
       home.packages = with pkgs; [
         fuzzel
+        libqalculate
+        (createShellApp {
+          name = "Calculator";
+          script = ''
+            INPUT=""
+            LINES=0
+
+            while true; do
+                INPUT=$(echo -n "$INPUT" | ${pkgs.fuzzel}/bin/fuzzel --prompt "Calc: " --lines $LINES --dmenu)
+                [ -z "$INPUT" ] && break
+                LINES=1
+
+                RESULT=$(${pkgs.libqalculate}/bin/qalc "$INPUT" | tail -n 1)
+                INPUT=$(echo "$RESULT" | ${pkgs.fuzzel}/bin/fuzzel --prompt "Calc: " --lines $LINES --dmenu)
+                [ -z "$INPUT" ] && break
+            done
+          '';
+        })
       ];
 
       home.file.".config/fuzzel/fuzzel.ini".text = ''
