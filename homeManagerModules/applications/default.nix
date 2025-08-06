@@ -26,6 +26,7 @@
     ./github-cli
     ./gitlab-cli
     ./gowall
+    ./lazygit
     ./libreoffice
     ./license-cli
     ./lsd
@@ -76,6 +77,7 @@
         license-cli.enable = enableByDefault;
         treefmt.enable = enableByDefault;
         micro.enable = enableByDefault;
+        lazygit.enable = enableByDefault;
         libreoffice.enable = enableByDefault;
         zoxide.enable = enableByDefault;
         lsd.enable = enableByDefault;
