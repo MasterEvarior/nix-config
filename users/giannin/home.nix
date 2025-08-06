@@ -104,7 +104,7 @@ in
       js = {
         enable = true;
         typescript.enable = true;
-        angular.enable = false;
+        angular.enable = true;
       };
       golang = {
         enable = true;
