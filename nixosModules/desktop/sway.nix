@@ -43,6 +43,16 @@
       type = lib.types.nullOr lib.types.str;
       description = "Output to focus on after startup";
     };
+    wayDisplayConfig = lib.mkOption {
+      default = null;
+      example = ''
+        ARRANGE: ROW
+        ALIGN: TOP
+        ...
+      '';
+      type = lib.types.nullOr lib.types.str;
+      description = "";
+    };
     workspaceAssignments = lib.mkOption {
       default = [ ];
       type = lib.types.listOf (
@@ -83,6 +93,9 @@
         font-awesome
         roboto
         roboto-mono
+
+        # Display Management
+        way-displays
       ];
 
       services.blueman.enable = true;
@@ -94,6 +107,28 @@
           wrapperFeatures.gtk = true;
           package = package;
           extraOptions = extraOptions;
+        };
+      };
+
+      environment.etc = lib.mkIf (cfg.wayDisplayConfig != null) {
+        "way-displays/cfg.yaml" = {
+          text = cfg.wayDisplayConfig;
+        };
+      };
+
+      systemd.services = lib.mkIf {
+        way-displays-daemon = {
+          description = "Start way-display and keep it running";
+          wantedBy = [ "multi-user.target" ];
+          script = ''
+            ${pkgs.way-displays}/bin/way-displays;
+          '';
+          serviceConfig = {
+            Restart = "always";
+          };
+          environment = {
+            WAYLAND_DISPLAY = "wayland-1"; # hacky fix, lets see if this works out
+          };
         };
       };
 

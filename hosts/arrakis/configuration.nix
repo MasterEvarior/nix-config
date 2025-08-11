@@ -49,6 +49,7 @@
           enable = true;
           useSwayFX = true;
           disableHardwareCursor = true;
+          wayDisplayConfig = (builtins.readFile ./assets/sway-display-config.yaml);
           outputs = {
             "${builtIn}" = {
               mode = "3840x2400";
