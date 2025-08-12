@@ -116,21 +116,21 @@
         };
       };
 
-      systemd.services = lib.mkIf {
-        way-displays-daemon = {
-          description = "Start way-display and keep it running";
-          wantedBy = [ "multi-user.target" ];
-          script = ''
-            ${pkgs.way-displays}/bin/way-displays;
-          '';
-          serviceConfig = {
-            Restart = "always";
-          };
-          environment = {
-            WAYLAND_DISPLAY = "wayland-1"; # hacky fix, lets see if this works out
-          };
-        };
-      };
+      # systemd.services = {
+      #   way-displays-daemon = {
+      #     description = "Start way-display and keep it running";
+      #     wantedBy = [ "multi-user.target" ];
+      #     script = ''
+      #       ${pkgs.way-displays}/bin/way-displays;
+      #     '';
+      #     serviceConfig = {
+      #       Restart = "always";
+      #     };
+      #     environment = {
+      #       WAYLAND_DISPLAY = "wayland-1"; # hacky fix, lets see if this works out
+      #     };
+      #   };
+      # };
 
       environment.sessionVariables = { } // hardwareCursor;
 
