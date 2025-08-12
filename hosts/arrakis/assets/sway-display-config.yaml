@@ -1,22 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/alex-courtis/way-displays/refs/heads/master/schema/cfg-1.0.0.yaml
 ## See https://github.com/alex-courtis/way-displays/wiki/Configuration
-
 ARRANGE: ROW
 ALIGN: MIDDLE
-
 SCALING: TRUE
 AUTO_SCALE: TRUE
 AUTO_SCALE_MIN: 1.0
-
 TRANSFORM:
   - NAME_DESC: 'AOC 24G2W1G4 ATNN11A013004'
     TRANSFORM: 270
-
 LOG_THRESHOLD: INFO
-
 VRR_OFF:
   - 'AOC 24G2W1G4 ATNN11A013004'
   - '0x4165'
-
-CALLBACK_CMD: |
+CALLBACK_CMD: |-
   echo "Do nothing..."
