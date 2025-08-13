@@ -42,6 +42,12 @@
       type = lib.types.bool;
       description = "Wether or not to enable a better diff view";
     };
+    enableConventionalCommitsHelper = lib.mkOption {
+      default = true;
+      example = true;
+      type = lib.types.bool;
+      description = "Install CGZ to help with conventional commits";
+    };
   };
 
   config =
@@ -80,7 +86,8 @@
         extraConfig = {
           pull = {
             rebase = config.homeModules.dev.git.rebase;
-          } // safeDirs;
+          }
+          // safeDirs;
           push.autoSetupRemote = true;
           init.defaultBranch = cfg.defaultBranchName;
           color.ui = true;
@@ -96,7 +103,8 @@
         };
       };
 
-      home.packages = with pkgs; [ git-ignore ];
-
+      home.packages = with pkgs; [
+        git-ignore
+      ];
     };
 }
