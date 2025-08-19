@@ -20,6 +20,7 @@
     ./deja-dup
     ./dooit
     ./fastfetch
+    ./firefox
     ./flex-launcher
     ./fzf
     ./gemini-cli
@@ -68,6 +69,7 @@
       homeModules.applications = {
         vscode.enable = enableByDefault;
         fastfetch.enable = enableByDefault;
+        firefox.enable = enableByDefault;
         "1password".enable = enableByDefault;
         spotify.enable = enableByDefault;
         comma.enable = enableByDefault;
@@ -85,7 +87,6 @@
         utils.enable = enableByDefault;
         btop.enable = enableByDefault;
         yazi.enable = enableByDefault;
-        zen-browser.enable = enableByDefault;
       };
     };
 }
