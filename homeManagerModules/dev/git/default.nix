@@ -82,6 +82,8 @@
           recent = "log -3";
           latest = "log -1";
           last = latest;
+          hardreset = "reset --hard HEAD";
+          yeet = hardreset;
         };
         extraConfig = {
           pull = {
