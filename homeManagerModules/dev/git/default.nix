@@ -42,12 +42,6 @@
       type = lib.types.bool;
       description = "Wether or not to enable a better diff view";
     };
-    enableConventionalCommitsHelper = lib.mkOption {
-      default = true;
-      example = true;
-      type = lib.types.bool;
-      description = "Install CGZ to help with conventional commits";
-    };
   };
 
   config =
