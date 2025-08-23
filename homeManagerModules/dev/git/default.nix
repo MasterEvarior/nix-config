@@ -42,6 +42,12 @@
       type = lib.types.bool;
       description = "Wether or not to enable a better diff view";
     };
+    rerere = lib.mkOption {
+      default = false;
+      example = true;
+      type = lib.types.bool;
+      description = "Enable the 'reuse recorded resolution' feature";
+    };
   };
 
   config =
@@ -87,6 +93,7 @@
           push.autoSetupRemote = true;
           init.defaultBranch = cfg.defaultBranchName;
           color.ui = true;
+          rerere.enabled = cfg.rerere;
         };
         delta = {
           enable = cfg.delta;
