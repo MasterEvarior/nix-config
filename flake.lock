@@ -281,11 +281,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755106409,
-        "narHash": "sha256-3UWu7uMezJwyFGxfjYdy6I8e0OXg/BW3Oc6NBSUg2NY=",
+        "lastModified": 1754932802,
+        "narHash": "sha256-m4MgUFe/VoNNkQSV801xrKexKsH7gjPfG5bNCKOrELM=",
         "owner": "uiriansan",
         "repo": "SilentSDDM",
-        "rev": "8ea5b24b4633383cd51ed42ec0a4d970f6be5baa",
+        "rev": "d9ed84ecfa7964b007e01923fd1cb736b0839649",
         "type": "github"
       },
       "original": {
