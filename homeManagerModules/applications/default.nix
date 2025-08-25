@@ -7,6 +7,7 @@
 {
   imports = [
     ./1password
+    ./act
     ./b2-backup
     ./bemoji
     ./bitwarden
