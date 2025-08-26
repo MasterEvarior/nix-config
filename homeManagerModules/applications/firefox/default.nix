@@ -25,6 +25,10 @@
         firefox
       ];
 
+      homeModules.applications.vscode.additionalExtensions = with pkgs; [
+        vscode-extensions.firefox-devtools.vscode-firefox-debug
+      ];
+
       xdg = lib.mkIf cfg.makeDefaultBrowser {
         enable = true;
         desktopEntries = {

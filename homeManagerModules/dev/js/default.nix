@@ -46,6 +46,7 @@
           vscode-extensions.dbaeumer.vscode-eslint
           vscode-extensions.usernamehw.errorlens
           vscode-extensions.editorconfig.editorconfig
+          vscode-extensions.firefox-devtools.vscode-firefox-debug
         ];
 
         additionalUserSettings = {
