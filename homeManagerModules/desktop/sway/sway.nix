@@ -211,7 +211,8 @@
               command = "pipewire-pulse";
               always = true;
             }
-          ] ++ cfg.additionalStartupCommands;
+          ]
+          ++ cfg.additionalStartupCommands;
           input = {
             "type:keyboard" = {
               xkb_layout = "ch";
@@ -300,7 +301,8 @@
             "${modifier}+t" = "layout tabbed";
             "${modifier}+s" = "layout toggle split";
             "${modifier}+f" = "fullscreen toggle";
-          } // (addModifierToKeybindings cfg.additionalKeybindings);
+          }
+          // (addModifierToKeybindings cfg.additionalKeybindings);
           gaps = {
             inner = 5;
             outer = 2;
