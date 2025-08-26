@@ -35,6 +35,7 @@ in
       gowall.enable = true;
       bruno.enable = true;
       mdbook.enable = true;
+      meld.enable = true;
       openconnect = {
         enable = true;
         aliases = [

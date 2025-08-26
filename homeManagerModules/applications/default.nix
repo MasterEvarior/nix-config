@@ -33,6 +33,7 @@
     ./license-cli
     ./lsd
     ./mdbook
+    ./meld
     ./micro
     ./ms-teams
     ./nano
