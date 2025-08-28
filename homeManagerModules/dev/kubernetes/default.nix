@@ -148,6 +148,16 @@
         ];
 
         additionalSnippets.yaml = {
+          "Create kubernetes namespace" = {
+            prefix = [ "k-namespace" ];
+            description = "Create k8s namespace";
+            body = [
+              "apiVersion: v1"
+              "kind: Namespace"
+              "metadata:"
+              "\tname: $1"
+            ];
+          };
           "Create SOPS secret, do not forget to encrypt!" = {
             prefix = [ "k-sops-secret" ];
             description = "Create a k8s secret, ready to be decrypted with SOPS";
