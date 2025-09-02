@@ -33,6 +33,7 @@ in
       onedrive.enable = true;
       zotero.enable = true;
       gowall.enable = true;
+      harper.enable = true;
       bruno.enable = true;
       mdbook.enable = true;
       meld.enable = true;

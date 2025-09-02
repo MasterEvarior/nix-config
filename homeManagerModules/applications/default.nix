@@ -28,6 +28,7 @@
     ./github-cli
     ./gitlab-cli
     ./gowall
+    ./harper
     ./lazygit
     ./libreoffice
     ./license-cli
