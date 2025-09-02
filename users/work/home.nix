@@ -10,6 +10,10 @@
     # Secret Management
     libfido2 # Security Token
 
+    # Programming
+    yamllint
+    mdl
+
     # Office
     thunderbird
     nextcloud-client
@@ -27,6 +31,7 @@
       mdbook.enable = true;
       deja-dup.enable = true;
       bitwarden.enable = true;
+      meld.enable = true;
       "1password" = {
         enable = true;
         ssh = {
