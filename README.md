@@ -57,7 +57,7 @@ A list of all the PCs/Laptops and their users.
 
 ## Theming
 
-I try to style everything according to the [Catpuccin Mocha Theme](https://github.com/catppuccin). If you like what you see, head over there and drop them a couple of bucks!
+I try to style everything according to the [Catppuccin Mocha Theme](https://github.com/catppuccin). If you like what you see, head over there and drop them a couple of bucks!
 
 ## Development
 
