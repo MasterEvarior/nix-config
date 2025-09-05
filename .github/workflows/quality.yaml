@@ -14,7 +14,7 @@ jobs:
       - name: Install Nix formatter
         run: 'nix-env -f https://github.com/NixOS/nixfmt/archive/master.tar.gz -i'
         shell: bash
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with:
           go-version: '>1.21'
       - name: Install yamlfmt
