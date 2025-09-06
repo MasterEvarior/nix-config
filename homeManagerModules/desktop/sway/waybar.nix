@@ -70,6 +70,7 @@
               "clock"
             ];
             "modules-right" = [
+              "backlight/slider"
               "bluetooth"
               "pulseaudio"
               "network"
@@ -128,6 +129,12 @@
                 ];
               };
               "on-click" = "${pkgs.pavucontrol}/bin/pavucontrol";
+            };
+            "backlight/slider" = {
+              "min" = 0;
+              "max" = 100;
+              "orientation" = "horizontal";
+              "device" = "intel_backlight";
             };
             "custom/power" = {
               format = toUTF8 "f011";
@@ -222,6 +229,28 @@
 
           #battery.critical:not(.charging) {
               color: ${cfg.theme.red};
+          }
+
+          #backlight-slider slider {
+            min-height: 0px;
+            min-width: 0px;
+            opacity: 0;
+            background-image: none;
+            border: none;
+            box-shadow: none;
+          }
+
+          #backlight-slider trough {
+            min-height: 10px;
+            min-width: 80px;
+            border-radius: 5px;
+            background-color: ${cfg.theme.surface2}
+          }
+
+          #backlight-slider highlight {
+            min-width: 10px;
+            border-radius: 5px;
+            background-color: ${cfg.theme.text};
           }
         '';
       };
