@@ -162,8 +162,6 @@
           ''
             corner_radius 10
             default_dim_inactive 0.05
-            shadows on
-            shadow_blur_radius 20
           ''
         else
           "";
