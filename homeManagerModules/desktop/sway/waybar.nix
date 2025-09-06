@@ -70,11 +70,16 @@
               "clock"
             ];
             "modules-right" = [
-              "backlight/slider"
-              "bluetooth"
-              "pulseaudio"
+              "group/brightness"
+              "custom/slash"
+              "group/sound"
+              "custom/slash"
               "network"
-              # "idle_inhibitor" disable for now, because I do not really need it anyway and it looks bad
+              "custom/slash"
+              "battery"
+              "custom/slash"
+              "idle_inhibitor"
+              "custom/slash"
               "custom/power"
             ];
             bluetooth = {
@@ -91,10 +96,10 @@
               format = "<span style=\"italic\">{}</span>";
             };
             network = {
-              format-wifi = "{essid} ({signalStrength}%) " + (toUTF8 "f1eb");
+              format-wifi = toUTF8 "f1eb";
               format-ethernet = (toUTF8 "f796");
               format-disconnected = (toUTF8 "f0c1");
-              tooltip-format = "{icon} {bandwidthTotalBytes}";
+              tooltip-format = "{icon} {essid} ({signalStrength}%) ({bandwidthTotalBytes})";
               max-length = 50;
             };
             "idle_inhibitor" = {
@@ -103,6 +108,7 @@
                 "activated" = toUTF8 "f205";
                 "deactivated" = toUTF8 "f204";
               };
+              tooltip-format = "";
             };
             clock = {
               interval = 1;
@@ -111,9 +117,9 @@
               tooltip = false;
             };
             pulseaudio = {
-              format = "{volume}% {icon} ";
-              "format-muted" = "0% {icon} ";
-              "format-source" = "{volume}% ${toUTF8 "f130"}";
+              format = "{icon}";
+              "format-muted" = "{icon} ";
+              "format-source" = "${toUTF8 "f130"}";
               "format-source-muted" = "${toUTF8 "f131"}";
               "format-icons" = {
                 headphone = toUTF8 "f025";
@@ -136,123 +142,207 @@
               "orientation" = "horizontal";
               "device" = "intel_backlight";
             };
+            "pulseaudio/slider" = {
+              "min" = 0;
+              "max" = 100;
+              "orientation" = "horizontal";
+            };
+            "battery" = {
+              "format" = "{icon} {capacity}%";
+              "format-icons" = [
+                ""
+                ""
+                ""
+                ""
+                ""
+              ];
+              "max-length" = 23;
+            };
             "custom/power" = {
               format = toUTF8 "f011";
               "on-click" = cfg.logoutCommand;
               tooltip = false;
             };
+            "custom/slash" = {
+              format = "|";
+            };
+            "custom/sun" = {
+              format = "☀";
+            };
+            "group/brightness" = {
+              orientation = "horizontal";
+              drawer = { };
+              modules = [
+                "custom/sun"
+                "backlight/slider"
+              ];
+            };
+            "group/sound" = {
+              orientation = "horizontal";
+              drawer = { };
+              modules = [
+                "pulseaudio"
+                "pulseaudio/slider"
+                "bluetooth"
+              ];
+            };
           };
         };
-        style = ''
-          * {
+        style =
+          let
+            sliderWidth = "50px";
+          in
+          ''
+            * {
               border: none;
-              font-family: NotoSans, Font Awesome, FontAwesome6Free, SymbolsNerdFont, Roboto, Arial, sans-serif;
+              font-family: 'Symbols Nerd Font', NotoSans, Font Awesome, FontAwesome6Free, SymbolsNerdFont, Roboto, Arial, sans-serif, inherit;
               font-size: 1rem;
               color: ${cfg.theme.text};
               border-radius: 10px;
-          }
+            }
 
-          window {
-          	font-weight: bold;
-          }
+            window {
+            	font-weight: bold;
+            }
 
-          window#waybar {
-            background: rgba(0, 0, 0, 0);
-          }
+            window#waybar {
+              background: rgba(0, 0, 0, 0);
+            }
 
-          /*-----module groups----*/
-          .modules-right {
-          	background-color: ${cfg.theme.base};
-            margin: 2px 10px 0 0;
-            padding-left: 5px;
-            padding-right: 5px;
-          }
+            /*-----module groups----*/
+            .modules-right {
+            	background-color: ${cfg.theme.base};
+              margin: 2px 0 0 10px;
+              padding-left: 5px;
+              padding-right: 5px;
+            }
 
-          .modules-center {
-          	background-color: ${cfg.theme.base};
-            margin: 2px 0 0 0;
-          }
+            .modules-center {
+            	background-color: ${cfg.theme.base};
+              margin: 2px 0 0 10px;
+            }
 
-          .modules-left {
-            margin: 2px 0 0 5px;
-          	background-color: ${cfg.theme.base};
-          }
+            .modules-left {
+              margin: 2px 0 0 5px;
+            	background-color: ${cfg.theme.base};
+            }
 
-          /* Workspaces */
-          #workspaces button {
-            padding: 1px 5px;
-            background-color: transparent;
-          }
+            /* Workspaces */
+            #workspaces button {
+              padding: 1px 5px;
+              background-color: transparent;
+            }
 
-          #workspaces button:hover {
-            box-shadow: inherit;
-          	background-color: ${cfg.theme.rosewater};
-          }
+            #workspaces button:hover {
+              box-shadow: inherit;
+            	background-color: ${cfg.theme.rosewater};
+            }
 
-          #workspaces button.focused {
-          	background-color: ${cfg.theme.subtext0};
-          }
+            #workspaces button.focused {
+            	background-color: ${cfg.theme.subtext0};
+              color: ${cfg.theme.base};
+            }
 
-          #clock,
-          #network,
-          #pulseaudio,
-          #mode,
-          #idle_inhibitor {
-            padding: 0 5px;
-          }
+            #clock,
+            #network,
+            #mode,
+            #idle_inhibitor {
+              padding: 0 5px;
+            }
 
-          #mode {
-            color: ${cfg.theme.rosewater};
-            font-weight: bold;
-          }
+            #pulseaudio {
+              padding: 10px;
+              margin: 0;
+            }
 
-          #custom-power {
-            background-color: ${cfg.theme.base};
-            border-radius: 100px;
-            margin: 5px 5px;
-            padding: 1px 1px 1px 6px;
-          }
+            #mode {
+              color: ${cfg.theme.rosewater};
+              font-weight: bold;
+            }
 
-          /*-----Indicators----*/
-          #idle_inhibitor.activated {
-              color: ${cfg.theme.green};
-          }
+            #custom-power {
+              background-color: ${cfg.theme.base};
+              border-radius: 100px;
+              margin: 5px 5px;
+              padding: 1px 1px 1px 6px;
+            }
 
-          /* Battery Stuff*/
-          #battery.charging {
-              color: ${cfg.theme.green};
-          }
+            /*-----Indicators----*/
+            #idle_inhibitor.activated {
+                color: ${cfg.theme.green};
+            }
 
-          #battery.warning:not(.charging) {
-          	color: ${cfg.theme.yellow};
-          }
+            /* Battery Stuff*/
+            #battery {
+              margin: 5px;
+            }
 
-          #battery.critical:not(.charging) {
+            #battery.charging {
+                color: ${cfg.theme.green};
+            }
+
+            #battery.warning:not(.charging) {
+            	color: ${cfg.theme.yellow};
+            }
+
+            #battery.critical:not(.charging) {
               color: ${cfg.theme.red};
-          }
+            }
 
-          #backlight-slider slider {
-            min-height: 0px;
-            min-width: 0px;
-            opacity: 0;
-            background-image: none;
-            border: none;
-            box-shadow: none;
-          }
+            #backlight-slider slider {
+              min-height: 0px;
+              min-width: 0px;
+              opacity: 0;
+              background-image: none;
+              border: none;
+              box-shadow: none;
+            }
 
-          #backlight-slider trough {
-            min-height: 10px;
-            min-width: 80px;
-            border-radius: 5px;
-            background-color: ${cfg.theme.surface2}
-          }
+            #backlight-slider trough {
+              min-height: 10px;
+              min-width: ${sliderWidth};
+              border-radius: 5px;
+              background-color: ${cfg.theme.surface2}
+            }
 
-          #backlight-slider highlight {
-            min-width: 10px;
-            border-radius: 5px;
-            background-color: ${cfg.theme.text};
-          }
-        '';
+            #backlight-slider highlight {
+              min-width: 10px;
+              border-radius: 5px;
+              background-color: ${cfg.theme.text};
+            }
+
+            #pulseaudio-slider slider {
+              min-height: 0px;
+              min-width: ${sliderWidth};
+              opacity: 0;
+              background-image: none;
+              border: none;
+              box-shadow: none;
+            }
+
+            #pulseaudio-slider trough {
+              min-height: 10px;
+              min-width: ${sliderWidth};
+              border-radius: 5px;
+              background-color: ${cfg.theme.surface2}
+            }
+
+            #pulseaudio-slider highlight {
+              min-width: 10px;
+              border-radius: 5px;
+              background-color:  ${cfg.theme.text};
+            }
+
+            #custom-slash {
+              color: ${cfg.theme.text};
+              margin: 0px 2px;
+            }
+
+            #custom-sun {
+              margin-right: 0;
+              padding-right: 0;
+            }
+          '';
       };
     };
 }
