@@ -36,20 +36,86 @@
         enable = true;
         ssh = {
           configureSSH = true;
-          additionalPublicKeys = [
-            {
-              host = "webtransfer.ch";
-              file = ./assets/ssh/webtransfer.pub;
-            }
-            {
-              host = "gitlab.puzzle.ch";
-              file = ./assets/ssh/gitlab_puzzle.pub;
-            }
-            {
-              host = "gitlab.bfh.ch";
-              file = ./assets/ssh/gitlab_bfh.pub;
-            }
-          ];
+          additionalPublicKeys =
+            let
+              bfhPublicCertificate = ./assets/ssh/BFH.pub;
+              bfhUser = "ext-brag2";
+            in
+            [
+              {
+                host = "webtransfer.ch";
+                file = ./assets/ssh/webtransfer.pub;
+                identitiesOnly = true;
+              }
+              {
+                host = "gitlab.puzzle.ch";
+                file = ./assets/ssh/gitlab_puzzle.pub;
+                identitiesOnly = true;
+              }
+              {
+                host = "ssh.esb.bfh.ch";
+                user = bfhUser;
+                file = bfhPublicCertificate;
+              }
+              {
+                host = "master*.k8s.bfh.ch";
+                user = bfhUser;
+                proxyJump = bfhUser + "@ssh.esb.bfh.ch";
+                file = bfhPublicCertificate;
+                localForwards = [
+                  {
+                    bind.port = 16443;
+                    host = {
+                      address = "127.1";
+                      port = 6443;
+                    };
+                  }
+                ];
+              }
+              {
+                host = "*.esb.bfh.ch *.k8s.bfh.ch !ssh.esb.bfh.ch !node1.ssh.esb.bfh.ch !node2.ssh.esb.bfh.ch";
+                user = bfhUser;
+                proxyJump = bfhUser + "@ssh.esb.bfh.ch";
+                file = bfhPublicCertificate;
+              }
+              {
+                host = "ssh.esb-test.bfh.ch";
+                user = bfhUser;
+                file = bfhPublicCertificate;
+              }
+              {
+                host = "master*.k8s-test.bfh.ch";
+                user = bfhUser;
+                file = bfhPublicCertificate;
+                proxyJump = bfhUser + "@ssh.esb-test.bfh.ch";
+                localForwards = [
+                  {
+                    bind.port = 16443;
+                    host = {
+                      address = "127.1";
+                      port = 6443;
+                    };
+                  }
+                ];
+              }
+              {
+                host = "*.esb-test.bfh.ch *.k8s-test.bfh.ch !ssh.esb-test.bfh.ch !node1.ssh.esb-test.bfh.ch !node2.ssh.esb-test.bfh.ch";
+                user = bfhUser;
+                proxyJump = bfhUser + "@ssh.esb-test.bfh.ch";
+                file = bfhPublicCertificate;
+              }
+              {
+                host = "*.bfh.ch !*.esb.bfh.ch !*.k8s.bfh.ch !*.esb-test.bfh.ch !*.k8s-test.bfh.ch";
+                user = bfhUser;
+                proxyJump = bfhUser + "@ssh.bfh.science";
+                file = bfhPublicCertificate;
+              }
+              {
+                host = "ssh.bfh.science";
+                user = bfhUser;
+                file = bfhPublicCertificate;
+              }
+            ];
         };
       };
     };

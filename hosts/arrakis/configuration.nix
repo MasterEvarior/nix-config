@@ -83,6 +83,14 @@
     sddm.wayland.enable = true;
   };
 
+  # Needed for work
+  services.privoxy = {
+    enable = true;
+    settings = {
+      forward-socks5 = "/ localhost:9999 .";
+    };
+  };
+
   # Enable Thunderbolt
   # https://nixos.wiki/wiki/Thunderbolt
   services.hardware.bolt.enable = true;

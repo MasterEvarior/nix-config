@@ -17,6 +17,28 @@
               type = lib.types.str;
               description = "Domain or IP you want to SSH key to work for";
             };
+            proxyJump = lib.mkOption {
+              default = null;
+              example = "example@ssh.example.com";
+              type = lib.types.nullOr lib.types.str;
+              description = "Optional ProxyJump option";
+            };
+            user = lib.mkOption {
+              default = null;
+              example = "little-timmy";
+              type = lib.types.nullOr lib.types.str;
+              description = "Optional User option";
+            };
+            localForwards = lib.mkOption {
+              type = types.listOf types.attrs;
+              default = [ ];
+            };
+            identitiesOnly = lib.mkOption {
+              default = true;
+              example = false;
+              type = lib.types.bool;
+              description = "Specifies that ssh should only use the authentication identity explicitly configured in the ~/.ssh/config files or passed on the ssh command-line, even if ssh-agent offers more identities.";
+            };
             file = lib.mkOption {
               example = ./your-key.pub;
               type = lib.types.path;
@@ -55,17 +77,32 @@
       programs.ssh =
         let
           mkMatchBlock =
-            publicKey:
+            {
+              pk,
+              pj ? null,
+              u ? null,
+              lf ? [ ],
+              io,
+            }:
             lib.hm.dag.entryBefore [ "Host *" ] {
-              identitiesOnly = true;
-              identityFile = (toString publicKey);
+              identitiesOnly = io;
+              identityFile = (toString pk);
+              proxyJump = pj;
+              user = u;
+              localForwards = lf;
             };
           convertToMatchBlocks =
             additionalKeysList:
             (builtins.listToAttrs (
               lib.map (ak: {
                 name = ak.host;
-                value = mkMatchBlock ak.file;
+                value = mkMatchBlock {
+                  pk = ak.file;
+                  pj = ak.proxyJump;
+                  u = ak.user;
+                  io = ak.identitiesOnly;
+                  lf = ak.localForwards;
+                };
               }) additionalKeysList
             ));
         in
@@ -73,7 +110,10 @@
           enable = true;
           matchBlocks = lib.mkMerge [
             {
-              "github.com" = mkMatchBlock "~/.ssh/public-keys/github.pub";
+              "github.com" = mkMatchBlock {
+                pk = "~/.ssh/public-keys/github.pub";
+                io = true;
+              };
               "Host *" = {
                 host = "*";
                 extraOptions = {
