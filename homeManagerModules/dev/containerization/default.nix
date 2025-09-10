@@ -31,6 +31,7 @@
 
       home.packages = with pkgs; [
         lazydocker
+        dive
       ];
 
       homeModules.applications.vscode.additionalExtensions = with pkgs; [
@@ -39,6 +40,10 @@
 
       home.sessionVariables = {
         COMPOSE_BAKE = (toString cfg.delegateComposeBuilds);
+      };
+
+      home.shellAliases = {
+        "dki" = "dive";
       };
 
     };
