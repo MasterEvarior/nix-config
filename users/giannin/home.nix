@@ -20,6 +20,7 @@ in
 
     # School
     azure-cli
+    virtualbox
   ];
 
   homeModules = {
