@@ -27,6 +27,10 @@
     ./assets/eduroam/DigiCertTLSRSASHA2562020CA1-1.pem
   ];
 
+  # APSI Stuff
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "giannin" ];
+
   modules = {
     displaylink.enable = true;
     grub2Theme = {

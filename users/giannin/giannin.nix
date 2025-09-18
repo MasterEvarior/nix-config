@@ -16,6 +16,7 @@ in
       "docker"
       "input"
     ];
+
     packages = with pkgs; [
       firefox
       micro
