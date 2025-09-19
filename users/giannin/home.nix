@@ -41,6 +41,7 @@ in
       bruno.enable = true;
       mdbook.enable = true;
       meld.enable = true;
+      github-cli.enable = true;
       openconnect = {
         enable = true;
         aliases = [
