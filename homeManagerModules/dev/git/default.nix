@@ -68,6 +68,8 @@
           sa = "stash apply";
           sd = "stash drop";
           s = "status";
+          sw = "switch";
+          swc = "switch --create";
           pl = "pull";
           ps = "push";
           a = "add";
