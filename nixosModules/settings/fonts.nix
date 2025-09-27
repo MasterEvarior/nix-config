@@ -20,6 +20,7 @@
         [
           jetbrains-mono
           cascadia-code
+          libertine
         ]
         ++ allNerdfonts;
     };
