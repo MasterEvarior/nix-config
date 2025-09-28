@@ -54,6 +54,11 @@
     let
       cfg = config.homeModules.dev.git;
       safeDirs = if cfg.disableSafeDirectories then { safe.directory = ''*''; } else { };
+      ccScript = pkgs.writers.writePython3 "git-cc-script" {
+        libraries = with pkgs.python3Packages; [
+          questionary
+        ];
+      } (builtins.readFile ./assets/conventional-commits.py);
     in
     lib.mkIf cfg.enable {
 
@@ -81,6 +86,7 @@
           amend = "commit --amend --no-edit";
           graph = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
           cm = "commit -m";
+          cc = "!${ccScript}";
           unstage = "reset --";
           count = ''!echo "Total commits: $(git rev-list --count HEAD)"'';
           drop = "stash drop";
