@@ -71,7 +71,10 @@
           sw = "switch";
           swc = "switch --create";
           pl = "pull";
+          plr = "pull --rebase";
           ps = "push";
+          psf = "push --force";
+          psfwl = "push --force-with-lease=";
           a = "add";
           aa = "add --all";
           diffn = "diff --name-status";
