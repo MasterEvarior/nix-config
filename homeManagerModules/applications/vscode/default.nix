@@ -151,6 +151,7 @@
           userSettings = lib.mkMerge [
             {
               "chat.agent.enabled" = false;
+              "chat.disableAIFeatures" = true;
               "chat.commandCenter.enabled" = false;
               "explorer.confirmPasteNative" = cfg.explorer.confirmNativePaste;
               "explorer.confirmDelete" = cfg.explorer.confirmDelete;
