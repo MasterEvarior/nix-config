@@ -21,9 +21,6 @@ in
     # School
     azure-cli
     virtualbox
-
-    # Notes
-    affine
   ];
 
   homeModules = {
