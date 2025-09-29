@@ -10,6 +10,7 @@
   imports = [
     ./autotiling.nix
     ./bzmenu.nix
+    ./cliphist.nix
     ./fuzzel.nix
     ./mako.nix
     ./snipping-tools.nix
@@ -91,6 +92,7 @@
         bzmenu = {
           enable = true;
         };
+        cliphist.enable = true;
         fuzzel = {
           enable = enableByDefault;
           theme = mergedTheme;

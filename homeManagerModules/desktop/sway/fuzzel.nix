@@ -80,10 +80,13 @@
         use-bold=true
       '';
 
-      homeModules.desktop.sway.additionalKeybindings = {
-        "+d" = "exec --no-startup-id ${pkgs.fuzzel}/bin/fuzzel";
+      homeModules.desktop.sway = {
+        additionalKeybindings = {
+          "+d" = "exec --no-startup-id ${pkgs.fuzzel}/bin/fuzzel";
+        };
+        cliphist.dmenuCommand = "fuzzel --dmenu";
+        bzmenu.launcher = "fuzzel";
       };
 
-      homeModules.desktop.sway.bzmenu.launcher = "fuzzel";
     };
 }
