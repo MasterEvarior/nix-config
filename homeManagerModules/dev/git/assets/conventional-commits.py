@@ -45,16 +45,7 @@ def get_scope():
     """
     scope = q.select(
         "What is the scope of this change?",
-        choices=[
-            "[ none ]",
-            "[ custom ]",
-            "api",
-            "ui",
-            "db",
-            "auth",
-            "config",
-            "hooks",
-        ],
+        choices=["[ none ]", "[ custom ]", "hooks", "deps", "dependencies"],
         use_indicator=True,
     ).ask()
 
