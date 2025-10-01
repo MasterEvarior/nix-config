@@ -284,6 +284,8 @@
             "${modifier}+Shift+c" = "reload";
             "${modifier}+Shift+q" = "kill";
             "${modifier}+Shift+space" = " floating toggle";
+            "${modifier}+greater" = "move workspace to output right";
+            "${modifier}+less" = "move workspace to output left";
 
             # Focus
             "${modifier}+Down" = "focus down";
