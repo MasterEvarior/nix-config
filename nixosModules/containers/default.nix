@@ -62,7 +62,7 @@
 
         # docker
         dk = "docker";
-        dktop = "docker stats --format ''\"table {{.Container}}	{{.Name}}	{{.CPUPerc}}  {{.MemPerc}}	{{.NetIO}}	{{.BlockIO}}\"";
+        dktop = "docker stats --format ''\"table {{.Container}}	{{.Name}} {{.MemUsage}} {{.NetIO}}	{{.BlockIO}}\"";
         dkp = "docker ps";
         dke = "docker exec -it";
         dkl = "docker logs -f";
