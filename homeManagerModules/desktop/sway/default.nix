@@ -86,6 +86,7 @@
         enable = enableByDefault;
         theme = mergedTheme;
         bar = (lib.mkDefault null);
+        taskManager = "${pkgs.btop}/bin/btop";
         autotiling = {
           enable = true;
         };

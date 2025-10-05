@@ -60,6 +60,11 @@
       type = lib.types.str;
       description = "File browser that should be opened with the associated shortcut";
     };
+    taskManager = lib.mkOption {
+      example = "${pkgs.btop}/bin/btop";
+      type = lib.types.str;
+      description = "Task manager that should be opened with the associated shortcut";
+    };
     browser = lib.mkOption {
       default = "firefox";
       example = "firefox";
@@ -253,6 +258,9 @@
 
             # File Browser
             "${modifier}+e" = "exec ${scripts.floatingWindow} ${cfg.fileBrowser}";
+
+            # Task Manager
+            "${modifier}+Shift+Tab" = "exec ${scripts.floatingWindow} ${cfg.taskManager}";
 
             # Workspaces
             "${modifier}+0" = "workspace number 10";
