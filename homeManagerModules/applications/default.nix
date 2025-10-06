@@ -16,6 +16,7 @@
     ./chromium
     ./chartdb
     ./codesnap
+    ./codegrab
     ./comma
     ./cypress
     ./deja-dup
