@@ -27,6 +27,7 @@
   homeModules = {
     applications = {
       bruno.enable = true;
+      codegrab.enable = true;
       cypress.enable = true;
       mdbook.enable = true;
       deja-dup.enable = true;
