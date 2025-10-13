@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs,
+  pkgs-unstable,
   ...
 }:
 
@@ -19,7 +19,7 @@
     in
     lib.mkIf config.homeModules.dev.golang.enable {
       home.packages =
-        with pkgs;
+        with pkgs-unstable;
         [
           go
           gotools
@@ -37,11 +37,11 @@
           };
 
           additionalExtensions = optionals (cfg.setupVisualStudioCode) [
-            pkgs.vscode-extensions.golang.go
+            pkgs-unstable.vscode-extensions.golang.go
           ];
         };
 
-        treefmt.additionalFormatters = with pkgs; [
+        treefmt.additionalFormatters = with pkgs-unstable; [
           {
             name = "golang";
             command = "golangci-lint";
