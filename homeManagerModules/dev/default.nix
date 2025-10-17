@@ -55,7 +55,6 @@
         containerization.enable = enableByDefault;
         python.enable = enableByDefault;
         direnv.enable = enableByDefault;
-        renovate.enable = enableByDefault;
         ssh.enable = enableByDefault;
       };
     };
