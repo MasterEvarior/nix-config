@@ -68,13 +68,24 @@
         userEmail = cfg.userEmail;
         aliases = rec {
           clear = "! clear";
+          diffn = "diff --name-status";
+          unstage = "reset --";
+          hardreset = "reset --hard HEAD";
+          yeet = hardreset;
+
+          # Stash
           ss = "stash save";
           sl = "stash list";
           sa = "stash apply";
           sd = "stash drop";
           s = "status";
+          drop = "stash drop";
+
+          # Switch
           sw = "switch";
           swc = "switch --create";
+
+          # Push & Pull
           pl = "pull";
           plr = "pull --rebase";
           ps = "push";
@@ -82,19 +93,25 @@
           psfwl = "push --force-with-lease=";
           a = "add";
           aa = "add --all";
-          diffn = "diff --name-status";
+
+          # Commit
           amend = "commit --amend --no-edit";
-          graph = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
           cm = "commit -m";
           cc = "!${ccScript}";
-          unstage = "reset --";
+
+          # Log
           count = ''!echo "Total commits: $(git rev-list --count HEAD)"'';
-          drop = "stash drop";
           recent = "log -3";
           latest = "log -1";
           last = latest;
-          hardreset = "reset --hard HEAD";
-          yeet = hardreset;
+          graph = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+
+          # Rebase
+          rb = "!git fetch origin && git rebase $(git symbolic-ref refs/remotes/origin/HEAD --short)";
+          rbb = "!f() { git rebase origin/$1; }; f";
+          rbc = "rebase --continue";
+          rbs = "rebase --skip";
+          rba = "rebase --abort";
         };
         extraConfig = {
           pull = {
