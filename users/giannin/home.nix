@@ -37,10 +37,7 @@ in
       onedrive.enable = true;
       codegrab.enable = true;
       zotero.enable = true;
-      gowall.enable = true;
       harper.enable = true;
-      bruno.enable = true;
-      mdbook.enable = true;
       meld.enable = true;
       github-cli.enable = true;
       gitlab-cli.enable = true;
@@ -74,11 +71,6 @@ in
           ];
         };
       };
-      cypress = {
-        enable = true;
-        additionalBrowsers = [ ];
-      };
-
       b2-backup = {
         enable = true;
         name = "${osConfig.networking.hostName}-${username}";
@@ -124,6 +116,7 @@ in
         enable = true;
         setupVisualStudioCode = true;
       };
+      ruby.enable = true;
       git = {
         enable = true;
         userName = "Giannin";
