@@ -22,6 +22,7 @@
     ./php
     ./python
     ./renovate
+    ./ruby
     ./ssh
     ./terraform
     ./typst
