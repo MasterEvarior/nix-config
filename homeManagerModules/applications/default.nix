@@ -29,6 +29,7 @@
     ./github-cli
     ./gitlab-cli
     ./gowall
+    ./gthr
     ./harper
     ./lazygit
     ./libreoffice
