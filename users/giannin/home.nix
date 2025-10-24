@@ -116,7 +116,6 @@ in
         enable = true;
         setupVisualStudioCode = true;
       };
-      ruby.enable = true;
       git = {
         enable = true;
         userName = "Giannin";
