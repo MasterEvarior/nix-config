@@ -46,5 +46,13 @@
         "dki" = "dive";
       };
 
+      homeModules.applications.helix = {
+        additionalPackages = with pkgs; [
+          docker-compose-language-service
+          docker-language-server
+          yaml-language-server
+        ];
+      };
+
     };
 }

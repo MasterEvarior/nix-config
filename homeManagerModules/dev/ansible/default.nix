@@ -24,5 +24,11 @@
       vscode-extensions.ms-python.python # is needed for the ansible extension
       vscode-extensions.redhat.vscode-yaml # is needed for the ansible extension
     ];
+
+    homeModules.applications.helix = {
+      additionalPackages = with pkgs; [
+        ansible-language-server
+      ];
+    };
   };
 }

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -48,7 +49,7 @@
         )
       );
     };
-    languages = lib.lib.mkOption {
+    languages = lib.mkOption {
       default = { };
       description = "List of languages";
       type = lib.types.listOf (
@@ -82,6 +83,14 @@
         }
       );
     };
+    additionalPackages = lib.mkOption {
+      default = [ ];
+      example = [
+        pkgs.marksman
+      ];
+      type = lib.types.listOf lib.types.package;
+      description = "Extra packages available to hx.";
+    };
   };
 
   config =
@@ -100,6 +109,7 @@
         languages = {
           language-server = (builtins.foldl' lib.recursiveUpdate { } cfg.languageServers);
         };
+        extraPackages = cfg.additionalPackages;
       };
     };
 }
