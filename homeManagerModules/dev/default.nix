@@ -26,6 +26,7 @@
     ./ssh
     ./terraform
     ./typst
+    ./yaml
   ];
 
   options.homeModules.dev.module = {
@@ -56,6 +57,7 @@
         python.enable = enableByDefault;
         direnv.enable = enableByDefault;
         ssh.enable = enableByDefault;
+        yaml.enable = enableByDefault;
       };
     };
 }

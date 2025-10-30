@@ -31,6 +31,7 @@
     ./gowall
     ./gthr
     ./harper
+    ./helix
     ./lazygit
     ./libreoffice
     ./license-cli
@@ -81,6 +82,7 @@
         ms-teams.enable = enableByDefault;
         fzf.enable = enableByDefault;
         github-cli.enable = enableByDefault;
+        helix.enable = enableByDefault;
         license-cli.enable = enableByDefault;
         treefmt.enable = enableByDefault;
         micro.enable = enableByDefault;
