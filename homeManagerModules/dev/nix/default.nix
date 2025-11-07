@@ -28,12 +28,13 @@
         nix-converter
       ];
 
-      home.shellAliases = {
+      home.shellAliases = rec {
         # Update package cache for comma
         nuc = "nix run 'nixpkgs#nix-index' --extra-experimental-features 'nix-command flakes'";
 
         # Update a flake
         nuf = "nix flake update";
+        nufb = "${nuf} && ${nrs}";
 
         # Apply current config
         nrs = "sudo nixos-rebuild --flake . switch";
