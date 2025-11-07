@@ -25,7 +25,6 @@
   services.xserver = {
     enable = true;
     xkb.layout = "ch";
-    xkb.variant = "";
   };
 
   # Configure console keymap

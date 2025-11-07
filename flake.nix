@@ -45,6 +45,7 @@
     let
       system = "x86_64-linux";
       lib = inputs.nixpkgs.lib;
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
       pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
       zen-browser = inputs.zen-browser.packages."${system}".default;
       mkSystem =
@@ -90,5 +91,32 @@
         "caladan"
         "gammu"
       ];
+
+      checks."${system}" = {
+        lint = pkgs.stdenv.mkDerivation {
+          name = "lint";
+          doCheck = true;
+
+          src = ./.;
+
+          nativeBuildInputs = with pkgs; [
+            treefmt
+
+            mdformat
+            yamlfmt
+            jsonfmt
+            beautysh
+            typstfmt
+            deadnix
+            nixfmt-rfc-style
+          ];
+
+          checkPhase = ''
+            treefmt --no-cache
+          '';
+
+          installPhase = "mkdir $out";
+        };
+      };
     };
 }

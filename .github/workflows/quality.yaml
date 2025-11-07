@@ -1,33 +1,12 @@
 on: [push]
 name: Quality Check
 jobs:
-  format:
-    name: Formatter
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: cachix/install-nix-action@v31
-      - name: Install deadnix
-        uses: cachix/cachix-action@v16
+      - uses: DeterminateSystems/nix-installer-action@main
         with:
-          name: deadnix
-      - name: Install Nix formatter
-        run: 'nix-env -f https://github.com/NixOS/nixfmt/archive/master.tar.gz -i'
-        shell: bash
-      - uses: actions/setup-go@v6
-        with:
-          go-version: '>1.21'
-      - name: Install yamlfmt
-        run: go install github.com/google/yamlfmt/cmd/yamlfmt@latest
-      - uses: actions/setup-python@v6
-      - uses: CfirTsabari/actions-pipx@v1
-      - name: Install mdformat
-        run: pipx install mdformat==0.7.18
-      - name: Run treefmt
-        uses: isbecker/treefmt-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          version: 'latest'
-          ci: true
-          allow_missing_formatter: true
-          no_cache: true
+          nix-package: nixpkgs#nixFlakes
+      - name: Check formatting
+        run: nix build .#checks.x86_64-linux.lint

@@ -1,3 +1,1 @@
-addedFiles=$(git diff --cached --name-only --diff-filter=d)
-treefmt
-git add $addedFiles
+nix build .#checks.x86_64-linux.lint
