@@ -66,7 +66,7 @@
 
       homeModules.desktop.sway.additionalStartupCommands = [
         {
-          command = "${pkgs.mako}/bin/mako";
+          command = (lib.getExe pkgs.mako);
         }
       ];
     };

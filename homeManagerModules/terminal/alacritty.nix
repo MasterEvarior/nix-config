@@ -118,8 +118,8 @@
     };
 
     homeModules.desktop.sway = rec {
-      terminal = "${pkgs.alacritty}/bin/alacritty";
-      fileBrowser = terminal + " -e ${pkgs.yazi}/bin/yazi";
+      terminal = (lib.getExe pkgs.alacritty);
+      fileBrowser = terminal + " -e ${lib.getExe pkgs.yazi}";
     };
   };
 }

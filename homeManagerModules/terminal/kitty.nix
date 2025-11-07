@@ -426,8 +426,8 @@
       };
 
       homeModules.desktop.sway = rec {
-        terminal = "${pkgs.kitty}/bin/kitty";
-        fileBrowser = terminal + " -e ${pkgs.yazi}/bin/yazi";
+        terminal = (lib.getExe pkgs.kitty);
+        fileBrowser = terminal + " -e ${lib.getExe pkgs.yazi}";
       };
     };
 }

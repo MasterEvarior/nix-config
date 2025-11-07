@@ -19,9 +19,9 @@
 
     homeModules.desktop.sway.additionalKeybindings =
       let
-        grim = "${pkgs.grim}/bin/grim";
-        slurp = "${pkgs.slurp}/bin/slurp";
-        swappy = "${pkgs.swappy}/bin/swappy";
+        grim = (lib.getExe pkgs.grim);
+        slurp = (lib.getExe pkgs.slurp);
+        swappy = (lib.getExe pkgs.swappy);
         grimCommand = ''exec ${grim} -g "$(${slurp})"'';
         simpleScreenshot = "${grimCommand} - | wl-copy";
         screenshotWithSwappy = "${grimCommand} - | ${swappy} -f -";

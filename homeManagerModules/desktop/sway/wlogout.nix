@@ -31,7 +31,7 @@
         wlogout
       ];
       homeModules.desktop.sway = {
-        waybar.logoutCommand = "${pkgs.wlogout}/bin/wlogout";
+        waybar.logoutCommand = lib.getExe pkgs.wlogout;
         additionalKeybindings = {
           "+Shift+e" = "exec --no-startup-id wlogout";
         };
