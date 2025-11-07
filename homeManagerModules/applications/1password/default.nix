@@ -67,6 +67,18 @@
   config =
     let
       cfg = config.homeModules.applications."1password";
+      getFileName = keyPath: builtins.baseNameOf (toString keyPath);
+      getStablePath = keyPath: "${config.home.homeDirectory}/.ssh/public-keys/${getFileName keyPath}";
+      generateHomeFileEntries =
+        keysList:
+        lib.listToAttrs (
+          lib.map (key: {
+            name = ".ssh/public-keys/${getFileName key.file}";
+            value = {
+              text = builtins.readFile key.file;
+            };
+          }) keysList
+        );
     in
     lib.mkIf config.homeModules.applications."1password".enable {
       home.packages = with pkgs; [
@@ -97,7 +109,7 @@
               lib.map (ak: {
                 name = ak.host;
                 value = mkMatchBlock {
-                  pk = ak.file;
+                  pk = (getStablePath ak.file);
                   pj = ak.proxyJump;
                   u = ak.user;
                   io = ak.identitiesOnly;
@@ -111,13 +123,13 @@
           matchBlocks = lib.mkMerge [
             {
               "github.com" = mkMatchBlock {
-                pk = "~/.ssh/public-keys/github.pub";
+                pk = "${config.home.homeDirectory}/.ssh/public-keys/github.pub";
                 io = true;
               };
               "Host *" = {
                 host = "*";
                 extraOptions = {
-                  "IdentityAgent" = "~/.1password/agent.sock";
+                  "IdentityAgent" = "${config.home.homeDirectory}/.1password/agent.sock";
                 };
               };
             }
@@ -129,11 +141,15 @@
         SSH_AUTH_SOCK = "~/.1password/agent.sock";
       };
 
-      # copy default keys which every user should have anyway
-      home.file.publicKeys = lib.mkIf cfg.ssh.configureSSH {
-        recursive = true;
-        source = ./assets;
-        target = ".ssh/public-keys";
-      };
+      home.file = lib.mkIf cfg.ssh.configureSSH (
+        lib.mkMerge [
+          {
+            ".ssh/public-keys/github.pub" = {
+              text = builtins.readFile ./assets/github.pub;
+            };
+          }
+          (generateHomeFileEntries cfg.ssh.additionalPublicKeys)
+        ]
+      );
     };
 }
