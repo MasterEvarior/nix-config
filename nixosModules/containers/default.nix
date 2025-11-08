@@ -56,9 +56,10 @@
         # docker compose
         dcu = "docker compose up";
         dcd = "docker compose down";
-        dcdd = "docker compose down && docker volume prune -f";
+        dcdp = "docker compose down && docker volume prune -f";
         dcs = "docker compose stop";
         dcv = "docker compose config --quiet";
+        dcup = "function _dcup(){ docker compose --profile $1 up};_dcup";
 
         # docker
         dk = "docker";
@@ -66,8 +67,8 @@
         dkp = "docker ps";
         dke = "docker exec -it";
         dkl = "docker logs -f";
-        dkrm = "docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker volume prune";
-        dkvprune = "docker volue prune --force";
+        dkrm = "docker rm -f $(docker ps -aq); docker volume prune -f";
+        dkvprune = "docker volume prune --force";
         dkprune = "docker container prune --force && docker image prune --force && && docker volume prune --force && docker system prune";
         dkimyeet = "docker rmi -f $(docker images -aq)"; # delete all unused images
         dknuclear = "${dockerNuclearScript}";
