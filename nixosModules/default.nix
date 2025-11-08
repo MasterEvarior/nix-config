@@ -12,7 +12,6 @@
     ./nvidia
     ./displaylink
     ./sddm
-    ./smb
   ];
 
   modules = {

@@ -72,26 +72,6 @@
       };
     };
 
-    smb = {
-      enable = true;
-      shares = [
-        {
-          path = "/tower/movies";
-          source = "//192.168.68.56/movies";
-          credentials = config.sops.secrets."unraid/smb-credentials-1".path;
-        }
-        {
-          path = "/tower/tv";
-          source = "//192.168.68.56/tv";
-          credentials = config.sops.secrets."unraid/smb-credentials-1".path;
-        }
-        {
-          path = "/tower/photos";
-          source = "//192.168.68.56/photos";
-          credentials = config.sops.secrets."unraid/smb-credentials-1".path;
-        }
-      ];
-    };
     settings.garbageCollection = {
       enable = true;
       keep = 90;
