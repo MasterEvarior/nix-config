@@ -34,10 +34,9 @@
         [
           kubernetes-helm
           kubectl
-          kustomize
           kubectx
-          kubefetch
           kompose
+          k9s
         ]
         ++ optionals (cfg.openshift.enable) openshiftPackages
         ++ optionals (cfg.minikube.enable) minikubePackages
