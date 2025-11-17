@@ -8,6 +8,7 @@
 {
   options.homeModules.applications.zathura = {
     enable = lib.mkEnableOption "Zathura";
+    package = lib.mkPackageOption pkgs "zathura" { };
     createDesktopEntry = lib.mkOption {
       default = true;
       example = true;
@@ -25,15 +26,18 @@
 
       programs.zathura = {
         enable = true;
-        package = pkgs.zathura;
+        package = cfg.package;
         mappings = {
           "<Right>" = "navigate next";
           "<Left>" = "navigate previous";
         };
+        options = {
+          "selection-clipboard" = "clipboard";
+        };
       };
 
       home.shellAliases = {
-        pdfviewer = "${pkgs.zathura}/bin/zathura";
+        pdfviewer = lib.getExe cfg.package;
       };
 
       xdg = {
@@ -42,7 +46,7 @@
           zathura = {
             name = "PDF Viewer";
             genericName = "PDF Viewer";
-            exec = "${pkgs.zathura}/bin/zathura";
+            exec = lib.getExe cfg.package;
             terminal = false;
             categories = [
               "Application"
