@@ -17,6 +17,8 @@
 
     # Div
     file
+    tree
+    unzip
   ];
 
   environment.interactiveShellInit = ''
