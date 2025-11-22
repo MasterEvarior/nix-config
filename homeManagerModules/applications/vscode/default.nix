@@ -142,6 +142,7 @@
               vscode-extensions.tomoki1207.pdf
               vscode-extensions.ms-vscode.live-server
               vscode-extensions.tamasfe.even-better-toml
+              vscode-extensions.mechatroner.rainbow-csv
 
               # Catpuccin Theme
               vscode-extensions.catppuccin.catppuccin-vsc
