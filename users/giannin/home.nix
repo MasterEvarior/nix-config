@@ -21,6 +21,7 @@ in
     # School
     azure-cli
     virtualbox
+    cutecom
   ];
 
   homeModules = {

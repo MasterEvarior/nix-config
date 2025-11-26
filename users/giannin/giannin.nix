@@ -15,6 +15,7 @@ in
       "wheel"
       "docker"
       "input"
+      "dialout" # needed for cutecom
     ];
 
     packages = with pkgs; [
