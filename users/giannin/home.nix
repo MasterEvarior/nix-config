@@ -22,6 +22,7 @@ in
     azure-cli
     virtualbox
     cutecom
+    mqttx
   ];
 
   homeModules = {
