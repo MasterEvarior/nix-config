@@ -8,6 +8,7 @@
 {
   options.homeModules.dev.java = {
     enable = lib.mkEnableOption "Java";
+    javaPackage = lib.mkPackageOption pkgs "jdk25" { };
     mavenPackage = lib.mkPackageOption pkgs "maven" { };
     gradlePackage = lib.mkPackageOption pkgs "gradle" { };
   };
@@ -26,6 +27,9 @@
         # Gradle
         cfg.gradlePackage
         gradle-completion
+
+        # Quarkus
+        quarkus
       ];
 
       home.shellAliases =
@@ -40,7 +44,7 @@
         };
 
       programs.java = {
-        package = pkgs.jdk25;
+        package = cfg.javaPackage;
         enable = true;
       };
     };
