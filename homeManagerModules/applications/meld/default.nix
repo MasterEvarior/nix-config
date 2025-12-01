@@ -27,7 +27,7 @@
         meld
       ];
 
-      programs.git.extraConfig = {
+      programs.git.settings = {
         alias = {
           diffm = "difftool --tool=meld";
           diffmd = "difftool --dir-diff --tool=meld";

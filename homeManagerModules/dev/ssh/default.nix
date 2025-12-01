@@ -43,6 +43,7 @@
         in
         {
           enable = true;
+          enableDefaultConfig = false;
           matchBlocks = lib.mkMerge [
             (mkPasswordMatchBlocks cfg.passwordMatchBlocks)
           ];

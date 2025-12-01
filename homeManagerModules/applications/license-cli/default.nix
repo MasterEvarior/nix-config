@@ -15,7 +15,7 @@
       license-go
     ];
 
-    programs.git.aliases = {
+    programs.git.settings.alias = {
       license = "!f() { license \"$@\"; }; f";
     };
   };
