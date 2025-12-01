@@ -14,7 +14,7 @@
     home.packages = with pkgs; [
       # Documents
       pandoc
-      poppler_utils
+      poppler-utils
 
       # Network
       wget

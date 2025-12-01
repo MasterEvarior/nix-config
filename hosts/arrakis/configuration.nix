@@ -32,7 +32,7 @@
   users.extraGroups.vboxusers.members = [ "giannin" ];
 
   modules = {
-    displaylink.enable = true;
+    displaylink.enable = false;
     grub2Theme = {
       enabled = true;
       resolution = "4k";
