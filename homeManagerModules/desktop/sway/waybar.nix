@@ -97,7 +97,7 @@
             };
             network = {
               format-wifi = toUTF8 "f1eb";
-              format-ethernet = (toUTF8 "f796");
+              format-ethernet = (toUTF8 "f6ff");
               format-disconnected = (toUTF8 "f0c1");
               tooltip-format = "{icon} {essid} ({signalStrength}%) ({bandwidthTotalBytes})";
               max-length = 50;
@@ -167,7 +167,7 @@
               format = "|";
             };
             "custom/sun" = {
-              format = "☀";
+              format = toUTF8 "f185";
             };
             "group/brightness" = {
               orientation = "horizontal";
