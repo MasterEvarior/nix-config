@@ -12,6 +12,7 @@
   modules = {
     # Enable unfree Nvidia trash
     nvidia.enable = true;
+    plymouth.enable = true;
 
     displayManager.sddm = {
       enable = true;
@@ -65,12 +66,7 @@
       backgroundImage = ./assets/wallpapers/grub/ultrawide-background.jpg;
     };
 
-    sops = {
-      enable = true;
-      secretsToLoad = {
-        "unraid/smb-credentials-1" = { };
-      };
-    };
+    sops.enable = true;
 
     settings.garbageCollection = {
       enable = true;

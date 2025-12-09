@@ -12,6 +12,7 @@
     ./nvidia
     ./displaylink
     ./sddm
+    ./plymouth
   ];
 
   modules = {
