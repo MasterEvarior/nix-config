@@ -20,7 +20,6 @@ in
 
     # School
     azure-cli
-    virtualbox
     cutecom
     mqttx
   ];
