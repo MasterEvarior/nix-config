@@ -14,7 +14,7 @@
       type = lib.types.str;
       description = "Select a theme from here: https://github.com/adi1090x/plymouth-themes/tree/master";
     };
-    showBootloader = lib.mkEnableOption "Disable bootloader showing";
+    dontShowBootloader = lib.mkEnableOption "Disable bootloader showing";
   };
 
   config =
@@ -48,7 +48,7 @@
         # Hide the OS choice for bootloaders.
         # It's still possible to open the bootloader list by pressing any key
         # It will just not appear on screen unless a key is pressed
-        loader.timeout = lib.mkIf cfg.showBootloader 0;
+        loader.timeout = lib.mkIf cfg.dontShowBootloader 0;
       };
     };
 }
