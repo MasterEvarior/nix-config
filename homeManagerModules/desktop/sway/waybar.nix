@@ -29,7 +29,7 @@
     };
     bluetoothCommand = lib.mkOption {
       default = null;
-      example = "${pkgs.blueman}/bin/blueman-manager";
+      example = "${lib.getExe pkgs.blueman}";
       type = lib.types.nullOr lib.types.str;
       description = "Command to execute when clicking on the Bluetooth symbol";
     };
@@ -40,10 +40,7 @@
       cfg = config.homeModules.desktop.sway.waybar;
       toUTF8 = x: builtins.fromJSON ''"\u${x}"'';
       bluetoothCommand =
-        if cfg.bluetoothCommand == null then
-          "${pkgs.blueman}/bin/blueman-manager"
-        else
-          cfg.bluetoothCommand;
+        if cfg.bluetoothCommand == null then "${lib.getExe pkgs.blueman}" else cfg.bluetoothCommand;
     in
     lib.mkIf config.homeModules.desktop.sway.waybar.enable {
       home.packages = with pkgs; [
@@ -55,7 +52,7 @@
       fonts.fontconfig.enable = true;
 
       homeModules.desktop.sway.bar = {
-        command = "${pkgs.waybar}/bin/waybar";
+        command = "${lib.getExe pkgs.waybar}";
       };
 
       programs.waybar = {
@@ -97,9 +94,12 @@
             };
             network = {
               format-wifi = toUTF8 "f1eb";
-              format-ethernet = (toUTF8 "f6ff");
-              format-disconnected = (toUTF8 "f0c1");
-              tooltip-format = "{icon} {essid} ({signalStrength}%) ({bandwidthTotalBytes})";
+              format-ethernet = toUTF8 "f0ac";
+              format-disconnected = toUTF8 "f0c1";
+              tooltip-format-ethernet = "{icon} {ifname} ({bandwidthTotalBytes})";
+              tooltip-format-wifi = "{icon} {essid} ({signalStrength}%) ({bandwidthTotalBytes})";
+              tooltip-format-disconnected = "Internet Interface Disconnected";
+              tooltip-format-disabled = "Internet Interface Disabled";
               max-length = 50;
             };
             "idle_inhibitor" = {
@@ -108,7 +108,7 @@
                 "activated" = toUTF8 "f205";
                 "deactivated" = toUTF8 "f204";
               };
-              tooltip-format = "";
+              tooltip = false;
             };
             clock = {
               interval = 1;
@@ -134,13 +134,12 @@
                   (toUTF8 "f028")
                 ];
               };
-              "on-click" = "${pkgs.pavucontrol}/bin/pavucontrol";
+              "on-click" = "${lib.getExe pkgs.pavucontrol}";
             };
             "backlight/slider" = {
               "min" = 1;
               "max" = 100;
               "orientation" = "horizontal";
-              "device" = "intel_backlight";
             };
             "pulseaudio/slider" = {
               "min" = 0;
