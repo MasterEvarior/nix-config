@@ -25,56 +25,49 @@
       theme = config.homeModules.desktop.sway.wlogout.theme;
       configDir = ".config/wlogout/";
       iconDir = "${configDir}/icons/";
+      buttons = [
+        {
+          "label" = "shutdown";
+          "action" = "systemctl poweroff";
+          "text" = "Shutdown";
+          "keybind" = "s";
+        }
+        {
+          "label" = "hibernate";
+          "action" = "systemctl hibernate";
+          "text" = "Hibernate";
+          "keybind" = "h";
+        }
+        {
+          "label" = "suspend";
+          "action" = "systemctl suspend";
+          "text" = "Suspend";
+          "keybind" = "u";
+        }
+        {
+          "label" = "reboot";
+          "action" = "systemctl reboot";
+          "text" = "Reboot";
+          "keybind" = "r";
+        }
+      ];
+      buttonsLength = (builtins.length buttons);
+      mod = a: b: a - (b * (a / b));
+      rows = if mod buttonsLength 2 == 0 then (buttonsLength / 2) else ((buttonsLength / 2) + 1);
+      logoutCommand = "${lib.getExe pkgs.wlogout} --buttons-per-row ${toString rows}";
     in
     lib.mkIf config.homeModules.desktop.sway.wlogout.enable {
-      home.packages = with pkgs; [
-        wlogout
-      ];
+
       homeModules.desktop.sway = {
-        waybar.logoutCommand = lib.getExe pkgs.wlogout;
+        waybar.logoutCommand = logoutCommand;
         additionalKeybindings = {
-          "+Shift+e" = "exec --no-startup-id wlogout";
+          "+Shift+e" = "exec --no-startup-id ${logoutCommand}";
         };
       };
 
-      home.file."${configDir}layout".text = ''
-        {
-            "label" : "lock",
-            "action" : "loginctl lock-session",
-            "text" : "Lock",
-            "keybind" : "l"
-        }
-        {
-            "label" : "hibernate",
-            "action" : "systemctl hibernate",
-            "text" : "Hibernate",
-            "keybind" : "h"
-        }
-        {
-            "label" : "logout",
-            "action" : "loginctl terminate-user $USER",
-            "text" : "Logout",
-            "keybind" : "e"
-        }
-        {
-            "label" : "shutdown",
-            "action" : "systemctl poweroff",
-            "text" : "Shutdown",
-            "keybind" : "s"
-        }
-        {
-            "label" : "suspend",
-            "action" : "systemctl suspend",
-            "text" : "Suspend",
-            "keybind" : "u"
-        }
-        {
-            "label" : "reboot",
-            "action" : "systemctl reboot",
-            "text" : "Reboot",
-            "keybind" : "r"
-        }
-      '';
+      home.file."${configDir}layout".text = lib.concatLines (
+        map (button: builtins.toJSON button) buttons
+      );
 
       home.file."${configDir}style.css".text = ''
         * {
@@ -95,22 +88,15 @@
         	border-style: solid;
         	border-width: 1px;
         	background-repeat: no-repeat;
-        	background-position: center;
-        	background-size: 25%;
+          background-position: center 15%; 
+          background-size: 20%; 
+          padding-top: 60px;
         }
 
         button:focus, button:active, button:hover {
         	/* 20% Overlay 2, 80% mantle */
         	background-color: rgb(53, 57, 75);
         	outline-style: none;
-        }
-
-        #lock {
-            background-image: url("${config.home.homeDirectory}/.config/wlogout/icons/lock.svg");
-        }
-
-        #logout {
-            background-image: url("${config.home.homeDirectory}/.config/wlogout/icons/logout.svg");
         }
 
         #suspend {
