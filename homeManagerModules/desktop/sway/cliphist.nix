@@ -14,6 +14,12 @@
       type = lib.types.str;
       description = "Command to execute, to display a dmenu like menu";
     };
+    maxItems = lib.mkOption {
+      default = 100;
+      example = 100;
+      type = lib.types.ints.positive;
+      description = "Maximum number of items to store";
+    };
   };
 
   config =
@@ -25,6 +31,10 @@
         pkgs.wl-clipboard
         cfg.package
       ];
+
+      home.file.".config/cliphist/config".text = ''
+        max-items 1000
+      '';
 
       homeModules.desktop.sway =
         let
