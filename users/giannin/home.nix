@@ -35,6 +35,7 @@ in
     };
 
     applications = {
+      espanso.enable = true;
       onedrive.enable = true;
       codegrab.enable = true;
       zotero.enable = true;

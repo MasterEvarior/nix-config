@@ -21,6 +21,7 @@
     ./cypress
     ./deja-dup
     ./dooit
+    ./espanso
     ./fastfetch
     ./firefox
     ./flex-launcher

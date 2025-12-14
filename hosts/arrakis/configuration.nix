@@ -95,6 +95,8 @@
       forward-socks5 = "/ localhost:9999 .";
     };
   };
+  # Enable espanso also for work
+  services.espanso.enable = true;
 
   # Enable Thunderbolt
   # https://nixos.wiki/wiki/Thunderbolt
