@@ -69,7 +69,7 @@
         dkl = "docker logs -f";
         dkrm = "docker rm -f $(docker ps -aq); docker volume prune -f";
         dkvprune = "docker volume prune --force";
-        dkprune = "docker container prune --force && docker image prune --force && && docker volume prune --force && docker system prune";
+        dkprune = "docker container prune --force && docker image prune --force && docker volume prune --force && docker system prune";
         dkimyeet = "docker rmi -f $(docker images -aq)"; # delete all unused images
         dknuclear = "${dockerNuclearScript}";
       };
