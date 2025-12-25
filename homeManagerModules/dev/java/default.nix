@@ -19,7 +19,7 @@
     in
     lib.mkIf config.homeModules.dev.java.enable {
       home.packages = with pkgs; [
-        jetbrains.idea-ultimate
+        jetbrains.idea
 
         # Maven
         cfg.mavenPackage
