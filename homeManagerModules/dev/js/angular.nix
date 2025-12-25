@@ -12,14 +12,6 @@
 
   config = lib.mkIf config.homeModules.dev.js.angular.enable {
 
-    nixpkgs.overlays = [
-      (_final: prev: {
-        vscode-extensions.angular.ng-template = prev.vscode-extensions.angular.ng-template.override {
-          publisher = "angular";
-        };
-      })
-    ];
-
     home.packages = with pkgs; [
       angular-language-server
     ];
