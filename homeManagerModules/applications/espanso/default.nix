@@ -39,11 +39,12 @@
   config =
     let
       cfg = config.homeModules.applications.espanso;
+      emptyConfig = ''
+        search_shortcut: off
+        search_trigger: off
+      '';
     in
-    lib.mkIf config.homeModules.applications.espanso.enable {
-      home.packages = [
-        cfg.package
-      ];
+    lib.mkIf osConfig.services.espanso.enable {
 
       assertions = [
         {
@@ -52,19 +53,16 @@
         }
       ];
 
-      home.file.".config/espanso/config/default.yaml".text = ''
-        search_shortcut: ${cfg.searchShortcut}
-        search_trigger: "${cfg.searchTrigger}"
-        keyboard_layout:
-          layout: "${cfg.keyboardLayout}"
-          variant: "${cfg.keyboardVariant}"
-      '';
-
-      homeModules.desktop.sway.additionalStartupCommands = [
-        {
-          command = "${lib.getExe cfg.package} --unmanaged";
-          always = false;
-        }
-      ];
+      home.file.".config/espanso/config/default.yaml".text =
+        if cfg.enable then
+          ''
+            search_shortcut: ${cfg.searchShortcut}
+            search_trigger: "${cfg.searchTrigger}"
+            keyboard_layout:
+              layout: "${cfg.keyboardLayout}"
+              variant: "${cfg.keyboardVariant}"
+          ''
+        else
+          emptyConfig;
     };
 }
