@@ -29,7 +29,7 @@
   config =
     let
       cfg = config.modules.displayManager.sddm.silent-sddm;
-      sddm-theme = inputs.silentSDDM.packages.${pkgs.system}.default.override {
+      sddm-theme = inputs.silentSDDM.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
         theme = cfg.flavor;
       };
     in
