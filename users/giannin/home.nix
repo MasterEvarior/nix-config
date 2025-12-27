@@ -19,7 +19,6 @@ in
     vlc
 
     # School
-    azure-cli
     cutecom
     mqttx
   ];
