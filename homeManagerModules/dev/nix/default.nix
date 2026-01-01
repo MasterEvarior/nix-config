@@ -26,6 +26,7 @@
         deadnix
         nurl
         nix-converter
+        nix-inspect
       ];
 
       home.shellAliases = rec {
@@ -48,6 +49,9 @@
 
         # Quick fix (hail mary style)
         nix-store-quickfix = "${./assets/fix.sh}";
+
+        # REPL
+        nrr = "nixos-rebuild repl --flake .";
       };
 
       homeModules.applications.vscode = {
