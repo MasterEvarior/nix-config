@@ -10,7 +10,7 @@
     enable = lib.mkEnableOption "Swayidle";
     lock = {
       command = lib.mkOption {
-        example = "${pkgs.swaylock}/bin/swaylock -fF";
+        example = "${pkgs.swaylock}/bin/swaylock -f";
         type = lib.types.str;
         description = "Command to execute to lock the computer";
       };

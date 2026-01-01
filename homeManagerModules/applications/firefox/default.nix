@@ -29,6 +29,17 @@
         vscode-extensions.firefox-devtools.vscode-firefox-debug
       ];
 
+      # Make Picture-in-Picture work
+      wayland.windowManager.sway.config.window.commands = [
+        {
+          command = "floating enable, move position 877 450, sticky enable";
+          criteria = {
+            app_id = "firefox";
+            title = "^Picture-in-Picture$";
+          };
+        }
+      ];
+
       xdg = lib.mkIf cfg.makeDefaultBrowser {
         enable = true;
         desktopEntries = {
