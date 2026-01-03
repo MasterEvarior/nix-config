@@ -10,8 +10,6 @@
   ];
 
   modules = {
-    # Enable unfree Nvidia trash
-    nvidia.enable = true;
     plymouth.enable = true;
 
     displayManager.sddm = {
