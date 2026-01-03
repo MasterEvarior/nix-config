@@ -30,7 +30,6 @@
           enable = true;
           useSwayFX = true;
           disableHardwareCursor = true;
-          enableUnsupportedGPU = true;
           focusOnStartup = ultrawide;
           outputs = {
             "${ultrawide}" = {
