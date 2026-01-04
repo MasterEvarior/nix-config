@@ -3,6 +3,7 @@
 {
   imports = [
     ./bluetooth.nix
+    ./cross-compilation.nix
     ./keymap.nix
     ./locale.nix
     ./printing.nix
@@ -23,6 +24,7 @@
     in
     {
       bluetooth.enable = defaultTrue;
+      cross-compilation.enable = defaultTrue;
       keymap.enable = defaultTrue;
       flakes.enable = defaultTrue;
       fonts.enable = defaultTrue;
