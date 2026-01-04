@@ -98,6 +98,7 @@ in
     };
 
     dev = {
+      just.enable = true;
       kubernetes = {
         enable = true;
         minikube.enable = false;
