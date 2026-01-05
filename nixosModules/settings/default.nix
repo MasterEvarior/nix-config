@@ -9,6 +9,7 @@
     ./printing.nix
     ./unfree.nix
     ./flakes.nix
+    ./fingerprint.nix
     ./fonts.nix
     ./defaultPackages.nix
     ./mdns.nix

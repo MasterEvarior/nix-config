@@ -43,6 +43,7 @@
       theme = "Silent-SDDM";
       silent-sddm.flavor = "catppuccin-mocha";
     };
+    settings.fingerprint.enable = true;
     containers.podman.enable = true;
     desktop = {
       plasma.enable = true;
