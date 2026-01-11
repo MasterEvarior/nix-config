@@ -67,6 +67,10 @@
             "editor.defaultFormatter" = "esbenp.prettier-vscode";
             "editor.formatOnSave" = true;
           };
+          "[json]" = {
+            "editor.defaultFormatter" = "vscode.json-language-features";
+            "editor.formatOnSave" = true;
+          };
           "javascript.updateImportsOnFileMove.enabled" = "always";
         };
       };
