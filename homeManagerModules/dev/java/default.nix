@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 
@@ -18,19 +19,22 @@
       cfg = config.homeModules.dev.java;
     in
     lib.mkIf config.homeModules.dev.java.enable {
-      home.packages = with pkgs; [
-        jetbrains.idea
+      home.packages =
+        with pkgs;
+        [
+          # Maven
+          cfg.mavenPackage
 
-        # Maven
-        cfg.mavenPackage
+          # Gradle
+          cfg.gradlePackage
+          gradle-completion
 
-        # Gradle
-        cfg.gradlePackage
-        gradle-completion
-
-        # Quarkus
-        quarkus
-      ];
+          # Quarkus
+          quarkus
+        ]
+        ++ [
+          pkgs-unstable.jetbrains.idea
+        ];
 
       home.shellAliases =
         let

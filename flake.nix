@@ -46,7 +46,10 @@
       system = "x86_64-linux";
       lib = inputs.nixpkgs.lib;
       pkgs = inputs.nixpkgs.legacyPackages.${system};
-      pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
       zen-browser = inputs.zen-browser.packages."${system}".default;
       mkSystem =
         hostname:
