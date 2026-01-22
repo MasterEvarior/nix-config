@@ -21,6 +21,8 @@ in
     # School
     cutecom
     mqttx
+    google-chrome
+    mermaid-cli
   ];
 
   homeModules = {
