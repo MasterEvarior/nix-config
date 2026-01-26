@@ -18,6 +18,16 @@
       tomlToNixScript = pkgs.writers.writePython3 "toml-to-nix" { } (
         builtins.readFile ./assets/toml-to-nix.py
       );
+      reviewScript =
+        pkgs.writeShellApplication {
+          name = "nix-review-prs.sh";
+          runtimeInputs = with pkgs; [
+            jq
+            gh
+          ];
+          text = (builtins.readFile ./assets/run-pr-review-in-workflow.sh);
+        }
+        + "/bin/nix-review-prs.sh";
     in
     lib.mkIf config.homeModules.dev.nix.enable {
       home.packages = with pkgs; [
@@ -46,6 +56,9 @@
         # Convert
         nix-from-json = "${jsonToNixScript}";
         nix-from-toml = "${tomlToNixScript}";
+
+        # Other custom scripts
+        nix-review-pr = "${reviewScript}";
 
         # Quick fix (hail mary style)
         nix-store-quickfix = "${./assets/fix.sh}";
