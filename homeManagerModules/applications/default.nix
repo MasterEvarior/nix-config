@@ -43,6 +43,7 @@
     ./ms-teams
     ./nano
     ./onedrive
+    ./opencode
     ./openconnect
     ./playerctl
     ./signal
