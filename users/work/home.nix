@@ -58,6 +58,11 @@
                 identitiesOnly = true;
               }
               {
+                host = "code.ssb.ch";
+                file = ./assets/ssh/sbb.pub;
+                identitiesOnly = true;
+              }
+              {
                 host = "ssh.esb.bfh.ch";
                 user = bfhUser;
                 file = bfhPublicCertificate;
