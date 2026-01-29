@@ -15,13 +15,16 @@
       allNerdfonts = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
     in
     lib.mkIf config.modules.settings.fonts.enable {
-      fonts.packages =
-        with pkgs;
-        [
-          jetbrains-mono
-          cascadia-code
-          libertine
-        ]
-        ++ allNerdfonts;
+      fonts = {
+        fontDir.enable = true;
+        packages =
+          with pkgs;
+          [
+            jetbrains-mono
+            cascadia-code
+            libertine
+          ]
+          ++ allNerdfonts;
+      };
     };
 }
