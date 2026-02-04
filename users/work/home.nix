@@ -17,8 +17,12 @@
     # Office
     thunderbird
     nextcloud-client
+
     # RDP Client
     remmina
+
+    # VPN
+    openvpn
 
     # Media
     vlc
