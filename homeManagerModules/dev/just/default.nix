@@ -8,7 +8,12 @@
 {
   options.homeModules.dev.just = {
     enable = lib.mkEnableOption "Just";
-    setupVisualStudioCode = lib.mkEnableOption "Extensions for VSC that help with writting Just files";
+    setupVisualStudioCode = lib.mkOption {
+      default = true;
+      example = false;
+      type = lib.types.bool;
+      description = "Extensions for VSC that help with writting Just files";
+    };
   };
 
   config =
