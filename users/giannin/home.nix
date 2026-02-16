@@ -17,12 +17,6 @@ in
   home.packages = with pkgs; [
     # Media
     vlc
-
-    # School
-    cutecom
-    mqttx
-    google-chrome
-    mermaid-cli
   ];
 
   homeModules = {
