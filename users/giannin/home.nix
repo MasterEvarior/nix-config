@@ -17,6 +17,9 @@ in
   home.packages = with pkgs; [
     # Media
     vlc
+
+    # Social Media
+    fluffychat
   ];
 
   homeModules = {
