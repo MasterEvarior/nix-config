@@ -18,6 +18,9 @@ in
     # Media
     vlc
 
+    # Tinkering
+    rpi-imager
+
     # Social Media
     fluffychat
   ];
