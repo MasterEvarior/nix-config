@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Many scripts are pretty much copied from this blog post, check it out it's good
@@ -8,5 +8,9 @@
     (import ./mkcd.nix { inherit pkgs; })
     (import ./rn.nix { inherit pkgs; })
     (import ./dsdestroy.nix { inherit pkgs; })
+    (import ./okr-pcts-check.nix {
+      inherit pkgs;
+      inherit lib;
+    })
   ];
 }
