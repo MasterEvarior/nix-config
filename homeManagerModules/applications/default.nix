@@ -14,7 +14,6 @@
     ./bruno
     ./btop
     ./chromium
-    ./chartdb
     ./codesnap
     ./codegrab
     ./comma
