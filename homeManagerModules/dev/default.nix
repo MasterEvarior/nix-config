@@ -23,6 +23,7 @@
     ./python
     ./renovate
     ./ruby
+    ./slidev
     ./ssh
     ./terraform
     ./typst
@@ -57,6 +58,7 @@
         python.enable = enableByDefault;
         direnv.enable = enableByDefault;
         ssh.enable = enableByDefault;
+        slidev.enable = enableByDefault;
         yaml.enable = enableByDefault;
       };
     };
