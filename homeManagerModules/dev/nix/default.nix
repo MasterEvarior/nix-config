@@ -91,6 +91,28 @@
                 "}"
               ];
             };
+            "Create an assertions block" = {
+              prefix = [ "assertion-block" ];
+              description = "Create an assertion block";
+              body = [
+                "assertions = {"
+                "\t {"
+                "\t\t assertion = $1"
+                "\t\t message = \"$2\""
+                "\t }"
+                "}"
+              ];
+            };
+            "Create an assertion" = {
+              prefix = [ "assertion" ];
+              description = "Create an assertion";
+              body = [
+                "{"
+                "\t assertion = $1"
+                "\t message = \"$2\""
+                "}"
+              ];
+            };
             "Create basic configuration" = {
               prefix = [ "conf" ];
               description = "Create basix .nix configuration";
