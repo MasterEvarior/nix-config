@@ -25,7 +25,7 @@
       };
 
       home.shellAliases = {
-        direnv-init-flake = ''echo "${(builtins.readFile ./assets/template.nix)}" > flake.nix && echo "use flake" > .envrc && direnv allow'';
+        direnv-init-flake = ''echo "${(builtins.readFile ./assets/template.nix)}" > flake.nix && git add flake.nix && echo ".direnv" >> .gitignore &&echo "use flake" > .envrc && direnv allow'';
       };
     };
 }
