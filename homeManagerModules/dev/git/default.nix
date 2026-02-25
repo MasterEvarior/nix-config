@@ -59,6 +59,7 @@
           questionary
         ];
       } (builtins.readFile ./assets/conventional-commits.py);
+      cpbScript = pkgs.writers.writeBash "git-cpb-script" (builtins.readFile ./assets/cherry-pick-branch.sh);
     in
     lib.mkIf cfg.enable {
 
@@ -126,6 +127,9 @@
             rbc = "rebase --continue";
             rbs = "rebase --skip";
             rba = "rebase --abort";
+
+            # Cherry Pick
+            cherry-pick-branch = "!${cpbScript}";
           };
           delta = {
             enable = cfg.delta;
