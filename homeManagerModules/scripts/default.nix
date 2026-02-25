@@ -8,7 +8,7 @@
     (import ./mkcd.nix { inherit pkgs; })
     (import ./rn.nix { inherit pkgs; })
     (import ./dsdestroy.nix { inherit pkgs; })
-    (import ./okr-pcts-check.nix {
+    (import ./renovate-prs-check.nix {
       inherit pkgs;
       inherit lib;
     })

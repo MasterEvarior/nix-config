@@ -149,6 +149,7 @@
         enable = true;
         angular.enable = true;
       };
+      java.javaPackage = pkgs.jdk17;
     };
   };
 
