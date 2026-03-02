@@ -9,87 +9,147 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [
     github-cli
     jq
+    coreutils # Includes things like date
   ];
   excludeShellChecks = [
     "SC2181"
+    "SC2054"
   ];
-  text = ''
-    # ==============================================================================
-    # Script Name: check_renovate.sh
-    # Purpose: Checks specific GitHub repos for open Renovate PRs missing a specific label,
-    #          and reports their CI pipeline status.
-    # ==============================================================================
+  text =
+    let
+      dateExe = lib.getExe' pkgs.coreutils "date";
+    in
+    ''
+      show_help() {
+        echo "Usage: renovate-prs-check [OPTIONS] [REPO...]"
+        echo ""
+        echo "Checks specified GitHub repos for open Renovate PRs missing the 'Update Blocked' label,"
+        echo "and reports their CI pipeline status."
+        echo ""
+        echo "Options:"
+        echo "  --all         Show all open Renovate PRs (Default)"
+        echo "  --this-week   Show PRs opened since the most recent Saturday"
+        echo "  --last-week   Show PRs opened from the previous Saturday up to Friday"
+        echo "  -h, --help    Show this help message and exit"
+        echo ""
+        echo "Example:"
+        echo "  renovate-prs-check --this-week puzzle/okr puzzle/pcts"
+      }
 
-    # 1. Configuration
-    # ----------------
-    # The specific label you are looking for
-    REQUIRED_LABEL="Update Blocked"
+      # ==============================================================================
+      # 1. Argument Parsing
+      # ==============================================================================
+      MODE="--all"
+      REPOS=()
 
-    # The author name for the Renovate bot.
-    # Standard App is "app/renovate". If you use the legacy bot, use "renovate[bot]"
-    BOT_AUTHOR="app/renovate"
+      while [[ $# -gt 0 ]]; do
+        case "$1" in
+          -h|--help)
+            show_help
+            exit 0
+            ;;
+          --all|--last-week|--this-week)
+            MODE="$1"
+            shift
+            ;;
+          *)
+            REPOS+=("$1")
+            shift
+            ;;
+        esac
+      done
 
-    # 3. Main Logic
-    # -------------
-    echo "🔍 Checking for open PRs by '$BOT_AUTHOR' missing the label '$REQUIRED_LABEL'..."
+      # Calculate current day of the week (1=Monday ... 7=Sunday)
+      DOW=$(${dateExe} +%u)
 
-    for REPO in "$@"; do
-      echo ""
-      echo "---------------------------------------------------"
-      echo "📂 Repository: $REPO"
+      CREATED_QUERY=""
+      case "$MODE" in
+        --last-week)
+          # From last week's Monday to last week's Sunday
+          START=$(${dateExe} -d "-$(( DOW + 8 )) days" +%Y-%m-%d)
+          END=$(${dateExe} -d "-$DOW days" +%Y-%m-%d)
+          CREATED_QUERY="created:$START..$END"
+          ;;
+        --this-week)
+          # From this week's Monday to today
+          START=$(${dateExe} -d "-$(( DOW - 1 )) days" +%Y-%m-%d)
+          CREATED_QUERY="created:>=$START"
+          ;;
+      esac
 
-      # We use 'gh pr list' to get the data in JSON format for easy parsing.
-      # Added 'statusCheckRollup' to fetch the CI pipeline states.
-      PRS_JSON=$(${lib.getExe pkgs.gh} pr list \
-        --repo "$REPO" \
-        --state open \
-        --author "$BOT_AUTHOR" \
-        --json number,title,url,labels,statusCheckRollup 2>/dev/null)
+      # ==============================================================================
+      # 2. Configuration
+      # ==============================================================================
+      REQUIRED_LABEL="Update Blocked"
+      BOT_AUTHOR="app/renovate"
 
-      # Check if the command was successful (e.g., repo exists)
-      if [ $? -ne 0 ]; then
-        echo "⚠️  Could not access repository $REPO. Please check the name and permissions."
-        continue
+      echo "🔍 Checking for open PRs ($MODE) by '$BOT_AUTHOR' missing the label '$REQUIRED_LABEL'..."
+
+      # If no repos passed, warn user
+      if [ ''${#REPOS[@]} -eq 0 ]; then
+        echo "⚠️  No repositories provided. Usage: renovate-prs-check [--all|--last-week|--this-week] repo1 repo2..."
+        exit 1
       fi
 
-      # Use jq to filter the JSON and evaluate the CI status.
-      # Logic: 
-      # 1. Define 'get_status' to parse the statusCheckRollup array into a single PASS/FAIL/PENDING state.
-      # 2. Select items where the list of label names does NOT contain the REQUIRED_LABEL
-      # 3. Format the output to include the new CI status.
-      NON_COMPLIANT=$(echo "$PRS_JSON" | ${lib.getExe pkgs.jq} -r --arg LABEL "$REQUIRED_LABEL" '
-        def get_status:
-          if .statusCheckRollup == null or (.statusCheckRollup | length) == 0 then
-            "⚪ No checks found"
-          else
-            [ .statusCheckRollup[] |
-              if .state == "FAILURE" or .state == "ERROR" or .conclusion == "FAILURE" or .conclusion == "ACTION_REQUIRED" or .conclusion == "TIMED_OUT" then
-                "FAIL"
-              elif .state == "PENDING" or .state == "EXPECTED" or .status == "IN_PROGRESS" or .status == "QUEUED" then
-                "PEND"
-              else
-                "PASS"
+      # ==============================================================================
+      # 3. Main Logic
+      # ==============================================================================
+      for REPO in "''${REPOS[@]}"; do
+        echo ""
+        echo "---------------------------------------------------"
+        echo "📂 Repository: $REPO"
+
+        # Build the argument array for gh pr list
+        GH_ARGS=(
+          --repo "$REPO"
+          --state open
+          --author "$BOT_AUTHOR"
+          --json number,title,url,labels,statusCheckRollup,createdAt
+        )
+
+        # Only append the --search flag if we actually have a date filter
+        if [ -n "$CREATED_QUERY" ]; then
+          GH_ARGS+=( --search "$CREATED_QUERY" )
+        fi
+
+        # Execute gh with the dynamic arguments
+        PRS_JSON=$(${lib.getExe pkgs.gh} pr list "''${GH_ARGS[@]}" 2>/dev/null)
+
+        if [ $? -ne 0 ]; then
+          echo "⚠️  Could not access repository $REPO."
+          continue
+        fi
+
+        NON_COMPLIANT=$(echo "$PRS_JSON" | ${lib.getExe pkgs.jq} -r --arg LABEL "$REQUIRED_LABEL" '
+          def get_status:
+            if .statusCheckRollup == null or (.statusCheckRollup | length) == 0 then
+              "⚪ No checks found"
+            else
+              [ .statusCheckRollup[] |
+                if .state == "FAILURE" or .state == "ERROR" or .conclusion == "FAILURE" or .conclusion == "ACTION_REQUIRED" or .conclusion == "TIMED_OUT" then
+                  "FAIL"
+                elif .state == "PENDING" or .state == "EXPECTED" or .status == "IN_PROGRESS" or .status == "QUEUED" then
+                  "PEND"
+                else
+                  "PASS"
+                end
+              ] |
+              if contains(["FAIL"]) then "❌ Failed"
+              elif contains(["PEND"]) then "⏳ Pending / Running"
+              else "✅ Passed"
               end
-            ] |
-            if contains(["FAIL"]) then "❌ Failed"
-            elif contains(["PEND"]) then "⏳ Pending / Running"
-            else "✅ Passed"
-            end
-          end;
+            end;
 
-        .[] 
-        | select(.labels | map(.name) | index($LABEL) | not) 
-        | "   🚨 [\(.number)] \(.title)\n      🔗 \(.url)\n      ⚙️ CI Status: \(get_status)\n"
-      ')
+          .[] 
+          | select(.labels | map(.name) | index($LABEL) | not) 
+          | "   🚨 [\(.number)] \(.title)\n      🔗 \(.url)\n      📅 Opened: \(.createdAt | split("T")[0])\n      ⚙️ CI Status: \(get_status)\n"
+        ')
 
-      if [ -z "$NON_COMPLIANT" ]; then
-        echo "   ✅ All Renovate PRs comply (or none found)."
-      else
-        echo "$NON_COMPLIANT"
-      fi
-    done
-
-    echo ""
-    echo "Done."
-  '';
+        if [ -z "$NON_COMPLIANT" ]; then
+          echo "   ✅ All Renovate PRs comply (or none found)."
+        else
+          echo "$NON_COMPLIANT"
+        fi
+      done
+    '';
 }
