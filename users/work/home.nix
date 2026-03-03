@@ -17,6 +17,7 @@
     # Office
     thunderbird
     nextcloud-client
+    keepass
 
     # RDP Client
     remmina
