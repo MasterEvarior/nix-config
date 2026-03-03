@@ -12,5 +12,9 @@
       inherit pkgs;
       inherit lib;
     })
+    (import ./renovate-prs-merge.nix {
+      inherit pkgs;
+      inherit lib;
+    })
   ];
 }
