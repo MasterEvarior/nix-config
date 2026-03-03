@@ -23,6 +23,7 @@
 
     # VPN
     openvpn
+    openconnect
 
     # Media
     vlc
