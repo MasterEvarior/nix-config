@@ -83,6 +83,7 @@
         comma.enable = enableByDefault;
         ms-teams.enable = enableByDefault;
         ollama.enable = enableByDefault;
+        opencode.enable = enableByDefault;
         fzf.enable = enableByDefault;
         github-cli.enable = enableByDefault;
         helix.enable = enableByDefault;

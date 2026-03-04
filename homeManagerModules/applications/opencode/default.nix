@@ -19,6 +19,12 @@
       ];
       description = "See here: https://opencode.ai/docs/config/#sharing";
     };
+    providers.ollama.enable = lib.mkOption {
+      default = config.homeModules.applications.ollama.enable;
+      example = true;
+      type = lib.types.bool;
+      description = "Wether or not to preconfigure OpenCode with the local Ollama provider";
+    };
     theme = lib.mkOption {
       default = "catppuccin-macchiato";
       example = "catppuccin";
@@ -44,6 +50,19 @@
       cfg = config.homeModules.applications.opencode;
     in
     lib.mkIf config.homeModules.applications.opencode.enable {
+
+      assertions = [
+        {
+          assertion =
+            let
+              ollamaEnabled = config.homeModules.applications.ollama.enable;
+              providerEnabled = cfg.providers.ollama.enable;
+            in
+            if providerEnabled then ollamaEnabled else true;
+          message = "If the Ollama provider is enable, the Ollama module must be enabled aswell";
+        }
+      ];
+
       programs.opencode = {
         inherit (cfg) package;
 
@@ -52,6 +71,20 @@
           theme = cfg.theme;
           share = cfg.share;
           autoupdate = false;
+          provider = {
+            ollama = lib.mkIf cfg.providers.ollama.enable {
+              npm = "@ai-sdk/openai-compatible";
+              "name" = "Ollama (local)";
+              "options" = {
+                "baseURL" = "http://${config.services.ollama.host}:${toString config.services.ollama.port}/v1";
+              };
+              "models" = {
+                "qwen3.5:2b" = {
+                  "name" = "qwen3.5";
+                };
+              };
+            };
+          };
         };
       };
     };
