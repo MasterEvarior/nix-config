@@ -8,6 +8,7 @@
 {
   options.homeModules.applications.opencode = {
     enable = lib.mkEnableOption "Opencode CLI";
+    package = lib.mkPackageOption pkgs "opencode" { };
     share = lib.mkOption {
       default = "disabled";
       example = "disabled";
@@ -44,13 +45,12 @@
     in
     lib.mkIf config.homeModules.applications.opencode.enable {
       programs.opencode = {
+        inherit (cfg) package;
+
         enable = true;
         settings = {
           theme = cfg.theme;
           share = cfg.share;
-          plugin = [
-            "opencode-gemini-auth@latest"
-          ];
           autoupdate = false;
         };
       };

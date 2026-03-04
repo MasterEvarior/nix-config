@@ -41,6 +41,7 @@
     ./micro
     ./ms-teams
     ./nano
+    ./ollama
     ./onedrive
     ./opencode
     ./openconnect
@@ -81,6 +82,7 @@
         spotify.enable = enableByDefault;
         comma.enable = enableByDefault;
         ms-teams.enable = enableByDefault;
+        ollama.enable = enableByDefault;
         fzf.enable = enableByDefault;
         github-cli.enable = enableByDefault;
         helix.enable = enableByDefault;
