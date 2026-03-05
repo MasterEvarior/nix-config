@@ -25,6 +25,15 @@
           name = "lfm2.5-thinking:1.2b";
           tools = true;
         }
+        {
+          name = "granite4:3b";
+        }
+        {
+          name = "granite4:1b";
+        }
+        {
+          name = "granite4:350m";
+        }
       ];
       example = [
         {
