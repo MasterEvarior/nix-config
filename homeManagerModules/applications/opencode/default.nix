@@ -1,14 +1,14 @@
 {
   lib,
   config,
-  pkgs,
+  pkgs-unstable,
   ...
 }:
 
 {
   options.homeModules.applications.opencode = {
     enable = lib.mkEnableOption "Opencode CLI";
-    package = lib.mkPackageOption pkgs "opencode" { };
+    package = lib.mkPackageOption pkgs-unstable "opencode" { };
     share = lib.mkOption {
       default = "disabled";
       example = "disabled";
