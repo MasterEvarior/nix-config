@@ -48,6 +48,13 @@
   config =
     let
       cfg = config.homeModules.applications.opencode;
+      ollamaModels = config.homeModules.applications.ollama.loadModels;
+      ollamaModelList = builtins.listToAttrs (
+        map (m: {
+          inherit (m) name;
+          value = m;
+        }) ollamaModels
+      );
     in
     lib.mkIf config.homeModules.applications.opencode.enable {
 
@@ -78,11 +85,7 @@
               "options" = {
                 "baseURL" = "http://${config.services.ollama.host}:${toString config.services.ollama.port}/v1";
               };
-              "models" = {
-                "qwen3.5:2b" = {
-                  "name" = "qwen3.5";
-                };
-              };
+              "models" = ollamaModelList;
             };
           };
         };
