@@ -48,6 +48,20 @@
   config =
     let
       cfg = config.homeModules.applications.opencode;
+      listFilesInDir = d: lib.filterAttrs (_: v: v == "regular") (builtins.readDir d);
+      listFilesInDirWithType =
+        d: t: builtins.filter (f: lib.hasSuffix t f) (builtins.attrNames (listFilesInDir d));
+      agentsFiles = listFilesInDirWithType ./assets/agents ".md";
+      agents = builtins.listToAttrs (
+        map (f: rec {
+          name = "${config.home.homeDirectory}/.config/opencode/agents/${f}";
+          value = {
+            target = name;
+            executable = false;
+            text = builtins.readFile (./assets/agents + "/${f}");
+          };
+        }) agentsFiles
+      );
       ollamaModels = config.homeModules.applications.ollama.loadModels;
       ollamaModelList = builtins.listToAttrs (
         map (m: {
@@ -90,5 +104,7 @@
           };
         };
       };
+
+      home.file = agents;
     };
 }
