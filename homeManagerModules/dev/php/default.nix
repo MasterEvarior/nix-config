@@ -14,7 +14,6 @@
     home.packages = with pkgs; [
       (php84.withExtensions ({ enabled, all }: enabled ++ [ all.tidy ]))
       php84Packages.composer
-      symfony-cli
       ant
     ];
   };
