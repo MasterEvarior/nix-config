@@ -54,6 +54,11 @@
         sourcePath = ./assets/agents;
         targetPath = "${config.home.homeDirectory}/.config/opencode/agents";
       };
+      skills = lfiles.toHomeManagerFile {
+        files = (lfiles.withType ./assets/skills ".md");
+        sourcePath = ./assets/agents;
+        targetPath = "${config.home.homeDirectory}/.config/opencode/skills";
+      };
       ollamaModels = config.homeModules.applications.ollama.loadModels;
       ollamaModelList = builtins.listToAttrs (
         map (m: {
@@ -97,6 +102,6 @@
         };
       };
 
-      home.file = agents;
+      home.file = agents // skills;
     };
 }
