@@ -51,6 +51,12 @@
         config.allowUnfree = true;
       };
       zen-browser = inputs.zen-browser.packages."${system}".default;
+      lfiles = import ./lib/files.nix { inherit lib; };
+      customLibs = {
+        _module.args = {
+          inherit lfiles;
+        };
+      };
       mkSystem =
         hostname:
         lib.nixosSystem {
@@ -59,6 +65,7 @@
             inherit inputs;
           };
           modules = [
+            customLibs
             (./. + "/hosts/${hostname}/configuration.nix")
             inputs.grub2-themes.nixosModules.default
             inputs.sops-nix.nixosModules.sops
@@ -75,6 +82,7 @@
                 inherit inputs;
                 inherit pkgs-unstable;
                 inherit zen-browser;
+                inherit lfiles;
               };
             }
           ];
