@@ -1,66 +1,79 @@
 {
   lib,
   config,
+  osConfig,
   pkgs-unstable,
   ...
 }:
 
 {
-  options.homeModules.applications.ollama = {
-    enable = lib.mkEnableOption "Ollama";
-    package = lib.mkPackageOption pkgs-unstable "ollama" { };
-    contextWindow = lib.mkOption {
-      default = 32 * 1024;
-      example = 16 * 1024;
-      type = lib.types.int;
-      description = "How big the context window should be";
-    };
-    loadModels = lib.mkOption {
-      default = [
-        {
-          name = "llama3.2:1b";
-          tools = true;
-        }
-        {
-          name = "lfm2.5-thinking:1.2b";
-          tools = true;
-        }
-        {
-          name = "granite4:3b";
-        }
-        {
-          name = "granite4:1b";
-        }
-        {
-          name = "granite4:350m";
-        }
-      ];
-      example = [
-        {
-          name = "codegemma:2b";
-          tools = true;
-        }
-      ];
-      type = lib.types.listOf (
-        lib.types.submodule {
-          options = {
-            name = lib.mkOption {
-              example = "codegemma:2b";
-              type = lib.types.str;
-              description = "Name of the model";
+  options.homeModules.applications.ollama =
+    let
+      gpuType = osConfig.modules.hardwareInfo.gpu;
+    in
+    {
+      enable = lib.mkEnableOption "Ollama";
+      package = lib.mkPackageOption pkgs-unstable "ollama" {
+        default = [
+          (
+            if gpuType == "none" then
+              "ollama-cpu"
+            else if gpuType == "nvidia" then
+              "ollama-cuda"
+            else if gpuType == "amd" then
+              "ollama-rocm"
+            else
+              "ollama-vulkan"
+          )
+        ];
+      };
+      contextWindow = lib.mkOption {
+        default = 32 * 1024;
+        example = 16 * 1024;
+        type = lib.types.int;
+        description = "How big the context window should be";
+      };
+      loadModels = lib.mkOption {
+        default = [
+          {
+            name = "llama3.2:1b";
+            tools = true;
+          }
+          {
+            name = "lfm2.5-thinking:1.2b";
+            tools = true;
+          }
+          {
+            name = "granite3.3:8b";
+            tools = true;
+          }
+        ];
+        example = [
+          {
+            name = "codegemma:2b";
+            tools = true;
+          }
+        ];
+        type = lib.types.listOf (
+          lib.types.submodule {
+            options = {
+              name = lib.mkOption {
+                example = "codegemma:2b";
+                type = lib.types.str;
+                description = "Name of the model";
+              };
+              tools = lib.mkOption {
+                default = true;
+                example = true;
+                type = lib.types.bool;
+                description = "Wether or not the model is capable of using tools in OpenCode";
+              };
             };
-            tools = lib.mkOption {
-              default = true;
-              example = true;
-              type = lib.types.bool;
-              description = "Wether or not the model is capable of using tools in OpenCode";
-            };
-          };
-        }
-      );
-      description = "List of models to (pre-)load";
+          }
+        );
+        description = "List of models to (pre-)load";
+      };
     };
-  };
 
   config =
     let

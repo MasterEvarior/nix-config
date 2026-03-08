@@ -3,14 +3,18 @@
 {
   imports = [
     ./hardware.nix
-
     ../../nixosModules
-
     ../../users/giannin/giannin.nix
   ];
 
   modules = {
     plymouth.enable = true;
+
+    # Metainfo for Home Manager
+    hardwareInfo = {
+      gpu = "amd";
+      type = "desktop";
+    };
 
     displayManager.sddm = {
       enable = true;

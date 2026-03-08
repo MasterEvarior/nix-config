@@ -5,6 +5,7 @@
     ./1Password
     ./desktop
     ./grub2Theme
+    ./hardwareInfo
     ./settings
     ./sops
     ./terminal
