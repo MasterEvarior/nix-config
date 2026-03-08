@@ -46,6 +46,7 @@
           {
             name = "granite3.3:8b";
             tools = true;
+            requiresGPU = true;
           }
         ];
         example = [
@@ -68,6 +69,12 @@
                 type = lib.types.bool;
                 description = "Wether or not the model is capable of using tools in OpenCode";
               };
+              requiresGPU = lib.mkOption {
+                default = false;
+                example = true;
+                type = lib.types.bool;
+                description = "Only install this model if a GPU is present";
+              };
             };
           }
         );
@@ -78,7 +85,13 @@
   config =
     let
       cfg = config.homeModules.applications.ollama;
-      modelNames = map (m: m.name) cfg.loadModels;
+      gpuType = osConfig.modules.hardwareInfo.gpu;
+      allowedModels =
+        if gpuType != "none" then
+          cfg.loadModels
+        else
+          builtins.filter (m: m.requiresGPU == false) cfg.loadModels;
+      modelNames = map (m: m.name) allowedModels;
     in
     lib.mkIf config.homeModules.applications.ollama.enable {
       services.ollama = {
@@ -89,7 +102,7 @@
         };
       };
 
-      systemd.user.services."ollama-pre-load" = lib.mkIf (cfg.loadModels != [ ]) {
+      systemd.user.services."ollama-pre-load" = lib.mkIf (allowedModels != [ ]) {
         Unit = {
           Description = "Load Ollama Models declaratively";
           After = [ "ollama.service" ];

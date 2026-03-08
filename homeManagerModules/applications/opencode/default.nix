@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  osConfig,
   pkgs-unstable,
   lfiles,
   ...
@@ -59,12 +60,18 @@
         sourcePath = ./assets/agents;
         targetPath = "${config.home.homeDirectory}/.config/opencode/skills";
       };
+      gpuType = osConfig.modules.hardwareInfo.gpu;
       ollamaModels = config.homeModules.applications.ollama.loadModels;
+      allowedModels =
+        if gpuType != "none" then
+          ollamaModels
+        else
+          builtins.filter (m: m.requiresGPU == false) ollamaModels;
       ollamaModelList = builtins.listToAttrs (
         map (m: {
           inherit (m) name;
           value = m;
-        }) ollamaModels
+        }) allowedModels
       );
     in
     lib.mkIf config.homeModules.applications.opencode.enable {
