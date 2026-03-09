@@ -27,6 +27,13 @@
 
   modules = {
     displaylink.enable = false;
+
+    # Metainfo for Home Manager
+    hardwareInfo = {
+      gpu = "none";
+      type = "laptop";
+    };
+
     grub2Theme = {
       enabled = true;
       resolution = "4k";
