@@ -4,6 +4,7 @@
     ./applications
     ./desktop
     ./dev
+    ./projects
     ./scripts
     ./sops.nix
     ./terminal
