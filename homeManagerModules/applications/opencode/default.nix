@@ -57,7 +57,7 @@
       };
       skills = lfiles.toHomeManagerFile {
         files = (lfiles.withType ./assets/skills ".md");
-        sourcePath = ./assets/agents;
+        sourcePath = ./assets/skills;
         targetPath = "${config.home.homeDirectory}/.config/opencode/skills";
       };
       gpuType = osConfig.modules.hardwareInfo.gpu;
