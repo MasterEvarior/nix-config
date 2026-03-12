@@ -37,7 +37,7 @@
         harper
       ];
 
-      homeModules.applications.vscode = {
+      homeModules.applications.vscode = lib.mkIf false {
         additionalUserSettings = {
           harper = {
             dialect = cfg.dialect;
