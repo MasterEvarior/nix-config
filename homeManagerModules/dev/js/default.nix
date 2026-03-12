@@ -28,6 +28,7 @@
           nodejs_24
           nodemon
           yarn
+          pnpm
         ]
         ++ lib.lists.optionals (cfg.typescript.enable) [
           typescript-language-server
