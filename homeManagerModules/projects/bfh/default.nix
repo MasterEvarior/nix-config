@@ -51,6 +51,24 @@
           };
         };
     };
+    kube = lib.mkOption {
+      description = "Everything todo with Kubernetes";
+      default = { };
+      type =
+        with lib.types;
+        submodule {
+          options = {
+            additionalContexts = lib.mkOption {
+              default = [
+                "k8s-test.bfh.ch"
+                "k8s.bfh.ch"
+              ];
+              type = listOf str;
+              description = "For env, there is a separate file in .kube, which needs to be set";
+            };
+          };
+        };
+    };
   };
 
   config =
@@ -73,6 +91,14 @@
           gccgo
         ];
       };
+
+      programs.zsh.initContent = lib.mkOrder 1000 ''
+        export KUBECONFIG="${
+          builtins.concatStringsSep ":" (
+            map (e: "$HOME/.kube/${e}") ([ "config" ] ++ cfg.kube.additionalContexts)
+          )
+        }"
+      '';
 
       homeModules.applications."1password".ssh = {
         configureSSH = true;
