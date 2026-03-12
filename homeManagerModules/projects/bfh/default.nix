@@ -86,10 +86,6 @@
           keepass
 
           # All needed for rust-script
-          cargo
-          rust-script
-          gccgo
-          kubectl-neat
         ];
       };
 
