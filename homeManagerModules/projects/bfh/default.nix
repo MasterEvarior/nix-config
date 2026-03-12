@@ -89,6 +89,7 @@
           cargo
           rust-script
           gccgo
+          kubectl-neat
         ];
       };
 
