@@ -17,9 +17,7 @@ in
   home.packages = with pkgs; [
     # Media
     vlc
-
-    # Tinkering
-    rpi-imager
+    asciinema
 
     # Social Media
     fluffychat
