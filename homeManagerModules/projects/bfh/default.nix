@@ -58,6 +58,7 @@
         with lib.types;
         submodule {
           options = {
+            useMultipleContexts = lib.mkEnableOption "Whether or not to use multiple config files in .kube";
             additionalContexts = lib.mkOption {
               default = [
                 "k8s-test.bfh.ch"
@@ -89,13 +90,15 @@
         ];
       };
 
-      programs.zsh.initContent = lib.mkOrder 1000 ''
-        export KUBECONFIG="${
-          builtins.concatStringsSep ":" (
-            map (e: "$HOME/.kube/${e}") ([ "config" ] ++ cfg.kube.additionalContexts)
-          )
-        }"
-      '';
+      programs.zsh.initContent = lib.mkIf cfg.kube.useMultipleContexts (
+        lib.mkOrder 1000 ''
+          export KUBECONFIG="${
+            builtins.concatStringsSep ":" (
+              map (e: "$HOME/.kube/${e}") ([ "config" ] ++ cfg.kube.additionalContexts)
+            )
+          }"
+        ''
+      );
 
       homeModules.applications."1password".ssh = {
         configureSSH = true;
