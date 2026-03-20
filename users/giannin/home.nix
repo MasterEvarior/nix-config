@@ -18,6 +18,7 @@ in
     # Media
     vlc
     asciinema
+    asciinema-agg
 
     # Social Media
     fluffychat
