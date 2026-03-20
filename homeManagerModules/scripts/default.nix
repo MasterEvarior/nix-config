@@ -16,5 +16,8 @@
       inherit pkgs;
       inherit lib;
     })
+    (import ./wpods.nix {
+      inherit pkgs;
+    })
   ];
 }
