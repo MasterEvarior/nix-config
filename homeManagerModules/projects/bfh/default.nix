@@ -70,6 +70,21 @@
           };
         };
     };
+    pass = lib.mkOption {
+      default = { };
+      type =
+        with lib.types;
+        submodule {
+          options = {
+            directory = lib.mkOption {
+              default = "~/Documents/Github/BFH/passwordstore";
+              type = lib.types.str;
+              description = "Directory where the password store is saved.";
+            };
+          };
+        };
+      description = "";
+    };
   };
 
   config =
@@ -81,12 +96,13 @@
         shellAliases = {
           bfh-connect-vpn = "sudo ${lib.getExe pkgs.openconnect} --user=${cfg.vpn.username} --os=${cfg.vpn.os} --protocol=${cfg.vpn.protocol} --server=${cfg.vpn.server}";
           bfh-connect-ssh-tunnel = "ssh -D 9999 -q -C -N jenkins.k8s-test.bfh.ch -vvv";
+          bfh-pass = "PASSWORD_STORE_DIR=${cfg.pass.directory} ${lib.getExe pkgs.pass}";
         };
 
         packages = with pkgs; [
           keepass
-
-          # All needed for rust-script
+          pass
+          gnupg
         ];
       };
 
