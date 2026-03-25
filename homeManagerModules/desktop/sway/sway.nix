@@ -281,7 +281,6 @@
             "${modifier}+Shift+Left" = "move left";
             "${modifier}+Shift+Right" = "move right";
             "${modifier}+Shift+Up" = "move up";
-            "${modifier}+Shift+c" = "reload";
             "${modifier}+Shift+q" = "kill";
             "${modifier}+Shift+space" = "floating toggle";
             "${modifier}+greater" = "move workspace to output right";

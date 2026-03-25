@@ -29,6 +29,7 @@
     lib.mkIf config.homeModules.desktop.sway.cliphist.enable {
       home.packages = [
         pkgs.wl-clipboard
+        pkgs.wtype
         cfg.package
       ];
 
@@ -39,10 +40,13 @@
       homeModules.desktop.sway =
         let
           cliphistBin = (lib.getExe cfg.package);
+          cliphistCommand = "${cliphistBin} list | ${cfg.dmenuCommand} | ${cliphistBin} decode";
+          wtypeBin = (lib.getExe pkgs.wtype);
         in
         {
           additionalKeybindings = {
-            "+c exec" = "${cliphistBin} list | ${cfg.dmenuCommand} | ${cliphistBin} decode | wl-copy";
+            "+c exec" = cliphistCommand;
+            "+Shift+c exec" = "${wtypeBin} -s 150 $(${cliphistCommand})";
           };
           additionalStartupCommands = [
             {
