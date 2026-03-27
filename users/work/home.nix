@@ -85,7 +85,7 @@
         enable = true;
         angular.enable = true;
       };
-      java.javaPackage = pkgs.jdk17;
+      java.javaPackage = pkgs.jdk25;
     };
   };
 
