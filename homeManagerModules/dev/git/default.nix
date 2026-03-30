@@ -53,13 +53,15 @@
   config =
     let
       cfg = config.homeModules.dev.git;
-      safeDirs = if cfg.disableSafeDirectories then { safe.directory = ''*''; } else { };
+      safeDirs = if cfg.disableSafeDirectories then { safe.directory = "*"; } else { };
       ccScript = pkgs.writers.writePython3 "git-cc-script" {
         libraries = with pkgs.python3Packages; [
           questionary
         ];
       } (builtins.readFile ./assets/conventional-commits.py);
-      cpbScript = pkgs.writers.writeBash "git-cpb-script" (builtins.readFile ./assets/cherry-pick-branch.sh);
+      cpbScript = pkgs.writers.writeBash "git-cpb-script" (
+        builtins.readFile ./assets/cherry-pick-branch.sh
+      );
     in
     lib.mkIf cfg.enable {
 
@@ -105,7 +107,9 @@
             plr = "pull --rebase";
             ps = "push";
             psf = "push --force";
-            psfwl = "push --force-with-lease=";
+            pfush = psf;
+            psfwl = "push --force-with-lease";
+            please = psfwl;
             a = "add";
             aa = "add --all";
 
