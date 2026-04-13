@@ -45,7 +45,7 @@
         in
         {
           additionalKeybindings = {
-            "+c exec" = cliphistCommand;
+            "+c exec" = cliphistCommand + " | wl-copy";
             "+Shift+c exec" = "${wtypeBin} -s 150 $(${cliphistCommand})";
           };
           additionalStartupCommands = [
