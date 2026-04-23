@@ -41,6 +41,11 @@
         prefix = ''${HOME}/.npm-packages
       '';
 
+      home.shellAliases = {
+        pp = lib.getExe pkgs.pnpm;
+        nx = lib.getExe' pkgs.nodejs_24 "npx" + " nx";
+      };
+
       homeModules.applications.vscode = {
         additionalExtensions = with pkgs; [
           vscode-extensions.esbenp.prettier-vscode
