@@ -23,6 +23,10 @@
 
     home.file.".config/gh-dash/config.yml".source = ./assets/dash/config.yml;
 
+    home.sessionVariables = {
+      GH_TELEMETRY = "false";
+    };
+
     programs.git.settings.alias = {
       clean-branches = "!(gh poi protect main; gh poi protect master; gh poi protect dev; gh poi protect development; gh poi)";
       dash = "!(gh dash)";
