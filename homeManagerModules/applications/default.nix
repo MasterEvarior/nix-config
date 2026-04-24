@@ -14,6 +14,7 @@
     ./bruno
     ./btop
     ./chromium
+    ./claude
     ./codesnap
     ./codegrab
     ./comma
