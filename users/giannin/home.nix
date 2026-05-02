@@ -97,6 +97,7 @@ in
           /home/giannin/Documents/OneDrive
         ];
       };
+      watson.enable = true;
     };
 
     dev = {

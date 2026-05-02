@@ -69,6 +69,7 @@
           ];
         };
       };
+      watson.enable = true;
     };
     dev = {
       git = {
