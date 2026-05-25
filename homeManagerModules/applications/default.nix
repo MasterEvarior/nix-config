@@ -26,11 +26,9 @@
     ./firefox
     ./flex-launcher
     ./fzf
-    ./gemini-cli
     ./github-cli
     ./gitlab-cli
     ./gowall
-    ./gthr
     ./harper
     ./helix
     ./lazygit

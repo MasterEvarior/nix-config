@@ -43,7 +43,6 @@ in
       meld.enable = true;
       github-cli.enable = true;
       gitlab-cli.enable = true;
-      gthr.enable = true;
       openconnect = {
         enable = true;
         aliases = [
