@@ -32,8 +32,8 @@
           {
             center = [ "media" ];
             left = [
-              "clock"
               "custom-sway-workspaces"
+              "clock"
             ];
             monitor = "*";
             right = [
@@ -52,11 +52,6 @@
         bluetooth = {
           label-show = false;
         };
-        cava = {
-          bar-gap = 0;
-          bars = 50;
-          style = "peaks";
-        };
         clock = {
           format = "%H:%M:%S %d/%m/%y";
         };
@@ -65,7 +60,7 @@
             border-color = "auto";
             border-show = false;
             button-bg-color = "bg-surface-elevated";
-            command = "generate_workspaces() {\n  ${lib.getExe' pkgs.sway "swaymsg"} -t get_workspaces | ${lib.getExe pkgs.jq} -r '\n    group_by(.output) | \n    map(\n      any(.[]; .focused) as $is_active | \n      \n      # Build the workspace list without the monitor name\n      (map(if .focused then \"[\\(.name)]\" else \"\\(.name)\" end) | join(\" \")) as $content | \n      if $is_active then \n        $content\n      else \n        $content \n      end\n    ) | \n    # Join the monitors together\n    join(\" | \")\n  '\n}; \ngenerate_workspaces; \nswaymsg -t subscribe -m '[\"workspace\"]' | while read -r event; do generate_workspaces; done\n";
+            command = "generate_workspaces() {\n  ${lib.getExe' pkgs.sway "swaymsg"} -t get_workspaces | ${lib.getExe pkgs.jq} -r '\n    group_by(.output) | \n    map(\n      any(.[]; .focused) as $is_active | \n      \n      # Build the workspace list without the monitor name\n      (map(if .focused then \"[\\(.name)]\" else \"\\(.name)\" end) | join(\" \")) as $content | \n      if $is_active then \n        $content\n      else \n        $content \n      end\n    ) | \n    # Join the monitors together\n    join(\" | \")\n  '\n}; \ngenerate_workspaces; \n ${lib.getExe' pkgs.sway "swaymsg"} -t subscribe -m '[\"workspace\"]' | while read -r event; do generate_workspaces; done\n";
             format = "{{ output }}";
             hide-if-empty = false;
             icon-bg-color = "auto";
@@ -88,7 +83,7 @@
           }
         ];
         dashboard = {
-          dropdown-logout-command = "swaymsg exit";
+          dropdown-logout-command = "${lib.getExe' pkgs.sway "swaymsg"} exit";
           dropdown-lock-command = "${lib.getExe pkgs.swaylock} --show-keyboard-layout --indicator-idle-visible --indicator-caps-lock";
         };
         media = {
