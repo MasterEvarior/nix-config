@@ -54,11 +54,6 @@
     let
       cfg = config.homeModules.dev.git;
       safeDirs = if cfg.disableSafeDirectories then { safe.directory = "*"; } else { };
-      ccScript = pkgs.writers.writePython3 "git-cc-script" {
-        libraries = with pkgs.python3Packages; [
-          questionary
-        ];
-      } (builtins.readFile ./assets/conventional-commits.py);
       cpbScript = pkgs.writers.writeBash "git-cpb-script" (
         builtins.readFile ./assets/cherry-pick-branch.sh
       );
@@ -116,7 +111,6 @@
             # Commit
             amend = "commit --amend --no-edit";
             cm = "commit -m";
-            cc = "!${ccScript}";
 
             # Log
             count = ''!echo "Total commits: $(git rev-list --count HEAD)"'';
