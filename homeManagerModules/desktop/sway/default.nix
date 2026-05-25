@@ -18,6 +18,7 @@
     ./swayidle.nix
     ./swaylock.nix
     ./waybar.nix
+    ./wayle.nix
     ./wlogout.nix
   ];
 
@@ -107,8 +108,11 @@
           theme = mergedTheme;
         };
         waybar = {
-          enable = enableByDefault;
+          enable = false;
           theme = mergedTheme;
+        };
+        wayle = {
+          enable = true;
         };
         swaylock = {
           enable = enableByDefault;

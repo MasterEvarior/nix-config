@@ -370,6 +370,7 @@
           + ''
             bindgesture swipe:right workspace prev
             bindgesture swipe:left workspace next
+            exec systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK
           '';
       };
     };
