@@ -47,7 +47,7 @@
     let
       cfg = config.homeModules.desktop.sway.swaylock;
       stripHashtag = lib.strings.stringAsChars (x: if x == "#" then "" else x);
-      lockCommand = "${pkgs.swaylock}/bin/swaylock --show-keyboard-layout --indicator-idle-visible --indicator-caps-lock ${cfg.backgroundImages}";
+      lockCommand = "${lib.getExe pkgs.swaylock} --show-keyboard-layout --indicator-idle-visible --indicator-caps-lock ${cfg.backgroundImages}";
     in
     lib.mkIf config.homeModules.desktop.sway.swaylock.enable {
       home.packages = with pkgs; [

@@ -87,6 +87,10 @@
             scroll-up = "";
           }
         ];
+        dashboard = {
+          dropdown-logout-command = "swaymsg exit";
+          dropdown-lock-command = "${lib.getExe pkgs.swaylock} --show-keyboard-layout --indicator-idle-visible --indicator-caps-lock";
+        };
         media = {
           icon-type = "spinning-disc";
           label-max-length = 30;

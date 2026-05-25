@@ -103,7 +103,7 @@
           theme = mergedTheme;
         };
         wlogout = {
-          enable = enableByDefault;
+          enable = false;
           # Because wlogout uses CSS's rgba and rgb, there needs to be some manual adjustment to the theme still
           theme = mergedTheme;
         };
