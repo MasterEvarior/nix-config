@@ -39,7 +39,6 @@
             right = [
               "bluetooth"
               "volume"
-              "microphone"
               "network"
               "dashboard"
             ];
