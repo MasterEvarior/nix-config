@@ -91,7 +91,7 @@
           enable = true;
         };
         bzmenu = {
-          enable = true;
+          enable = false;
         };
         cliphist.enable = true;
         fuzzel = {
