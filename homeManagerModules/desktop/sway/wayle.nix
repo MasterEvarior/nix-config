@@ -53,6 +53,8 @@
         };
         clock = {
           format = "%H:%M:%S %d/%m/%y";
+          left-click = "";
+          right-click = "";
         };
         custom = [
           {
