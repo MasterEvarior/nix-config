@@ -50,7 +50,7 @@
 
       programs.kubecolor = {
         enable = true;
-        enableAlias = true;
+        enableAlias = false;
         enableZshIntegration = isDefaultShell pkgs.zsh;
         settings = {
           preset = "dark";

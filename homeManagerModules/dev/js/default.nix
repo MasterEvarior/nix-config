@@ -99,7 +99,7 @@
             "*.tsx"
             "*.vue"
           ];
-          package = nodePackages.prettier;
+          package = prettier;
         }
       ];
     };

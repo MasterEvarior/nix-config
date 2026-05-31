@@ -43,15 +43,6 @@ in
       meld.enable = true;
       github-cli.enable = true;
       gitlab-cli.enable = true;
-      openconnect = {
-        enable = true;
-        aliases = [
-          {
-            name = "fhnw";
-            server = "vpn.fhnw.ch";
-          }
-        ];
-      };
       "1password" = {
         enable = true;
         ssh = {

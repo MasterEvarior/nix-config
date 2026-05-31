@@ -31,7 +31,7 @@
     in
     lib.mkIf config.homeModules.dev.nix.enable {
       home.packages = with pkgs; [
-        nixfmt-rfc-style
+        nixfmt
         nixd
         deadnix
         nurl
@@ -169,10 +169,10 @@
           package = deadnix;
         }
         {
-          name = "nixfmt-rfc-style";
+          name = "nixfmt";
           command = "nixfmt";
           includes = [ "*.nix" ];
-          package = nixfmt-rfc-style;
+          package = nixfmt;
         }
       ];
     };

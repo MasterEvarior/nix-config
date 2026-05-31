@@ -27,6 +27,8 @@
         enableZshIntegration = isDefaultShell pkgs.zsh;
         enableBashIntegration = isDefaultShell pkgs.bash;
         enableFishIntegration = isDefaultShell pkgs.fish;
+
+        shellWrapperName = "y";
       };
 
       home.file.src = {
