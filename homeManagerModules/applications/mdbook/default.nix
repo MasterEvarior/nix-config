@@ -28,7 +28,6 @@
     let
       cfg = config.homeModules.applications.mdbook;
       defaultPlugins = with pkgs; [
-        mdbook-alerts
         mdbook-plantuml
         plantuml
       ];
