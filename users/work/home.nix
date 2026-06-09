@@ -42,7 +42,6 @@
       espanso.enable = true;
       mdbook.enable = true;
       deja-dup.enable = true;
-      bitwarden.enable = true;
       meld.enable = true;
       github-cli.enable = true;
       gitlab-cli.enable = true;
