@@ -55,12 +55,9 @@
             resumeCommand = ''swaymsg "output * power on"'';
           }
         ];
-        events = [
-          {
-            event = "before-sleep";
-            command = cfg.lock.command;
-          }
-        ];
+        events = {
+          "before-sleep" = cfg.lock.command;
+        };
         extraArgs = [
           "-w"
         ];

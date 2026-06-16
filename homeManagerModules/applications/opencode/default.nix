@@ -92,8 +92,8 @@
         inherit (cfg) package;
 
         enable = true;
+        tui.theme = cfg.theme;
         settings = {
-          theme = cfg.theme;
           share = cfg.share;
           autoupdate = false;
           provider = {
