@@ -84,6 +84,7 @@
         rebase = true;
       };
       php.enable = true;
+      terraform.enable = true;
       kubernetes = {
         enable = true;
         openshift.enable = true;
