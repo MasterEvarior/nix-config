@@ -56,6 +56,11 @@
               identitiesOnly = true;
             }
             {
+              host = "sl3255.web.hostpoint.ch";
+              file = ./assets/ssh/webtransfer.pub;
+              identitiesOnly = true;
+            }
+            {
               host = "gitlab.puzzle.ch";
               file = ./assets/ssh/gitlab_puzzle.pub;
               identitiesOnly = true;
