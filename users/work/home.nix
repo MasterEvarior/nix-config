@@ -13,6 +13,7 @@
     # Programming
     yamllint
     mdl
+    azure-cli
 
     # Office
     thunderbird
