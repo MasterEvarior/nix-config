@@ -67,7 +67,7 @@
   config =
     let
       cfg = config.homeModules.applications."1password";
-      getFileName = keyPath: builtins.baseNameOf (toString keyPath);
+      getFileName = keyPath: baseNameOf (toString keyPath);
       getStablePath = keyPath: "${config.home.homeDirectory}/.ssh/public-keys/${getFileName keyPath}";
       generateHomeFileEntries =
         keysList:
