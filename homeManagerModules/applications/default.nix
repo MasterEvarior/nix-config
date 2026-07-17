@@ -25,6 +25,7 @@
     ./fastfetch
     ./firefox
     ./flex-launcher
+    ./floorp
     ./fzf
     ./github-cli
     ./gitlab-cli
@@ -77,6 +78,7 @@
         vscode.enable = enableByDefault;
         fastfetch.enable = enableByDefault;
         firefox.enable = enableByDefault;
+        floorp.enable = enableByDefault;
         "1password".enable = enableByDefault;
         spotify.enable = enableByDefault;
         comma.enable = enableByDefault;
