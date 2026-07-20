@@ -10,6 +10,12 @@
   options.homeModules.dev.java = {
     enable = lib.mkEnableOption "Java";
     javaPackage = lib.mkPackageOption pkgs "jdk25" { };
+    additionalJdkVersions = lib.mkOption {
+      default = [ pkgs.jdk21 ];
+      example = [ pkgs.jdk21 ];
+      type = lib.types.listOf lib.types.package;
+      description = "Additional JDKs to install into ~/jdks";
+    };
     mavenPackage = lib.mkPackageOption pkgs "maven" { };
     gradlePackage = lib.mkPackageOption pkgs "gradle" { };
   };
@@ -31,6 +37,8 @@
 
           # Quarkus
           quarkus
+
+          # Additional Java Versions
         ]
         ++ [
           pkgs-unstable.jetbrains.idea
@@ -51,5 +59,17 @@
         package = cfg.javaPackage;
         enable = true;
       };
+
+      home.sessionPath = [ "$HOME/.jdks" ];
+      home.file = (
+        builtins.listToAttrs (
+          map (jdk: {
+            name = ".jdks/${jdk.version}";
+            value = {
+              source = jdk;
+            };
+          }) cfg.additionalJdkVersions
+        )
+      );
     };
 }
