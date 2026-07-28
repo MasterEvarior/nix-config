@@ -48,12 +48,29 @@
     containers.podman.enable = true;
     desktop = {
       plasma.enable = true;
-      sway = {
-        enable = true;
-        useSwayFX = true;
-        disableHardwareCursor = true;
-        wayDisplayConfig = (builtins.readFile ./assets/sway-display-config.yaml);
-      };
+      sway =
+        let
+          builtIn = "Samsung Display Corp. 0x4165";
+        in
+        {
+          enable = true;
+          useSwayFX = true;
+          disableHardwareCursor = true;
+          wayDisplayConfig = (builtins.readFile ./assets/sway-display-config.yaml);
+          outputs = {
+            "${builtIn}" = {
+              mode = "3840x2400";
+              bg = "${./assets/img/sway-background.png} fill";
+              pos = "0,0";
+            };
+          };
+          workspaceAssignments = [
+            {
+              outputName = builtIn;
+              workspace = 1;
+            }
+          ];
+        };
     };
   };
 
