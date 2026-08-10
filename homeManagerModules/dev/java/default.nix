@@ -17,7 +17,7 @@
       description = "Additional JDKs to install into ~/jdks";
     };
     mavenPackage = lib.mkPackageOption pkgs "maven" { };
-    gradlePackage = lib.mkPackageOption pkgs "gradle" { };
+    gradlePackage = lib.mkPackageOption pkgs "gradle_9" { };
   };
 
   config =
