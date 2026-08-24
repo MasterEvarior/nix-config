@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 
@@ -27,16 +28,10 @@
       conf = config.homeModules.applications.cypress;
     in
     lib.mkIf config.homeModules.applications.cypress.enable {
-      home.packages =
-        with pkgs;
-        [
-          cypress
-          steam-run
-        ]
-        ++ conf.additionalBrowsers;
+      home.packages = conf.additionalBrowsers;
 
       home.shellAliases = {
-        cypress = "steam-run ${builtins.toString pkgs.cypress}/bin/cypress";
+        cypress = "${lib.getExe pkgs-unstable.steam-run} ${lib.getExe pkgs-unstable.cypress}";
       };
     };
 }
