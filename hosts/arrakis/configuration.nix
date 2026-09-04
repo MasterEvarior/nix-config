@@ -50,7 +50,8 @@
       plasma.enable = true;
       sway =
         let
-          builtIn = "Samsung Display Corp. 0x4165";
+          builtIn = "Lenovo Group Limited 0x4146 Unknown";
+          external = "Dell Inc. DELL U3417W 660X87BR0ULL";
         in
         {
           enable = true;
@@ -62,11 +63,17 @@
               mode = "3840x2400";
               bg = "${./assets/img/sway-background.png} fill";
               pos = "0,0";
+              scale = "2";
+            };
+            "${external}" = {
+              mode = "3440x1440";
+              bg = "${./assets/img/sway-background.png} fill";
+              pos = "1920,0";
             };
           };
           workspaceAssignments = [
             {
-              outputName = builtIn;
+              outputName = external;
               workspace = 1;
             }
           ];
