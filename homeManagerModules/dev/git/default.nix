@@ -111,6 +111,9 @@
             # Commit
             amend = "commit --amend --no-edit";
             cm = "commit -m";
+            uncommit = ''reset --soft "HEAD~1"'';
+            wip = ''!git aa && git cm "wip: change me later" --no-verify '';
+            unwip = ''!f() { msg=$(git log -1 --pretty=%s); if [ "$msg" = "wip: change me later" ]; then git reset --soft HEAD~1; else echo "The last commit is not a wip commit"; fi; }; f'';
 
             # Log
             count = ''!echo "Total commits: $(git rev-list --count HEAD)"'';
