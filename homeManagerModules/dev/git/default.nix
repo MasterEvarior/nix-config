@@ -148,6 +148,8 @@
             ca-add = co-authors-add;
             co-author-override = "!${caOverride}";
             ca-override = co-author-override;
+            co-author-list = ''log --grep "co-authored-by" --regexp-ignore-case'';
+            ca-list = co-author-list;
           };
           delta = {
             enable = cfg.delta;
