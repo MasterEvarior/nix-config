@@ -38,7 +38,6 @@ in
       onedrive.enable = true;
       claude.enable = true;
       codegrab.enable = true;
-      cypress.enable = true;
       zotero.enable = true;
       harper.enable = true;
       meld.enable = true;
