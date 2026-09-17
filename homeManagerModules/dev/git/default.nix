@@ -57,6 +57,15 @@
       cpbScript = pkgs.writers.writeBash "git-cpb-script" (
         builtins.readFile ./assets/cherry-pick-branch.sh
       );
+      caStrip = pkgs.writers.writeBash "git-co-author-strip-script" (
+        builtins.readFile ./assets/co-author-strip.sh
+      );
+      caSelect = pkgs.writers.writeBash "git-co-author-select-script" (
+        builtins.readFile ./assets/co-author-select.sh
+      );
+      caOverride = pkgs.writers.writeBash "git-co-author-overwrite-script" (
+        builtins.readFile ./assets/co-author-overwrite.sh
+      );
     in
     lib.mkIf cfg.enable {
 
@@ -131,6 +140,14 @@
 
             # Cherry Pick
             cherry-pick-branch = "!${cpbScript}";
+
+            # Co-Authors & author override
+            co-authors-strip = "!${caStrip}";
+            ca-strip = co-authors-strip;
+            co-authors-add = "!${caSelect}";
+            ca-add = co-authors-add;
+            co-author-override = "!${caOverride}";
+            ca-override = co-author-override;
           };
           delta = {
             enable = cfg.delta;

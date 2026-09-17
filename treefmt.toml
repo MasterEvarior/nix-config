@@ -19,7 +19,7 @@ includes = ["*.json","*.jsonc"]
 [formatter.beautysh]
 command = "beautysh"
 options = ["-i","2"]
-excludes = []
+excludes = ["homeManagerModules/dev/git/assets/co-author-overwrite.sh","homeManagerModules/dev/git/assets/co-author-select.sh"]
 includes = ["*.sh"]
 
 [formatter.typstfmt]

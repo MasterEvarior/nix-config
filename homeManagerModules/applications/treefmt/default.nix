@@ -124,6 +124,10 @@
             name = "beautysh";
             command = "beautysh";
             includes = [ "*.sh" ];
+            excludes = [
+              "homeManagerModules/dev/git/assets/co-author-overwrite.sh"
+              "homeManagerModules/dev/git/assets/co-author-select.sh"
+            ];
             options = [
               "-i"
               "2"
