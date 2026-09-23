@@ -132,6 +132,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-cypress-pr": {
+      "locked": {
+        "lastModified": 1789587454,
+        "narHash": "sha256-4ZXqyyIV+Trvs4eMz5eOQeyX6TiCEmWJTnn+p0+GJLU=",
+        "owner": "phanirithvij",
+        "repo": "nixpkgs",
+        "rev": "c2f0705861b6cb0ad20681b29dc006dd700eb40d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "phanirithvij",
+        "repo": "nixpkgs",
+        "rev": "c2f0705861b6cb0ad20681b29dc006dd700eb40d",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1789546076,
@@ -263,6 +279,7 @@
         "home-manager": "home-manager",
         "my-sops-secrets": "my-sops-secrets",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-cypress-pr": "nixpkgs-cypress-pr",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "openconnect-sso": "openconnect-sso",
         "silentSDDM": "silentSDDM",
