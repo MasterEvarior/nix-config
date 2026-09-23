@@ -141,6 +141,9 @@
             # Cherry Pick
             cherry-pick-branch = "!${cpbScript}";
 
+            # Diff
+            d = "diff HEAD";
+
             # Co-Authors & author override
             co-authors-strip = "!${caStrip}";
             ca-strip = co-authors-strip;
