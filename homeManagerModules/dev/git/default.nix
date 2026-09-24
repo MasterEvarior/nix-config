@@ -144,6 +144,10 @@
             # Diff
             d = "diff HEAD";
 
+            # Ignore
+            ignore = lib.getExe pkgs.git-ignore;
+            ignore-init = "!${lib.getExe pkgs.git-ignore} -u -w direnv intellij+all linux visualstudiocode macos";
+
             # Co-Authors & author override
             co-authors-strip = "!${caStrip}";
             ca-strip = co-authors-strip;
@@ -165,9 +169,5 @@
           };
         };
       };
-
-      home.packages = with pkgs; [
-        git-ignore
-      ];
     };
 }
