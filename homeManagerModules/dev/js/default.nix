@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 
@@ -15,6 +16,7 @@
   options.homeModules.dev.js = {
     enable = lib.mkEnableOption "JS support";
     typescript.enable = lib.mkEnableOption "TS support";
+    pnpm.package = lib.mkPackageOption pkgs-unstable "pnpm" { };
   };
 
   config =
@@ -28,13 +30,15 @@
           nodejs_24
           nodemon
           yarn
-          pnpm
         ]
         ++ lib.lists.optionals (cfg.typescript.enable) [
           typescript-language-server
         ]
         ++ lib.lists.optionals (cfg.typescript.enable && !cfg.angular.enable) [
           typescript
+        ]
+        ++ [
+          cfg.pnpm.package
         ];
 
       home.file.".npmrc".text = ''
@@ -42,7 +46,7 @@
       '';
 
       home.shellAliases = {
-        pp = lib.getExe pkgs.pnpm;
+        pp = lib.getExe cfg.pnpm.package;
         nx = lib.getExe' pkgs.nodejs_24 "npx" + " nx";
       };
 
