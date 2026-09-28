@@ -69,6 +69,10 @@
     in
     lib.mkIf cfg.enable {
 
+      home.shellAliases = {
+        "g" = lib.getExe config.programs.git.package;
+      };
+
       programs.git = {
         enable = true;
         settings = {
