@@ -12,8 +12,8 @@
 
   config = lib.mkIf config.homeModules.dev.php.enable {
     home.packages = with pkgs; [
-      (php84.withExtensions ({ enabled, all }: enabled ++ [ all.tidy ]))
-      php84Packages.composer
+      (php85.withExtensions ({ enabled, all }: enabled ++ [ all.tidy ]))
+      php85Packages.composer
       ant
     ];
   };
