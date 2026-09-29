@@ -37,6 +37,7 @@ in
     applications = {
       onedrive.enable = true;
       claude.enable = true;
+      herdr.enable = true;
       codegrab.enable = true;
       zotero.enable = true;
       harper.enable = true;

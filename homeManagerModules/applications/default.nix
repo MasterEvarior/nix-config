@@ -32,6 +32,7 @@
     ./gowall
     ./harper
     ./helix
+    ./herdr
     ./lazygit
     ./libreoffice
     ./license-cli

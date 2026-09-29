@@ -37,6 +37,7 @@
     applications = {
       bruno.enable = true;
       claude.enable = true;
+      herdr.enable = true;
       codegrab.enable = true;
       opencode.enable = true;
       cypress.enable = true;
