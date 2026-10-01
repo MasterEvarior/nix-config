@@ -134,17 +134,17 @@
     },
     "nixpkgs-cypress-pr": {
       "locked": {
-        "lastModified": 1789587454,
-        "narHash": "sha256-4ZXqyyIV+Trvs4eMz5eOQeyX6TiCEmWJTnn+p0+GJLU=",
+        "lastModified": 1790781996,
+        "narHash": "sha256-wYUz453ULrJGQZEx+SV3hCLtlzvDvREuad6P4M6vtOs=",
         "owner": "phanirithvij",
         "repo": "nixpkgs",
-        "rev": "c2f0705861b6cb0ad20681b29dc006dd700eb40d",
+        "rev": "bd6b41ee850c7ac513fd5be75cee6cc7b153822a",
         "type": "github"
       },
       "original": {
         "owner": "phanirithvij",
         "repo": "nixpkgs",
-        "rev": "c2f0705861b6cb0ad20681b29dc006dd700eb40d",
+        "rev": "bd6b41ee850c7ac513fd5be75cee6cc7b153822a",
         "type": "github"
       }
     },
