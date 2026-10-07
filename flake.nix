@@ -40,6 +40,12 @@
       url = "github:MarceColl/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Claude Code skills
+    llm-skills = {
+      url = "github:MasterEvarior/skills";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

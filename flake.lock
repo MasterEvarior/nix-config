@@ -77,6 +77,27 @@
         "type": "github"
       }
     },
+    "llm-skills": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1791316232,
+        "narHash": "sha256-ZeiGLGrz1g1CrsYEhW/3idsWaCIyLWqEoOv0aZlKGSY=",
+        "owner": "MasterEvarior",
+        "repo": "skills",
+        "rev": "be2dcbb1bf7b12e9065b4a895edc08611c30b501",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MasterEvarior",
+        "repo": "skills",
+        "type": "github"
+      }
+    },
     "my-sops-secrets": {
       "flake": false,
       "locked": {
@@ -218,7 +239,7 @@
         ],
         "poetry2nix": "poetry2nix",
         "systems": "systems",
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
         "lastModified": 1758594056,
@@ -277,6 +298,7 @@
         "catppuccin-vsc": "catppuccin-vsc",
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
+        "llm-skills": "llm-skills",
         "my-sops-secrets": "my-sops-secrets",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-cypress-pr": "nixpkgs-cypress-pr",
@@ -378,6 +400,27 @@
       }
     },
     "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "llm-skills",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791203292,
+        "narHash": "sha256-vuzVwvjeucSnwKwMBpyP8r5IzdrMKCHEdwTrRFwUN7I=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "03d8ee1bcbc8f9638907bb79edb9673151d0e22b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_2": {
       "inputs": {
         "nixpkgs": [
           "openconnect-sso",
