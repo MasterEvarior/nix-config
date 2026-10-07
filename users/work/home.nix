@@ -32,6 +32,7 @@
   homeModules = {
     projects = {
       bfh.enable = true;
+      bfh.kube.useMultipleContexts = true;
     };
 
     applications = {
