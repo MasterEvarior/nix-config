@@ -19,6 +19,6 @@
   modules = {
     terminal.enable = lib.mkDefault true;
     containers.enable = lib.mkDefault true;
-    desktop.plasma.enable = lib.mkDefault true;
+    desktop.plasma.enable = lib.mkDefault false;
   };
 }

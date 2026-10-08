@@ -83,10 +83,19 @@
       extraOptions = if cfg.enableUnsupportedGPU then [ "--unsupported-gpu" ] else [ ];
     in
     lib.mkIf config.modules.desktop.sway.enable {
-      environment.systemPackages = with pkgs; [
-        wl-clipboard
-        pulseaudio
-      ];
+      environment.systemPackages =
+        (with pkgs; [
+          wl-clipboard
+          pulseaudio
+        ])
+        ++ (with pkgs.kdePackages; [
+          # KWallet normally gets started and unlocked-on-login by the
+          # Plasma session. These hosts don't run Plasma, so install it
+          # explicitly instead.
+          kwallet
+          kwallet-pam
+          kwalletmanager
+        ]);
 
       fonts.packages = with pkgs; [
         # Waybar
@@ -140,7 +149,22 @@
       # Will be exposed through DBus to programs willing to store secrets.
       services.gnome.gnome-keyring.enable = true;
 
+      # Unlock KWallet automatically on login via PAM (normally wired up by
+      # the Plasma session; these hosts don't run Plasma). Matches how
+      # nixpkgs' own plasma6 module does it: hooked on the "login" PAM
+      # service, which NixOS's sddm service already `include`s.
+      security.pam.services.login.kwallet.enable = true;
+
       # required per the wiki
       security.polkit.enable = true;
+
+      # xdg-desktop-portal is otherwise only ever enabled by Plasma; without
+      # it, Wayland screen sharing/screenshots and native file pickers for
+      # sandboxed apps have no portal backend to talk to.
+      xdg.portal = {
+        enable = true;
+        wlr.enable = true;
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      };
     };
 }

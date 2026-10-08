@@ -47,7 +47,6 @@
     settings.fingerprint.enable = true;
     containers.podman.enable = true;
     desktop = {
-      plasma.enable = true;
       sway =
         let
           builtIn = "Lenovo Group Limited 0x4146 Unknown";

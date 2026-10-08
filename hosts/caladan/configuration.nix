@@ -29,7 +29,6 @@
         side = "AOC 24G2W1G4 ATNN11A013004";
       in
       {
-        plasma.enable = true;
         sway = {
           enable = true;
           useSwayFX = true;
@@ -86,7 +85,7 @@
     networkmanager.enable = true;
   };
 
-  # Enable the KDE Plasma Desktop Environment.
+  # Enable SDDM to launch the Sway session.
   services.displayManager.sddm.enable = true;
 
   # This value determines the NixOS release from which the default

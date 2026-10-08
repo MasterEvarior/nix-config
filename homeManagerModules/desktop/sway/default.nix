@@ -74,6 +74,11 @@
     in
     lib.mkIf config.homeModules.desktop.sway.module.enable {
 
+      # Plasma normally brings its own polkit authentication agent (the GUI
+      # dialog for actions needing elevated auth, e.g. mounting a drive).
+      # These hosts don't run Plasma, so start a standalone one instead.
+      services.hyprpolkitagent.enable = enableByDefault;
+
       homeModules.applications = {
         bemoji.enable = enableByDefault;
         zathura = {
