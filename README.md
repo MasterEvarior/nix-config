@@ -47,13 +47,11 @@ A list of all the PCs/Laptops and their users.
 
 - `giannin` - My personal user
 - `work` - User for work
-- `htpc` - User for the HTPC in the living room
 
 ### Hosts
 
 - `arrakis` - My Thinkpad P16s Gen 2
 - `caladan`- My Desktop
-- `gammu`- Home Theater PC
 
 ## Theming
 

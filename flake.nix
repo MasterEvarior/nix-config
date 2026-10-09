@@ -113,7 +113,6 @@
       nixosConfigurations = mkSystems [
         "arrakis"
         "caladan"
-        "gammu"
       ];
 
       checks."${system}" = {
