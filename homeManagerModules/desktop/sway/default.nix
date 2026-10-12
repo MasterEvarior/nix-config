@@ -11,6 +11,7 @@
     ./autotiling.nix
     ./bzmenu.nix
     ./cliphist.nix
+    ./cursor.nix
     ./fuzzel.nix
     ./mako.nix
     ./snipping-tools.nix
@@ -99,6 +100,7 @@
           enable = false;
         };
         cliphist.enable = true;
+        cursor.enable = true;
         fuzzel = {
           enable = enableByDefault;
           theme = mergedTheme;

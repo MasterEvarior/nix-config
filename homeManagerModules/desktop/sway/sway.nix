@@ -368,7 +368,6 @@
           swayfxConfig
           + outputToFocusOnStartup
           + ''
-            seat seat0 xcursor_theme default 24
             bindgesture swipe:right workspace prev
             bindgesture swipe:left workspace next
             exec systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK
