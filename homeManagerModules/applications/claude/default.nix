@@ -45,7 +45,7 @@
         "fence/fence.json".text = builtins.toJSON {
           "$schema" =
             "https://raw.githubusercontent.com/fencesandbox/v${cfg.fence.package.version}/main/docs/schema/fence.schema.json";
-          extends = "code-relaxed";
+          extends = "code";
           filesystem = {
             # NixOS executables and their shared libs/dynamic linker live under
             # /nix/store, which isn't covered by fence's hardcoded FHS default
@@ -57,6 +57,9 @@
           command = {
             deny = [
               # git
+              "git pfush"
+              "git psfwl"
+              "git psf"
               "git ps"
               "git yeet"
 
@@ -92,6 +95,8 @@
           - If a repository has a flake.nix, prefer to use nix develop instead of trying to install tools
           - To temporarily run missing CLI tools, suggest using `nix-shell -p <package>` or `nix run nixpkgs#<package>`.
           - For permanent tool additions, remember that there is a config file that needs editing. You are NOT allowed to do so without prior authorization!
+
+          You are running in a sandbox and might not be able to access certain website, run certain commands and so on. Do not try to cirumvent this, instead alert the user about this if necessary.
         '';
       };
     };
