@@ -126,7 +126,7 @@
           theme = mergedTheme;
         };
         swayidle = {
-          enable = enableByDefault;
+          enable = false;
           lock.command = lib.mkDefault "${pkgs.swaylock}/bin/swaylock -f";
         };
         snipping-tools.enable = enableByDefault;

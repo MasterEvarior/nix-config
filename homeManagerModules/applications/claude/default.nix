@@ -62,6 +62,7 @@
               "git psf"
               "git ps"
               "git yeet"
+              "git rb"
 
               # nix
               "nuc"
@@ -79,7 +80,82 @@
             ];
           };
 
-          network.allowLocalOutbound = false;
+          network = {
+            allowedDomains = [ "*" ];
+            deniedDomains = [
+              # Error reporting
+              "*.sentry.io"
+              "*.ingest.sentry.io"
+              "sentry.io"
+
+              # Product analytics
+              "*.posthog.com"
+              "app.posthog.com"
+              "us.posthog.com"
+              "eu.posthog.com"
+
+              # Feature flags / experimentation
+              "*.statsig.com"
+              "statsig.com"
+              "statsig.anthropic.com"
+
+              # Customer data platforms
+              "*.segment.io"
+              "*.segment.com"
+              "api.segment.io"
+              "cdn.segment.com"
+
+              # Analytics
+              "*.amplitude.com"
+              "api.amplitude.com"
+              "api2.amplitude.com"
+              "*.mixpanel.com"
+              "api.mixpanel.com"
+
+              "*.heap.io"
+              "*.heapanalytics.com"
+
+              # Session recording
+              "*.fullstory.com"
+              "*.hotjar.com"
+              "*.hotjar.io"
+              "*.logrocket.io"
+              "*.logrocket.com"
+
+              # Error tracking
+              "*.bugsnag.com"
+              "notify.bugsnag.com"
+              "*.rollbar.com"
+              "api.rollbar.com"
+
+              # APM / Monitoring
+              "*.datadog.com"
+              "*.datadoghq.com"
+
+              "*.newrelic.com"
+              "*.nr-data.net"
+
+              # Feature flags
+              "*.launchdarkly.com"
+              "*.split.io"
+
+              # Product analytics / user engagement
+              "*.pendo.io"
+              "*.intercom.io"
+              "*.intercom.com"
+
+              # Mobile attribution
+              "*.appsflyer.com"
+              "*.adjust.com"
+              "*.branch.io"
+
+              # Crash reporting
+              "crashlytics.com"
+              "*.crashlytics.com"
+              "firebase-settings.crashlytics.com"
+            ];
+            allowLocalOutbound = false;
+          };
         };
       };
 
@@ -96,8 +172,8 @@
           - To temporarily run missing CLI tools, suggest using `nix-shell -p <package>` or `nix run nixpkgs#<package>`.
           - For permanent tool additions, remember that there is a config file that needs editing. You are NOT allowed to do so without prior authorization!
 
-          You are running in a sandbox and might not be able to access certain website, run certain commands and so on. Do not try to cirumvent this, instead alert the user about this if necessary.
-        '';
+        ''
+        + lib.optionalString cfg.fence.enable "You are running in a sandbox and might not be able to access certain website, run certain commands and so on. Do not try to cirumvent this, instead alert the user about this if necessary.";
       };
     };
 }
