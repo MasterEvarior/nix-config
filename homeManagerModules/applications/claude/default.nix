@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  pkgs-unstable,
   config,
   inputs,
   ...
@@ -42,131 +43,31 @@
       };
 
       xdg.configFile = lib.mkIf cfg.fence.enable {
-        "fence/fence.json".text = builtins.toJSON {
-          "$schema" =
-            "https://raw.githubusercontent.com/fencesandbox/v${cfg.fence.package.version}/main/docs/schema/fence.schema.json";
-          extends = "code";
-          filesystem = {
-            # NixOS executables and their shared libs/dynamic linker live under
-            # /nix/store, which isn't covered by fence's hardcoded FHS default
-            # paths (/usr, /bin, /lib, ...), so exec fails with EACCES without this.
-            # https://github.com/fencesandbox/fence/issues/232
-            allowRead = [ "/nix/store" ];
-            allowExecute = [ "/nix/store" ];
-          };
-          command = {
-            deny = [
-              # git
-              "git pfush"
-              "git psfwl"
-              "git psf"
-              "git ps"
-              "git yeet"
-              "git rb"
-
-              # nix
-              "nuc"
-              "ncg"
-              "nix-collect-garbage"
-              "nrs"
-              "nixos-rebuild --flake . switch"
-              "nixos-rebuild switch"
-            ];
-            allow = [
-              "gh issue create"
-            ];
-            acceptSharedBinaryCannotRuntimeDeny = [
-              "chroot"
-            ];
-          };
-
-          network = {
-            allowedDomains = [ "*" ];
-            deniedDomains = [
-              # Error reporting
-              "*.sentry.io"
-              "*.ingest.sentry.io"
-              "sentry.io"
-
-              # Product analytics
-              "*.posthog.com"
-              "app.posthog.com"
-              "us.posthog.com"
-              "eu.posthog.com"
-
-              # Feature flags / experimentation
-              "*.statsig.com"
-              "statsig.com"
-              "statsig.anthropic.com"
-
-              # Customer data platforms
-              "*.segment.io"
-              "*.segment.com"
-              "api.segment.io"
-              "cdn.segment.com"
-
-              # Analytics
-              "*.amplitude.com"
-              "api.amplitude.com"
-              "api2.amplitude.com"
-              "*.mixpanel.com"
-              "api.mixpanel.com"
-
-              "*.heap.io"
-              "*.heapanalytics.com"
-
-              # Session recording
-              "*.fullstory.com"
-              "*.hotjar.com"
-              "*.hotjar.io"
-              "*.logrocket.io"
-              "*.logrocket.com"
-
-              # Error tracking
-              "*.bugsnag.com"
-              "notify.bugsnag.com"
-              "*.rollbar.com"
-              "api.rollbar.com"
-
-              # APM / Monitoring
-              "*.datadog.com"
-              "*.datadoghq.com"
-
-              "*.newrelic.com"
-              "*.nr-data.net"
-
-              # Feature flags
-              "*.launchdarkly.com"
-              "*.split.io"
-
-              # Product analytics / user engagement
-              "*.pendo.io"
-              "*.intercom.io"
-              "*.intercom.com"
-
-              # Mobile attribution
-              "*.appsflyer.com"
-              "*.adjust.com"
-              "*.branch.io"
-
-              # Crash reporting
-              "crashlytics.com"
-              "*.crashlytics.com"
-              "firebase-settings.crashlytics.com"
-            ];
-            allowLocalOutbound = false;
-          };
-        };
+        "fence/fence.json".text = builtins.toJSON (import ./fence-config.nix { inherit cfg; });
       };
 
       programs.claude-code = {
         enable = true;
         inherit skills;
 
+        mcpServers = {
+          context7 = {
+            type = "stdio";
+            command = lib.getExe pkgs-unstable.context7-mcp;
+          };
+          nixos = {
+            type = "stdio";
+            command = lib.getExe pkgs-unstable.mcp-nixos;
+            env = {
+              FASTMCP_CHECK_FOR_UPDATES = "off";
+            };
+          };
+        };
+
         context = ''
           Environment & System Rules:
           - This system runs NixOS (declarative Linux distribution without standard FHS binary paths).
-          - Do NOT run FHS package manager commands (e.g., `apt`, `pacman`, `yum`, `dnf`).
+          - Do NOT run FHS package manager commands (e.g. `apt`, `pacman`, `yum`, `dnf`).
           - Do NOT execute raw binary installer scripts that expect standard dynamic linkers in `/lib64` or `/usr/lib`.
           - If a repository has a flake.nix, prefer to use nix develop instead of trying to install tools
           - To temporarily run missing CLI tools, suggest using `nix-shell -p <package>` or `nix run nixpkgs#<package>`.
