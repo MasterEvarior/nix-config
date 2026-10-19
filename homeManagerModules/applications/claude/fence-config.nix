@@ -82,6 +82,7 @@
     ];
     allow = [
       "gh issue create"
+      "nix fmt"
     ];
     acceptSharedBinaryCannotRuntimeDeny = [
       "chroot"
