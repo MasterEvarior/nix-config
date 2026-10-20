@@ -86,6 +86,13 @@
         _1password-gui
       ];
 
+      programs.git.signing = {
+        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILD1DkJ2bigZLqBqqRjbMVM5Iw/1WntsELss3tXXQzTX";
+        format = "ssh";
+        signByDefault = true;
+        signer = lib.getExe' pkgs._1password-gui "op-ssh-sign";
+      };
+
       programs.ssh =
         let
           mkMatchBlock =
