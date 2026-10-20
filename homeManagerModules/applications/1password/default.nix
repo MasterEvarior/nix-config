@@ -49,6 +49,20 @@
     in
     {
       enable = lib.mkEnableOption "1Password GUI and client";
+      signing = {
+        enable = lib.mkOption {
+          default = true;
+          example = false;
+          type = lib.types.bool;
+          description = "Whether to configure git commit signing using 1Password's SSH agent";
+        };
+        key = lib.mkOption {
+          default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILD1DkJ2bigZLqBqqRjbMVM5Iw/1WntsELss3tXXQzTX";
+          example = "ssh-ed25519 AAAAC3...";
+          type = lib.types.str;
+          description = "The public SSH key to use for signing git commits";
+        };
+      };
       ssh = {
         configureSSH = lib.mkOption {
           default = true;
@@ -86,8 +100,8 @@
         _1password-gui
       ];
 
-      programs.git.signing = {
-        key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILD1DkJ2bigZLqBqqRjbMVM5Iw/1WntsELss3tXXQzTX";
+      programs.git.signing = lib.mkIf cfg.signing.enable {
+        key = cfg.signing.key;
         format = "ssh";
         signByDefault = true;
         signer = lib.getExe' pkgs._1password-gui "op-ssh-sign";
