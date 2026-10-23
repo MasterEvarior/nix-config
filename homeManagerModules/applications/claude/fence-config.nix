@@ -79,6 +79,10 @@
       "oc exec"
       "kubectl cp"
       "oc cp"
+
+	  # SOPS
+	  "sops"
+	  "sops edit"
     ];
     allow = [
       "gh issue create"
