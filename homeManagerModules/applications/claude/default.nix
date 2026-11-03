@@ -62,6 +62,10 @@
               FASTMCP_CHECK_FOR_UPDATES = "off";
             };
           };
+          gitlab = {
+            type = "http";
+            url = "https://gitlab.fhnw.ch/api/v4/mcp";
+          };
         };
 
         context = ''
