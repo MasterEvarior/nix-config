@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # cypress: 15.19.0 -> 16.1.0, not merged yet: https://github.com/NixOS/nixpkgs/pull/562252
-    nixpkgs-cypress-pr.url = "github:phanirithvij/nixpkgs/bd6b41ee850c7ac513fd5be75cee6cc7b153822a";
+    nixpkgs-cypress-pr.url = "github:phanirithvij/nixpkgs/b9646355b48bda8f89739713974ef0299a8b060f";
     grub2-themes.url = "github:vinceliuice/grub2-themes";
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
