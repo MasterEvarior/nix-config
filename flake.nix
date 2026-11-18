@@ -59,7 +59,13 @@
         config.allowUnfree = true;
         overlays = [
           (final: prev: {
-            cypress = (import inputs.nixpkgs-cypress-pr { inherit system; }).cypress;
+            cypress =
+              (import inputs.nixpkgs-cypress-pr {
+                inherit system;
+                config.permittedInsecurePackages = [
+                  "cypress-15.19.0"
+                ];
+              }).cypress;
           })
         ];
       };

@@ -41,7 +41,6 @@
       herdr.enable = true;
       codegrab.enable = true;
       opencode.enable = true;
-      cypress.enable = true;
       espanso.enable = true;
       mdbook.enable = true;
       deja-dup.enable = true;
