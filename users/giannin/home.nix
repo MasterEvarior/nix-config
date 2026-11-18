@@ -38,6 +38,7 @@ in
       onedrive.enable = true;
       claude.enable = true;
       cypress.enable = true;
+      aoe.enable = true;
       herdr.enable = true;
       codegrab.enable = true;
       zotero.enable = true;

@@ -38,6 +38,7 @@
     applications = {
       bruno.enable = true;
       claude.enable = true;
+      aoe.enable = true;
       herdr.enable = true;
       codegrab.enable = true;
       opencode.enable = true;

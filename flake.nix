@@ -41,6 +41,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Session manager for AI coding agents
+    agent-of-empires = {
+      url = "github:agent-of-empires/agent-of-empires";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Claude Code skills
     llm-skills = {
       url = "github:MasterEvarior/skills";
@@ -70,6 +76,7 @@
         ];
       };
       zen-browser = inputs.zen-browser.packages."${system}".default;
+      aoe = inputs.agent-of-empires.packages."${system}".default;
       lfiles = import ./lib/files.nix { inherit lib; };
       customLibs = {
         _module.args = {
@@ -101,6 +108,7 @@
                 inherit inputs;
                 inherit pkgs-unstable;
                 inherit zen-browser;
+                inherit aoe;
                 inherit lfiles;
               };
             }
