@@ -41,6 +41,7 @@
 
           additionalExtensions = optionals (cfg.setupVisualStudioCode) [
             pkgs.vscode-extensions.ms-python.python
+            pkgs.vscode-extensions.ms-python.vscode-pylance
             pkgs.vscode-extensions.ms-python.debugpy
             pkgs.vscode-extensions.ms-python.black-formatter
           ];
